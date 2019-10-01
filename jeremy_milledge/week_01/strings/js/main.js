@@ -1,6 +1,6 @@
 // DrEvil
 const drEvil = function(amount) {
-  let sayIt = `${amount} dollars`;
+  let sayIt = amount + ' dollars';
   if (amount === 1000000) {
     sayIt += " (pinky)";
   }
@@ -10,21 +10,20 @@ const drEvil = function(amount) {
 
 // MixUp
 const mixUp = function(str1, str2) {
-  const slice1a = str1.slice(0,2);
-  const slice1b = str1.slice(2);
-  const slice2a = str2.slice(0,2);
-  const slice2b = str2.slice(2);
-  const concat = `${slice2a}${slice1b} ${slice1a}${slice2b}`;
-  return concat;
+  const s1a = str1.slice(0,2);
+  const s1b = str1.slice(2);
+  const s2a = str2.slice(0,2);
+  const s2b = str2.slice(2);
+  const mixedUp = s2a + s1b + ' ' + s1a + s2b;
+  return mixedUp;
 };
 //console.log(mixUp('dog', 'cat'));
 
 // FixStart
 const fixStart = function(str) {
   let fixed = str;
-  const firstChar = str[0];
   for (let i = 1; i < str.length; i++) {
-    if (str[i] === firstChar) {
+    if (str[i] === str[0]) {
       fixed = fixed.slice(0, i) + '*' + fixed.slice(i + 1);
     }
   }
