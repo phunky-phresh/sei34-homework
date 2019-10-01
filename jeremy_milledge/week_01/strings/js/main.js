@@ -50,11 +50,11 @@ const verbing = function(str) {
 // Not Bad
 const notBad = function(str) {
   let fixed = str;
-  const idx_not = str.search(/not/gi);
-  const idx_bad = str.search(/bad/gi);
+  const idx_not = str.search('not');
+  const idx_bad = str.search('bad');
   if (idx_bad > idx_not && idx_not >= 0) {
     fixed = fixed.slice(0, idx_not) + 'good' + fixed.slice(idx_bad + 3);
   }
   return fixed;
 };
-//console.log(notBad("that's nOt Bad hey!"));
+console.log(notBad("that's not bad hey!"));
