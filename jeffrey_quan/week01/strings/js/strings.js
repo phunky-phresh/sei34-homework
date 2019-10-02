@@ -158,6 +158,8 @@ const verbing = function (string) {
 //   }
 // }
 
+// note: when adding 'ing' to end of words, we normally repeat the last character of the
+// word then add 'ing'. This function does not take this into account.
 verbing('swim');
 verbing('swimming');
 verbing('go');
