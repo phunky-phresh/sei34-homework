@@ -305,11 +305,13 @@ const guessLetterHM = function (letter){
 
   if (numberGuesses === 6) {  //if end of game
     console.log("You lost");
-    console.log("____  ");
-    console.log("   |  ");
-    console.log("   ()/  ");
-    console.log("  /|| ");
-    console.log(" _/ |_ ");
+    console.log("_____   ");
+    console.log("|   |   ");
+    console.log("|   ()/ ");
+    console.log("|  /||  ");
+    console.log("| _/ |_ ");
+    console.log("|       ");
+
     return;  //end of function and game
   }
 
