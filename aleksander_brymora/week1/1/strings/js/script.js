@@ -42,7 +42,7 @@ const verbing = function (str) {
 }
 
 const notBad = function (str) {
-    const newStr = str.replace(/(not)(.*)(bad)/, "good");
+    const newStr = str.replace(/(not)(.*)(bad)/i, "good");
     console.log(newStr);
     return newStr;
 }
