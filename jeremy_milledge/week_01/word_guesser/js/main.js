@@ -1,23 +1,23 @@
 //word guessing game
 
+//initialisations
 const word = ['H', 'A', 'N', 'G', 'M', 'A', 'N'];
-let working = new Array(word.length);
-working.fill('_');
+let working = (new Array(word.length)).fill('_');
 let guessed = [];
 let rewardTotal = 0;
-let guessesRemaining = 10;
+let bodyParts = 0;
 let totalHits = 0;
 
-
+//game logic and output
 const guessLetter = function(letter) {
-  if (!guessesRemaining) {
-    return console.log('No more guesses, you lose!')
+  if (bodyParts === 6) {
+    return console.log('The man has been hanged, you lose!')
   }
   let upper = letter.toUpperCase();
-  guessesRemaining -= 1;
+  console.log(`===========`);
   if (guessed.includes(upper)) {
-    console.log(`You've already guessed ${upper}! \
-    You lose that guess, sorry!`);
+    console.log(`You've already guessed ${upper}. You lose that guess!`);
+    bodyParts++;
     rewardCalc();
     statusMsg();
   } else {
@@ -27,12 +27,18 @@ const guessLetter = function(letter) {
     for (let i = 0; i < word.length; i++) {
       if (upper === word[i]) {
         working[i] = upper;
-        hits++
+        hits++;
         correct = true;
+        if (bodyParts > 0) {
+          bodyParts--;
+        }
       }
     }
     if (correct) {
-      console.log('Congrats, the letter is correct!');
+      console.log(`Congrats, the letter ${upper} is correct!`);
+    } else {
+      bodyParts++;
+      console.log(`Sorry, the letter ${upper} is inorrect`);
     }
     rewardCalc(hits);
     if (arrayEquivalence(working, word)) {
@@ -43,34 +49,37 @@ const guessLetter = function(letter) {
       let lettersRemaining = word.length - totalHits;
       console.log(`Letters to be found: ${lettersRemaining}`);
     }
-
   }
-
-
 };
+
+
  // HELPERS
  const statusMsg = function() {
    /*print update on letters guessed already, the \
    position of hits and total reward currently */
 
-   console.log(`What you've got: ${working}`);
-   console.log(`Letters you've guessed: ${guessed}`);
-   console.log(`Your current reward: $${rewardTotal}.`);
-   console.log(`You have ${guessesRemaining} guesses left.`)
+   console.log(`\
+What you've got: ${working}\n
+Letters you've guessed: ${guessed}\n
+Your current possible reward: $${rewardTotal}.\n
+You've accrued ${bodyParts} body parts out of 6.`);
  }
 
 
 const rewardCalc = function(lettersFound=0) {
   /* calc the change in reward for this letter */
+
   let dollars = Math.floor(Math.random() * 100);
   if (!lettersFound) {
     if (rewardTotal - dollars < 0) {
       rewardTotal = 0;
     } else {
+      console.log(`Removed from reward: $${dollars}`);
       rewardTotal -= dollars;
     }
   }
   else {
+    console.log(`Added to reward: $${dollars}`);
     rewardTotal += dollars * lettersFound;
   }
 };
@@ -90,6 +99,8 @@ const arrayEquivalence = function(arr1, arr2) {
   }
 };
 
+
+//test output
 console.log(guessLetter('G'));
 console.log(guessLetter('X'));
 console.log(guessLetter('H'));

@@ -13,6 +13,17 @@ console.log(maxOfThree(8,123,45));
 console.log(maxOfThree(45,8,123));
 console.log(maxOfThree(123,45,8));
 
+//vowel checker
+const isVowel = function(char) {
+  let vowels = ['a','e','i','o','u'];
+  if (vowels.includes(char)) {
+    return true;
+  }
+  return false;
+};
+console.log(isVowel('a'));
+console.log(isVowel('t'));
+
 //sum of nums in Array
 const sumArray = function(arr) {
   return arr.reduce((total, x) => total + x);
@@ -39,8 +50,8 @@ const wordArray = ['long', 'short', 'longest', 'shortest', 'tiny']
 
 //longest word from array
 const findLongestWord = function(arr) {
-  let longest = '';
-  for (let i = 0; i < arr.length; i++) {
+  let longest = arr[0];
+  for (let i = 1; i < arr.length; i++) {
     if (arr[i].length > longest.length) {
       longest = arr[i];
     }
@@ -49,6 +60,7 @@ const findLongestWord = function(arr) {
 };
 console.log(findLongestWord(wordArray));
 
+//words greater than length i
 const filterLongWords = function(arr, i) {
   return arr.filter(x => x.length > i);
 }
