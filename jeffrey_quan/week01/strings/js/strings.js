@@ -24,10 +24,10 @@ const drEvil = function (amount) {
   let message = `${ amount } dollars`;
   if (amount === 1000000) {
     message += ` (pinky)`;
-  };
+  }
   console.log(message);
   return message;
-};
+}
 
 drEvil(1000000);
 drEvil(500);
@@ -50,7 +50,7 @@ const mixUp = function (stringA, stringB) {
   const newString = newStringA + " " + newStringB;
   console.log(newString);
   return newString;
-};
+}
 
 mixUp('mix', 'pod');
 mixUp('dog', 'dinner');
@@ -59,6 +59,7 @@ mixUp('frog', 'rainbow');
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
 // note: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
 // the mdn states that substr is considered a legacy function and should be avoided
+// could also use slice(): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
 
 // ## FixStart
 //
@@ -80,14 +81,14 @@ const fixStart = function (string) {
   for (let i = 1; i < stringArray.length; i++) {
     if (stringArray[i] === stringArray[0]){
       stringArray[i] = '*';
-    };
-  };
+    }
+  }
 
   // joins the characters in the array to form a string
   const newString = stringArray.join('');
   console.log(newString);
   return newString;
-};
+}
 
 // Another solution
 // const fixStart = function (string) {
@@ -127,17 +128,17 @@ const verbing = function (string) {
   let newString = '';
 
   if (string.length >= 3) {
-    if (string.substring(string.length - 3, string.length) === 'ing') {
+    if (string.substring(string.length - 3, string.length) === 'ing') { // can use endsWith() method
       newString = string + 'ly';
     } else {
       newString = string + 'ing';
-    };
+    }
     console.log(newString);
     return newString;
-  };
+  }
   console.log(string);
   return string;
-};
+}
 
 // Another solution:
 // const verbing = function (string) {
@@ -153,9 +154,9 @@ const verbing = function (string) {
 //       const newString = string + "ing";
 //       console.log(newString);
 //       return newString;
-//     };
-//   };
-// };
+//     }
+//   }
+// }
 
 verbing('swim');
 verbing('swimming');
@@ -190,16 +191,23 @@ const notBad = function (string) {
     newString = string.replace(stringToReplace, 'good');
   } else {
     newString = string;
-  };
+  }
   console.log(newString);
   return newString;
-};
+}
 
 notBad('This dinner is not that bad!');
 notBad('This movie is not so bad!');
 notBad('This dinner is bad!');
 notBad('The food was not so good.');
 notBad('The movie was not so bad. Not bad at all.');
+
+// Alex's solution:
+// const notBad = function (str) {
+//  newStr = str.replace(/(not)(.*)(bad))/, "good");
+//  console.log(newStr);
+// return newStr;
+// }
 
 // indexOf - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
 // substring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
