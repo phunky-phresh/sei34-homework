@@ -8,18 +8,18 @@
 // area - Returns the area of the rectangle
 // perimeter - Returns the perimeter of the rectangle
 const rectangleA = {
-  length: 4,
-  width: 4
+    length: 4,
+    width: 4
 }
 
 function isSquare(ob) {
-  return ob.length === ob.width;
+    return ob.length === ob.width;
 }
 function area(ob) {
-  return ob.length*ob.width;
+    return ob.length*ob.width;
 }
 function perimeter(ob) {
-  return (ob.length+ob.width)*2
+    return (ob.length+ob.width)*2
 }
 
 console.log(isSquare(rectangleA));
@@ -39,40 +39,40 @@ console.log(perimeter(rectangleA));
 // isObtuse - Returns whether the triangle is obtuse or not
 
 const triangleA = {
-  sideA: 3,
-  sideB: 4,
-  sideC: 4
+    sideA: 3,
+    sideB: 4,
+    sideC: 4
 };
 
 const triangleB = {
-  sideA: 5,
-  sideB: 9,
-  sideC: 5
+    sideA: 5,
+    sideB: 9,
+    sideC: 5
 };
 
 function isEquilateral(ob) {
-  return (ob.sideA === ob.sideB && ob.sideA === ob.sideC )
+    return (ob.sideA === ob.sideB && ob.sideA === ob.sideC )
 }
 function isIsosceles(ob) {
-  return (ob.sideA === ob.sideB || ob.sideA === ob.sideC || ob.sideB === ob.sideC)
+    return (ob.sideA === ob.sideB || ob.sideA === ob.sideC || ob.sideB === ob.sideC)
 }
 
 function areaTri(ob){
-  const s = (ob.sideA + ob.sideB + ob.sideC)/2;
-  return Math.sqrt(s*((s-ob.sideA)*(s-ob.sideB)*(s-ob.sideC))).toFixed(2)
+    const s = (ob.sideA + ob.sideB + ob.sideC)/2;
+    return Math.sqrt(s*((s-ob.sideA)*(s-ob.sideB)*(s-ob.sideC))).toFixed(2)
 }
 
 function isObtuse(ob) {
-  let ls =[ob.sideA, ob.sideB, ob.sideC];
-  const max = Math.max(...ls)
-  for (let i in ls) {
-    if (ls[i] === max) {
-      ls[i] = 1;
-      break
+    let ls =[ob.sideA, ob.sideB, ob.sideC];
+    const max = Math.max(...ls)
+    for (let i in ls) {
+        if (ls[i] === max) {
+            ls[i] = 1;
+            break
+        }
     }
-  }
     return max**2 > ls.sort().reduce(function(a,c) {
-      return a + c**2
+        return a + c**2
     })-1;
 }
 
@@ -97,29 +97,29 @@ console.log('Obtuse A:' + isObtuse(triangleB));
 //
 // // Input
 const cartForParty = {
-  banana: "1.25",
-  handkerchief: ".99",
-  Tshirt: "25.01",
-  apple: "0.60",
-  nalgene: "10.34",
-  proteinShake: "22.36"
+    banana: "1.25",
+    handkerchief: ".99",
+    Tshirt: "25.01",
+    apple: "0.60",
+    nalgene: "10.34",
+    proteinShake: "22.36"
 }
 
 const shoppingList = {
-  banana: "10.00",
-  handkerchief: "5.00",
-  Tshirt: "25.00",
+    banana: "10.00",
+    handkerchief: "5.00",
+    Tshirt: "25.00",
 }
 //
 // // Output
 // cashRegister(cartForParty)); // 60.55
 
 function cashRegister(cart) {
-  let price = 0;
-  for (let value in cart) {
-    price += Number(cart[value]);
-  }
-  return price;
+    let price = 0;
+    for (let value in cart) {
+        price += Number(cart[value]);
+    }
+    return price;
 }
 
 console.log(cashRegister(cartForParty));
@@ -138,56 +138,56 @@ console.log(cashRegister(shoppingList));
 
 function validateCreditCard(numStr) {
 
-  //variable setup:
+    //variable setup:
 
-  let message = 'error: ';
-  const num = numStr.replace(/-/g, '')
-  const li = num.split('');
-  const set = new Set(num);
-  let sum = li.reduce(function(accumulator, currentValue) {
-    return Number(accumulator) + Number(currentValue);
-  })
+    let message = 'error: ';
+    const num = numStr.replace(/-/g, '')
+    const li = num.split('');
+    const set = new Set(num);
+    let sum = li.reduce(function(accumulator, currentValue) {
+        return Number(accumulator) + Number(currentValue);
+    })
 
-  //rules messages:
+    //rules messages:
 
-  if (num.length !== 16) {
-    message += '\nwrong length;'
-  }
-  if (isNaN(num)) {
-    message += '\ncontains non-numbers;'
-  }
-  if (set.size === 1) {
-    message += '\nsame digits'
-  }
-  if (Number(num.slice(-1))%2 !== 0) {
-    message += '\nends with odd number'
-  }
-  if (sum <=  16) {
-    message += '\nThe sum of all the digits must be greater than 16';
-  }
-
-  // the Luhn Algorithm  check
-  let luhnSum = 0;
-  for (let i = 0; i < 8; i++) {
-    let digit = Number(li[i+1]);
-    if (digit *2 < 10) {
-      digit *= 2;
+    if (num.length !== 16) {
+        message += '\nwrong length;'
     }
-    luhnSum += digit
-  }
-  if (luhnSum%10 !== 0) {
-    message +='\nfail the Luhn algorithem'
-  }
-  console.log('LuhnSum: ' + luhnSum);
-  return (message === 'error: ') ? "valid":message
+    if (isNaN(num)) {
+        message += '\ncontains non-numbers;'
+    }
+    if (set.size === 1) {
+        message += '\nsame digits'
+    }
+    if (Number(num.slice(-1))%2 !== 0) {
+        message += '\nends with odd number'
+    }
+    if (sum <=  16) {
+        message += '\nThe sum of all the digits must be greater than 16';
+    }
+
+    // the Luhn Algorithm  check
+    let luhnSum = 0;
+    for (let i = 0; i < 8; i++) {
+        let digit = Number(li[(i*2)+1]);
+        if (digit *2 < 10) {
+            digit *= 2;
+        }
+        luhnSum += digit
+    }
+    if (luhnSum%10 !== 0) {
+        message +='\nfail the Luhn algorithem'
+    }
+    console.log('LuhnSum: ' + luhnSum);
+    return (message === 'error: ') ? "valid":message
 }
 
 console.log(validateCreditCard('6364-6666-6666-1166'));
-console.log(validateCreditCard('9999-9999-8888-0400')); //valid
+console.log(validateCreditCard('9999-9999-8888-0400'));//valid
 console.log(validateCreditCard('a923-3211-9c01-1112'));
 console.log(validateCreditCard('4444-4444-4444-4444'));
 console.log(validateCreditCard('1111-1111-1111-1110'));
-console.log(validateCreditCard('6866-6666-6666-6861'));
+console.log(validateCreditCard('6866-6666-6666-6061'));
 
 // Here are the rules for a valid number:
 //
@@ -243,69 +243,68 @@ console.log(validateCreditCard('6866-6666-6666-6861'));
 
 
 function Account(num, name, bal) {
-  this.accountNo = num;
-  this.accountName = name;
-  this.balance = Math.max(0 , bal);
+    this.accountNo = num;
+    this.accountName = name;
+    this.balance = Math.max(0 , bal);
 
-  this.withdraw = function(amount){
-    if (amount <= this.balance) {
-      this.balance -= amount;
-      console.log(`Withdraw: ${amount}. balance: ${this.balance}`);
-    } else {
-      console.log(`Insufficient fund.`);
+    this.withdraw = function(amount){
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log(`Withdraw: ${amount}. balance: ${this.balance}`);
+        } else {
+            console.log(`Insufficient fund.`);
+        }
+    };
+
+    this.deposit = function(amount){
+        this.balance += amount;
+        console.log(`Deposit: ${amount}. balance: ${this.balance}`);
     }
-
-  };
-
-  this.deposit = function(amount){
-    this.balance += amount;
-    console.log(`Deposit: ${amount}. balance: ${this.balance}`);
-  }
 }
 
 
 function findAccount(num) {
-  for (let i = 0; i < bank.accounts.length; i++) {
-    if (num === bank.accounts[i].accountNo) {
-      return i;
+    for (let i = 0; i < bank.accounts.length; i++) {
+        if (num === bank.accounts[i].accountNo) {
+            return i;
+        }
     }
-  }
-  return false;
+    return false;
 }
 // bank:
 // array of accounts
 // addAccount: method
 // transfer: method
 let bank = {
-  accounts: [],
+    accounts: [],
 
-  addAccount: function (num, name, bal = 0) {
-    if (findAccount(num) === false) {
-      newAccount = new Account(num, name, bal);
-      this.accounts.push (newAccount);
-      console.log(`Account ${num} is created.`);
-    } else {
-      console.log('AccountNo is not available.');
+    addAccount: function (num, name, bal = 0) {
+        if (findAccount(num) === false) {
+            newAccount = new Account(num, name, bal);
+            this.accounts.push (newAccount);
+            console.log(`Account ${num} is created.`);
+        } else {
+            console.log('AccountNo is not available.');
+        }
+    },
+
+
+    transfer: function (fromAcc1, toAcc2, amount) {
+        const acc1 = this.accounts[findAccount(fromAcc1)];
+        const acc2 = this.accounts[findAccount(toAcc2)];
+        if (findAccount(fromAcc1)!== false && findAccount(toAcc2)!== false) {
+            if (amount <= acc1.balance) {
+                console.log(`Account ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
+                acc1.balance -= amount;
+                acc2.balance += amount;
+                console.log(`Successful transfer.\nAccount ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
+            } else {
+                console.log("Insufficient fund.");
+            }
+        } else {
+            console.log("Invalid account.");
+        }
     }
-  },
-
-
-  transfer: function (fromAcc1, toAcc2, amount) {
-    const acc1 = this.accounts[findAccount(fromAcc1)];
-    const acc2 = this.accounts[findAccount(toAcc2)];
-    if (findAccount(fromAcc1)!== false && findAccount(toAcc2)!== false) {
-      if (amount <= acc1.balance) {
-        console.log(`Account ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
-        acc1.balance -= amount;
-        acc2.balance += amount;
-        console.log(`Successful transfer.\nAccount ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
-      } else {
-        console.log("Insufficient fund.");
-      }
-    } else {
-      console.log("Invalid account.");
-    }
-  }
 }
 
 
