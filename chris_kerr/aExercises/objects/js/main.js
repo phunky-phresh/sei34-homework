@@ -24,9 +24,10 @@ let recipeCard = {
 console.log(recipeCard.title);
 console.log(`Serves: ${recipeCard.servings}`);
 console.log("Ingredients:");
-for (let i = 0; i < recipeCard.ingredients.length; i++) {
-  console.log(recipeCard.ingredients[i]);
-}
+// for (let i = 0; i < recipeCard.ingredients.length; i++) {
+//   console.log(recipeCard.ingredients[i]);
+// }
+console.log(recipeCard.ingredients.join("\n")); //similar aspect to the above 3 lines
 
 // The Reading List
 //
@@ -66,7 +67,14 @@ function printMovie (movie) {
   }
   output = output.slice(0,output.length-1); //remove the final comma
   output += "."; //add a final full stop
-  console.log(output);
+  return output;
 }
 
-printMovie(dawnWallMovie);
+// much simpler version using join()
+function printMovie2 (movie) {
+  let output = `${movie.title} lasts for ${movie.duration} minutes. Stars: ${movie.stars.join(", ")}.`;
+  return output;
+}
+
+console.log(printMovie(dawnWallMovie));
+console.log(printMovie2(dawnWallMovie));
