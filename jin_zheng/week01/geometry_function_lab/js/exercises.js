@@ -251,8 +251,10 @@ function Account(num, name, bal) {
         if (amount <= this.balance) {
             this.balance -= amount;
             console.log(`Withdraw: ${amount}. balance: ${this.balance}`);
+            return true;
         } else {
             console.log(`Insufficient fund.`);
+            return false;
         }
     };
 
@@ -284,7 +286,7 @@ let bank = {
             this.accounts.push (newAccount);
             console.log(`Account ${num} is created.`);
         } else {
-            console.log('AccountNo is not available.');
+            console.log(`Account ${num} is not available.`);
         }
     },
 
@@ -292,14 +294,12 @@ let bank = {
     transfer: function (fromAcc1, toAcc2, amount) {
         const acc1 = this.accounts[findAccount(fromAcc1)];
         const acc2 = this.accounts[findAccount(toAcc2)];
+
         if (findAccount(fromAcc1)!== false && findAccount(toAcc2)!== false) {
-            if (amount <= acc1.balance) {
-                console.log(`Account ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
-                acc1.balance -= amount;
-                acc2.balance += amount;
-                console.log(`Successful transfer.\nAccount ${ acc1.accountNo }'s balance: ${ acc1.balance }. \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
-            } else {
-                console.log("Insufficient fund.");
+            console.log(`Account${ acc1.accountNo }'s balance: ${ acc1.balance }.
+            \nAccount ${ acc2.accountNo }'s balance: ${ acc2.balance }.`);
+            if (acc1.withdraw(amount)) {
+                acc2.deposit(amount)
             }
         } else {
             console.log("Invalid account.");
@@ -315,6 +315,9 @@ bank.addAccount(1, "JK", 200);
 bank.addAccount(2, "Jl", 100);
 bank.addAccount(3, "Jp", 100);
 bank.addAccount(1, "i", 200); // AccountNo is not available.
+
+const t = new Account (10, "Jp", -100); //balance: 0
+console.log('test negative balance input: ' + t.balance);
 
 const test = new Account (4,"pi",100)
 test.withdraw(20);
