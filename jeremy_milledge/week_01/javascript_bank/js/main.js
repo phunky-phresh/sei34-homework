@@ -1,7 +1,6 @@
 //JS Bank
 
-const bank = {
-  numAccounts: 0,
+const jsBank = {
   accounts: [],
   deposit: function(name, amount) {
     return this.modifyAccount(name, amount);
@@ -14,10 +13,10 @@ const bank = {
   },
 
   countAccounts: function() {
-    this.numAccounts = this.accounts.length
-    console.log(`The JS Bank has ${this.numAccounts} account(s).`);
+    console.log(`The JS Bank has ${this.accounts.length} account(s).`);
     console.log('=====================');
   },
+
   withdraw: function(name, amount) {
     return this.modifyAccount(name, amount, "Withdrawal");
   },
@@ -42,6 +41,7 @@ const bank = {
     return this.modifyAccount(name, amount, "Transfer", other);
   },
 
+  //helper
   modifyAccount: function(name,amount=0, action="Deposit", other=undefined) {
     for (let i = 0; i < this.accounts.length; i++) {
       let current = this.accounts[i];
@@ -77,11 +77,15 @@ const bank = {
   }
 }
 
-// bank.addAccount('Jez');
-// bank.addAccount('Kian', 50);
-// bank.deposit('Jez', 20);
-// bank.withdraw('Jez', 30);
-// bank.withdraw('Kian', 10);
-// bank.checkBalance('Jez');
-// bank.transfer('Kian', 39, 'Jez');
-// bank.checkBalance();
+// TODO: rewrite the accounts as separate named class then push to bank.Accounts
+// allows calling via: accountName.balance etc rather than bank.balance('accountName')
+
+
+// jsBank.addAccount('Jez');
+// jsBank.addAccount('Kian', 50);
+// jsBank.deposit('Jez', 20);
+// jsBank.withdraw('Jez', 30);
+// jsBank.withdraw('Kian', 10);
+// jsBank.checkBalance('Jez');
+// jsBank.transfer('Kian', 39, 'Jez');
+// jsBank.checkBalance();
