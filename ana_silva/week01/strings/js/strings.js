@@ -29,7 +29,7 @@ DrEvil(1000000);
 // Look up the JavaScript string reference to find methods which may be useful!
 
 const mixUp = function(string1, string2){
-  const newString1 = string2.slice(0, 2) + string1.slice(2);
+  const newString1 = string2.slice(0, 2) + string1.slice(2); //takes first 2 characters of string2 and adds strings1 without the first 2 characters
   const newString2 = string1.slice(0, 2) + string2.slice(2);
   console.log(`${newString1} ${newString2}`);
 }
@@ -52,9 +52,9 @@ const fixStart = function(string) {
   let newString = firstCharacter; // newString will be formed from a concatenation loop starting with 1st character
   for (let i = 1; i < string.length; i++) {
     if (string.charAt(i) === firstCharacter) {
-      newString = newString + '*';        //if character i is like first character then we concatenate a * to the newString
+      newString += '*';        //if character i is like first character then we concatenate a * to the newString
     } else {
-      newString = newString + string.charAt(i); //if not, then we concatenate the character itself
+      newString += string.charAt(i); //if not, then we concatenate the character itself
     }
   }
   console.log(newString);
@@ -113,15 +113,24 @@ verbing('go');
 
 //string.search() did not work because it always returns a number
 const notBad = function(sentence) {
-  if (sentence.match('not') !== null && sentence.match('bad') !== null) { // check that sentence contains both "not" and "bad" words.
-    splitSentence = sentence.split('not'); // split the sentence to then just use the first part
-    newSentence = splitSentence[0] + 'good' + sentence.charAt(sentence.length - 1); //final sentence excludes "not..bad" part of string and adds final punctuation.
-    console.log(newSentence);
-  }
-  else {
-    console.log(sentence);
-  }
+
+//using match
+  // if (sentence.match('not') !== null && sentence.match('bad') !== null) { // check that sentence contains both "not" and "bad" words.
+  //   splitSentence = sentence.split('not'); // split the sentence to then just use the first part
+  //   newSentence = splitSentence[0] + 'good' + sentence.charAt(sentence.length - 1); //final sentence excludes "not..bad" part of string and adds final punctuation.
+  //   console.log(newSentence);
+  // }
+  // else {
+  //   console.log(sentence);
+  // }
+
+//this uses replace and looks for anything "not .... bad"
+  const newSentence = sentence.replace(/(not)(.*)(bad)/, 'good'); //(.*) .means any character and *means any number of characteres between "not" and "bad"
+  console.log(newSentence);
 }
+
+
+
 
 
 notBad('This dinner is not that bad!');
