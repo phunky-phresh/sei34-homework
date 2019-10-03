@@ -46,6 +46,7 @@ console.log(numArray.reduce(reducer));
 
 sumArray();
 
+
 const multiplyArray = function() {
   let sum = 1;
   for (let i = 0; i < numArray.length; i++) {
@@ -55,11 +56,12 @@ return sum;
 }
 console.log(multiplyArray());
 
+
 const sumArray1 = function() {
   //console.log(numArray[2]);
   let sum = 0
   for (let i = 0; i < numArray.length; i++) {
-     //return numArray[i]+numArray[i];
+     // return numArray[i]
       sum = sum + numArray[i];
     }
     return sum;
@@ -69,15 +71,22 @@ console.log(sumArray1());
 // Bonus
 //
 
-const reverseString = function() {
-
+//Kian's solution
+const reverseString = function(string) {
+  let newString = ""
+  for (let i = string.length-1; i >= 0; i--) {
+    newString += string[i];
+  }
+  return newString;
 }
 
+console.log(reverseString("potato"));
 // Homework: The Word Guesser
 
 const answers = ["F", "O", "X"];
 let guess = ['\_', '\_', '\_'];
-
+//create a const = false that later becomes true
+let guessedR = false
 const guessLetter = function(attempt) {
   //const input = guess.push();
   for (let i = 0; i < answers.length; i++) {
@@ -86,13 +95,17 @@ const guessLetter = function(attempt) {
     //console.log(true);
       guess[i] = attempt;
       console.log(`You guessed ${attempt}. Well done!`);
+      guessedR = true;
+   }
+   if (guessedR === true) {
+     console.log(guess);
    }
 }
 }
-guessLetter("O");
-guessLetter("F");
-guessLetter("X");
-guessLetter("J");
+console.log(guessLetter("O"));
+// guessLetter("F");
+// guessLetter("X");
+// guessLetter("J");
 //
 //guessLetter("F");
 // log "___" 3 blank values in array
