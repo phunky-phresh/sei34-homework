@@ -68,6 +68,8 @@ const isVowel = function(character) {
 //   }
 // };
 
+// for (var i in myArray) - check this 'in' method
+
 isVowel('e');
 isVowel('A');
 isVowel('f');
@@ -215,7 +217,7 @@ console.log( filterLongWords(['sun', 'moon', 'table', 'country', 'teacher'], 3))
 // - Pretend you don't know the word, and call guessLetter multiple times with various
 // letters to check that your program works.
 
-// Solution: Make it more like Wheel of Fortune
+Solution: Make it more like Wheel of Fortune
 
 const word = ['P','A','P','E','R'];
 const guesses = ['_','_','_','_','_'];
@@ -262,7 +264,7 @@ const guessLetter = function(letter) {
   console.log(`${ guesses.join(',')} `);
 
   // if the guesses array does not contain any '_', no more letters to guess
-  if ( !guesses.includes('_')) {
+  if ( !guesses.includes('_') ) {
     console.log(`Congratulations! You have won the game. Total reward is $${ reward }.`);
   }
 
