@@ -12,6 +12,8 @@
 //
 // Create a function that takes an input and returns Serge's response.
 
+let question;
+
 function serge(question) {
   if (question == false) {
     return "Fine. Be that way!";
@@ -26,7 +28,4 @@ function serge(question) {
     }
   }
 
-
-function askSerge (question) {
-  console.log(serge(question));
-}
+console.log(serge("Hello?"));
