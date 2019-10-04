@@ -22,3 +22,39 @@ console.log("hi");
 // - Ask the user what number they want to test
 //
 // Watch a whole heap of information about leap years... http://www.youtube.com/watch?v=xX96xng7sAE
+// helper function to make our code more readable
+
+// const isLeapYear = function( year ){
+//
+//   if( year % 4 === 0){
+//
+//     if( year % 100 !== 0 || year % 400 === 0  ){
+//       return true;
+//     } else {
+//       return false;
+//     }
+//
+//   } else {
+//     return false;
+//   }
+//
+// };
+
+// if the year is divisible by 4 AND (NOT divisible by 100 OR it's divisible by 400)
+
+const isLeapYear = function( year){
+
+  return (year % 4 === 0 ) && (( year % 100 !== 0) || (year % 400 === 0));
+
+  // if( (year % 4 === 0 ) && (( year % 100 !== 0) || (year % 400 === 0) )){
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+};
+
+
+console.log('1997: ', isLeapYear(1997));
+console.log('1996: ', isLeapYear(1996));
+console.log('1900: ', isLeapYear(1900));
+console.log('2000: ', isLeapYear(2000));
