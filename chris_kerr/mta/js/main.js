@@ -7,6 +7,9 @@ let linesObject = {
 
 function planTrip(startLine, startStation, endLine, endStation) {
   console.log(`Request: ${startLine}, ${startStation}, ${endLine}, ${endStation}`)
+
+  if (validateStations(startLine, startStation, endLine, endStation) != true) return console.log("Invalid trip");
+
   let directions;
   let lineOneStops = [];
   let lineTwoStops = [];
@@ -57,9 +60,27 @@ function singleLineTrip(line, startStation, endStation) {
   return singleJourneyOutput;
 }
 
+function validateStations(startLine, startStation, endLine, endStation) {
+  let lineOneArray = linesObject[startLine];
+  let lineTwoArray = linesObject[endLine];
+  let lineOneStation = 0;
+  let lineTwoStation = 0;
+
+  for (let i = 0; i < lineOneArray.length; i++) {
+    if (startStation == lineOneArray[i]) lineOneStation++;
+  }
+
+  for (let i = 0; i < lineTwoArray.length; i++) {
+    if (endStation === lineTwoArray[i]) lineTwoStation++;
+  }
+
+  if (lineOneArray.length > 0 && lineTwoArray.length > 0 && lineOneStation > 0 && lineTwoStation > 0) return true;
+  return false;
+}
+
 //console.log(`You must travel through the following stops on the <input> line: <joined array excluding starting, including finishing>. \nNo line change required. \nYou will have <stops, including last> stops total.`);
 
-planTrip("N", "33rd", "6", "3rd")
+planTrip("N", "23rd", "6", "33rd")
 planTrip("6", "Union Square", "L", "1st")
 planTrip("L", "8th", "6", "Union Square")
-planTrip("L", "8th", "N", "Times Square")
+planTrip("L", "8th", "N", "Astor Place")
