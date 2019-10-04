@@ -232,14 +232,14 @@ const validateCreditCard = function(cardNumber) {
   // stores number in credit card status object
   ccStatus.number = cardNumber;
 
-  // note: the check below is more rigorous than this one
-  // // check if credit card is 16 characters + 3 (accounting for -) = 19 characters exploring
-  //
-  // if (cardNumber.length !== 19) {
-  //   ccStatus.error = 'Invalid length. Credit card number must be 16 numbers long.';
-  //   ccStatus.giveStatus();
-  //   return false;
-  // }
+  // assuming all credit card numbers are in the following format 'xxxx-xxxx-xxxx-xxxx'
+  // check if credit card is 16 characters + 3 (accounting for -) = 19 characters exploring
+
+  if (cardNumber.length !== 19) {
+    ccStatus.error = 'Invalid length. Credit card number must be 16 numbers long.';
+    ccStatus.giveStatus();
+    return false;
+  }
 
   // log the credit card into an array without the '-'
   let creditCardNumber = [];
@@ -252,12 +252,15 @@ const validateCreditCard = function(cardNumber) {
     }
   }
 
-  // credit card must be 16 digits long
-  if (creditCardNumber.length !== 16) {
-    ccStatus.error = 'Invalid length. Credit card number must be 16 numbers long.';
-    ccStatus.giveStatus();
-    return false;
-  }
+  // Ana used a while loop with replace('-','') to get rid of the '-'
+  // Number can also be used to convert a string to a number?
+
+  // // credit card must be 16 digits long
+  // if (creditCardNumber.length !== 16) {
+  //   ccStatus.error = 'Invalid length. Credit card number must be 16 numbers long.';
+  //   ccStatus.giveStatus();
+  //   return false;
+  // }
 
   // check if all characters are numbers
   for (let i = 0; i < creditCardNumber.length; i++) {
@@ -281,6 +284,8 @@ const validateCreditCard = function(cardNumber) {
     ccStatus.giveStatus();
     return false;
   }
+  // Ana used Array.from(net Set(array)) to check if there are identical digits
+  // Set does not include duplicates
 
   // check if final digit is even
   if (parseInt(creditCardNumber[creditCardNumber.length - 1]) % 2 !== 0) {
