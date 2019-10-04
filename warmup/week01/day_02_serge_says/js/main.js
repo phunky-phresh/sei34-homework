@@ -1,4 +1,4 @@
-console.log("hi");
+console.log("bye");
 
 // ## Warmup - Serge Says
 //
@@ -13,5 +13,28 @@ console.log("hi");
 //
 // * Create a function that takes an input and returns Serge's response.
 
-// so we want to create a function where we can input a string and output a different repsonse depending
-// if the input has a question mark, all caps, is empty or is any string
+//create a function that takes in a string and returns a different response depending if it's a
+//question,  all caps,  empty string, or anything else
+
+const sergeSays = function( input ){
+  // let response = "";
+
+  if( input.endsWith('?')){
+    return "sure";
+  }else if (input.length === 0){
+    return "fine be that way";
+  }else if ( input === input.toUpperCase() ){
+    return "Whoa, chill out";
+  }else{
+    return "whatever";
+  }
+
+
+
+  // return response;
+};
+
+console.log("How are you?:", sergeSays("How are you?"));
+console.log("Hello:", sergeSays("Hello"));
+console.log("I LOVE JS:", sergeSays("I LOVE JS"));
+console.log("Empty string:", sergeSays(""));
