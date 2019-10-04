@@ -143,7 +143,7 @@ function cashRegister(input) {
   let valueList = Object.values(input);
   let tally = 0;
   for (let i = 0; i < valueList.length; i++) {
-    tally += Number (valueList[i] );
+    tally += Number (valueList[i]); 
   }
 }
 
@@ -321,10 +321,10 @@ function withdraw(name, value) {
     }
   }
   if (accounts[accountId].balance >= value) {
-  accounts[accountId].balance -= value;;
-  console.log(`${accounts[accountId].name} has withdrawn \$${value} to reach a new account balance of \$${accounts[accountId].balance}`);
+    accounts[accountId].balance -= value;;
+    console.log(`${accounts[accountId].name} has withdrawn \$${value} to reach a new account balance of \$${accounts[accountId].balance}`);
   } else {
-  console.log("You do not have a sufficient balance.");
+    console.log("You do not have a sufficient balance.");
   }
 }
 
@@ -345,11 +345,11 @@ function transfer(outgoingName, incomingName, value) {
     }
   }
   if (accounts[outgoingAccountId].balance >= value) {
-  accounts[outgoingAccountId].balance -= value;
-  accounts[incomingAccountId].balance += value;
-  console.log(`${accounts[outgoingAccountId].name} has transfered \$${value} to ${accounts[incomingAccountId].name} to reach a new account balance for ${accounts[outgoingAccountId].name} of \$${accounts[outgoingAccountId].balance} and ${accounts[incomingAccountId].name} of \$${accounts[incomingAccountId].balance}`);
+    accounts[outgoingAccountId].balance -= value;
+    accounts[incomingAccountId].balance += value;
+    console.log(`${accounts[outgoingAccountId].name} has transfered \$${value} to ${accounts[incomingAccountId].name} to reach a new account balance for ${accounts[outgoingAccountId].name} of \$${accounts[outgoingAccountId].balance} and ${accounts[incomingAccountId].name} of \$${accounts[incomingAccountId].balance}`);
   } else {
-  console.log("You do not have a sufficient balance.");
+    console.log("You do not have a sufficient balance.");
   }
 }
 
