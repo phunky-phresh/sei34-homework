@@ -55,6 +55,7 @@ console.log("Working! Homework - mta");
 // * Make sure the stops that are the same for different lines have different names
 // (i.e. 23rd on the N and on the 6 need to be differentiated)
 
+// initialize variable to count total number of stops
 let totalStops = 0;
 
 const subway = {
@@ -65,41 +66,78 @@ const subway = {
     6: ['Grand Central', '33rd', '28th', '23rd', 'Union Square', 'Astor Place']
   },
 
-  recordStops: function(line, stopFrom, stopTo) {
-    let stops = [];
-    const currentLine = this.lines[line];
-    const indexOfStopFrom = currentLine.indexOf(stopFrom);
-    const indexOfStopTo = currentLine.indexOf(stopTo);
+  // this function logs the stops made on a given line
+  // stopA is the current station
+  // stopB is the destination station
+  recordStops: function(line, stopA, stopB) {
 
-    if (indexOfStopFrom < indexOfStopTo) {
-      for (let i = indexOfStopFrom + 1; i <= indexOfStopTo; i++) {
+    // array to store the stops for the journey
+    let stops = [];
+
+    // stores the array of the selected line
+    const currentLine = this.lines[line];
+
+    // finds the index of each stop in the current line
+    const indexOfstopA = currentLine.indexOf(stopA);
+    const indexOfstopB = currentLine.indexOf(stopB);
+
+    // travelling the same direction as the way the array is written
+    if (indexOfstopA < indexOfstopB) {
+
+      for (let i = indexOfstopA + 1; i <= indexOfstopB; i++) {
         stops.push(currentLine[i]);
         totalStops += 1;
       }
-    } else if (indexOfStopFrom > indexOfStopTo) {
-      for (let i = indexOfStopFrom + 1; i >= indexOfStopTo; i--) {
+
+    // travelling the opposite direction to the way the array is written
+    } else if (indexOfstopA > indexOfstopB) {
+
+      for (let i = indexOfstopA + 1; i >= indexOfstopB; i--) {
         stops.push(currentLine[i]);
         totalStops += 1;
       }
+
+    // if the current station is the same as the destination station
     } else {
-      console.log(`Error. Your current stop as your destination stop.`);
+
+      console.log(`Error. You cannot have your current station as your destination stop.`);
       return false;
+
     }
+
     return stops;
+
   },
 
-  planTrip: function(startLine, startStop, endLine, endStop) {
+  // lineA is the line of the current station, stopA
+  // lineB is the line of the destination station, stopB
+  planTrip: function(lineA, stopA, lineB, stopB) {
 
+    // each time the function is called, the total stops count must be set to zero
+    // or it will return the total stops account from previous time function was called
     totalStops = 0;
 
-    if (startLine === endLine) {
-      this.recordStops(startLine, startStop, endStop);
+    // if the trip is on one line only
+    if (lineA === lineB) {
+
+      // stores the stops in a variable
+      const stopsOnLine = this.recordStops(lineA, stopA, stopB);
+
+      // message will only show if the the starting stop isn't the same as the destination stop
+      if (stopA !== stopB){
+        console.log(`You must travel through the following stops on ${ lineA } line: ${ stopsOnLine.join(', ') }.`);
+      }
+
     } else {
-      const stopsOnStartLine = this.recordStops(startLine, startStop, 'Union Square');
-      console.log(`You must travel through the following stops on the ${ startLine } line: ${ stopsOnStartLine.join(', ')}.`);
+
+      // these variables hold the stops on each line
+      const stopsOnLineA = this.recordStops(lineA, stopA, 'Union Square');
+      const stopsOnLineB = this.recordStops(lineB, 'Union Square', stopB);
+
+      // messages to log showing the complete journey
+      console.log(`You must travel through the following stops on the ${ lineA } line: ${ stopsOnLineA.join(', ')}.`);
       console.log(`Change at Union Square.`);
-      const stopsOnEndLine = this.recordStops(endLine, 'Union Square', endStop);
-      console.log(`Your journey continues through the following stops on the ${ endLine } line: ${ stopsOnEndLine.join(', ')}.`);
+      console.log(`Your journey continues through the following stops on the ${ lineB } line: ${ stopsOnLineB.join(', ')}.`);
       console.log(`${ totalStops } stops in total.`);
     }
   }
@@ -108,9 +146,11 @@ const subway = {
 subway.planTrip('N','Times Square', 'L', '1st');
 subway.planTrip('N','34th', 6, 'Grand Central');
 subway.planTrip(6, '28th', 'L', '1st');
+subway.planTrip('L', '28th', 'L', '1st'); // same line
+subway.planTrip('L', '28th', 'L', '28th'); // same line and stops. should return error message
 
 
-
+//////////////////////////////
 // Using Arrays:
 
 // let totalStops = 0;
