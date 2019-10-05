@@ -10,12 +10,17 @@ const nycSubway = {
 const pushStops = function(start, end, line) {
   /* push stations on specified line to returned array */
 
-  arr = [];
-  [start, end] = start > end ? [end, start] : [start, end]; //swap start and end if start greater
+  let swapped = false;
+  if (start > end) { //swap start and end if start greater
+    [start, end] = [end, start];
+    swapped = true;
+  }
+
+  let arr = [];
   for (let i = start; i <= end; i++) {
     arr.push(line[i]);
   }
-  return end > start ? arr.reverse() : arr;
+  return swapped ? arr.reverse() : arr;
 };
 
 const singleLineStops = function(startL, startS, endS=false) {
@@ -47,11 +52,11 @@ const findAllStops = function(startL, startS, endL, endS) {
     const secondLeg = singleLineStops(endL, 'Union Square', endS);
     stops.push(secondLeg);
   }
-  return stops;
+  return stops; //array of shape [[first leg stops], [second leg stops]]
 };
 
 const planTrip = function(startL, startS, endL, endS) {
-  /* function to return string for printing to console */
+  /* function to return string for loging to console*/
 
   let msg = '==============================================\n';
   msg += `Line ${startL}, ${startS} --> Line ${endL}, ${endS}\n`
@@ -82,21 +87,95 @@ const planTrip = function(startL, startS, endL, endS) {
   return msg;
 };
 
-const buildTrip = function() {
-  /*creates trip object to print from with planTrip */
-  /*push result to array of trips?*////// // TODO:
-  return ({
-    start: startS,
-    end: endS,
-    transfers: ['Union Square'],
-    legs: [[],[]]
-  });
+const Trip = function(startL, startS, endL, endS) {
+  /*creates Trip object to log from with planTrip */
+
+  // TODO:  parse start and end lines/station to ensure they make sense
+  //        don't just blindly add them to the object if they dont
+  this.legs = findAllStops(startL, startS, endL, endS);
+  this.start = startS;
+  this.startLine = startL;
+  this.end = endS;
+  this.endLine = endL;
+  this.transfers = findTransfers(this.legs);
+  this.numLegs = this.legs.length;
+  //this.log = logTrip(this)
+
+  tripDB.push(this); //add to trip database
 }
 
-let tripList = []; // collection of all trips from buildTrip object factory
+const findTransfers = function(arr) {
+  tfers =[]
+  for (let i = 0; i < arr.length - 1; i++) {
+    tfers.push(arr[i][arr[i].length-1]);
+  }
+  return tfers;
+}
 
-console.log(planTrip('N', 'Times Square', 'N', '8th'));
-console.log(planTrip('6', 'Astor Place', '6', 'Grand Central'));
-console.log(planTrip('N', 'Times Square', '6', 'Grand Central')); //
-console.log(planTrip('N', 'Union Square', 'L', '1st'));
-console.log(planTrip('6', 'Grand Central', 'L', 'Union Square'));
+let logTrip = function(trip) {
+  /* returns string for logging to console */
+  /* input must be a Trip instance */
+
+  let msg = logHeader(trip);
+
+  for (let i = 0; i < trip.numLegs; i ++) { //loop to allow for later legs to be added
+    let leg = trip.legs[i]; //copies so that we don't mess with Trip object
+    const legFirst = leg[0]; //leg.shift() affecting object itself?????
+    const legLast = leg[leg.length-1]; // leg.pop() ^ here as well
+    msg += logGetOn(legFirst, i);
+    msg += logLegs(leg)
+    msg += logTransferOrFinal(trip.numLegs, legLast, trip.endLine, i);
+  }
+  return console.log(msg);
+};
+
+const logGetOn = function(sS, idx) {
+  return (
+    !idx ? `~ Get on at ${sS}.\n\\\n \\\n`: ""
+  );
+};
+
+const logTransferOrFinal = function(num, last, lastLine, idx) {
+  return (num > 1 && idx !== num - 1) ? ` /\n/\n~ Change at ${last} to Line ${lastLine}.\n\\\n \\\n` : ` /\n/\n~ Arrival at ${last}.\n `;
+};
+
+const logLegs = function(legArr) {
+  let leg = '';
+  for (let i = 1; i < legArr.length - 1; i++) {
+    leg += ` |\n + ${legArr[i]}\n |\n`;
+  }
+  return leg;
+};
+
+const logHeader = function(t) {
+  return (
+    `\n==============================================\n\
+Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
+==============================================\n\n`
+  );
+};
+
+let tripDB = []; // collection of all Trip objects
+
+
+//TEST INPUTS ==================================
+const testTrips = [
+  ['N', 'Times Square', 'N', '8th'],
+  ['L', '1st', '6', 'Grand Central'],
+  ['N', 'Times Square', '6', 'Grand Central'],
+  ['N', 'Union Square', 'L', '1st'],
+  ['6', 'Grand Central', 'L', 'Union Square']
+];
+
+for (let k = 0; k < testTrips.length; k++) {
+  let t = testTrips[k];
+  new Trip(t[0], t[1], t[2], t[3]);
+  logTrip(tripDB[k]);
+}
+
+let eg = tripDB[2];
+
+// for (let k = 0; k < testTrips.length; k++) {
+//   let t = testTrips[k];
+//   console.log(planTrip(t[0], t[1], t[2], t[3]));
+// }
