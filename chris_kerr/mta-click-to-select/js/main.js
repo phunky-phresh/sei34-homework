@@ -8,23 +8,16 @@ let linesObject = {
 let chosenStations = [];
 
 function planTrip(startLine, startStation, endLine, endStation) {
-
-  //pull the data from <select> and feed it as inputs to below and colorize()
-
-
-
   let directions = "Invalid trip";
   let lineOneStops = [];
   let lineTwoStops = [];
 
   if (validateStations(startLine, startStation, endLine, endStation) != true) return;
 
-
-  if (startStation === "Union Square") startLine = endLine;
-  if (endStation === "Union Square") endLine = startLine;
+  //if (startStation === "Union Square") startLine = endLine;
+  //if (endStation === "Union Square") endLine = startLine;
 
   colorize(startLine, startStation, endLine, endStation);
-
 
   if (startLine === endLine && startStation === endStation) {
     document.getElementById("tripOutput").innerHTML = "Same stations selected";
@@ -143,6 +136,7 @@ function choose (id) {
   let startLine = chosenStations[0].slice(0,1);
   let startStation = chosenStations[0].slice(2,);
   document.getElementById("stationOne").innerHTML = `${startStation} on the ${startLine} line`;
+  document.getElementById(id).setAttribute("class","selectedStart bold");
 
   if (chosenStations.length === 1) return;
 
@@ -151,7 +145,6 @@ function choose (id) {
   if (chosenStations[1]) document.getElementById("stationTwo").innerHTML = `${endStation} on the ${endLine} line`;
 
   planTrip(startLine,startStation, endLine, endStation);
-  console.log("click");
 }
 
 function reset() {
