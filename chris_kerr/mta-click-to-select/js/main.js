@@ -5,13 +5,12 @@ let linesObject = {
   "6": ["Grand Central", "33rd", "28th", "23rd", "Union Square", "Astor Place"]
 }
 
-function planTrip() {
+let chosenStations = [];
+
+function planTrip(startLine, startStation, endLine, endStation) {
 
   //pull the data from <select> and feed it as inputs to below and colorize()
-  let startLine = document.getElementById("stationOne").value.slice(0,1);
-  let startStation = document.getElementById("stationOne").value.slice(2,);
-  let endLine = document.getElementById("stationTwo").value.slice(0,1);
-  let endStation = document.getElementById("stationTwo").value.slice(2,);
+
 
 
   let directions = "Invalid trip";
@@ -133,6 +132,34 @@ function validateStations(startLine, startStation, endLine, endStation) {
 
   if (lineOneArray.length > 0 && lineTwoArray.length > 0 && lineOneStation > 0 && lineTwoStation > 0) return true;
   return false;
+}
+
+function choose (id) {
+
+  if (chosenStations.length === 2) return;
+
+  chosenStations.push(id);
+
+  let startLine = chosenStations[0].slice(0,1);
+  let startStation = chosenStations[0].slice(2,);
+  document.getElementById("stationOne").innerHTML = `${startStation} on the ${startLine} line`;
+
+  if (chosenStations.length === 1) return;
+
+  let endLine = chosenStations[1].slice(0,1);
+  let endStation = chosenStations[1].slice(2,);
+  if (chosenStations[1]) document.getElementById("stationTwo").innerHTML = `${endStation} on the ${endLine} line`;
+
+  planTrip(startLine,startStation, endLine, endStation);
+  console.log("click");
+}
+
+function reset() {
+  chosenStations = [];
+  document.getElementById("stationOne").innerHTML = "";
+  document.getElementById("stationTwo").innerHTML = "";
+  document.getElementById("tripOutput").innerHTML = "Please select stations to display best route";
+  colorize();
 }
 
 //console.log(`You must travel through the following stops on the <input> line: <joined array excluding starting, including finishing>. \nNo line change required. \nYou will have <stops, including last> stops total.`);
