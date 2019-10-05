@@ -1,6 +1,6 @@
-console.log("Working! Topic - Calculator");
+console.log("Working! Homework - Calculator");
 
-// Tuesday, 1st of October 2019
+// Day 2 - Tuesday, 1 October 2019
 
 // https://gist.github.com/wofockham/8f953ac7f33125898071
 
@@ -24,25 +24,25 @@ const squareNumber = function (number) {
   const squaredNumber = number * number;
   console.log(`The result of squaring the number ${ number } is ${ squaredNumber }.`);
   return squaredNumber;
-}
+};
 
 const halfNumber = function (number) {
   const halfOfNumber = number / 2;
   console.log(`Half of ${ number } is ${ halfOfNumber }.`);
   return halfOfNumber;
-}
+};
 
 const percentOf = function (num1, num2) {
   const percentage = (num1 / num2) * 100;
   console.log(`${ num1 } is ${ percentage }% of ${ num2 }.`);
   return percentage;
-}
+};
 
 const areaOfCircle = function (radius) {
   const area = Math.PI * radius * radius;
   console.log(`The area of a circle with radius ${ radius } is ${ area.toFixed(2) }.`);
   return area.toFixed(2);
-}
+};
 
 squareNumber(2);
 halfNumber(10);
@@ -63,6 +63,6 @@ const multipleMathFunctions = function (number) {
   const squareOfNum = squareNumber(halfNum);
   const areaCircle = areaOfCircle(squareOfNum);
   const percent = percentOf(areaCircle, squareOfNum);
-}
+};
 
 multipleMathFunctions(2);
