@@ -7,13 +7,12 @@ let linesObject = {
 
 function planTrip() {
 
+  //pull the data from <select> and feed it as inputs to below and colorize()
   let startLine = document.getElementById("stationOne").value.slice(0,1);
   let startStation = document.getElementById("stationOne").value.slice(2,);
   let endLine = document.getElementById("stationTwo").value.slice(0,1);
   let endStation = document.getElementById("stationTwo").value.slice(2,);
 
-
-  //console.log(`Request: ${startLine}, ${startStation}, ${endLine}, ${endStation}`);
 
   let directions = "Invalid trip";
   let lineOneStops = [];
@@ -21,8 +20,11 @@ function planTrip() {
 
   if (validateStations(startLine, startStation, endLine, endStation) != true) return;
 
+
   if (startStation === "Union Square") startLine = endLine;
   if (endStation === "Union Square") endLine = startLine;
+
+  colorize(startLine, startStation, endLine, endStation);
 
 
   if (startLine === endLine && startStation === endStation) {
@@ -37,11 +39,54 @@ function planTrip() {
   } else {
     lineOneStops = singleLineTrip(startLine, startStation, "Union Square");
     lineTwoStops = singleLineTrip(endLine, "Union Square", endStation);
-    directions = `You will travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.<br>\nChange at Union Station<br>\nThen continue on ${endLine} line: ${lineTwoStops.join(', ')}.<br>\n${lineOneStops.length + lineTwoStops.length} stops in total.`;
+    directions = `You will travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.<br>\nChange at Union Square station.<br>\nThen continue on ${endLine} line: ${lineTwoStops.join(', ')}.<br>\n${lineOneStops.length + lineTwoStops.length} stops in total.`;
   }
-  //directions = lineOneStops + " " + lineTwoStops;
-  //console.log(directions);
+
   document.getElementById("tripOutput").innerHTML = directions;
+
+}
+
+function colorize(startLine, startStation, endLine, endStation) {
+    let tdList = document.getElementsByTagName("td");
+    let startId = startLine + " " + startStation;
+    let endId = endLine + " " + endStation;
+    let stops = [];
+
+    for (let i = 0; i < tdList.length; i++) {
+      tdList[i].setAttribute("class", "");
+    }
+
+    if (startLine === endLine) {
+      stops = singleLineTrip(startLine, startStation, endStation);
+        for (let i = 0; i < stops.length; i++) {
+          stops[i] = `${startLine} ${stops[i]}`;
+        }
+    } else {
+      let stopsOne = singleLineTrip(startLine, startStation, "Union Square");
+      let stopsTwo = singleLineTrip(endLine, "Union Square", endStation);
+        for (let i = 0; i < stopsOne.length; i++) {
+          stopsOne[i] = `${startLine} ${stopsOne[i]}`;
+        }
+        for (let i = 0; i < stopsTwo.length; i++) {
+          stopsTwo[i] = `${endLine} ${stopsTwo[i]}`;
+        }
+        stopsTwo.unshift(`${endLine} Union Square`);
+        for (let i = 0; i < stopsOne.length; i++) {
+          stops.push(stopsOne[i]);
+        }
+        for (let i = 0; i < stopsTwo.length; i++) {
+          stops.push(stopsTwo[i]);
+        }
+        if (startLine != "L" && endLine != "L") {
+          stops.push("L Union Square");
+        }
+    }
+    for (let i = 0; i < stops.length; i++) {
+      document.getElementById(stops[i]).setAttribute("class", "passed");
+    }
+
+    document.getElementById(startId).setAttribute("class","selectedStart");
+    document.getElementById(endId).setAttribute("class","selectedEnd");
 }
 
 function singleLineTrip(line, startStation, endStation) {
@@ -63,13 +108,11 @@ function singleLineTrip(line, startStation, endStation) {
     for (let i = startStationIndex + 1; i <= endStationIndex; i++ ) {
       singleJourneyOutput.push(stationListArray[i]);
     }
-    //console.log(singleJourneyOutput);
   } else {
     //reverse direction if needed
     for (let i = startStationIndex - 1; i >= endStationIndex; i--) {
       singleJourneyOutput.push(stationListArray[i]);
     }
-    //console.log(singleJourneyOutput);
   }
   return singleJourneyOutput;
 }
