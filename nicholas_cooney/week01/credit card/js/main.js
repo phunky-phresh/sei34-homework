@@ -11,7 +11,7 @@ const validateCreditCard = function(number) {
     // console.log(cardNumber);
     let cardLast = card.slice(-1); //grabs last value on string
     let cardEven = Number.isInteger(cardLast/2); //checks if cardLast is even or odd
-    let numberArray = card.split('', 16);
+    let numberArray = card.split('', 16); //could use for new set and check for duplicates
       // console.log(numberArray);
       // for (let i = 0;numberArray.length > i; i++)
       // // console.log(numberArray[i]);
