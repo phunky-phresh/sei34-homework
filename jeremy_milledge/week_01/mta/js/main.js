@@ -33,6 +33,7 @@ const Trip = function(inputArr) {
   this.legs = allStops(inputArr[0], inputArr[1], inputArr[2], inputArr[3], this.intStop);
   this.transfers = findTransfers(this.legs);
   this.numLegs = this.legs.length;
+  this.numStops = countstops(this.legs, this.transfers);
   tripDB.push(this); //add to trip database
 }
 
@@ -81,6 +82,9 @@ const findTransfers = function(arr) {
   return tfers;
 }
 
+const countstops = function(legs, transfers) {
+  return legs.reduce(((acc, x) => acc + x.length), 0) - transfers.length;
+};
 //LOGGING FUNCTIONS (FOR DISPLAY IN CONSOLE ONLY) //////////////////////////////
 const asciiTrip = function(trip) {
   /* returns final string for logging to console */
@@ -98,10 +102,10 @@ Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
 const asciiBody = function(trip) {
   bodyMsg = '';
   for (let i = 0; i < trip.numLegs; i ++) { //loop to allow for later legs to be added
-    let leg = trip.legs[i]; //copies so that we don't mess with Trip object
+    let leg = trip.legs[i];
     bodyMsg += asciiOnboard(leg[0], i);
     bodyMsg += asciiLegs(leg)
-    bodyMsg += asciiTransferFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i);
+    bodyMsg += asciiTransferFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i, trip.numStops);
   }
   return bodyMsg;
 };
@@ -119,12 +123,12 @@ const asciiLegs = function(legArr) {
   return leg;
 };
 
-const asciiTransferFinal = function(numLegs, last, lastLine, idx) {
+const asciiTransferFinal = function(nLegs, end, endLine, idx, nStops) {
   changeMsg = '|\n|\n+===> ';
-  if (numLegs > 1 && idx !== numLegs - 1) { //more than 1 leg and not last leg
-    changeMsg += `Change at ${last} to Line ${lastLine}.\n|\n|\n`;
+  if (nLegs > 1 && idx !== nLegs - 1) { //more than 1 leg and not end leg
+    changeMsg += `Change at ${end} to Line ${endLine}.\n|\n|\n`;
   } else {
-    changeMsg += `Arrival at ${last}.`
+    changeMsg += `Arrival at ${end}.\n\n${nStops} stops in total.`
   }
   return  changeMsg;
 };
@@ -141,8 +145,7 @@ const testTrips = [
 const runTests = function() {
   for (let i = 0; i < testTrips.length; i++) {
     let t = testTrips[i];
-    addTrip(t[0], t[1], t[2], t[3]); //constructor pushes to DB automatically
-    //asciiTrip(tripDB[k]); //log from DB
+    addTrip(t[0], t[1], t[2], t[3]);
   }
 };
 
@@ -172,10 +175,10 @@ for (let i = 0; i < nycLines.length; i++) {
   }
 }
 
-const lineSelected = function(e) {
+const lineChanged = function(e) {
   let selected = e.target.value;
   if (selected !== 'default') {
-    let linkedEl = e.target.id === 'endL' ? eS : sS;
+    let linkedEl = e.target.id === 'endL' ? eS : sS; //pick associated station dropdown
     while (linkedEl.childNodes.length > 1) { //if any children, remove them on change
       linkedEl.removeChild(linkedEl.lastChild)
     }
@@ -196,14 +199,13 @@ const lineSelected = function(e) {
   }
 };
 
-const addFromClick = function() {
-  let stationSelected = (eS.value !== 'default' && sS.value !== 'default');
+const clickToAdd = function() {
   let t = addTrip(sL.value, sS.value, eL.value, eS.value);
   let success = typeof t === "undefined" ? false : true;
   vis.innerText = success ? asciiTrip(t) : 'Invalid Trip';
   return success ? console.log(asciiTrip(t)) : null;
 };
 
-sL.addEventListener('change', lineSelected);
-eL.addEventListener('change', lineSelected);
-let btnListener = btn.addEventListener('click', addFromClick);
+sL.addEventListener('change', lineChanged);
+eL.addEventListener('change', lineChanged);
+btn.addEventListener('click', clickToAdd);
