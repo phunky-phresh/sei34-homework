@@ -10,7 +10,6 @@ const nycSubway = { //inputs for subset of MTA lines
 const tripDB = []; // collection of all Trip objects
 
 // INPUT VALIDATION ////////////////////////////////////////////////////////////
-
 const addTrip = function(startL, startS, endL, endS) {
   /* validate input before creating object*/
   if (
@@ -31,13 +30,13 @@ const Trip = function(inputArr) {
   this.endLine = inputArr[2];
   this.end = inputArr[3];
   this.intStop = (this.start === 'Union Square' || this.end === 'Union Square');
-  this.legs = findAllStops(inputArr[0], inputArr[1], inputArr[2], inputArr[3], this.intStop);
+  this.legs = allStops(inputArr[0], inputArr[1], inputArr[2], inputArr[3], this.intStop);
   this.transfers = findTransfers(this.legs);
   this.numLegs = this.legs.length;
   tripDB.push(this); //add to trip database
 }
 
-const findAllStops = function(startL, startS, endL, endS, intStop) {
+const allStops = function(startL, startS, endL, endS, intStop) {
   /* return all stations involved in a trip */
   let stops = []
   let firstLeg = [];
@@ -83,15 +82,15 @@ const findTransfers = function(arr) {
 }
 
 //LOGGING FUNCTIONS (FOR DISPLAY IN CONSOLE ONLY) //////////////////////////////
-const logTrip = function(trip) {
+const asciiTrip = function(trip) {
   /* returns final string for logging to console */
   /* input must be a Trip instance */
-  return console.log(logHeader(trip) + logBody(trip));
+  return logHeader(trip) + logBody(trip);
 };
 
 const logHeader = function(t) {
   return (
-    `\n==============================================\n\
+    `==============================================\n\
 Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
 ==============================================\n\n`
 );};
@@ -109,23 +108,23 @@ const logBody = function(trip) {
 
 const logOnboard = function(sS, idx) {
   return (
-    !idx ? `~ Get on at ${sS}.\n\\\n \\\n`: ""
+    !idx ? `+===> Get on at ${sS}.\n|\n|\n`: ""
 );};
 
 const logLegs = function(legArr) {
   let leg = '';
   for (let i = 1; i < legArr.length - 1; i++) {
-    leg += ` |\n + ${legArr[i]}\n |\n`;
+    leg += `|\n+ ${legArr[i]}\n|\n`;
   }
   return leg;
 };
 
 const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
-  changeMsg = ' /\n/\n~ ';
+  changeMsg = '|\n|\n+===> ';
   if (numLegs > 1 && idx !== numLegs - 1) { //more than 1 leg and not last leg
-    changeMsg += `Change at ${last} to Line ${lastLine}.\n\\\n \\\n`;
+    changeMsg += `Change at ${last} to Line ${lastLine}.\n|\n|\n`;
   } else {
-    changeMsg += `Arrival at ${last}.\n `
+    changeMsg += `Arrival at ${last}.`
   }
   return  changeMsg;
 };
@@ -142,7 +141,7 @@ const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
 // for (let k = 0; k < testTrips.length; k++) {
 //   let t = testTrips[k];
 //   new Trip(t[0], t[1], t[2], t[3]); //constructor pushes to DB automatically
-//   logTrip(tripDB[k]); //log from DB
+//   asciiTrip(tripDB[k]); //log from DB
 // }
 //
 // let eg = tripDB[2];
@@ -150,14 +149,12 @@ const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
 
 // WEBPAGE INTERACTIVITY ///////////////////////////////////////////////////////
 let nycLines = Object.keys(nycSubway);
-
-
 let sL = document.getElementById('startL');
-
 let sS = document.getElementById('startS');
 let eL = document.getElementById('endL');
-
 let eS = document.getElementById('endS');
+let vis = document.getElementById('visual');
+let btn = document.getElementById('generate');
 let lines = [sL,eL];
 
 for (let i=0; i < nycLines.length; i++) {
@@ -201,9 +198,11 @@ eL.addEventListener('change', lineSelected);
 
 const addFromClick = function() {
   let stationSelected = (eS.value !== 'default' && sS.value !== 'default');
-  let t = addTrip(sL.value, sS.value, eL.value, eS.value)
-  return typeof t === "undefined" ? null : logTrip(t);
+  let t = addTrip(sL.value, sS.value, eL.value, eS.value);
+  let success = typeof t === "undefined" ? false : true;
+  vis.innerText = success ? asciiTrip(t) : 'Invalid Trip';
+  return success ? console.log(asciiTrip(t)) : null;
 };
 
-let btn = document.getElementById('generate');
+
 let btnListener = btn.addEventListener('click', addFromClick);
