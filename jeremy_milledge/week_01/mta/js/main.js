@@ -85,33 +85,33 @@ const findTransfers = function(arr) {
 const asciiTrip = function(trip) {
   /* returns final string for logging to console */
   /* input must be a Trip instance */
-  return logHeader(trip) + logBody(trip);
+  return asciiHeader(trip) + asciiBody(trip);
 };
 
-const logHeader = function(t) {
+const asciiHeader = function(t) {
   return (
     `==============================================\n\
 Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
 ==============================================\n\n`
 );};
 
-const logBody = function(trip) {
+const asciiBody = function(trip) {
   bodyMsg = '';
   for (let i = 0; i < trip.numLegs; i ++) { //loop to allow for later legs to be added
     let leg = trip.legs[i]; //copies so that we don't mess with Trip object
-    bodyMsg += logOnboard(leg[0], i);
-    bodyMsg += logLegs(leg)
-    bodyMsg += logTransferOrFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i);
+    bodyMsg += asciiOnboard(leg[0], i);
+    bodyMsg += asciiLegs(leg)
+    bodyMsg += asciiTransferFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i);
   }
   return bodyMsg;
 };
 
-const logOnboard = function(sS, idx) {
+const asciiOnboard = function(sS, idx) {
   return (
     !idx ? `+===> Get on at ${sS}.\n|\n|\n`: ""
 );};
 
-const logLegs = function(legArr) {
+const asciiLegs = function(legArr) {
   let leg = '';
   for (let i = 1; i < legArr.length - 1; i++) {
     leg += `|\n+ ${legArr[i]}\n|\n`;
@@ -119,7 +119,7 @@ const logLegs = function(legArr) {
   return leg;
 };
 
-const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
+const asciiTransferFinal = function(numLegs, last, lastLine, idx) {
   changeMsg = '|\n|\n+===> ';
   if (numLegs > 1 && idx !== numLegs - 1) { //more than 1 leg and not last leg
     changeMsg += `Change at ${last} to Line ${lastLine}.\n|\n|\n`;
@@ -130,22 +130,27 @@ const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
 };
 
 // TEST INPUTS /////////////////////////////////////////////////////////////////
-// const testTrips = [
-//   ['N', 'Times Square', 'N', '8th'],
-//   ['L', '1st', '6', 'Grand Central'],
-//   ['N', 'Times Square', '6', 'Grand Central'],
-//   ['N', 'Union Square', 'L', '1st'],
-//   ['6', 'Grand Central', 'L', 'Union Square']
-// ];
-//
-// for (let k = 0; k < testTrips.length; k++) {
-//   let t = testTrips[k];
-//   new Trip(t[0], t[1], t[2], t[3]); //constructor pushes to DB automatically
-//   asciiTrip(tripDB[k]); //log from DB
-// }
-//
-// let eg = tripDB[2];
+const testTrips = [
+  ['N', 'Times Square', 'N', '8th'],
+  ['L', '1st', '6', 'Grand Central'],
+  ['N', 'Times Square', '6', 'Grand Central'],
+  ['N', 'Union Square', 'L', '1st'],
+  ['6', 'Grand Central', 'L', 'Union Square']
+];
 
+const runTests = function() {
+  for (let i = 0; i < testTrips.length; i++) {
+    let t = testTrips[i];
+    addTrip(t[0], t[1], t[2], t[3]); //constructor pushes to DB automatically
+    //asciiTrip(tripDB[k]); //log from DB
+  }
+};
+
+const logDB = function(db) {
+  for (let i = 0; i < db.length; i++) {
+    console.log(asciiTrip(db[i]));
+  }
+}
 
 // WEBPAGE INTERACTIVITY ///////////////////////////////////////////////////////
 let nycLines = Object.keys(nycSubway);
@@ -155,19 +160,17 @@ let eL = document.getElementById('endL');
 let eS = document.getElementById('endS');
 let vis = document.getElementById('visual');
 let btn = document.getElementById('generate');
-let lines = [sL,eL];
+let lineElements = [sL,eL];
 
-for (let i=0; i < nycLines.length; i++) {
-  let val = Object.keys(nycSubway)[i]
-  for (let j=0; j < 2; j++) {
+for (let i = 0; i < nycLines.length; i++) {
+  let val = nycLines[i];
+  for (let j = 0; j < lineElements.length; j++) {
     let line = document.createElement('option');
     line.textContent = val;
     line.value = val;
-    lines[j].appendChild(line);
+    lineElements[j].appendChild(line);
   }
 }
-
-
 
 const lineSelected = function(e) {
   let selected = e.target.value;
@@ -179,7 +182,7 @@ const lineSelected = function(e) {
     for (let i = 0; i < nycLines.length; i++) {
       if(selected === nycLines[i]) {
         let allowedStations = nycSubway[selected];
-        let optGroup = document.createDocumentFragment(); //holds all option els
+        let optGroup = document.createDocumentFragment(); //holds all elements
         for (let j = 0; j < allowedStations.length; j++) {
           let stationEl = document.createElement('option');
           stationEl.textContent = allowedStations[j];
@@ -193,9 +196,6 @@ const lineSelected = function(e) {
   }
 };
 
-sL.addEventListener('change', lineSelected);
-eL.addEventListener('change', lineSelected);
-
 const addFromClick = function() {
   let stationSelected = (eS.value !== 'default' && sS.value !== 'default');
   let t = addTrip(sL.value, sS.value, eL.value, eS.value);
@@ -204,5 +204,6 @@ const addFromClick = function() {
   return success ? console.log(asciiTrip(t)) : null;
 };
 
-
+sL.addEventListener('change', lineSelected);
+eL.addEventListener('change', lineSelected);
 let btnListener = btn.addEventListener('click', addFromClick);
