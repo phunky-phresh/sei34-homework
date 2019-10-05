@@ -5,29 +5,43 @@ let linesObject = {
   "6": ["Grand Central", "33rd", "28th", "23rd", "Union Square", "Astor Place"]
 }
 
-function planTrip(startLine, startStation, endLine, endStation) {
-  console.log(`Request: ${startLine}, ${startStation}, ${endLine}, ${endStation}`)
+function planTrip() {
 
-  if (validateStations(startLine, startStation, endLine, endStation) != true) return console.log("Invalid trip");
+  let startLine = document.getElementById("stationOne").value.slice(0,1);
+  let startStation = document.getElementById("stationOne").value.slice(2,);
+  let endLine = document.getElementById("stationTwo").value.slice(0,1);
+  let endStation = document.getElementById("stationTwo").value.slice(2,);
 
-  let directions;
+
+  //console.log(`Request: ${startLine}, ${startStation}, ${endLine}, ${endStation}`);
+
+  let directions = "Invalid trip";
   let lineOneStops = [];
   let lineTwoStops = [];
+
+  if (validateStations(startLine, startStation, endLine, endStation) != true) return;
 
   if (startStation === "Union Square") startLine = endLine;
   if (endStation === "Union Square") endLine = startLine;
 
+
+  if (startLine === endLine && startStation === endStation) {
+    document.getElementById("tripOutput").innerHTML = "Same stations selected";
+    return;
+  }
+
   if (startLine === endLine) {
     lineOneStops = singleLineTrip(startLine, startStation, endStation);
-    directions = `You must travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.\n${lineOneStops.length} stops in total.`;
+    directions = `You will travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.<br>\n${lineOneStops.length} stops in total.`;
 
   } else {
     lineOneStops = singleLineTrip(startLine, startStation, "Union Square");
     lineTwoStops = singleLineTrip(endLine, "Union Square", endStation);
-    directions = `You must travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.\nChange at Union Station.\nThen continue on ${endLine} line: ${lineTwoStops.join(', ')}\n${lineOneStops.length + lineTwoStops.length} stops in total.`;
+    directions = `You will travel through the following stops on the ${startLine} line: ${lineOneStops.join(', ')}.<br>\nChange at Union Station<br>\nThen continue on ${endLine} line: ${lineTwoStops.join(', ')}.<br>\n${lineOneStops.length + lineTwoStops.length} stops in total.`;
   }
   //directions = lineOneStops + " " + lineTwoStops;
-  console.log(directions);
+  //console.log(directions);
+  document.getElementById("tripOutput").innerHTML = directions;
 }
 
 function singleLineTrip(line, startStation, endStation) {
@@ -80,7 +94,7 @@ function validateStations(startLine, startStation, endLine, endStation) {
 
 //console.log(`You must travel through the following stops on the <input> line: <joined array excluding starting, including finishing>. \nNo line change required. \nYou will have <stops, including last> stops total.`);
 
-planTrip("N", "23rd", "6", "33rd")
-planTrip("6", "Union Square", "L", "1st")
-planTrip("L", "8th", "6", "Union Square")
-planTrip("L", "8th", "N", "Astor Place")
+//planTrip("N", "23rd", "6", "33rd")
+// planTrip("6", "Union Square", "L", "1st")
+// planTrip("L", "8th", "6", "Union Square")
+// planTrip("L", "8th", "N", "Astor Place")

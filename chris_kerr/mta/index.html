@@ -4,11 +4,86 @@
     <title></title>
   </head>
   <body>
-    <p>To call this, refer to console:</p>
-    <p>planTrip('starting line', 'starting station', 'ending line', 'ending station');</p>
-    <p> "N": ["Times Square", "34th", "28th", "23rd", "Union Square", "8th"],</p>
-    <p> "L": ["8th", "6th", "Union Square", "3rd", "1st"], </p>
-    <p>  "6": ["Grand Central", "33rd", "28th", "23rd", "Union Square", "Astor Place"]> </p>
+    <style>
+      div {
+        display: inline-block;
+        float: left;
+        padding-right: 25px;
+      }
+
+      #tripOutput {
+        display: inline-block;
+        width: auto;
+        border: black;
+        border-style: solid;
+        border-width: thin;
+        border-color: grey;
+        padding: 3px;
+        line-height: 1.4;
+      }
+    </style>
+
+    <h1>MTA Route Planner</h1>
+
+    <div>
+      <p>Please pick a starting station:</p>
+      <select id="stationOne" onchange="planTrip();">
+        <optgroup label="N Line">
+          <option value="N Times Square">Times Square</option>
+          <option value="N 34th"]>34th</option>
+          <option value="N 28th"]>28th</option>
+          <option value="N 23rd"]>23rd</option>
+          <option value="N Union Square"]>Union Square</option>
+          <option value="N 8th"]>8th</option>
+        </optgroup>
+        <optgroup label="L Line">
+          <option value="L 8th"]>8th</option>
+          <option value="L 6th"]>6th</option>
+          <option value="L Union Square"]>Union Square</option>
+          <option value="L 3rd"]>3rd</option>
+          <option value="L 1st"]>1st</option>
+        </optgroup>
+        <optgroup label="6 Line">
+          <option value="6 Grand Central"]>Grand Central</option>
+          <option value="6 33rd"]>33rd</option>
+          <option value="6 28th"]>28th</option>
+          <option value="6 23rd"]>23rd</option>
+          <option value="6 Union Square"]>Union Square</option>
+          <option value="6 Astor Place"]>Astor Place</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div>
+      <p>Please pick a destination station:</p>
+      <select id="stationTwo" onchange="planTrip();">
+        <optgroup label="N Line">
+          <option value="N Times Square">Times Square</option>
+          <option value="N 34th"]>34th</option>
+          <option value="N 28th"]>28th</option>
+          <option value="N 23rd"]>23rd</option>
+          <option value="N Union Square"]>Union Square</option>
+          <option value="N 8th"]>8th</option>
+        </optgroup>
+        <optgroup label="L Line">
+          <option value="L 8th"]>8th</option>
+          <option value="L 6th"]>6th</option>
+          <option value="L Union Square"]>Union Square</option>
+          <option value="L 3rd"]>3rd</option>
+          <option value="L 1st"]>1st</option>
+        </optgroup>
+        <optgroup label="6 Line">
+          <option value="6 Grand Central"]>Grand Central</option>
+          <option value="6 33rd"]>33rd</option>
+          <option value="6 28th"]>28th</option>
+          <option value="6 23rd"]>23rd</option>
+          <option value="6 Union Square"]>Union Square</option>
+          <option value="6 Astor Place"]>Astor Place</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <p id="tripOutput">Please select stations to display best route</p>
 
     <script src="js/main.js"></script>
   </body>
