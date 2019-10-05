@@ -1,0 +1,8 @@
+body {
+    margin: 10vh auto;
+    max-width: 1050px;
+    padding: 0 2vh;
+}
+select {
+    display: block;
+}
