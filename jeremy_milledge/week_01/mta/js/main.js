@@ -10,15 +10,19 @@ const nycSubway = { //inputs for subset of MTA lines
 const tripDB = []; // collection of all trip objects
 
 // INPUT VALIDATION ////////////////////////////////////////////////////////////
-const addTrip = function(startL, startS, endL, endS) {
-  /* validate input before creating object*/
+const validateInputs = function(startL, start, endL, end) {
+  /* validate input before creating object, console message if invalid*/
   if (
-    startS === 'Union Square' && endS === 'Union Square' ||
-    (startS === endS && startL === endL)
+    start === 'Union Square' && end === 'Union Square' ||
+    (start === end && startL === endL)
   ) {
-    return console.log(`Invalid input: You're already at ${startS}`)
+    return console.log(`Invalid input: You're already at ${start}`)
   } else {
-    let t = createTrip(startL, startS, endL, endS);
+    //we only want one trip if Union Square is selected on diff line
+    if (startL !== endL && (start === 'Union Square' || end === 'Union Square')) {
+      start === 'Union Square' ? startL = endL : endL = startL; //swap one line
+    }
+    let t = createTrip(startL, start, endL, end);
     tripDB.push(t)
     return t;
   }
@@ -27,12 +31,9 @@ const addTrip = function(startL, startS, endL, endS) {
 // trip OBJECT CONSTRUCTION FUNCTIONS //////////////////////////////////////////
 const createTrip = function(startLine, start, endLine, end) {
   /*creates trip object */
-  let intStop = start === 'Union Square' || end === 'Union Square'
   return {
-    intStop, start, end,
-    legs: calcJourney(startLine, start, endLine, end, intStop),
-    get startLine(){return Object.keys(this.legs[0])[0]}, // method allows us to dynamically determine based on result of calcJourney
-    get endLine() {return Object.keys(this.legs.slice(-1)[0])[0]}, // method allows us to dynamically determine based on result of calcJourney
+    start, end, startLine, endLine,
+    legs: calcJourney(startLine, start, endLine, end),
     get xfers() {return this.stops.slice(0,-1).map(x => x.slice(-1)[0])},
     get stopCount() {return this.stops.reduce(((c, x) => c + x.length), 0) - this.xfers.length},
     get lineCount() {return this.legs.length},
@@ -41,18 +42,15 @@ const createTrip = function(startLine, start, endLine, end) {
   };
 };
 
-const calcJourney = function(startL, startS, endL, endS, intStop) {
+const calcJourney = function(startL, start, endL, end) {
   /* return all stations involved in a trip */
   let stops = []
   let firstLeg = [];
-  if (startL !== endL && intStop) { //only one trip even if U.S is selected on diff line
-    startS === 'Union Square' ? startL = endL : endL = startL;
-  }
   if (startL == endL) { //only one train to take
-    firstLeg = singleLeg(startL, startS, endS);
+    firstLeg = singleLeg(startL, start, end);
   } else {
-    firstLeg = singleLeg(startL, startS);
-    stops.push(singleLeg(endL, 'Union Square', endS));
+    firstLeg = singleLeg(startL, start);
+    stops.push(singleLeg(endL, 'Union Square', end));
   }
   stops.unshift(firstLeg);
   return stops; //shape [{Line1: [first leg stops]}, {Line2: [second leg stops]}]
@@ -131,7 +129,7 @@ const examples = [
   ['6', 'Grand Central', 'L', 'Union Square']
 ];
 
-const runTests = () => examples.forEach(x => addTrip(x[0], x[1], x[2], x[3]));
+const runTests = () => examples.forEach(x => validateInputs(x[0], x[1], x[2], x[3]));
 const logDB = () => tripDB.forEach(x => console.log(asciiJourney(x)));
 runTests();
 const eg = tripDB[2];
@@ -144,7 +142,7 @@ let sL = document.getElementById('startL');
 let sS = document.getElementById('startS');
 let eL = document.getElementById('endL');
 let eS = document.getElementById('endS');
-let vis = document.getElementById('visual');
+let map = document.getElementById('visual');
 let btn = document.getElementById('generate');
 let lineElements = [sL,eL];
 
@@ -167,9 +165,9 @@ const updateStations = function(e) {
 
 // function to execute on button click - adds obj and prints if valid selections
 const clickToAdd = function() {
-  let t = addTrip(sL.value, sS.value, eL.value, eS.value);
+  let t = validateInputs(sL.value, sS.value, eL.value, eS.value);
   let success = typeof t === "undefined" ? false : true;
-  vis.innerText = success ? asciiJourney(t) : 'Invalid Trip';
+  map.innerText = success ? asciiJourney(t) : 'Invalid Trip';
   return success ? console.log(asciiJourney(t)) : null;
 };
 
