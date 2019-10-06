@@ -7,7 +7,7 @@ const nycSubway = { //inputs for subset of MTA lines
   6: ['Astor Place', 'Union Square', '23rd', '28th', '33rd', 'Grand Central']
 };
 
-const tripDB = []; // collection of all Trip objects
+const tripDB = []; // collection of all trip objects
 
 // INPUT VALIDATION ////////////////////////////////////////////////////////////
 const addTrip = function(startL, startS, endL, endS) {
@@ -18,23 +18,27 @@ const addTrip = function(startL, startS, endL, endS) {
   ) {
     return console.log(`Invalid input: You're already at ${startS}`)
   } else {
-    return new Trip([startL, startS, endL, endS]);
+    return createTrip([startL, startS, endL, endS]);
   }
 }
 
-// Trip OBJECT CONSTRUCTION FUNCTIONS //////////////////////////////////////////
-const Trip = function(inputArr) {
-  /*creates Trip object to log from with planTrip */
-  this.startLine = inputArr[0];
-  this.start = inputArr[1];
-  this.endLine = inputArr[2];
-  this.end = inputArr[3];
-  this.intStop = (this.start === 'Union Square' || this.end === 'Union Square');
-  this.legs = allStops(inputArr[0], inputArr[1], inputArr[2], inputArr[3], this.intStop);
-  this.transfers = findTransfers(this.legs);
-  this.numLegs = this.legs.length;
-  this.numStops = countstops(this.legs, this.transfers);
-  tripDB.push(this); //add to trip database
+// trip OBJECT CONSTRUCTION FUNCTIONS //////////////////////////////////////////
+const createTrip = function(valid) {
+  /*creates trip object */
+  let trip = {};
+  trip.intStop = valid[1] === 'Union Square' || valid[3] === 'Union Square';
+  trip.legs = allStops(valid[0], valid[1], valid[2], valid[3], trip.intStop);
+  trip.startLine = valid[0];
+  trip.start = valid[1];
+  trip.endLine = valid[2];
+  trip.end = valid[3];
+  trip.transfers = findTransfers(trip);
+  trip.numStops = countstops(trip);
+  trip.legCount = trip.legs.length;
+  trip.getAllStops = () => trip.legs.map(x => Object.values(x)[0]); //return [[],[]] for easy manipulation
+
+  tripDB.push(trip); //add to trip database
+  return trip;
 }
 
 const allStops = function(startL, startS, endL, endS, intStop) {
@@ -53,7 +57,7 @@ const allStops = function(startL, startS, endL, endS, intStop) {
     stops.push(singleLineStops(endL, 'Union Square', endS));
   }
   stops.unshift(firstLeg);
-  return stops; //array of shape [[first leg stops], [second leg stops]...]
+  return stops; //shape [{Line1: [first leg stops]}, {Line2: [second leg stops]}]
 };
 
 const singleLineStops = function(startL, startS, endS=false) {
@@ -61,7 +65,7 @@ const singleLineStops = function(startL, startS, endS=false) {
   const ln = nycSubway[startL]; //current line
   const sS = ln.indexOf(startS); // index from array item on the line
   let fS = !endS ? ln.indexOf('Union Square') : ln.indexOf(endS); //default U.S
-  return pushStops(sS, fS, ln)
+  return {[startL]: pushStops(sS, fS, ln)};
 };
 
 const pushStops = function(start, end, line) {
@@ -73,23 +77,23 @@ const pushStops = function(start, end, line) {
   return backwards ? stopArr.reverse() : stopArr;
 };
 
-const findTransfers = function(arr) {
+const findTransfers = function(t) {
   /* loop  through legs and retrieve last stop for all but last leg */
   tfers = [];
-  for (let i = 0; i < arr.length - 1; i++) {
-    tfers.push(arr[i][arr[i].length - 1]);
+  for (let i = 0; i < t.legCount - 1; i++) {
+    tfers.push(t.getAllStops()[i][t.getAllStops()[i].length - 1]);
   }
   return tfers;
-}
+};
 
-const countstops = function(legs, transfers) {
-  return legs.reduce(((acc, x) => acc + x.length), 0) - transfers.length;
+const countstops = function(t) {
+  return t.getAllStops().reduce(((acc, x) => acc + x.length), 0) - t.transfers.length;
 };
 //LOGGING FUNCTIONS (FOR DISPLAY IN CONSOLE ONLY) //////////////////////////////
-const asciiTrip = function(trip) {
+const asciiTrip = function(t) {
   /* returns final string for logging to console */
-  /* input must be a Trip instance */
-  return asciiHeader(trip) + asciiBody(trip);
+  /* input must be a trip object */
+  return asciiHeader(t) + asciiBody(t);
 };
 
 const asciiHeader = function(t) {
@@ -99,36 +103,36 @@ Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
 ==============================================\n\n`
 );};
 
-const asciiBody = function(trip) {
+const asciiBody = function(t) {
   bodyMsg = '';
-  for (let i = 0; i < trip.numLegs; i ++) { //loop to allow for later legs to be added
-    let leg = trip.legs[i];
+  for (let i = 0; i < t.legCount; i ++) { //loop to allow for later legs to be added
+    let leg = t.getAllStops()[i];
     bodyMsg += asciiOnboard(leg[0], i);
-    bodyMsg += asciiLegs(leg)
-    bodyMsg += asciiTransferFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i, trip.numStops);
+    bodyMsg += asciiStopsOnLeg(leg)
+    bodyMsg += asciiTransferFinal(t, leg, i);
   }
   return bodyMsg;
 };
 
-const asciiOnboard = function(sS, idx) {
+const asciiOnboard = function(start, idx) {
   return (
-    !idx ? `+===> Get on at ${sS}.\n|\n|\n`: ""
+    !idx ? `+===> Get on at ${start}.\n|\n|\n`: ""
 );};
 
-const asciiLegs = function(legArr) {
-  let leg = '';
-  for (let i = 1; i < legArr.length - 1; i++) {
-    leg += `|\n+ ${legArr[i]}\n|\n`;
+const asciiStopsOnLeg = function(leg) {
+  let stops = '';
+  for (let i = 1; i < leg.length - 1; i++) {
+    stops += `|\n+ ${leg[i]}\n|\n`;
   }
-  return leg;
+  return stops;
 };
 
-const asciiTransferFinal = function(nLegs, end, endLine, idx, nStops) {
+const asciiTransferFinal = function(t, leg, idx) {
   changeMsg = '|\n|\n+===> ';
-  if (nLegs > 1 && idx !== nLegs - 1) { //more than 1 leg and not end leg
-    changeMsg += `Change at ${end} to Line ${endLine}.\n|\n|\n`;
+  if (t.legCount > 1 && idx !== t.legCount - 1) { //more than 1 leg and not end leg
+    changeMsg += `Change at ${leg[leg.length - 1]} to Line ${t.endLine}.\n|\n|\n`;
   } else {
-    changeMsg += `Arrival at ${end}.\n\n${nStops} stops in total.`
+    changeMsg += `Arrival at ${leg[leg.length - 1]}.\n\n${t.numStops} stops in total.`
   }
   return  changeMsg;
 };
