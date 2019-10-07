@@ -65,25 +65,31 @@ const trainlines = [
 const getStations = function(fromStation, toStation, lineStations) {   //=>inputs are index initial station, index final station and line array
   let tripRoute = [];
   let stationsArray = lineStations;
-  
+
   if (toStation > fromStation) { //if final station is after initial station
     tripRoute = stationsArray.slice(fromStation + 1, toStation + 1); //slice doesn't include end element in the array
-  
   } else {  //if final station is before initial station
     tripRoute = stationsArray.slice(toStation, fromStation);
     tripRoute.reverse();
   }
-
   return tripRoute;
 }
 
 
-
+//function to plan the trip
 const planTrip = function(initialLine, initialStation, finalLine, finalStation) {
   let initialLineStations; //initialize array of stations from starting line
   let finalLineStations;  //initialize array of stations from ending line
+  let tripRoute;
 
   console.log(`From ${initialLine}, ${initialStation} - To ${finalLine}, ${finalStation}:`);
+
+  //If starting or ending on Union Square but inputs have different lines
+  if (initialStation === "Union Square" && initialLine !== finalLine) {
+    initialLine = finalLine;
+  } else if (finalStation === "Union Square" && initialLine !== finalLine) {
+    finalLine = initialLine;
+  }
 
   for (let i = 0; i < trainlines.length; i++) {   //go through array of trainlines
     if (trainlines[i].name === initialLine) {
@@ -96,44 +102,41 @@ const planTrip = function(initialLine, initialStation, finalLine, finalStation) 
 
   const indexInitialStation = initialLineStations.indexOf(initialStation); //get index of starting station
   const indexFinalStation = finalLineStations.indexOf(finalStation); //get index of final station
+  const indexInitialUS = initialLineStations.indexOf("Union Square"); //get index of US station in initial line
+  const indexFinalUS = finalLineStations.indexOf("Union Square"); //get index of US station in final line
+
 
   //if travelling on one line only
   if (initialLine === finalLine) {
-    let tripRoute = getStations(indexInitialStation, indexFinalStation, initialLineStations);
-    const nStations = tripRoute.length; //count stations in array
-    
-    console.log(`You must travel through the following stops on the ${initialLine}:
-      \n${tripRoute.join(", ")}.
-      \n${nStations} stops in total.`);
-  }
+    tripRoute = getStations(indexInitialStation, indexFinalStation, initialLineStations);
 
+    console.log(`You must travel through the following stops on the ${initialLine}:
+      \n${tripRoute.join(", ")}.`);
+  }
 
   //if having to change lines
   else {
-    const indexInitialUS = initialLineStations.indexOf("Union Square"); //get index of US station in initial line
-    const indexFinalUS = finalLineStations.indexOf("Union Square"); //get index of US station in final line
-
     let tripRoute1 = getStations(indexInitialStation, indexInitialUS, initialLineStations);
-    let tripRoute2 = getStations(indexFinalUS, indexFinalStation, finalLineStations);
-    const nStations = tripRoute1.length + tripRoute2.length; //count stations in both arrays
-    
+    let tripRoute2 = getStations(indexFinalUS,indexFinalStation, finalLineStations);
+    tripRoute = tripRoute1.concat(tripRoute2);
+
     console.log(`You must travel through the following stops on the ${initialLine}:
       \n${tripRoute1.join(", ")}.
-      \nChange at Union Square.
-      \nYour journey continues through the following stops: ${tripRoute2.join(", ")}.
-      \n${nStations} stops in total.`);
+      \nChange at Union Square to ${finalLine}.
+      \nYour journey continues through the following stops: ${tripRoute2.join(", ")}.`);
   }
+  console.log(`${tripRoute.length} stops in total.`);
 }
 
 
 
 
-planTrip("N line", "8th", "N line", "34th");
+planTrip("N line", "34th", "6 line", "Union Square");
 console.log('');
 planTrip("L line", "8th", "L line", "3rd");
 console.log("");
 planTrip("N line", "Times Square", "6 line", "Astor Place");
 console.log("");
-planTrip("N line", "Times Square", "L line", "8th");
+planTrip("N line", "Union Square", "6 line", "Grand Central");
 console.log("");
 planTrip("L line", "1st", "6 line", "Grand Central");
