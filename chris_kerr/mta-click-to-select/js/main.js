@@ -35,50 +35,7 @@ function planTrip(startLine, startStation, endLine, endStation) {
   }
 
   document.getElementById("tripOutput").innerHTML = directions;
-
-}
-
-function colorize(startLine, startStation, endLine, endStation) {
-    let tdList = document.getElementsByTagName("td");
-    let startId = startLine + " " + startStation;
-    let endId = endLine + " " + endStation;
-    let stops = [];
-
-    for (let i = 0; i < tdList.length; i++) {
-      tdList[i].setAttribute("class", "");
-    }
-
-    if (startLine === endLine) {
-      stops = singleLineTrip(startLine, startStation, endStation);
-        for (let i = 0; i < stops.length; i++) {
-          stops[i] = `${startLine} ${stops[i]}`;
-        }
-    } else {
-      let stopsOne = singleLineTrip(startLine, startStation, "Union Square");
-      let stopsTwo = singleLineTrip(endLine, "Union Square", endStation);
-        for (let i = 0; i < stopsOne.length; i++) {
-          stopsOne[i] = `${startLine} ${stopsOne[i]}`;
-        }
-        for (let i = 0; i < stopsTwo.length; i++) {
-          stopsTwo[i] = `${endLine} ${stopsTwo[i]}`;
-        }
-        stopsTwo.unshift(`${endLine} Union Square`);
-        for (let i = 0; i < stopsOne.length; i++) {
-          stops.push(stopsOne[i]);
-        }
-        for (let i = 0; i < stopsTwo.length; i++) {
-          stops.push(stopsTwo[i]);
-        }
-        if (startLine != "L" && endLine != "L") {
-          stops.push("L Union Square");
-        }
-    }
-    for (let i = 0; i < stops.length; i++) {
-      document.getElementById(stops[i]).setAttribute("class", "passed bold");
-    }
-
-    document.getElementById(startId).setAttribute("class","selectedStart bold");
-    document.getElementById(endId).setAttribute("class","selectedEnd bold");
+  console.log(directions);
 }
 
 function singleLineTrip(line, startStation, endStation) {
@@ -127,7 +84,7 @@ function validateStations(startLine, startStation, endLine, endStation) {
   return false;
 }
 
-function choose (id) {
+function choose(id) {
 
   if (chosenStations.length === 2) return;
 
@@ -154,6 +111,50 @@ function reset() {
   document.getElementById("tripOutput").innerHTML = "Please select stations to display best route";
   colorize();
 }
+
+function colorize(startLine, startStation, endLine, endStation) {
+    let tdList = document.getElementsByTagName("td");
+    let startId = startLine + " " + startStation;
+    let endId = endLine + " " + endStation;
+    let stops = [];
+
+    for (let i = 0; i < tdList.length; i++) {
+      tdList[i].setAttribute("class", "");
+    }
+
+    if (startLine === endLine) {
+      stops = singleLineTrip(startLine, startStation, endStation);
+        for (let i = 0; i < stops.length; i++) {
+          stops[i] = `${startLine} ${stops[i]}`;
+        }
+    } else {
+      let stopsOne = singleLineTrip(startLine, startStation, "Union Square");
+      let stopsTwo = singleLineTrip(endLine, "Union Square", endStation);
+        for (let i = 0; i < stopsOne.length; i++) {
+          stopsOne[i] = `${startLine} ${stopsOne[i]}`;
+        }
+        for (let i = 0; i < stopsTwo.length; i++) {
+          stopsTwo[i] = `${endLine} ${stopsTwo[i]}`;
+        }
+        stopsTwo.unshift(`${endLine} Union Square`);
+        for (let i = 0; i < stopsOne.length; i++) {
+          stops.push(stopsOne[i]);
+        }
+        for (let i = 0; i < stopsTwo.length; i++) {
+          stops.push(stopsTwo[i]);
+        }
+        if (startLine != "L" && endLine != "L") {
+          stops.push("L Union Square");
+        }
+    }
+    for (let i = 0; i < stops.length; i++) {
+      document.getElementById(stops[i]).setAttribute("class", "passed bold");
+    }
+
+    document.getElementById(startId).setAttribute("class","selectedStart bold");
+    document.getElementById(endId).setAttribute("class","selectedEnd bold");
+}
+
 
 //console.log(`You must travel through the following stops on the <input> line: <joined array excluding starting, including finishing>. \nNo line change required. \nYou will have <stops, including last> stops total.`);
 
