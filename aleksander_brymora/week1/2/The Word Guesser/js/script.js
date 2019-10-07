@@ -55,12 +55,27 @@ const hangman = function (letter) {
         else {
             if (score >= 6) {
                 console.log(`You've hung the poor fella :(`);
+                console.log(
+`   __________
+    |/      |
+    |      (_)
+    |       |/
+    |      /|/
+    |      / 
+    |
+____|___`);
                 guessed = [];
                 wordGuess = ['_', '_', '_'];;
             }
         }
     }
 }
+hangman("a");
+hangman("b");
+hangman("c");
+hangman("d");
+hangman("e");
+hangman("g");
 
 const wheel = function (letter) {
     letter = letter.toLowerCase();
