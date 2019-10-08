@@ -14,13 +14,21 @@ const squareNumber = function (aNumber) {
 
 console.log(squareNumber(3));
 
-
 const halfNumber = function (aNumber) {
   const halfNumber = (aNumber / 2);
   return `Half of ${ aNumber } is ${ halfNumber }`;
 };
 
 console.log(halfNumber(5));
+
+// DID NOT WORK
+// function halfNumber (num1) {
+//   const divideNumber = (num1 / 2);
+//   console.log(`Half of ${ num1 } is ${ dividedNumber }`);
+//   return result;
+// }
+//
+// halfNumber(5);
 
 //consulted the hw solutions but was initially forming them the same as first two above
 function percentOf(num1, num2) {

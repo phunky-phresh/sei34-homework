@@ -151,7 +151,4 @@ const notBad = function (stringEvaluate) {
 notBad("This dinner is not that bad!");
 
 
-//If you made it this far then you are rewarded with three ducks. Lucky you:
-//    _      _      _
-//    >(.)__ <(.)__ =(.)__
-//    (___/  (___/  (___/
+b

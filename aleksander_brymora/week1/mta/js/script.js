@@ -61,17 +61,17 @@ const lineSearch = function (points, transfer) {
     if (transfer) {
         if (points.start.line[points.start.station] === 'Union Square') {
             console.log(`Change at Union Square from line ${points.start.lineName.toUpperCase()} to ${points.end.lineName.toUpperCase()}.`);
-            console.log(`Ammount of stops on lane ${points.end.lineName.toUpperCase()}: `);
+            console.log(`Amount of stops on lane ${points.end.lineName.toUpperCase()}: `);
             linePrint(points.end.transfer, points.end.station, points.end.line);
         }
         else {
             //First half
-            console.log(`Ammount of stops on lane ${points.start.lineName.toUpperCase()}: `);
+            console.log(`Amount of stops on lane ${points.start.lineName.toUpperCase()}: `);
             linePrint(points.start.station, points.start.transfer, points.start.line);
             //transfer message
             console.log(`Change at Union Square to line ${points.end.lineName.toUpperCase()}`);
             //Second half
-            console.log(`Ammount of stops on lane ${points.end.lineName.toUpperCase()}: `);
+            console.log(`Amount of stops on lane ${points.end.lineName.toUpperCase()}: `);
             linePrint(points.end.transfer, points.end.station, points.end.line);
         }
     }
