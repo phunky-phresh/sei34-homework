@@ -1,0 +1,43 @@
+body {
+  background-color: #93CFF9;
+  font-family: sans-serif;
+}
+.station-list {
+  float: left;
+}
+.center {
+  margin: 0 auto;
+  width: 60%;
+  /* background: #5F87A3; */
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+div {
+  background: #5C6871;
+  color: white;
+  padding: 15px;
+  max-width: 30%;
+  margin: 5px;
+}
+#lineN {
+  /* background-color: red; */
+  /* float:left; */
+  /* grid-column: 1/3; */
+}
+#lineL {
+  /* background-color: blue; */
+  /* grid-column: 2/3; */
+}
+#line6 {
+  /* background-color: green; */
+  /* float: right; */
+  /* grid-column: 3/3 */
+}
+li {
+/* list-style: none; */
+}
+label {
+  display: block;
+}
