@@ -1,6 +1,6 @@
-console.log("Working! Topic - Strings");
+console.log("Working! Homework - Strings");
 
-// Tuesday, 1st of October 2019
+// Day 2 - Tuesday, 1 October 2019
 
 // https://gist.github.com/wofockham/8f953ac7f33125898071
 
@@ -27,7 +27,7 @@ const drEvil = function (amount) {
   }
   console.log(message);
   return message;
-}
+};
 
 drEvil(1000000);
 drEvil(500);
@@ -50,7 +50,7 @@ const mixUp = function (stringA, stringB) {
   const newString = newStringA + " " + newStringB;
   console.log(newString);
   return newString;
-}
+};
 
 mixUp('mix', 'pod');
 mixUp('dog', 'dinner');
@@ -88,7 +88,7 @@ const fixStart = function (string) {
   const newString = stringArray.join('');
   console.log(newString);
   return newString;
-}
+};
 
 // Another solution
 // const fixStart = function (string) {
@@ -138,7 +138,7 @@ const verbing = function (string) {
   }
   console.log(string);
   return string;
-}
+};
 
 // Another solution:
 // const verbing = function (string) {
@@ -156,7 +156,7 @@ const verbing = function (string) {
 //       return newString;
 //     }
 //   }
-// }
+// };
 
 // note: when adding 'ing' to end of words, we normally repeat the last character of the
 // word then add 'ing'. This function does not take this into account.
@@ -196,7 +196,7 @@ const notBad = function (string) {
   }
   console.log(newString);
   return newString;
-}
+};
 
 notBad('This dinner is not that bad!');
 notBad('This movie is not so bad!');
@@ -209,7 +209,7 @@ notBad('The movie was not so bad. Not bad at all.');
 //  newStr = str.replace(/(not)(.*)(bad))/, "good");
 //  console.log(newStr);
 // return newStr;
-// }
+// };
 
 // indexOf - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
 // substring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
