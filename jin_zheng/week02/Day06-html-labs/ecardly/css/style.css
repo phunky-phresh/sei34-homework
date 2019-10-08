@@ -12,11 +12,14 @@ Developer @GA in NYC
   box-sizing: border-box; /* IE */
   padding: 0;
   margin: 0;
+  text-decoration: none;
+  /* border: 1px solid green; */
 }
+
 
 body {
   background: #d7d7d7 url(../images/background.jpg) repeat-x;
-  height: 900px;
+
 }
 
 .logo img{
@@ -24,42 +27,111 @@ body {
   margin:20px auto;
 }
 
-.container {
-  background-color: white;
-  padding: 20px;
-  margin: 0 10%;
-}
+.main {
+  width: 0 10%;
+  margin: 3% 0 0 10%;
+  position: relative;
+  height: 1700px;
 
-.container img {
-  display: inline-block;
-  padding: 20px 0;
+}
+main {
+  float: left;
   width: 60%;
 }
 
-.container p {
-  display: inline-block;
-  width: 38%;
-  vertical-align: top;
-  line-height: 2em;
-  letter-spacing: 0.1px;
-  padding: 0 10px;
+.container {
+  background-color: white;
+  padding: 20px;
+}
+
+.container img {
+  display: block;
+  padding: 20px 0;
+  width: 90%;
 
 }
 
+.text {
+  display: block;
+  width: 90%;
+  line-height: 2em;
+  letter-spacing: 0.1px;
+}
+
+.comment {
+  border-top: 1px solid #646464;
+  border-bottom: 3px solid #646464;
+  padding: 5px 0;
+  width: 90%;
+}
+
+.comment a{
+  color: red;
+}
+
+a {
+  color: black;
+}
 span {
   color: red;
   font-weight: bold;
 }
-/* Clear fix hack */
-.clearfix:after {
-  content: ".";
+
+aside {
+
+  background: white;
+  float: right;
+  width: 28%  ;
+  margin: 0 10% 0 0;
+  padding: 0 0 100px 0;
   display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
+  /* margin: 10px */
 }
 
-.clear {
-  clear: both;
+aside img {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 0;
 }
+
+h3 {
+  padding: 0 40px;
+  margin: 20px 0 0 0 ;
+
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  line-height: 1.5em;
+  font-size: 14px;
+}
+
+
+footer {
+  clear: both;
+  bottom: 0;
+  position: relative;
+}
+
+.footerimg {
+  margin: 50px auto;
+  width: 12%;
+}
+
+/* NOTE: BUG IN FOOTER. OVERLAPPING WITH MAIN. */
+
+
+/* Clear fix hack */
+/* .clearfix:after {
+content: ".";
+display: block;
+clear: both;
+visibility: hidden;
+line-height: 0;
+height: 0;
+}
+
+
+.clear {
+clear: both;
+} */
