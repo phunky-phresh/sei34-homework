@@ -1,61 +1,65 @@
-  /*
-  Project Name: Ecard.ly
-  Client: General Assembly
-  Author: Christopher Castig | @castig
-  Developer @GA in NYC
-  */
+/*
+Project Name: Ecard.ly
+Client: General Assembly
+Author: Christopher Castig | @castig
+Developer @GA in NYC
+*/
 
-  /* Box Model Hack */
-  * {
-       -moz-box-sizing: border-box; /* Firexfox */
-       -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
-       box-sizing: border-box; /* IE */
-      padding: 0;
-      margin: 0;
-  }
+/* Box Model Hack */
+* {
+  -moz-box-sizing: border-box; /* Firexfox */
+  -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+  box-sizing: border-box; /* IE */
+  padding: 0;
+  margin: 0;
+}
 
-  body {
-    background: #d7d7d7 url(../images/background.jpg) repeat-x;
-    height: 900px;
-  }
+body {
+  background: #d7d7d7 url(../images/background.jpg) repeat-x;
+  height: 900px;
+}
 
-  .logo img{
-    display: block;
-    margin:20px auto;
-  }
+.logo img{
+  display: block;
+  margin:20px auto;
+}
 
-  .container {
-    background-color: white;
-    padding: 20px;
-    margin: 0 10%;
-  }
+.container {
+  background-color: white;
+  padding: 20px;
+  margin: 0 10%;
+}
 
-  .container img {
-    display: inline-block;
-    padding: 20px 0;
-    width: 60%;
-  }
+.container img {
+  display: inline-block;
+  padding: 20px 0;
+  width: 60%;
+}
 
-  .container p {
-    display: inline-block;
-    width: 38%;
-    vertical-align: top;
+.container p {
+  display: inline-block;
+  width: 38%;
+  vertical-align: top;
   line-height: 2em;
   letter-spacing: 0.1px;
   padding: 0 10px;
 
-  }
+}
 
-  /* Clear fix hack */
-  .clearfix:after {
-       content: ".";
-       display: block;
-       clear: both;
-       visibility: hidden;
-       line-height: 0;
-       height: 0;
-  }
+span {
+  color: red;
+  font-weight: bold;
+}
+/* Clear fix hack */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
 
-  .clear {
-  	clear: both;
-  }
+.clear {
+  clear: both;
+}
