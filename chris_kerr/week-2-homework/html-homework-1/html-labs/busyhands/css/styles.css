@@ -1,0 +1,220 @@
+
+
+.articleContainer {
+  display: block;
+  text-align: center;
+  border;
+
+}
+
+.quoteContainer {
+  display: block;
+  text-align: left;
+  border: inset lightgrey thin;
+
+}
+
+.articleContainer > article {
+  width: 25%;
+  display: inline-block;
+}
+
+.articleContainer > article:first-child {
+  margin: 0px 50px 0px 0px;
+}
+
+.articleContainer > article:last-child {
+  margin: 0px 0px 0px 50px;
+}
+
+.articleContainer > article > img {
+  border: solid lightgrey medium;
+  width: auto;
+  width: 100%;
+}
+
+.articleContainer > article > p, .articleContainer > article > h2, .articleContainer > article > a {
+  text-align: left;
+}
+
+.quoteContainer > p {
+  width: 80%;
+  display: inline-block;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.quoteContainer > img {
+  width: 15%;
+  display: inline-block;
+}
+
+#navContainer > ul {
+  height: auto;
+}
+
+#navContainer > ul > li {
+  margin: 0;
+  padding: 35px 20px;
+  list-style-type: none;
+  display: inline-block;
+  height: 100%;
+  border-top: solid black thick;
+}
+
+#navContainer > ul > li:hover {
+  color: lightblue;
+  background-image: linear-gradient(rgba(57, 122, 187, 0.4), rgba(57, 122, 187, 0));
+  border-top: solid rgb(57, 122, 187) thick;
+}
+
+nav {
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: auto;
+}
+
+#socialMedia {
+	float: right;
+}
+
+#socialMedia ul li {
+	 display:inline-block;
+	 width:60px;
+	 height:60px;
+	 background:blue;
+	 text-indent:-9999em;
+}
+
+#socialMedia ul li.linkedIn {
+	background:url(../images/socialNav.png) 0px 64px;
+}
+#socialMedia ul li.twitter {
+	background:url(../images/socialNav.png) -60px 64px;
+}
+
+#socialMedia ul li.facebook {
+	background:url(../images/socialNav.png) -120px 64px;
+}
+
+#socialMedia ul li.rss {
+	background:url(../images/socialNav.png) -180px 64px;
+}
+
+
+
+#socialMedia ul li.linkedIn:hover {
+	background:url(../images/socialNav.png) 0px 0px;
+}
+
+#socialMedia ul li.twitter:hover {
+	background:url(../images/socialNav.png) -60px 0px;
+}
+
+#socialMedia ul li.facebook:hover {
+	background:url(../images/socialNav.png) -120px 0px;
+}
+
+#socialMedia ul li.rss:hover {
+	background:url(../images/socialNav.png) -180px 0px;
+}
+
+.iconBarContainer {
+  display: block;
+}
+
+.iconBarContainer > img {
+  padding: 15px 0px;
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: auto;
+}
+
+#container {
+  width: 80%;
+  margin-left: 100px;
+}
+
+#navContainer {
+  margin-left: 50px;
+}
+
+#mainImg {
+  width: 100%;
+  box-shadow: 0px 25px 25px grey;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+footer {
+  background-color: black;
+  width: 100%;
+  color: #B6B9B6;
+  margin: auto;
+  vertical-align: top;
+
+}
+
+#footArticles {
+  margin-left: 100px;
+  vertical-align: top;
+}
+
+#footArticles > article {
+  display: inline-block;
+  margin: 25px;
+  vertical-align: top;
+
+}
+
+#footArticles > article:first-child, #footArticles > article:last-child{
+  width: 25%;
+}
+
+#footArticles > article:nth-child(2){
+  width: 35%;
+}
+
+#footArticles > article > h2 {
+  color: white;
+}
+
+#footArticles > article > p {
+  border-top: solid #B6B9B6 thin;
+  margin: 0px;
+  padding: 8px 0px;
+}
+
+.bottom {
+  border-bottom: solid #B6B9B6 thin;
+}
+
+#finalLine > p {
+  display: inline-block;
+}
+
+#align-right {
+  text-align: right;
+  width: 49%;
+}
+
+#align-left {
+ text-align: left;
+ width: 49%;
+}
+
+#highlight {
+  color: blue;
+  font-weight: bold;
+}
+
+#outer {
+  width: 100%;
+}
