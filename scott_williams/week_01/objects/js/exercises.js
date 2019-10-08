@@ -416,11 +416,11 @@ const bigBank = {
       for ( let i = 0; i < bigBank.accounts.length; i++ ){
         // let totalBalance += bigBank.accounts[i].currentBalance;
       }
-  }, // method for total sum of money in the accounts
+  }, // end method for total sum of money in the accounts
   addAccount: function () {
 
-  } // method to add an account
-}
+  } // end method to add an account
+} // end object bigBank
 
 // ### Tips
 //
