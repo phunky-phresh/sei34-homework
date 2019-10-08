@@ -119,7 +119,7 @@ function colorize(startLine, startStation, endLine, endStation) {
     let stops = [];
 
     for (let i = 0; i < tdList.length; i++) {
-      tdList[i].setAttribute("class", "");
+      tdList[i].setAttribute("class", ""); //resets every cell in the table back to no formatting
     }
 
     if (startLine === endLine) {
