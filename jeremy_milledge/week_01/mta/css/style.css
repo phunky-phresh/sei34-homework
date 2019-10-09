@@ -1,8 +1,42 @@
 body {
-    margin: 10vh auto;
-    max-width: 1050px;
-    padding: 0 2vh;
+  margin: 2vh auto;
+  max-width: 1050px;
+  padding: 0 2vh;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
 }
+
 select {
-    display: block;
+    display: inline-block;
+    font-size: 1em;    
+}
+
+.stationSelect {
+  width: 40vh;
+}
+
+button {
+  display: block;
+  margin: 3vh auto;
+  padding: 1vh;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+div {
+  font-family: monospace;
+  background-color: #333;
+  padding: 1.3vh 2vh;
+  color: #ffffff;
+  font-size: 1.2em;
+  text-align: left;
+  max-width: 500px;
+  min-width: 435px;
+  margin: 0 auto;
+  word-wrap: break-word;
+  border-radius: 1vh;
+}
+
+h2 {
+  margin: 3vh 0 1vh;
 }
