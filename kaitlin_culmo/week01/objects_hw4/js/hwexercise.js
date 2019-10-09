@@ -237,4 +237,5 @@ function validateSumSixteen( cardNumber ) {
 
 }
 //
-// }
+//
+//

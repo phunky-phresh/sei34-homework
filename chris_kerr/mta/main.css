@@ -1,0 +1,48 @@
+
+      .selector {
+        float: left;
+        padding-right: 25px;
+      }
+
+      #tripOutput {
+        display: inline-block;
+        width: auto;
+        max-width: 49%;
+        border-style: solid;
+        border-width: thin;
+        border-color: grey;
+        padding: 3px;
+        line-height: 1.4;
+      }
+
+      table {
+        width: 80%;
+        table-layout: fixed;
+        align: center;
+      }
+
+      td {
+        border-style: solid;
+        border-width: thin;
+        text-align: center;
+      }
+
+      .selectedStart {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+
+      .selectedEnd {
+        background-color: rgba(0, 255, 0, 0.1);
+      }
+
+      .passed {
+        background-color: rgba(0, 0, 255, 0.1);
+      }
+
+      .bold {
+        font-weight: 450;
+      }
+
+      #outsideDiv {
+        height: 135px;
+      }
