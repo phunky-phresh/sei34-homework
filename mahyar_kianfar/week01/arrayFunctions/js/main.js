@@ -63,7 +63,7 @@ function reverseString(string) {
 }
 console.log(reverseString('harharhar'));
 
-//Split('') reverce() join('')
+//Split() reverce() join('')
 
 /*Write a function findLongestWord that takes an array of words and returns
 the length of the longest one.*/
@@ -87,3 +87,49 @@ the length of the longest one.*/
 
 /*Write a function filterLongWords that takes an array of words and an
 number i and returns the array of words that are longer than i.*/
+
+
+
+
+
+// Serge answers 'Sure.' if you ask him a question.
+//
+// He answers 'Woah, chill out!' if you yell at him (ALL CAPS).
+//
+// He says 'Fine. Be that way!' if you address him without actually saying anything.
+//
+// He answers 'Whatever.' to anything else.
+//
+// Create a function that takes an input and returns Serge's response.
+
+function hiSerge(input) {
+
+       //let response = '';
+       if(input.endswith('?') ){
+         return 'sure';
+}
+         else if (input.lenght === 0) {
+           return'fine';
+         }
+         else if (input === input.toUpperCase()) {
+           response = 'chill';
+         }else {
+          return 'Whatever';
+         }
+       }
+//      const lastChar = string[string.length -1];
+//       console.log(lastChar);
+//       if(lastChar === '?' ){
+//         console.log('sure ');
+//      }
+//
+//          if(string === string.toUpperCase());{
+//            return true;
+//            //console.log('Woah');
+//        }
+//
+//
+//
+//
+//      }
+// hiSerge('UUUUU');
