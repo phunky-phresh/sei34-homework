@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel=StyleSheet href="main.css" type="text/css" MEDIA=screen>
+  </head>
+  <body>
+    <h1>MTA Route Planner</h1>
+    <h3>Please click on starting station, and then destination station to create a route</h3>
+    <div id="outsideDiv">
+      <div class="selector">
+        <p>Chosen starting station:</p>
+        <output id="stationOne" class="selectedStart"></output>
+      </div>
+
+      <div class="selector">
+      <p>Chosen destination station:</p>
+      <output id="stationTwo" class="selectedEnd"></output>
+    </div>
+
+      <p id="tripOutput">Please select stations to display best route</p>
+    </div>
+    <table>
+      <tr>
+        <th>N Line</th>
+        <td id="N Times Square" onclick="choose(this.id);">Times Square</td>
+        <td id="N 34th" onclick="choose(this.id);"]>34th</td>
+        <td id="N 28th" onclick="choose(this.id);"]>28th</td>
+        <td id="N 23rd" onclick="choose(this.id);"]>23rd</td>
+        <td id="N Union Square" onclick="choose(this.id);"]>Union Square</td>
+        <td id="N 8th" onclick="choose(this.id);"]>8th</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>L Line</th>
+        <td></td>
+        <td></td>
+        <td id="L 8th" onclick="choose(this.id);"]>8th</td>
+        <td id="L 6th" onclick="choose(this.id);"]>6th</td>
+        <td id="L Union Square" onclick="choose(this.id);"]>Union Square</td>
+        <td id="L 3rd" onclick="choose(this.id);"]>3rd</td>
+        <td id="L 1st" onclick="choose(this.id);"]>1st</td>
+      </tr>
+      <tr>
+        <th>6 Line</th>
+        <td id="6 Grand Central" onclick="choose(this.id);"]>Grand Central</td>
+        <td id="6 33rd" onclick="choose(this.id);"]>33rd</td>
+        <td id="6 28th" onclick="choose(this.id);"]>28th</td>
+        <td id="6 23rd" onclick="choose(this.id);"]>23rd</td>
+        <td id="6 Union Square" onclick="choose(this.id);"]>Union Square</td>
+        <td id="6 Astor Place" onclick="choose(this.id);"]>Astor Place</td>
+        <td></td>
+      </tr>
+    </table>
+    <button onclick="reset();">Start Again</button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <title>MTA Route Planner</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+  <h1>MTA Route Planner</h1>
+  <h2>From where are you coming?</h2>
+  <form id="depart">
+    <input type="text" id="startL" class="depart" placeholder="Departure Line...">
+  </input>
+    <input type="text" id="startS" class="depart" placeholder="Departure Station...">
+  </input>
+  </form>
+
+  <h2>To where are you going?</h2>
+  <form id="arrive">
+    <input type="text" id="endL" class="arrive" placeholder="Arrival Line...">
+  </input>
+    <input type="text" id="endS" class="arrive" placeholder="Arrival Station...">
+  </input>
+  </form>
+  <button id="generate">Generate Trip</button>
+
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
