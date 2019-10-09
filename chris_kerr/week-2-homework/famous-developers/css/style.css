@@ -143,16 +143,22 @@ main ul {
 .box2 {
   top: 100px;
   left: 300px;
+  width: 100px;
+  height: 100px;
 }
 
 .box3 {
   top: 450px;
   left: 700px;
+  width: 100px;
+  height: 100px;
 }
 
 .box4 {
-  top: 100px;
-  left: 200px;
+  top: 400px;
+  left: 500px;
+  width: 100px;
+  height: 100px;
 }
 
 .box5 {
@@ -215,7 +221,7 @@ main ul {
   animation-play-state: running;
 }
 
-.disco:hover ~ .box1{
+.disco:hover ~ .party{
   animation-name: "party";
   animation-play-state: running;
 }
