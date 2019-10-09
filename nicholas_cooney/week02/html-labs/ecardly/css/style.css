@@ -1,0 +1,104 @@
+/*
+Project Name: Ecard.ly
+Client: General Assembly
+Author: Christopher Castig | @castig
+Developer @GA in NYC
+*/
+
+/* Box Model Hack */
+* {
+     -moz-box-sizing: border-box; /* Firexfox */
+     -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+     box-sizing: border-box; /* IE */
+}
+#wrapper {
+  background-image: url(../images/background.jpg);
+  background-repeat: repeat-x;
+  background-color: #d7d7d7;
+}
+#logo {
+  width: 215px;
+  height: 215px;
+  background: url("../images/logo.png");
+  text-indent: -9999px;
+  margin: 15px auto;
+}
+.container {
+  margin: 0 auto;
+  width: 940px;
+  /* display: flex; */
+}
+#main {
+  /* display: flex; */
+  width: 640px;
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 20px;
+  margin-right: 5px;
+}
+#main h2 {
+  font-size: 20px;
+  padding-top: 20px;
+  font-size: 20px;
+}
+p {
+  font-size: 12px;
+  color: #000000;
+}
+.posted_by {
+  border-top: solid 2px gray;
+  border-bottom: solid 3px gray;
+  padding: 10px 0;
+}
+.link {
+  color: #cc6633;
+  text-decoration: none;
+}
+#sidebar {
+  width: 280px;
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 20px ;
+  vertical-align: top;
+}
+li {
+  list-style: none;
+  padding: 5px;
+  font-size: 12px;
+}
+ul {
+  padding: 0;
+}
+#sidebar img {
+  margin: 0 auto;
+  width: 99%;
+  padding: 5px 5px 20px 5px;
+}
+/* .clear {
+  width: 100%;
+} */
+/* Clear fix hack */
+
+footer {
+  height: 100px;
+  /* background-color: white; */
+}
+footer ul {
+  margin: 40px auto;
+  width: 20%;
+}
+.clear ul li {
+  display: inline-block;
+}
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
