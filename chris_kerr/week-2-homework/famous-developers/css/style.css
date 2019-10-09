@@ -24,7 +24,7 @@ footer {
   margin: auto;
   height: 100%;
   background-color: #bbb;
-} 
+}
 
 .floatedRight {
   float: right;
@@ -81,4 +81,17 @@ header img {
   height: 350px;
   margin: 0;
   padding: 0;
+}
+
+main img {
+  height: 250px;
+  border: 1px black solid;
+  margin: 10px;
+  margin-left: 60px;
+}
+
+main ul {
+  display: inline-block;
+  width: 600px;
+  vertical-align: top;
 }
