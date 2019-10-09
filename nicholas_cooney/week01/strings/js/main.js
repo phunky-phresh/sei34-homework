@@ -26,19 +26,28 @@ const mixUp = function(mix1, mix2) {
 mixUp("cow", "cat");
 
 //Fix Start
-/*
+
 const fixStart = function(fixed) {
   const first = fixed.charAt(0);
+  let word = first;
+  // console.log(word);
   for (let i = 1; i < fixed.length; i++) {
     //alert(fixed.charAt(i));
-    if (fixed[i] === first) {
-      console.log("true");
-    //  console.log(i);
-}
+    if (first === fixed[i]) {
+      word += "*";
+    } else {
+      //console.log(fixed[i]);
+      word += fixed[i];
     }
+      //let replace = "*";
+    //  console.log
+
     }
-fixStart("babble");
-*/
+    return word;
+  }
+
+console.log(fixStart("babble"));
+
 /*
 function fixStart(fixed) {
   var first = fixed.charAt(0);
@@ -47,6 +56,8 @@ function fixStart(fixed) {
 console.log(fixStart("pineapple"));
 */
 //verbing
+
+
 
 const verbing = function(verb) {
   if (verb.length >= 3 && verb.slice(-3) !== "ing") {
@@ -60,18 +71,23 @@ const verbing = function(verb) {
 }
 
 verbing('run');
+verbing('swim');
+verbing('go');
+
+
+
 
 // Not bad
 
 const notBad = function(string) {
-  //const not = "not";
-  //const bad = "bad";
   const search = string.indexOf("not")
   const search2 = string.indexOf("bad")
-  if (search === true && search2 === true) {
-   const itIs = string.substring(0, search);
-    console.log(itIs +"good!");
-  }
+   let itIs = string.substring(0, search)
+   if (itIs === search) {
+     console.log(`${itIs}good`);
+   } else {
+     console.log(string);
+}
 
 }
-notBad("This dinner is not that bad!");
+notBad("This dinner is not that bad");
