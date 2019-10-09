@@ -32,7 +32,10 @@ const validateInputs = function(startL, start, endL, end) {
 const createTrip = function(startLine, start, endLine, end) {
   /*creates trip object */
   return {
-    start, end, startLine, endLine,
+    start,
+    end,
+    startLine,
+    endLine,
     legs: calcJourney(startLine, start, endLine, end),
     get xfers() {return this.stops.slice(0,-1).map(x => x.slice(-1)[0])},
     get stopCount() {return this.stops.reduce(((c, x) => c + x.length), 0) - this.xfers.length},
@@ -69,7 +72,7 @@ const legStops = function(stations, start, end) {
   let stops = [];
   let backwards = start > end;
   [start, end] = backwards ? [end, start] : [start, end];
-  stops = [...stations].slice(start, end + 1);
+  stops = stations.slice(start, end + 1);
   return backwards ? stops.reverse() : stops;
 };
 
