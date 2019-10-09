@@ -44,7 +44,7 @@ const planTrip = function(startLine, startStation, endLine, endStation) {
       // console.log(startLine);
       console.log(journey);
       // console.log(`You must travel through the following stops on the ${startLine}:
-      //   ${line1}. Change at Union Square. And continue on ${endLine}: ${reverse}.`)
+      //    ${line1}. Change at Union Square. And continue on ${endLine}: ${reverse}.`)
 
     }
 
