@@ -393,13 +393,37 @@ Need to console.log the object at the end
 // You should write a basic story through a series of JavaScript commands that shows that the methods do indeed work as expected: add some accounts, show the total balance, make some deposits and withdrawals, show the new total balance.
 //
 
+console.log("BIG BANK");
+
+/// define a varaible to hold the account name you are looking at
+const thisAccount = "Darth Vadar";
+
+const addAccount1 = {
+  name: "Darth Vadar",
+  amount: 55
+}
+
+const deposit1 = {
+  name: "Darth Vadar",
+  amount: 100
+}
+
+const withdrawal1 = {
+  name: "Darth Vadar",
+  amount: 5,
+}
+
+const transfer1 = {
+  from: "Darth Vadar",
+  to: "Jane Walker",
+  amount: 20
+}
+
 const bigBank = {
   accounts: [
               {
                 accountName: "John Smith",
                 currentBalance: 10.37,
-                // method depost money
-                // method withdraw money
               },
               {
                 accountName: "Jane Walker",
@@ -409,18 +433,135 @@ const bigBank = {
               {
                 accountName: "Han Solo",
                 currentBalance: 23.10,
-
               }
             ],
-  total: function () {
-      for ( let i = 0; i < bigBank.accounts.length; i++ ){
-        // let totalBalance += bigBank.accounts[i].currentBalance;
+  total: function () { /// method to total all accounts in bank
+        /// establis the return variable for the total
+        let totalBalance = 0;
+        /// loop through the accounts, adding up the balances
+        for ( let i = 0; i < this.accounts.length; i++ ){
+          totalBalance += this.accounts[i].currentBalance;
+          }
+        return totalBalance;
+  }, // end method for total sum of money in the accounts
+  addAccount: function ( add ) { /// method to add a new account
+        /// loop through to test if accountName already exists
+        const newAccountName = add.name;
+        const newAmount = add.amount;
+        for ( let i = 0; i < this.accounts.length; i++ ) {
+          if ( newAccountName == this.accounts[i].accountName) {
+            return `This account name \"${ newAccountName }\" already exists. Please pick a different account name.`;
+            }
+          }
+        this.accounts.push( {accountName: newAccountName, currentBalance: newAmount} );
+        const indexNewAccount = this.accounts.length -1;
+        return this.accounts[indexNewAccount].currentBalance;
+  }, // end method to add an account
+  makeDeposit: function ( depositTransaction ) {
+      const accName = depositTransaction.name;
+      const deposit = depositTransaction.amount;
+      let newBal = 0;
+      /// loop through to find accountName
+      for ( let i = 0; i < this.accounts.length; i++ ) {
+        if ( accName === this.accounts[i].accountName ){
+          // console.log("Winner");
+          this.accounts[i].currentBalance += deposit;
+          newBal = this.accounts[i].currentBalance;
+        }
       }
-  }, // method for total sum of money in the accounts
-  addAccount: function () {
+      return newBal;
+  }, // end method to make deposit
+  makeWithdrawal: function ( withdraw ) {
+      const accName = withdraw.name;
+      const withdrawal = withdraw.amount;
+      let newBal = 0;
+      /// loop through to find accountName
+      for ( let i = 0; i < this.accounts.length; i++ ) {
+        if ( accName === this.accounts[i].accountName ) {
+            /// confirm there is enough money to withdraw before making withdrawal
+            if ( this.accounts[i].currentBalance > withdrawal ) {
+              this.accounts[i].currentBalance -= withdrawal;
+              newBal = this.accounts[i].currentBalance;
+            } else {
+              console.log(`You do not have enough funds to make a withdrawal of ${ withdrawal}. You only have ${ this.accounts[i].currentBalance } in your account.`);
+            }
+        }
+      }
+      return newBal;
+  }, // end method to make withdrawal
+  accountBal: function ( accName ) {
+    for ( let i = 0; i < this.accounts.length; i++ ) {
+      if (accName === this.accounts[i].accountName) {
+        // thisAccount = accName;
+        return this.accounts[i].currentBalance;
+      }
+    }
+  }, // end method to find out current balance of an account
+  transfer: function ( transfer ) {
+    const accName1 = transfer.from;
+    const accName2 = transfer.to;
+    const trfAmount = transfer.amount;
 
-  } // method to add an account
-}
+    let indexFromAccount = false;
+    let indexToAccount = false;
+    for ( let i = 0; i < this.accounts.length; i++ ) {
+      if (accName1 === this.accounts[i].accountName) {
+        indexFromAccount = i;
+      }
+      if (accName2 === this.accounts[i].accountName) {
+        indexToAccount = i;
+      }
+    }
+    if (indexFromAccount === false ) {
+      console.log("Transfer from account does not exist.");
+      return;
+    }
+    if (indexToAccount === -1 ) {
+      console.log("Transfer to account does not exist.");
+      return;
+    }
+    // console.log( "test",accName1 );
+    // console.log( trfAmount );
+    withdrawalTrans = {
+      name: accName1,
+      amount: trfAmount
+    }
+    depositTrans = {
+      name: accName2,
+      amount: trfAmount
+    }
+    this.makeWithdrawal( withdrawalTrans );
+    this.makeDeposit( depositTrans );
+  }
+} // end object bigBank
+
+// Console log the total of all accounts by running the total method
+console.log( `Total of all accounts is: $${bigBank.total()}.` );
+
+// add a new account to the bank by Darth Vadar for $55
+console.log( `New account opened by ${ addAccount1.name } for $${ bigBank.addAccount( addAccount1 )}.`);
+console.log( `Total of all accounts is: $${ bigBank.total() }.` );
+
+// make a deposit into an account
+console.log( `${deposit1.name} makes a $${deposit1.amount} deposit. His new balance is $${ bigBank.makeDeposit( deposit1 ) }.` );
+console.log( `Total of all accounts is: $${bigBank.total()}` );
+
+// make a withdrawal of an account
+console.log(`${withdrawal1.name} needs money for the Death Star. He withdraws $${withdrawal1.amount}. His new balance is $${bigBank.makeWithdrawal ( withdrawal1 )}.` );
+console.log( `Total of all accounts is: $${bigBank.total()}` );
+console.log(`The bank balance of ${ thisAccount } is: $${bigBank.accountBal( thisAccount )}.`);
+
+
+// make a transfer between accounts
+console.log(`${ transfer1.from } attempts to transfer $${ transfer1.amount } to ${ transfer1.to }.` );
+console.log(`${ transfer1.from} had a bank balance of $${ bigBank.accountBal( transfer1.from )}`);
+console.log(`${ transfer1.to} had a bank balance of $${ bigBank.accountBal( transfer1.to )}`);
+bigBank.transfer( transfer1 );
+console.log(`The revised bank of ${transfer1.from} is $${ bigBank.accountBal ( transfer1.from ) }.` );
+console.log(`The revised bank balance of ${transfer1.to} is $${ bigBank.accountBal ( transfer1.to )}.`);
+console.log( `Total of all accounts is: $${bigBank.total()}` );
+
+
 
 // ### Tips
 //
@@ -435,3 +576,57 @@ const bigBank = {
 //
 // Begin exploring the [JavaScript Koans](https://github.com/liammclennan/JavaScript-Koans). Fork, clone and start trying them.
 //
+
+/// Amanda's answer code
+// const bigBank = {
+//   accounts: [
+//               {
+//                 accountName: "John Smith",
+//                 currentBalance: 10.37,
+//                 // method depost money - see below
+//                 // method withdraw money
+//               },
+//               {
+//                 accountName: "Jane Walker",
+//                 currentBalance: 40.00,
+// ​
+//               },
+//               {
+//                 accountName: "Han Solo",
+//                 currentBalance: 23.10,
+// ​
+//               }
+//             ],
+//   showTotalBalance: function(){
+// 	// you were on the right track here!!
+// 	// Declare the totalBalance outside the for loop
+//       let totalBalance = 0;
+// 	  // when you're inside an object we use "this" to refer to itself
+// 	  // instead of "bigBank.accounts" we use "this.accounts"
+//       for ( let i = 0; i < this.accounts.length; i++ ){
+//         totalBalance += this.accounts[i].currentBalance;
+//       }
+//       return totalBalance;
+//   }, // method for total sum of money in the accounts
+//   addAccount: function () {
+// ​
+//   }, // method to add an account
+//   makeDeposit: function( accountName, amount ){
+// 	// instead of creating a makeDeposit method for each account
+// 	// create a makeDeposit() for the whole bank object and
+// 	// pass in the the accountName to find the right account
+// 	// prior to adding $$$
+//
+//     // 1. find correct account using accountName
+// ​
+//     // 2. add amount to currentBalance
+// ​
+// ​
+//   },
+//   makeWithdraw: function(){
+// ​
+//   },
+// }; // end of bigBank
+// ​
+// console.log('total balance', bigBank.showTotalBalance());
+// console.log('makeDeposit', bigBank.makeDeposit("Jane Walker", 100));

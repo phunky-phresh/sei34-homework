@@ -53,7 +53,7 @@ const withdraw = function(name, amount) {
     }
   }
     bank[accountIndex].balance -= amount;
-    if (amount < bank[accountIndex].balance) {
+    if (amount <= bank[accountIndex].balance) {
     console.log(`Withdraw $${amount} from account: ${name}. New balance: ${bank[accountIndex].balance}`);
     // break;
   } else {
@@ -66,16 +66,26 @@ const withdraw = function(name, amount) {
 /// transfer ///
 
 const transfer = function(name, amount, depositName) {
-
-  let accountIndex = 0;
+/// reate withdraw from first account
+  let withdrawIndex = 0;
+  let depositIndex = 0
   for (let i = 0; i < bank.length; i++) {
     // console.log(bank[i]);
     if (bank[i].name === name) {
-      accountIndex = i;
+      withdrawIndex = i;
       // break;
     }
   }
-  
+  bank[withdrawIndex].balance -= amount;
+
+  for (let i = 0; i < bank.length; i++) {
+    // console.log(bank[i]);
+    if (bank[i].name === depositName) {
+      depositIndex = i;
+      // break;
+      }
+    }
+    bank[depositIndex].balance += amount;
 }
 
 // added two accounts. one uses default amount 0
