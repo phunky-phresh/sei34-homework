@@ -12,6 +12,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .flipped {
@@ -34,10 +35,10 @@ body {
 #speedo {
   top: 0px;
   left: 0px;
-  background-color: lightgrey;
+  background-color: #33ccff;
   position: absolute;
-  height: auto;
-  width: auto;
+  height: 40px;
+  width: 100%;
   padding: 0px 5px;
   z-index: 100;
   color: black;
@@ -48,12 +49,24 @@ body {
 
 #speedoText {
   padding: 0;
+  padding-top: 9px;
   margin: 0;
   box-sizing: border-box;
   display: inline-block;
-  width: auto;
+}
+
+#cat-counter {
+  padding: 0;
+  padding-top: 9px;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: right;
+  float: right;
 }
 
 button {
   display: inline-block;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');

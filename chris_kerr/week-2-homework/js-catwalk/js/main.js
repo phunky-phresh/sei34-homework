@@ -63,7 +63,7 @@ function detectCol() {
     if ((parseInt(currentCat.style.top) + currentCat.offsetHeight) >= cont.offsetHeight) { //test for bottom wall, if this fails, then test top
       randomVels(i, false, false, false, true);
       meow();
-    } else if (parseInt(currentCat.style.top) <= 0) {
+    } else if (parseInt(currentCat.style.top) <= 40) { //40 is width of blue bar
       randomVels(i, false, false, true, false);
       meow();
     }
@@ -75,7 +75,7 @@ function detectCol() {
         let changeArray = [i, j];
         hitChangeCalc(changeArray);
         catQueue ++;
-        console.log(catQueue);
+        //console.log(catQueue);
         meow();
       }
     }
@@ -122,7 +122,7 @@ function createCat() {
 
   do {
     leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
-    topPos = Math.floor(Math.random() * (cont.offsetHeight - 110));
+    topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
   } while (miniDetectCol(leftPos, topPos))
 
   newCat.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
@@ -144,7 +144,10 @@ function createCat() {
   cont.appendChild(newCat);
 
   randomVels((catArray.length-1), false, false, false, false);
-  meow();
+  animate();
+
+  document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+
 }
 
 function meow () {
@@ -183,21 +186,21 @@ if (minY === false && maxY === false) {
 }
 
 function initialBuild() {
-  let maxWidth = cont.offsetWidth;
-  let maxHeight = cont.offsetHeigh;
-
   for (let i = 0; i < catArray.length; i++) {
     randomVels(i, false, false, false, false)
 
     do {
       leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
-      topPos = Math.floor(Math.random() * (cont.offsetHeight - 110));
+      topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
     } while (miniDetectCol(leftPos, topPos))
 
     if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
   }
 
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
+
+  document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+
 }
 initialBuild();
 
@@ -207,13 +210,18 @@ document.getElementById('addCat').addEventListener('click',createCat);
 document.getElementById('pause').addEventListener('click',pause);
 
 function faster(){
-  maxSpeed += 5;
-  document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
+  maxSpeed ++;
+  document.getElementById('speedoText').innerText = `The current speed is ${1000 / frameDuration * maxSpeed} px/s`;
+  clearInterval(catOneID);
+  catOneID = setInterval(motion, frameDuration);
+
 }
 
 function slower(){
-  maxSpeed -= 5;
-  document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
+  maxSpeed --;
+  document.getElementById('speedoText').innerText = `The current speed limit is ${1000 / frameDuration * maxSpeed} px/s`;
+  clearInterval(catOneID);
+  catOneID = setInterval(motion, frameDuration);
 }
 
 function pause() {
@@ -229,14 +237,25 @@ function pause() {
   }
 }
 
+function animate () {
+
+}
+
 function createTest () {
   if (catArray.length > 15) {
     catQueue = 0;
+    //clearInterval(catTwoID);
+    //clearInterval(catOneID);
+    //display gameover page!
   } else if (catQueue > 0) {
     createCat();
     catQueue = 0;
   }
 }
 
-let catTwoID = setInterval(createTest, 1500);
-let catOneID = setInterval(motion, 25);
+let frameDuration = 50; //milliseconds
+
+let catTwoID = setInterval(createTest, 500);
+let catOneID = setInterval(motion, frameDuration);
+
+pause();
