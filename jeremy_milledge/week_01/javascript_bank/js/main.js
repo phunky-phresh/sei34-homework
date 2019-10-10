@@ -41,8 +41,8 @@ const jsBank = {
     return this.modifyAccount(name, amount, "Transfer", other);
   },
 
-  //helper
-  modifyAccount: function(name,amount=0, action="Deposit", other=undefined) {
+  //helpers
+  modifyAccount2: function(name,amount=0, action="Deposit", other=undefined) {
     for (let i = 0; i < this.accounts.length; i++) {
       let current = this.accounts[i];
       if (current.name === name) { //matched account name from object
@@ -74,18 +74,62 @@ const jsBank = {
       }
     }
     console.log('=====================');
+  },
+
+
+  getAccount: function(name) {
+    for (let i = 0; i < this.accounts.length; i++) {
+      return this.accounts[i].name === name ? this.accounts[i] : "not found, sorry"
+    }
+  },
+
+  message: function(name, amount, action, other=null, balance=null) {
+    switch(action) {
+      case "Transfer":
+        return console.log(`${name} transferred $${amount} to ${other}.`);
+      case "balance":
+        return console.log(`${name}'s ${action} is $${balance}.`);
+      case ("Deposit" || "Withdrawal"):
+        return console.log(`${name}: ${action} of $${amount} made. New balance is $${balance}.`);
+      default:
+        return console.log(`${name} has insufficient funds. ${action} of $${amount} not possible.`);
+    }
+  },
+
+  modifyAccount: function(name,amount=0, action="Deposit", other=undefined) {
+    let current = this.getAccount(name);
+    switch (action) {
+      case ("Transfer" || "Withdrawal"):
+        if (current.balance >= amount) {
+          current.balance -= amount;
+          if (action === "Transfer") {
+            var recipient = this.getAccount(other);
+            recipient.balance += amount;
+          }
+          this.message(action);
+        } else {
+          this.message();
+        }
+        break;
+      case "balance":
+        this.message(action);
+        break;
+      default:
+        current.balance += amount;
+        this.message(action);
+    }
+    console.log('=====================');
   }
 }
-
 // TODO: rewrite the accounts as separate named class then push to bank.Accounts
 // allows calling via: accountName.balance etc rather than bank.balance('accountName')
 
 
-// jsBank.addAccount('Jez');
-// jsBank.addAccount('Kian', 50);
-// jsBank.deposit('Jez', 20);
-// jsBank.withdraw('Jez', 30);
-// jsBank.withdraw('Kian', 10);
-// jsBank.checkBalance('Jez');
-// jsBank.transfer('Kian', 39, 'Jez');
-// jsBank.checkBalance();
+jsBank.addAccount('Jez');
+jsBank.addAccount('Kian', 50);
+jsBank.deposit('Jez', 20);
+jsBank.withdraw('Jez', 30);
+jsBank.withdraw('Kian', 10);
+jsBank.checkBalance('Jez');
+jsBank.transfer('Kian', 39, 'Jez');
+jsBank.checkBalance();
