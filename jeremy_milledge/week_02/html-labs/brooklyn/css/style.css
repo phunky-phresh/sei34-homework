@@ -1,0 +1,26 @@
+body {
+  font-size: 12px;
+  line-height: 17px;
+  font-family: "Times New Roamn", serif;
+  color: #656565;
+}
+a {
+	text-decoration: none;
+	color: #2589cf;
+}
+a:hover {
+  color: #20222a
+}
+
+body > div {
+	max-width: 960px;
+	margin: 3.5vh auto;
+}
+
+.press-bar > div {
+	display: inline-block;
+
+}
+.press-bar > div > img {
+	border: 4px solid #c9c9c9
+}

@@ -1,144 +1,130 @@
 // MTA Week 01
 
-
 // INPUTS AND STORAGE //////////////////////////////////////////////////////////
-
 const nycSubway = { //inputs for subset of MTA lines
   N: ['8th', 'Union Square', '23rd', '28th', '34th', 'Times Square'],
   L: ['8th', '6th', 'Union Square', '3rd', '1st'],
   6: ['Astor Place', 'Union Square', '23rd', '28th', '33rd', 'Grand Central']
 };
 
-const tripDB = []; // collection of all Trip objects
+const tripDB = []; // collection of all trip objects
 
-// Trip OBJECT CONSTRUCTION FUNCTIONS //////////////////////////////////////////
-
-const Trip = function(startL, startS, endL, endS) {
-  /*creates Trip object to log from with planTrip */
-
-  // TODO:  parse start and end lines/station to ensure they make sense
-  //        don't just blindly add them to the object if they dont
-  this.legs = findAllStops(startL, startS, endL, endS);
-  this.start = startS;
-  this.startLine = startL;
-  this.end = endS;
-  this.endLine = endL;
-  this.transfers = findTransfers(this.legs);
-  this.numLegs = this.legs.length;
-
-  tripDB.push(this); //add to trip database
+// INPUT VALIDATION ////////////////////////////////////////////////////////////
+const validateInputs = function(startL, start, endL, end) {
+  /* validate input before creating object, console message if invalid*/
+  if (
+    start === 'Union Square' && end === 'Union Square' ||
+    (start === end && startL === endL)
+  ) {
+    return console.log(`Invalid input: You're already at ${start}`)
+  } else {
+    //we only want one trip if Union Square is selected on diff line
+    if (startL !== endL && (start === 'Union Square' || end === 'Union Square')) {
+      start === 'Union Square' ? startL = endL : endL = startL; //swap one line
+    }
+    let t = createTrip(startL, start, endL, end);
+    tripDB.push(t)
+    return t;
+  }
 }
 
-const pushStops = function(start, end, line) {
-  /* push stations on specified line to returned array */
-
-  let swapped = false;
-  if (start > end) { //swap start and end if start greater
-    [start, end] = [end, start];
-    swapped = true;
-  }
-
-  let arr = [];
-  for (let i = start; i <= end; i++) {
-    arr.push(line[i]);
-  }
-  return swapped ? arr.reverse() : arr;
+// trip OBJECT CONSTRUCTION FUNCTIONS //////////////////////////////////////////
+const createTrip = function(startLine, start, endLine, end) {
+  /*creates trip object */
+  return {
+    start,
+    end,
+    startLine,
+    endLine,
+    legs: calcJourney(startLine, start, endLine, end),
+    get xfers() {return this.stops.slice(0,-1).map(x => x.slice(-1)[0])},
+    get stopCount() {return this.stops.reduce(((c, x) => c + x.length), 0) - this.xfers.length},
+    get lineCount() {return this.legs.length},
+    get stops() {return this.legs.map(x => Object.values(x)[0])},
+    get lines() {return this.legs.map(x => Object.keys(x)[0])}
+  };
 };
 
-const singleLineStops = function(startL, startS, endS=false) {
-  /* find and return stations involved for trip from a single line */
-
-  const ln = nycSubway[startL]; //current line
-  const sS = ln.indexOf(startS); // index from array item on the line
-  let fS = !endS ? ln.indexOf('Union Square') : ln.indexOf(endS); //default to U.S]
-  return pushStops(sS, fS, ln)
-};
-
-const findAllStops = function(startL, startS, endL, endS) {
+const calcJourney = function(startL, start, endL, end) {
   /* return all stations involved in a trip */
-
   let stops = []
   let firstLeg = [];
-  if (startL !== endL && (startS === 'Union Square' || endS === 'Union Square')) {
-    //if we specify a different line to begin (or end) at U.S, we set the
-    //line to be consistent so it isn't treated as two trips.
-    startS === 'Union Square' ? startL = endL : endL = startL;
-  }
   if (startL == endL) { //only one train to take
-    firstLeg = singleLineStops(startL, startS, endS);
-  } else { //need to take two trains
-    firstLeg = singleLineStops(startL, startS); //only take as far as U.S
-    //new line is our 'finish line', new start is U.S, stop is finish dest.
-    stops.push(singleLineStops(endL, 'Union Square', endS));
+    firstLeg = singleLeg(startL, start, end);
+  } else {
+    firstLeg = singleLeg(startL, start);
+    stops.push(singleLeg(endL, 'Union Square', end));
   }
   stops.unshift(firstLeg);
-  return stops; //array of shape [[first leg stops], [second leg stops]...]
+  return stops; //shape [{Line1: [first leg stops]}, {Line2: [second leg stops]}]
 };
 
-const findTransfers = function(arr) {
-  /* loop  through legs and retrieve last stop for all but last leg */
+const singleLeg = function(line, start, end=false) {
+  /* find and return stations involved for trip from a single line */
+  const stations = nycSubway[line];
+  const boarding = stations.indexOf(start);
+  let alighting = !end ? stations.indexOf('Union Square') : stations.indexOf(end);
+  return {[line]: legStops(stations, boarding, alighting)};
+};
 
-  tfers =[]
-  for (let i = 0; i < arr.length - 1; i++) {
-    tfers.push(arr[i][arr[i].length-1]);
-  }
-  return tfers;
-}
+const legStops = function(stations, start, end) {
+  /* return array of stops, determine direction of travel */
+  let stops = [];
+  let backwards = start > end;
+  [start, end] = backwards ? [end, start] : [start, end];
+  stops = stations.slice(start, end + 1);
+  return backwards ? stops.reverse() : stops;
+};
 
 //LOGGING FUNCTIONS (FOR DISPLAY IN CONSOLE ONLY) //////////////////////////////
-
-const logTrip = function(Trip) {
-  /* returns string for logging to console */
-  /* input must be a Trip instance */
-
-  return console.log(logHeader(Trip) + logBody(Trip));
+const asciiJourney = function(t) {
+  /* returns final string for logging to console. trip object arg */
+  return asciiHeader(t) + asciiBody(t);
 };
 
-const logHeader = function(t) {
+const asciiHeader = function(t) {
   return (
-    `\n==============================================\n\
+    `==============================================\n\
 Line ${t.startLine}, ${t.start} --> Line ${t.endLine}, ${t.end}\n\
 ==============================================\n\n`
-  );
-};
+);};
 
-const logBody = function(trip) {
+const asciiBody = function(t) {
   bodyMsg = '';
-  for (let i = 0; i < trip.numLegs; i ++) { //loop to allow for later legs to be added
-    let leg = trip.legs[i]; //copies so that we don't mess with Trip object
-    bodyMsg += logGetOn(leg[0], i);
-    bodyMsg += logLegs(leg)
-    bodyMsg += logTransferOrFinal(trip.numLegs, leg[leg.length-1], trip.endLine, i);
+  for (let i = 0; i < t.lineCount; i++) { //loop to allow for later legs to be added
+    let leg = t.stops[i];
+    bodyMsg += asciiOnboard(leg[0], i);
+    bodyMsg += asciiStopsOnLeg(leg)
+    bodyMsg += asciiTransferFinal(t, leg, i);
   }
-  return bodyMsg
+  return bodyMsg;
 };
 
-const logGetOn = function(sS, idx) {
+const asciiOnboard = function(start, idx) {
   return (
-    !idx ? `~ Get on at ${sS}.\n\\\n \\\n`: ""
-  );
-};
+    !idx ? `+===> Get on at ${start}.\n|\n|\n`: ""
+);};
 
-const logLegs = function(legArr) {
-  let leg = '';
-  for (let i = 1; i < legArr.length - 1; i++) {
-    leg += ` |\n + ${legArr[i]}\n |\n`;
+const asciiStopsOnLeg = function(leg) {
+  let stops = '';
+  for (let i = 1; i < leg.length - 1; i++) {
+    stops += `|\n+ ${leg[i]}\n|\n`;
   }
-  return leg;
+  return stops;
 };
 
-const logTransferOrFinal = function(numLegs, last, lastLine, idx) {
-  changeMsg = ' /\n/\n~ ';
-  if (numLegs > 1 && idx !== numLegs - 1) { //more than 1 leg and not last leg
-    changeMsg += `Change at ${last} to Line ${lastLine}.\n\\\n \\\n`;
+const asciiTransferFinal = function(t, leg, idx) {
+  changeMsg = '|\n|\n+===> ';
+  if (t.lineCount > 1 && idx !== t.lineCount - 1) { //more than 1 leg and not end leg
+    changeMsg += `Change at ${leg[leg.length - 1]} to Line ${t.endLine}.\n|\n|\n`;
   } else {
-    changeMsg += `Arrival at ${last}.\n `
+    changeMsg += `Arrival at ${leg[leg.length - 1]}.\n\n${t.stopCount} stops in total.`
   }
   return  changeMsg;
 };
 
 // TEST INPUTS /////////////////////////////////////////////////////////////////
-const testTrips = [
+const examples = [
   ['N', 'Times Square', 'N', '8th'],
   ['L', '1st', '6', 'Grand Central'],
   ['N', 'Times Square', '6', 'Grand Central'],
@@ -146,29 +132,63 @@ const testTrips = [
   ['6', 'Grand Central', 'L', 'Union Square']
 ];
 
-for (let k = 0; k < testTrips.length; k++) {
-  let t = testTrips[k];
-  new Trip(t[0], t[1], t[2], t[3]); //constructor pushes to DB automatically
-  logTrip(tripDB[k]); //log from DB
-}
-
-let eg = tripDB[2];
-
+const runTests = () => examples.forEach(x => validateInputs(x[0], x[1], x[2], x[3]));
+const logDB = () => tripDB.forEach(x => console.log(asciiJourney(x)));
+runTests();
+const eg = tripDB[2];
 
 // WEBPAGE INTERACTIVITY ///////////////////////////////////////////////////////
-//let lines = [];
-//let stations = [];
 
+//initialise variables
+let nycLines = Object.keys(nycSubway);
+let sL = document.getElementById('startL');
+let sS = document.getElementById('startS');
+let eL = document.getElementById('endL');
+let eS = document.getElementById('endS');
+let map = document.getElementById('visual');
+let btn = document.getElementById('generate');
+let lineElements = [sL,eL];
 
-const buildFromClick = function() {
-
-  let sL = document.getElementById('startL').value;
-  let sS = document.getElementById('startS').value;
-  let eL = document.getElementById('endL').value;
-  let eS = document.getElementById('endS').value;
-  let t = new Trip(sL, sS, eL, eS)
-  return logTrip(t);
+// Update Line Dropdowns
+const updateLines = function(lineParentElements, value) {
+  return lineParentElements.map(x => appendOptionChild(x, value));
 };
 
-let btn = document.getElementById('generate');
-let btnListener = btn.addEventListener('click', buildFromClick);
+nycLines.map(x => updateLines(lineElements, x));
+
+// Update Station Dropdowns
+const updateStations = function(e) {
+  let lineSelect = e.target.value;
+  let stationSelect = e.target.id === 'endL' ? eS : sS; //pick associated station dropdown
+  clearOptions(stationSelect);
+  if (lineSelect !== 'default') {
+    nycSubway[lineSelect].map(x => appendOptionChild(stationSelect, x));
+  }
+};
+
+// function to execute on button click - adds obj and prints if valid selections
+const clickToAdd = function() {
+  let t = validateInputs(sL.value, sS.value, eL.value, eS.value);
+  let success = typeof t === "undefined" ? false : true;
+  map.innerText = success ? asciiJourney(t) : 'Invalid Trip';
+  return success ? console.log(asciiJourney(t)) : null;
+};
+
+//helper functions
+function appendOptionChild(parentElement, value) {
+  let option = document.createElement('option');
+  option.textContent = value;
+  option.value = value;
+  parentElement.appendChild(option);
+}
+
+function clearOptions(parentElement) {
+  while (parentElement.childNodes.length > 1) { //if unwanted children, remove
+    parentElement.removeChild(parentElement.lastChild);
+  }
+}
+
+//necessary event listeners
+sL.addEventListener('change', updateStations);
+eL.addEventListener('change', updateStations);
+btn.addEventListener('click', clickToAdd);
