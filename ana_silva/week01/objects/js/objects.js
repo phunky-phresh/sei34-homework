@@ -236,7 +236,7 @@ console.log("");
 // }
 
 const myCard = {
-  number: "1111-1111-1111-1116",
+  number: "1111-1111-1111-11c6",
   valid: true,
   expirationDate: "08/21",
   error: "",
@@ -266,6 +266,7 @@ const validateCreditCard = function(card) {
     sum += Number(cardNumber[i]); //add the value (converted to number) to sum
     cardNumberArray[i] = cardNumber[i];
   }
+
   if (sum < 16) {
     card.error += "Invalid card number. "; //sum digits has to be >= 16
     card.valid = false;
@@ -390,7 +391,7 @@ const withdraw = function(name, value) {
 
 
 
-const transfer = function(from, to, value) { 
+const transfer = function(from, to, value) {
   withdraw(from, value) && deposit(to, value);
 }
 
