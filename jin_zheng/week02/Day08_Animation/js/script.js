@@ -31,10 +31,10 @@
 //#2 find threshold for dancing
 //#3 change img, 10s
 //#4 finish dancing, change img back
-//#4 normal walking
+//#5 normal walking
 
 const img = document.querySelector('img');
-img.style.position = 'absolute'
+// img.style.position = 'absolute'
 img.style.left = 0;
 
 // determine walking direction
@@ -43,11 +43,11 @@ const walkBackwards = function(windowWidth, imgWidth, left) {
     if (windowWidth-imgWidth < left) {
     //turning point walk backwards
         walkBack = true;
-        img.style.transform = 'scaleX(-1)';
+        img.setAttribute("class", "walking-backwards");
     } else if (left < 0) {
     //turning point walk forwards
         walkBack = false;
-        img.style.transform = 'scaleX(1)';
+        img.setAttribute("class", "walking-forwards");
     }
     return walkBack;
 }
@@ -60,13 +60,9 @@ const catDance = function(windowWidth, imgWidth, left) {
     if (Math.abs(left - findDancePoint(windowWidth, imgWidth)) < 5) { //dancing point range
         img.src = "images/catdancing.gif" //change image
         const img2Width = parseInt(img.width); //record 2nd img's width
-        clearInterval(walkingInterval);//pausce 2 sec
-
-        img.style.position = "relative";
-        img.style.margin = "0 auto";
-        img.style.display = "block";
-        img.style.left =0;
-        setTimeout(() => (finishDance(windowWidth, imgWidth, left, img2Width)), 2000); //run finishDance in 2 sec
+        clearInterval(walkingInterval);//pausce 5 sec
+        img.setAttribute("class", "dancing")
+        setTimeout(() => (finishDance(windowWidth, imgWidth, left, img2Width)), 2000); //run finishDance in 5 sec
     }
 }
 
@@ -76,13 +72,14 @@ const finishDance = function(windowWidth, imgWidth, left, img2Width) {
 
     if (walkBack) { //another boost to prevent stucking within the dance point range
         left -= 10;
+        img.setAttribute("class", "walking-backwards");
     } else {
         left += 10;
+        img.setAttribute("class", "walking-forwards");
     }
     //change style back
-    img.style.position = "absolute";
     img.style.left = left + "px";
-    walkingInterval = setInterval(catWalkWrapper, 50); //reset walkingInterval to be used to clear setInterval latter
+    walkingInterval = setInterval(catWalkWrapper, 50); //restart catWalkWrapper, and reset walkingInterval to be used to clear setInterval latter
 
 }
 
