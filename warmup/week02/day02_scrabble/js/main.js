@@ -1,30 +1,42 @@
-console.log("hello");
+console.log("hi");
+
+// Write a program that, given a word, computes the scrabble score for that word.
+//
+// ```javascript
+// scrabble("cabbage")
+// // => 14
+// ```
+//
+// ## Letter Values
+//
+// ```plain
+// Letter                           Value
+// A, E, I, O, U, L, N, R, S, T       1
+// D, G                               2
+// B, C, M, P                         3
+// F, H, V, W, Y                      4
+// K                                  5
+// J, X                               8
+// Q, Z                               10
 
 const scrabble = {
   letterScores: {
     1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
     2: ["D", "G"],
     3: 'BCMP'.split(''),
-    4: 'FHVWY'.split(''),
+    4: 'FHVMY'.split(''),
     5: ['K'],
-    8: ['J', 'K'],
+    8: ['J', 'X'],
     10: ['Q', 'Z'],
   },
-  getWordScore: function( word ){
+  getWordScore: function(word){
     word = word.toUpperCase();
-
-    let score = 0; // for storing the accumulating total score
-    for (var i = 0; i < word.length; i++) {
+    let score = 0;
+    for (let i = 0; i < word.length; i++) {
       const currentLetter = word[i];
 
-      //look up the score for this letter and add it to the total
-      // to do this with our current data structure, we have to loop
-      // through every key-value pair in the letterScores and see if
-      //current letter is in the array of letters, and if so
-      // add the key which is the score for any of those letters in total
-
-      for( let key in this.letterScores ){
-        if( this.letterScores[key].includes(currentLetter) ){
+      for( let key in this.letterScores){
+        if(this.letterScores[key].includes(currentLetter)){
           score += parseInt(key);
         }
       }
@@ -33,6 +45,11 @@ const scrabble = {
     return score;
   }
 };
+
+console.log(scrabble.getWordScore('cabbage'));
+
+
+
 
 const scrabbleImproved = {
   letterScores: {
@@ -44,20 +61,20 @@ const scrabbleImproved = {
     'y': 4, 'k': 5, 'j': 8, 'x': 8,
     'q': 10, 'z': 10
   },
-  getWordScore: function( word ){
+  getWordScore: function(word){
     let score = 0;
-    for (var i = 0; i < word.length; i++) {
+
+    for (let i = 0; i < word.length; i++) {
       const currentLetter = word[i];
 
-      // NO Nested Looping,
-      // just look up each letter directly to get the score
       const letterScore = this.letterScores[currentLetter];
-      score += letterScore;
+      score += letterScore
 
     }
     return score;
   }
 }
 
-console.log(scrabble.getWordScore('cabbage'));
+
+
 console.log(scrabbleImproved.getWordScore('cabbage'));
