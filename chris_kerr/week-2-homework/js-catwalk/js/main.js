@@ -190,6 +190,7 @@ initialBuild();
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
 document.getElementById('addCat').addEventListener('click',createCat);
+document.getElementById('pause').addEventListener('click',pause);
 
 function faster(){
   maxSpeed += 5;
@@ -201,4 +202,17 @@ function slower(){
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
 }
 
-let catOneID = setInterval(motion, 25)
+function pause() {
+  if (document.getElementById('pause').innerHTML === "pause") {
+    clearInterval(catOneID);
+    document.getElementById('pause').innerHTML = "resume";
+    return;
+  }
+  if (document.getElementById('pause').innerHTML === "resume") {
+    catOneID = setInterval(motion, 25);
+    document.getElementById('pause').innerHTML = "pause";
+    return;
+  }
+}
+
+let catOneID = setInterval(motion, 25);
