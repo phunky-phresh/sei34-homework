@@ -1,5 +1,6 @@
 console.log("Working! Homework - Calculator");
 
+// Week 1, Day 2
 // Day 2 - Tuesday, 1 October 2019
 
 // https://gist.github.com/wofockham/8f953ac7f33125898071
