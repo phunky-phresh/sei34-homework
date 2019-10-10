@@ -4,33 +4,33 @@ let catArray = [
     xVel: 10,
     yVel: 10,
     leftWall: 0,
-    topWall: 50,
-    rightWall: 100,
-    bottomWall: 150,
+    topWall: 0,
+    rightWall: 0,
+    bottomWall: 0,
   },
   {
     catID: document.getElementById('catTwo'),
     xVel: 6,
     yVel: -12,
     leftWall: 0,
-    topWall: 50,
-    rightWall: 100,
-    bottomWall: 150,
+    topWall: 0,
+    rightWall: 0,
+    bottomWall: 0,
   },
   {
     catID: document.getElementById('catThree'),
     xVel: 15,
     yVel: -3,
     leftWall: 0,
-    topWall: 50,
-    rightWall: 100,
-    bottomWall: 150,
+    topWall: 0,
+    rightWall: 0,
+    bottomWall: 0,
   },
 ]
-
 let cont = document.getElementById('container');
-
 let maxSpeed = 10;
+let catQueue = 0;
+let snd = new Audio("resources/mjau4.wav");
 
 function motion() {
   //every other function to be called from here, based on if / else conditions
@@ -71,17 +71,27 @@ function detectCol() {
   //now collision detection between cats
   for (let i = 0; i < catArray.length; i++) {
     for (let j = i + 1; j < catArray.length; j++) {
-      if (catArray[i].rightWall > catArray[j].leftWall && catArray[i].leftWall < catArray[j].rightWall && catArray[i].bottomWall < catArray[j].topWall && catArray[i].topWall > catArray[j].bottomWall) {
+      if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall <= catArray[j].topWall && catArray[i].topWall >= catArray[j].bottomWall) {
         let changeArray = [i, j];
         hitChangeCalc(changeArray);
-        //createCat();
+        catQueue ++;
+        console.log(catQueue);
         meow();
       }
     }
   }
 }
 
-let hitCounter = 0;
+function miniDetectCol(leftPos, topPos) {
+  rebuildObject();
+
+  for (let i = 0; i < catArray.length; i++) {
+    if (catArray[i].rightWall >= leftPos && catArray[i].leftWall <= (leftPos + 100) && catArray[i].bottomWall <= topPos && catArray[i].topWall >= (topPos - 100)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function hitChangeCalc (changeArray) {
   //purpose of this is to reverse the direction of both collided cats
@@ -95,8 +105,6 @@ function hitChangeCalc (changeArray) {
       catArray[changeArray[i]].catID.setAttribute("class", "normal");
     }
   }
-  hitCounter ++;
-  if (hitCounter > 20) catArray = catArray.splice(0,3);
 }
 
 function rebuildObject() {
@@ -112,8 +120,10 @@ function rebuildObject() {
 function createCat() {
   let newCat = document.createElement('img');
 
-  let leftPos = Math.floor(Math.random() * (cont.offsetWidth - 150));
-  let topPos = Math.floor(Math.random() * (cont.offsetHeight - 150));
+  do {
+    leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
+    topPos = Math.floor(Math.random() * (cont.offsetHeight - 110));
+  } while (miniDetectCol(leftPos, topPos))
 
   newCat.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
   newCat.setAttribute('class', 'normal');
@@ -138,7 +148,6 @@ function createCat() {
 }
 
 function meow () {
-  let snd = new Audio("resources/mjau4.wav"); // buffers automatically when created
   snd.play();
 }
 
@@ -179,10 +188,15 @@ function initialBuild() {
 
   for (let i = 0; i < catArray.length; i++) {
     randomVels(i, false, false, false, false)
-    leftPos = Math.floor(Math.random() * (cont.offsetWidth - 150));
-    topPos = Math.floor(Math.random() * (cont.offsetHeight - 150));
-    catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
+
+    do {
+      leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
+      topPos = Math.floor(Math.random() * (cont.offsetHeight - 110));
+    } while (miniDetectCol(leftPos, topPos))
+
+    if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
   }
+
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
 }
 initialBuild();
@@ -215,4 +229,14 @@ function pause() {
   }
 }
 
+function createTest () {
+  if (catArray.length > 15) {
+    catQueue = 0;
+  } else if (catQueue > 0) {
+    createCat();
+    catQueue = 0;
+  }
+}
+
+let catTwoID = setInterval(createTest, 1500);
 let catOneID = setInterval(motion, 25);
