@@ -74,7 +74,7 @@ function detectCol() {
       if (catArray[i].rightWall > catArray[j].leftWall && catArray[i].leftWall < catArray[j].rightWall && catArray[i].bottomWall < catArray[j].topWall && catArray[i].topWall > catArray[j].bottomWall) {
         let changeArray = [i, j];
         hitChangeCalc(changeArray);
-        createCat();
+        //createCat();
         meow();
       }
     }
@@ -96,7 +96,7 @@ function hitChangeCalc (changeArray) {
     }
   }
   hitCounter ++;
-  if (hitCounter > 20) initialBuild();
+  if (hitCounter > 20) catArray = catArray.splice(0,3);
 }
 
 function rebuildObject() {
@@ -134,11 +134,12 @@ function createCat() {
   cont.appendChild(newCat);
 
   randomVels((catArray.length-1), false, false, false, false);
+  meow();
 }
 
 function meow () {
-
-
+  let snd = new Audio("resources/mjau4.wav"); // buffers automatically when created
+  snd.play();
 }
 
 function randomVels(arrayIndex, minX, maxX, minY, maxY) {

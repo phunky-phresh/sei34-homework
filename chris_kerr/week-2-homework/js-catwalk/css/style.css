@@ -18,7 +18,6 @@ body {
   transform: scale(-1, 1);
   width: 100px;
   position: absolute;
-  border: 1px black solid;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,7 +26,6 @@ body {
 .normal {
   position: absolute;
   width: 100px;
-  border: 1px black solid;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
