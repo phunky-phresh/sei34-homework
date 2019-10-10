@@ -1,3 +1,61 @@
-body {
+#container {
+  min-width: 100vh;
+  min-height: 100vh;
   background-color: pink;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: green;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.flipped {
+  transform: scale(-1, 1);
+  width: 100px;
+  position: absolute;
+  border: 1px black solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.normal {
+  position: absolute;
+  width: 100px;
+  border: 1px black solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#speedo {
+  top: 0px;
+  left: 0px;
+  background-color: lightgrey;
+  position: absolute;
+  height: auto;
+  width: auto;
+  padding: 0px 5px;
+  z-index: 100;
+  color: black;
+  border: 1px solid darkgrey;
+  box-sizing: border-box;
+  display: block;
+}
+
+#speedoText {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+}
+
+button {
+  display: inline-block;
 }
