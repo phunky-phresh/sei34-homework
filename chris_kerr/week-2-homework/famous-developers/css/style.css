@@ -225,23 +225,3 @@ main ul {
   animation-name: "party";
   animation-play-state: running;
 }
-
-.disco:hover ~ .box2{
-  animation-name: "party";
-  animation-play-state: running;
-}
-
-.disco:hover ~ .box3{
-  animation-name: "party";
-  animation-play-state: running;
-}
-
-.disco:hover ~ .box4{
-  animation-name: "party";
-  animation-play-state: running;
-}
-
-.disco:hover ~ .box5{
-  animation-name: "party";
-  animation-play-state: running;
-}
