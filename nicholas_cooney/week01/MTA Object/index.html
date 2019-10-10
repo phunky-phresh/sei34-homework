@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="css/style.css" rel="stylesheet">
+    <title></title>
+  </head>
+  <body>
+    <h1>MTA</h1>
+    <h2>Trip Planner<h2>
+      <main class="center">
+      <div id="lineN">
+      <h3>LineN</h3>
+      <ul>
+        <li>Times Square</li>
+        <li>34th</li>
+        <li>28th</li>
+        <li>23rd</li>
+        <li>Union Square</li>
+        <li>8th</li>
+      </ul>
+    </div>
+
+    <div id="lineL">
+      <h3>LineL</h3>
+      <ul>
+        <li>8th</li>
+        <li>6th</li>
+        <li>Union Square</li>
+        <li>3rd</li>
+        <li>1st</li>
+      </ul>
+    </div>
+
+    <div id="line6">
+      <h3>Line6</h3>
+      <ul>
+        <li>Grand Central</li>
+        <li>33rd</li>
+        <li>28th</li>
+        <li>23rd</li>
+        <li>Union Square</li>
+        <li>Astor Place</li>
+      </ul>
+    </div>
+  </main>
+    <label for="station-select">Choose an origin:</label>
+      <select name="line" id="line-select">
+        <option value="">--Please choose an option--</option>
+        <option value="lineN">lineN</option>
+        <option value="lineL">lineL</option>
+        <option value="line6">line6</option>
+      </select>
+      <input placeholder="Enter station"></input>
+      <button type="submit">submit</button>
+      <label for="station-select">Choose a destination:</label>
+        <select name="line" id="line-select">
+          <option value="">--Please choose an option--</option>
+          <option value="lineN">lineN</option>
+          <option value="lineL">lineL</option>
+          <option value="line6">line6</option>
+        </select>
+        <input placeholder="Enter station"></input>
+        <p class="trip"><p>
+  </body>
+  <script type="text/javascript" src="js/main.js">
+
+  </script>
+</html>

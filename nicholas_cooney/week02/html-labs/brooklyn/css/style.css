@@ -1,0 +1,42 @@
+/*
+
+## Style Hints:
+
+Body Font Size = 12px
+	 Line Height = 17px
+	 Font Family = "Times New Roman", serif
+	 Font Color = #656565
+
+Link Hover Color = #20222a
+
+*/
+body {
+  font-size: 12px;
+  line-height: 17px;
+  font-family: "Times New Roman", serif;
+  color: #656565;
+}
+h1 {
+  color: #999999;
+  font-size: 40px;
+}
+.hero img {
+  width: 100%;
+}
+#container {
+  margin: 40px auto;
+  width: 80%;
+}
+#date {
+  color: #579ecb;
+}
+a {
+  color: #579ecb;
+}
+.press {
+  width: 100%;
+}
+.press img {
+  border: solid 4px #c7c7c7;
+  width: 24%;
+}

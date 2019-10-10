@@ -1,0 +1,147 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-image: 	url('../images/bg_wrapper.png'),
+						url('../images/bg_body.jpg');
+	background-repeat: repeat-x, repeat;
+	font-family: Helvetica, sans-serif;
+	color: #222222;
+}
+
+.container {
+	
+
+}
+
+a {
+  text-decoration: none;
+}
+nav, header, #main, .widgets, .footer-base {
+	width: 960px;
+	margin: 0 auto;
+}
+
+nav > ul li{
+  display: inline-block;
+  margin-top: 15px;
+
+}
+nav > ul li a:hover {
+  background: url('../images/bg_nav_rollover.png') repeat-x;
+	z-index: 1;
+}
+
+nav > ul li a {
+  color: #ffffff;
+  padding: 30px 15px;
+  font-size: 18px;
+
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	margin:65px auto 25px;
+}
+
+.logo, .social {
+  display: inline-block;
+}
+
+.social div {
+  background-image: url('../images/socialNav.png');
+  width: 60px;
+  height:60px;
+  display: inline-block;
+}
+
+.linkedin {
+	background: 0px 64px;
+}
+.twitter {
+	background: -60px 64px;
+}
+
+.facebook {
+	background-position:-120px 64px;
+}
+
+.rss {
+	background-position: -180px 64px;
+}
+
+.linkedin:hover {
+	background-position:0px 0px;
+}
+
+.twitter:hover {
+	background-position: -60px 0px;
+}
+
+.facebook:hover {
+	background-position: -120px 0px;
+}
+
+.rss:hover {
+	background-position: -180px 0px;
+}
+
+.shadow {
+	margin-top:-5px;
+}
+
+.quote {
+	display: flex;
+	border: 2px inset aliceblue;
+	padding: 20px
+}
+.quote p {
+	margin: 0;
+}
+
+.quote div {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.homebox, .widgets, .footer-base{
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+
+}
+.homebox div, .widgets div {
+	width: 33%;
+	flex-grow: 1;
+	padding: 18px
+}
+
+.homebox div img {
+	border: 5px solid #e1e1e1;
+}
+.footer-base p {
+	padding: 18px;
+}
+
+.footer {
+	background-color: #111111;
+	color: #666;
+}
+.footer h3 {
+	color: #ffffff;
+	border-bottom: 1px solid #666;
+	padding-bottom: 15px;
+	margin-bottom: 0;
+}
+
+.footer li {
+	list-style-type: none;
+	border-bottom: 1px solid #666;
+	padding: 10px 0;
+}
+.footer ul {
+	padding: 0;
+	margin: 0;
+	
+}
