@@ -18,7 +18,7 @@ console.log(maxOfTwoNumbers(5, 1));
 
 
 
-
+console.log(" ");
 // Define a function maxOfThree that takes three numbers as arguments and returns
 // the largest of them.
 
@@ -38,11 +38,11 @@ console.log(maxOfThree(numbersArray));
 
 
 
-
+console.log(" ");
 // Write a function that takes a character (i.e. a string of length 1) and returns
 // true if it is a vowel, false otherwise.
 
-const vowels = ['a', 'e', 'i', 'o', 'u'];
+const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
 const isVowel = function(character) {
   for (let i = 0; i < vowels.length; i++) {
     if (vowels[i] === character) { //we compare the input with every vowel in the array until we find a match or until end of array
@@ -65,7 +65,7 @@ console.log(isVowel('u'));
 
 
 
-
+console.log(" ");
 // Define a function sumArray and a function multiplyArray that sums and multiplies
 // (respectively) all the numbers in an array of numbers. For example, sumArray([1,2,3,4])
 // should return 10, and multiplyArray([1,2,3,4]) should return 24.
@@ -100,7 +100,7 @@ console.log(multiplyArray(myArray));
 
 
 
-
+console.log(" ");
 // Bonus
 // Define a function reverseString that computes the reversal of a string.
 // For example, reverseString("jag testar") should return the string "ratset gaj".
@@ -122,7 +122,7 @@ console.log(reverseString('race car'));
 
 
 
-
+console.log(" ");
 // Write a function findLongestWord that takes an array of words and returns the
 // length of the longest one.
 
@@ -147,7 +147,7 @@ console.log(findLongestWord(animals));
 
 
 
-
+console.log(" ");
 // Write a function filterLongWords that takes an array of words and an number i
 // and returns the array of words that are longer than i.
 
@@ -170,7 +170,7 @@ console.log(filterLongWords(animals, 5));
 
 
 
-
+console.log(" ");
 // Homework: The Word Guesser
 // You'll create a simple word guessing game where the user gets infinite tries to
 // guess the word (like Hangman without the hangman, or like Wheel of Fortune without
@@ -222,7 +222,7 @@ guessLetter('X');
 
 
 
-
+console.log(" ");
 // Bonus: Make it more like Wheel of Fortune:
 // Start with a reward amount of $0
 // Every time a letter is guessed, generate a random amount and reward the user if
@@ -241,11 +241,11 @@ const guessLetterWOF = function (letter){
   for (let i = 0; i < wordLettersWOF.length; i++) {  //will check if letter is in any position of the array
     if (letter === wordLettersWOF[i]) {
       guessedLettersWOF[i] = letter;   //if it is then letter substitutes _ in the guessed array
+      rewardAmount += Math.random()*1000;  //reward of a number between 0 and $1000;
     }
   }
   if (guessedLettersWOF.includes(letter)) { //if letter found in word
-    console.log(`${guessedLettersWOF.join('')} Congratulations! You found a new letter.`);
-    rewardAmount += Math.random()*1000;  //reward of a number between 0 and $1000;
+    console.log(`${guessedLettersWOF.join('')} Congratulations! You found a new letter. Your total reward so far is ${Math.floor(rewardAmount)}.`);
   }
   else {   //if letter not found
     rewardAmount -= Math.random()*1000;   //loss of randomly between 0-1000 dollars;
@@ -270,7 +270,7 @@ guessLetterWOF('X');
 
 
 
-
+console.log(" ");
 // Bonus: Make it like Hangman:
 // Keep track of all the guessed letters (right and wrong) and only let the user
 // guess a letter once. If they guess a letter twice, do nothing.
@@ -282,44 +282,47 @@ guessLetterWOF('X');
 
 
 const wordLettersHM = ['F', 'O', 'X']; //array of the letters to be guessed
-const guessedLettersHM = ['_','_','_']; //array of the letters that have been guessed
-
+const correctLettersHM = ['_','_','_']; //array of the letters that have been guessed
+let guessesSoFar = [];
 let numberGuesses = 0;
 
 const guessLetterHM = function (letter){
   for (let i = 0; i < wordLettersHM.length; i++) {  //will check if letter is in any position of the array
     if (letter === wordLettersHM[i]) {
-      guessedLettersHM[i] = letter;   //if it is then letter substitutes _ in the guessed array
+      correctLettersHM[i] = letter;   //if it is then letter substitutes _ in the guessed array
     }
   }
 
-  if (guessedLettersHM.includes(letter)) {  //if letter in array, alert that letter was found
-    console.log(`${guessedLettersHM.join('')} Congratulations! You found a new letter.`);
-    if (numberGuesses > 0) {  //if we get a body part everytime we guess a letter right, otherwise remove this if statement
-        numberGuesses--;
-    };
-  } else {   //otherwise alert that letter was not found
-      console.log(`${letter} does not exist.`);
+  if (correctLettersHM.includes(letter)) {  //if letter in array, alert that letter was found
+    console.log(`${correctLettersHM.join('')} Congratulations! You found a new letter.`);
+  }
+  else {   //otherwise alert that letter was not found
+    console.log(`${letter} does not exist.`);
+    if (!guessesSoFar.includes(letter)) {
+      guessesSoFar.push(letter);
       numberGuesses++;
+      console.log(numberGuesses);
+      console.log(guessesSoFar);
+    }
   }
 
   if (numberGuesses === 6) {  //if end of game
-    console.log("You lost");
-    console.log("_____   ");
-    console.log("|   |   ");
-    console.log("|   ()/ ");
-    console.log("|  /||  ");
-    console.log("| _/ |_ ");
-    console.log("|       ");
+    console.log("You lost!");
+    console.log("   _____   ");
+    console.log("   |   |   ");
+    console.log("   |   ()/ ");
+    console.log("   |  /||  ");
+    console.log("   | _/ |_ ");
+    console.log("___|_______");
 
     return;  //end of function and game
   }
 
-  if (guessedLettersHM.includes('_') === false) {     //check if all letters were found (so no more "_")
-    console.log(`Congratulations! You guessed the word ${wordLettersHM.join('')}.`);
+  if (correctLettersHM.includes('_') === false) {     //check if all letters were found (so no more "_")
+    console.log(`Congratulations! You guessed the word ${correctLettersHM.join('')}.`);
   }
 
-  console.log(`You have ${ 6-numberGuesses } guesses left.`);
+  console.log(`You have ${ 6 - numberGuesses } guesses left.`);
   return numberGuesses;  //to update the global variable after each guess
 }
 
@@ -329,8 +332,7 @@ guessLetterHM('A');
 guessLetterHM('Z');
 guessLetterHM('O');
 guessLetterHM('I');
-guessLetterHM('E');
+guessLetterHM('A');
 guessLetterHM('U');
 guessLetterHM('X');
 guessLetterHM('S');
-guessLetterHM('B');
