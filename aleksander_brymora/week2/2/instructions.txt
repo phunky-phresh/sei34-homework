@@ -1,0 +1,32 @@
+To research: phiber optik
+
+Requirements
+At least 3 pages (example: biography, trivia, hometown)
+At least 1 Google Font
+Whatever HTML and CSS you desire
+Keep your code clean and DRY
+Start working with semantic elements: http://html5doctor.com/lets-talk-about-semantics/
+No Javascript! Even if you know how to use jQuery, see how far you can push this with pure HTML + CSS
+Don't worry about responsiveness -- desktop resolution is fine
+Your research should aim to reveal at least two things about each person:
+Why Joel admires them
+Something Joel doesn't already know about them
+Optional extras
+Experiment with http://fortawesome.github.io/Font-Awesome/
+Record and embed a short podcast or vlog about your favourite scientist
+Try embedding other media (YouTube or Vimeo video, Soundcloud)
+Try embedding a Google map (for their hometown and/or alma mater)
+
+trivia:
+- He is an important figure in the book Masters of Deception — The Gang that Ruled Cyberspace.
+- His first computer had 4K of RAM, a 32-column screen, no lower case, and a cassette tape recorder to load and save programs
+- Was arrested because of first investigative use of court-authorized wiretaps to obtain conversations and data transmissions of computer hackers
+- In 1992 Abene faced a maximum term of 50 years in prison and fines of $2.5 million
+- After getting out of prison there was a celebration held for him called "Phiberphest '95"
+- All this happened while he was still a minor
+
+width="600"
+height="450"
+frameborder="0"
+style="border:0;"
+allowfullscreen=""
