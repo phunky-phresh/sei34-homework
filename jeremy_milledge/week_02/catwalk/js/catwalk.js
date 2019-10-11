@@ -7,7 +7,7 @@ const notice = document.getElementById('notice');
 //add meow sounds
 let meows = [];
 for (let i = 1; i <= 7; i++) {
-  meows.push(new Audio(`sfx/meow${i}.wav`))
+  meows.push(new Audio(`sfx/meow${i}.wav`));
 }
 //add cat gifs
 let cats = [];
@@ -35,12 +35,12 @@ const newCat = function() {
   window.setInterval(bounceFlip,100, c, rand(80,10), rand(80,10));
 
   //bg adjustment
-  let randRGB = `rgb(${rand(255)},${rand(255)},${rand(255)})`
+  let randRGB = `rgb(${rand(255)},${rand(255)},${rand(255)})`;
   document.body.style.backgroundColor = randRGB;
 
   //button adjustment
-  btn.style.left = rand(x) + 'px'
-  btn.style.top = rand(y) + 'px'
+  btn.style.left = rand(x) + 'px';
+  btn.style.top = rand(y) + 'px';
 
   //sound
   let meow = meows[rand(7)];
@@ -64,12 +64,12 @@ function gameOver() {
 function startAgain() {
   btn.style.display =  'block';
   score.style.display = 'block';
-  gameoverPanel.style.display = 'none'
+  gameoverPanel.style.display = 'none';
   score.innerText = '0';
 }
 
 function rand(max, min=0) {
-  let n = Math.floor(Math.random() * max)
+  let n = Math.floor(Math.random() * max);
   return  n < min ? n + min : n;
 }
 
@@ -99,4 +99,4 @@ const bounceFlip = function(cat, dx, dy) {
 }
 
 again.addEventListener('click',startAgain);
-btn.addEventListener('click', newCat)
+btn.addEventListener('click', newCat);
