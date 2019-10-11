@@ -2,6 +2,14 @@
 $('#checking-balance').addClass('zero');
 $('#savings-balance').addClass('zero');
 
+// Display in a message box
+const message = function (text) {
+    $('#messages p').html(text);;
+    // .delay(2000).fadeOut(2000);
+}
+message('Welcome to the bank of GA!');
+
+
 //----------Checkiings account----------
 //Variable to store checking balance
 let checkingBalance = 0;
@@ -10,17 +18,18 @@ let checkingBalance = 0;
 const checkingDeposit = function () {
     let userInput = $('#checking-amount').val();
     if (userInput === '') {
-        alert('First input the value');
+        message('First input the value');
     }
     else {
         userInput = parseFloat(userInput);
         if (userInput < 0) {
-            alert('Cannot use negative value');
+            message('Cannot use negative value');
         }
         else {
             let currentBalance = parseFloat($('#checking-balance').html().slice(1));
             checkingBalance = userInput + currentBalance;
             $('#checking-balance').html(`$${checkingBalance}`);
+            message(`Deposited $${checkingBalance}`);
         }
     }
     red();
@@ -30,17 +39,17 @@ const checkingDeposit = function () {
 const checkingWithdraw = function () {
     let userInput = $('#checking-amount').val();
     if (userInput === '') {
-        alert('First input the value');
+        message('First input the value');
     }
     else {
         userInput = parseFloat(userInput);
         if (userInput < 0) {
-            alert('Cannot use negative value');
+            message('Cannot use negative value');
         }
         else {
             if (checkingBalance - userInput < 0) {
                 if ((checkingBalance - userInput) + savingsBalance < 0) {
-                    alert('Insufficient funds on both accounts');
+                    message('Insufficient funds on both accounts');
                 }
                 else {
                     userInput -= checkingBalance;
@@ -48,7 +57,7 @@ const checkingWithdraw = function () {
                     savingsBalance -= userInput;
                     $('#checking-balance').html(`$${checkingBalance}`);
                     $('#savings-balance').html(`$${savingsBalance}`);
-                    alert('Overdraft was made');
+                    message('Overdraft was made');
                 }
                 //TODO add a check for other account
             }
@@ -56,6 +65,7 @@ const checkingWithdraw = function () {
                 let currentBalance = parseFloat($('#checking-balance').html().slice(1));
                 checkingBalance = currentBalance - userInput;
                 $('#checking-balance').html(`$${checkingBalance}`);
+                message(`Withdrawn $${checkingBalance}`);
             }
         }
     }
@@ -70,17 +80,18 @@ let savingsBalance = 0;
 const savingsDeposit = function () {
     let userInput = $('#savings-amount').val();
     if (userInput === '') {
-        alert('First input the value');
+        message('First input the value');
     }
     else {
         userInput = parseFloat(userInput);
         if (userInput < 0) {
-            alert('Cannot use negative value');
+            message('Cannot use negative value');
         }
         else {
             let currentBalance = parseFloat($('#savings-balance').html().slice(1));
             savingsBalance = userInput + currentBalance;
             $('#savings-balance').html(`$${savingsBalance}`);
+            message(`Deposited $${savingsBalance}`);
         }
     }
     red();
@@ -90,18 +101,18 @@ const savingsDeposit = function () {
 const savingsWithdraw = function () {
     let userInput = $('#savings-amount').val();
     if (userInput === '') {
-        alert('First input the value');
+        message('First input the value');
     }
     else {
         userInput = parseFloat(userInput);
         if (userInput < 0) {
-            alert('Cannot use negative value');
+            message('Cannot use negative value');
         }
         else {
             if (savingsBalance - userInput < 0) {
                 //overdraft check
                 if ((savingsBalance - userInput) + checkingBalance < 0) {
-                    alert('Insufficient funds on both accounts');
+                    message('Insufficient funds on both accounts');
                 }
                 else {
                     userInput -= savingsBalance;
@@ -109,7 +120,7 @@ const savingsWithdraw = function () {
                     checkingBalance -= userInput;
                     $('#checking-balance').html(`$${checkingBalance}`);
                     $('#savings-balance').html(`$${savingsBalance}`);
-                    alert('Overdraft was made');
+                    message('Overdraft was made');
                 }
                 //TODO add a check for other account
             }
@@ -117,6 +128,7 @@ const savingsWithdraw = function () {
                 let currentBalance = parseFloat($('#savings-balance').html().slice(1));
                 savingsBalance = currentBalance - userInput;
                 $('#savings-balance').html(`$${savingsBalance}`);
+                message(`Withdrawn $${savingsBalance}`);
             }
         }
     }
