@@ -17,7 +17,7 @@ body {
 
 .flipped {
   transform: scale(-1, 1);
-  width: 100px;
+  height: 100px;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@ body {
 
 .normal {
   position: absolute;
-  width: 100px;
+  height: 100px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

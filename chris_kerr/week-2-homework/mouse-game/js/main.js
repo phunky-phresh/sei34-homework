@@ -22,8 +22,8 @@ let catArray = [
 
 let mouseOb = {
   id: document.getElementById('mouse'),
-  xVel: 15,
-  yVel: 15,
+  xVel: 25,
+  yVel: 25,
   leftWall: 0,
   topWall: 0,
   rightWall: 0,
@@ -45,6 +45,8 @@ let userScore = 0;
 let snd = new Audio("resources/mjau4.wav");
 let frameDuration = 50; //milliseconds
 let currentIntervalStatus = 'running';
+
+let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif'];
 
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
@@ -93,7 +95,7 @@ function detectCol() {
   //now collision detection between cats
   for (let i = 0; i < catArray.length; i++) {
     for (let j = i + 1; j < catArray.length; j++) {
-      if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall <= catArray[j].topWall && catArray[i].topWall >= catArray[j].bottomWall) {
+      if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall >= catArray[j].topWall && catArray[i].topWall <= catArray[j].bottomWall) {
         let changeArray = [i, j];
         hitChangeCalc(changeArray);
         meow();
@@ -103,48 +105,29 @@ function detectCol() {
 }
 
 function detectMouseCheese() {
-  //hit a wall, CHANGE TO STOP FURTHER MOVEMENT PAST THE WALL, move this to MOVEMOUSE() function?
-  for (let i = 0; i < catArray.length; i++ ) {
-    let currentCat = catArray[i].catID;
-    if ((parseInt(currentCat.style.left) + currentCat.offsetWidth) >= cont.offsetWidth) { //test for right wall, if this fails, then test left
-      //hits the right wall
-      randomVels(i, false, true, false, false);
-      meow();
-    } else if (parseInt(currentCat.style.left) <= 0) {
-      randomVels(i, true, false, false, false);
-      meow();
-    }
 
-    if ((parseInt(currentCat.style.top) + currentCat.offsetHeight) >= cont.offsetHeight) { //test for bottom wall, if this fails, then test top
-      randomVels(i, false, false, false, true);
-      meow();
-    } else if (parseInt(currentCat.style.top) <= 40) { //40 is width of blue bar
-      randomVels(i, false, false, true, false);
-      meow();
+  // mouse hits cheese?
+  if (mouseOb.rightWall >= cheeseOb.leftWall && mouseOb.leftWall <= cheeseOb.rightWall && mouseOb.bottomWall >= cheeseOb.topWall && mouseOb.topWall <= cheeseOb.bottomWall) {
+    create('cheese');
+    create('cat');
+    document.getElementById('cat-counter').innerHTML = `You're score is ${++userScore}`
+
+  }
+
+  //mouse hits cat?
+  for (let i = 0; i < catArray.length; i++) {
+    if (mouseOb.rightWall >= catArray[i].leftWall && mouseOb.leftWall <= catArray[i].rightWall && mouseOb.bottomWall >= catArray[i].topWall && mouseOb.topWall <= catArray[i].bottomWall) {
+      alert('You got eaten!');
+      initialBuild();
     }
   }
-      // mouse hits cheese?
-      if (mouseOb.rightWall >= cheeseOb.leftWall && mouseOb.leftWall <= cheeseOb.rightWall && mouseOb.bottomWall <= cheeseOb.topWall && mouseOb.topWall >= cheeseOb.bottomWall) {
-        create('cheese');
-        create('cat');
-        document.getElementById('cat-counter').innerHTML = `You're score is ${++userScore}`
-
-      }
-
-      //mouse hits cat?
-      for (let i = 0; i < catArray.length; i++) {
-        if (mouseOb.rightWall >= catArray[i].leftWall && mouseOb.leftWall <= catArray[i].rightWall && mouseOb.bottomWall <= catArray[i].topWall && mouseOb.topWall >= catArray[i].bottomWall) {
-          alert('You got eaten!');
-          initialBuild();
-        }
-      }
 }
 
 function miniDetectCol(leftPos, topPos) {
   rebuildObject();
 
   for (let i = 0; i < catArray.length; i++) {
-    if (catArray[i].rightWall >= leftPos && catArray[i].leftWall <= (leftPos + 100) && catArray[i].bottomWall <= topPos && catArray[i].topWall >= (topPos - 100)) {
+    if (catArray[i].rightWall >= leftPos && catArray[i].leftWall <= (leftPos + 100) && catArray[i].bottomWall >= topPos && catArray[i].topWall <= (topPos + 100)) {
       return true;
     }
   }
@@ -171,17 +154,19 @@ function rebuildObject() {
     catArray[i].leftWall = parseInt(catArray[i].catID.style.left);
     catArray[i].topWall = parseInt(catArray[i].catID.style.top);
     catArray[i].rightWall = catArray[i].leftWall + catArray[i].catID.offsetWidth;
-    catArray[i].bottomWall = catArray[i].topWall - catArray[i].catID.offsetHeight;
+    catArray[i].bottomWall = catArray[i].topWall + catArray[i].catID.offsetHeight;
   }
+
   //recalc mouse walls on each cycle
   mouseOb.leftWall = parseInt(mouseOb.id.style.left);
   mouseOb.topWall = parseInt(mouseOb.id.style.top);
   mouseOb.rightWall = mouseOb.leftWall + mouseOb.id.offsetWidth;
-  mouseOb.bottomWall = mouseOb.topWall - mouseOb.id.offsetHeight;
+  mouseOb.bottomWall = mouseOb.topWall + mouseOb.id.offsetHeight;
+
   cheeseOb.leftWall = parseInt(cheeseOb.id.style.left);
   cheeseOb.topWall = parseInt(cheeseOb.id.style.top);
   cheeseOb.rightWall = cheeseOb.leftWall + cheeseOb.id.offsetWidth;
-  cheeseOb.bottomWall = cheeseOb.topWall - cheeseOb.id.offsetHeight;
+  cheeseOb.bottomWall = cheeseOb.topWall + cheeseOb.id.offsetHeight;
 }
 
 function create(type) {
@@ -271,6 +256,9 @@ function initialBuild() {
     } while (miniDetectCol(leftPos, topPos))
 
     if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
+
+    //pick a random image
+    catArray[i].catID.setAttribute('src',  `${catImgs[Math.floor(Math.random()*8)]}`)
   }
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
   document.getElementById('cat-counter').innerHTML = `You're score is ${userScore}`;
