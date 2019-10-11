@@ -80,3 +80,7 @@ button {
   width: 50px;
   position: absolute;
 }
+
+.flippedMouse {
+  transform: scale(-1, 1);
+}

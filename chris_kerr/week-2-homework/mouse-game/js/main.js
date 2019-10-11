@@ -46,7 +46,7 @@ let snd = new Audio("resources/mjau4.wav");
 let frameDuration = 50; //milliseconds
 let currentIntervalStatus = 'running';
 
-let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif'];
+let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif', 'http://www.anniemation.com/clip_art/images/cat-walk.gif'];
 
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
@@ -180,7 +180,8 @@ function create(type) {
   if (type === 'cat') {
     newNode.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
     newNode.setAttribute('class', 'normal');
-    newNode.setAttribute('src', 'http://www.anniemation.com/clip_art/images/cat-walk.gif')
+    newNode.setAttribute('src', `${catImgs[Math.floor(Math.random()*9)]}`)
+    //pick a random image
 
     let newCatObj = {
       catID: newNode,
@@ -258,7 +259,7 @@ function initialBuild() {
     if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
 
     //pick a random image
-    catArray[i].catID.setAttribute('src',  `${catImgs[Math.floor(Math.random()*8)]}`)
+    catArray[i].catID.setAttribute('src',  `${catImgs[Math.floor(Math.random()*9)]}`)
   }
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
   document.getElementById('cat-counter').innerHTML = `You're score is ${userScore}`;
@@ -341,13 +342,13 @@ function moveMouse(dir) {
   //keyCode 39 is right
   if (dir === 39) {
     mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${parseInt(mouseOb.id.style.left) + mouseOb.xVel}px`);
-    mouseOb.id.setAttribute("class", "flipped");
+    mouseOb.id.setAttribute("class", "flippedMouse");
   }
 
   //keyCode 37 is left
   if (dir === 37) {
     mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${parseInt(mouseOb.id.style.left) - mouseOb.xVel}px`);
-    mouseOb.id.setAttribute("class", "normal");
+    mouseOb.id.setAttribute("class", "normalMouse");
   }
 }
 
