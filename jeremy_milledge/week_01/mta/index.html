@@ -6,22 +6,16 @@
 </head>
 <body>
   <h1>MTA Route Planner</h1>
-  <h2>From where are you coming?</h2>
-  <form id="depart">
-    <input type="text" id="startL" class="depart" placeholder="Departure Line...">
-  </input>
-    <input type="text" id="startS" class="depart" placeholder="Departure Station...">
-  </input>
-  </form>
+  <h2>Coming from:</h2>
+  <select id="startL" class="lineSelect" ><option value="default">Select a line...</option></select>
+  <select id="startS" class="stationSelect" ><option value="default">Select a station...</option></select>
 
-  <h2>To where are you going?</h2>
-  <form id="arrive">
-    <input type="text" id="endL" class="arrive" placeholder="Arrival Line...">
-  </input>
-    <input type="text" id="endS" class="arrive" placeholder="Arrival Station...">
-  </input>
-  </form>
+  <h2>Going to:</h2>
+  <select id="endL" class="lineSelect" ><option value="default">Select a line...</option></select>
+  <select id="endS" class="stationSelect" ><option value="default">Select a station...</option></select>
+
   <button id="generate">Generate Trip</button>
 
+  <div id="visual"></div>
   <script type="text/javascript" src="js/main.js"></script>
 </body>
