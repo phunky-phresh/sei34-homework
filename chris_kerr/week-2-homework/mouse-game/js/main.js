@@ -43,13 +43,13 @@ let maxSpeed = 10;
 let catQueue = 0;
 let snd = new Audio("resources/mjau4.wav");
 let frameDuration = 50; //milliseconds
-let currentStatus = 'running';
+let currentIntervalStatus = 'running';
 
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
-document.getElementById('addCat').addEventListener('click', function(){create('cat')});
 document.getElementById('pause').addEventListener('click',pause);
-document.body.addEventListener('keydown', event => {
+document.getElementById('resume').addEventListener('click',resume);
+document.body.addEventListener('keydown', function (event) {
   moveMouse(event.keyCode);
   })
 
@@ -132,7 +132,7 @@ function detectMouseCheese() {
       for (let i = 0; i < catArray.length; i++) {
         if (mouseOb.rightWall >= catArray[i].leftWall && mouseOb.leftWall <= catArray[i].rightWall && mouseOb.bottomWall <= catArray[i].topWall && mouseOb.topWall >= catArray[i].bottomWall) {
           alert('You got eaten!');
-          pause();
+          initialBuild();
         }
       }
 }
@@ -258,6 +258,7 @@ if (minY === false && maxY === false) {
 }
 
 function initialBuild() {
+
   //for the cats
   for (let i = 0; i < catArray.length; i++) {
     randomVels(i, false, false, false, false)
@@ -307,17 +308,14 @@ function slower(){
 }
 
 function pause() {
-  if (currentStatus === "running") {
-    clearInterval(catOneID);
-    document.getElementById('pause').innerHTML = "resume";
-    currentStatus = 'paused';
-    return;
-  }
-  if (currentStatus === 'paused') {
+  clearInterval(catOneID);
+  currentIntervalStatus = 'paused';
+}
+
+function resume() {
+  if (currentIntervalStatus === 'paused') {
     catOneID = setInterval(motion, 25);
-    document.getElementById('pause').innerHTML = "pause";
-    currentStatus = 'runnign'
-    return;
+    currentIntervalStatus = 'running'
   }
 }
 
@@ -338,7 +336,8 @@ function createTest () {
 }
 
 function moveMouse(dir) {
-  if (currentStatus === 'paused') pause();
+  if (currentIntervalStatus === 'paused') resume();
+  console.log(dir);
 
   //keyCode 38 is up
   if (dir === 38) {
