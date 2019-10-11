@@ -29,7 +29,7 @@ const checkingDeposit = function () {
             let currentBalance = parseFloat($('#checking-balance').html().slice(1));
             checkingBalance = userInput + currentBalance;
             $('#checking-balance').html(`$${checkingBalance}`);
-            message(`Deposited $${checkingBalance}`);
+            message(`Deposited $${userInput}`);
         }
     }
     red();
@@ -65,7 +65,7 @@ const checkingWithdraw = function () {
                 let currentBalance = parseFloat($('#checking-balance').html().slice(1));
                 checkingBalance = currentBalance - userInput;
                 $('#checking-balance').html(`$${checkingBalance}`);
-                message(`Withdrawn $${checkingBalance}`);
+                message(`Withdrawn $${userInput}`);
             }
         }
     }
@@ -91,7 +91,7 @@ const savingsDeposit = function () {
             let currentBalance = parseFloat($('#savings-balance').html().slice(1));
             savingsBalance = userInput + currentBalance;
             $('#savings-balance').html(`$${savingsBalance}`);
-            message(`Deposited $${savingsBalance}`);
+            message(`Deposited $${userInput}`);
         }
     }
     red();
@@ -128,7 +128,7 @@ const savingsWithdraw = function () {
                 let currentBalance = parseFloat($('#savings-balance').html().slice(1));
                 savingsBalance = currentBalance - userInput;
                 $('#savings-balance').html(`$${savingsBalance}`);
-                message(`Withdrawn $${savingsBalance}`);
+                message(`Withdrawn $${userInput}`);
             }
         }
     }
