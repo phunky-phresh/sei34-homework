@@ -22,6 +22,8 @@ let catArray = [
 
 let mouseOb = {
   id: document.getElementById('mouse'),
+  xVel: 15,
+  yVel: 15,
   leftWall: 0,
   topWall: 0,
   rightWall: 0,
@@ -41,17 +43,14 @@ let maxSpeed = 10;
 let catQueue = 0;
 let snd = new Audio("resources/mjau4.wav");
 let frameDuration = 50; //milliseconds
+let currentStatus = 'running';
 
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
 document.getElementById('addCat').addEventListener('click', function(){create('cat')});
 document.getElementById('pause').addEventListener('click',pause);
 document.body.addEventListener('keydown', event => {
-  console.log(event.keyCode);
-  //keyCode 38 is up
-  //keyCode 40 is down
-  //keyCode 39 is right
-  //keyCode 37 is left
+  moveMouse(event.keyCode);
   })
 
 
@@ -61,6 +60,7 @@ function motion() {
   //every other function to be called from here, based on if / else conditions
   rebuildObject();
   detectCol();
+  detectMouseCheese();
 
   for (let i = 0; i < catArray.length; i++) {
     let currentCat = catArray[i].catID;
@@ -79,18 +79,14 @@ function detectCol() {
     if ((parseInt(currentCat.style.left) + currentCat.offsetWidth) >= cont.offsetWidth) { //test for right wall, if this fails, then test left
       //hits the right wall
       randomVels(i, false, true, false, false);
-      meow();
     } else if (parseInt(currentCat.style.left) <= 0) {
       randomVels(i, true, false, false, false);
-      meow();
     }
 
     if ((parseInt(currentCat.style.top) + currentCat.offsetHeight) >= cont.offsetHeight) { //test for bottom wall, if this fails, then test top
       randomVels(i, false, false, false, true);
-      meow();
     } else if (parseInt(currentCat.style.top) <= 40) { //40 is width of blue bar
       randomVels(i, false, false, true, false);
-      meow();
     }
   }
   //now collision detection between cats
@@ -99,8 +95,6 @@ function detectCol() {
       if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall <= catArray[j].topWall && catArray[i].topWall >= catArray[j].bottomWall) {
         let changeArray = [i, j];
         hitChangeCalc(changeArray);
-        catQueue ++;
-        //console.log(catQueue);
         meow();
       }
     }
@@ -128,18 +122,19 @@ function detectMouseCheese() {
       meow();
     }
   }
-  //now collision detection between MOUSE AND CHEESE
-  for (let i = 0; i < catArray.length; i++) {
-    for (let j = i + 1; j < catArray.length; j++) {
-      if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall <= catArray[j].topWall && catArray[i].topWall >= catArray[j].bottomWall) {
-        let changeArray = [i, j];
-        hitChangeCalc(changeArray);
-        catQueue ++;
-        //console.log(catQueue);
-        meow();
+      // mouse hits cheese?
+      if (mouseOb.rightWall >= cheeseOb.leftWall && mouseOb.leftWall <= cheeseOb.rightWall && mouseOb.bottomWall <= cheeseOb.topWall && mouseOb.topWall >= cheeseOb.bottomWall) {
+        create('cheese');
+        create('cat');
       }
-    }
-  }
+
+      //mouse hits cat?
+      for (let i = 0; i < catArray.length; i++) {
+        if (mouseOb.rightWall >= catArray[i].leftWall && mouseOb.leftWall <= catArray[i].rightWall && mouseOb.bottomWall <= catArray[i].topWall && mouseOb.topWall >= catArray[i].bottomWall) {
+          alert('You got eaten!');
+          pause();
+        }
+      }
 }
 
 function miniDetectCol(leftPos, topPos) {
@@ -180,6 +175,10 @@ function rebuildObject() {
   mouseOb.topWall = parseInt(mouseOb.id.style.top);
   mouseOb.rightWall = mouseOb.leftWall + mouseOb.id.offsetWidth;
   mouseOb.bottomWall = mouseOb.topWall - mouseOb.id.offsetHeight;
+  cheeseOb.leftWall = parseInt(cheeseOb.id.style.left);
+  cheeseOb.topWall = parseInt(cheeseOb.id.style.top);
+  cheeseOb.rightWall = cheeseOb.leftWall + cheeseOb.id.offsetWidth;
+  cheeseOb.bottomWall = cheeseOb.topWall - cheeseOb.id.offsetHeight;
 }
 
 function create(type) {
@@ -214,7 +213,7 @@ function create(type) {
   }
 
   if (type === 'cheese') {
-    cheeseOb[id].setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
+    cheeseOb.id.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
     cheeseOb.leftWall = parseInt(cheeseOb.id.style.left);
     cheeseOb.topWall = parseInt(cheeseOb.id.style.top);
     cheeseOb.rightWall = cheeseOb.leftWall + cheeseOb.id.offsetWidth;
@@ -308,14 +307,16 @@ function slower(){
 }
 
 function pause() {
-  if (document.getElementById('pause').innerHTML === "pause") {
+  if (currentStatus === "running") {
     clearInterval(catOneID);
     document.getElementById('pause').innerHTML = "resume";
+    currentStatus = 'paused';
     return;
   }
-  if (document.getElementById('pause').innerHTML === "resume") {
+  if (currentStatus === 'paused') {
     catOneID = setInterval(motion, 25);
     document.getElementById('pause').innerHTML = "pause";
+    currentStatus = 'runnign'
     return;
   }
 }
@@ -337,7 +338,29 @@ function createTest () {
 }
 
 function moveMouse(dir) {
-  
+  if (currentStatus === 'paused') pause();
+
+  //keyCode 38 is up
+  if (dir === 38) {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top) - mouseOb.yVel}px; left: ${parseInt(mouseOb.id.style.left)}px`);
+  }
+
+  //keyCode 40 is down
+  if (dir === 40) {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top) + mouseOb.yVel}px; left: ${parseInt(mouseOb.id.style.left)}px`);
+  }
+
+  //keyCode 39 is right
+  if (dir === 39) {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${parseInt(mouseOb.id.style.left) + mouseOb.xVel}px`);
+    mouseOb.id.setAttribute("class", "flipped");
+  }
+
+  //keyCode 37 is left
+  if (dir === 37) {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${parseInt(mouseOb.id.style.left) - mouseOb.xVel}px`);
+    mouseOb.id.setAttribute("class", "normal");
+  }
 }
 
 
