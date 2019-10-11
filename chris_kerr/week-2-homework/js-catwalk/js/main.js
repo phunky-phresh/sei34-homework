@@ -17,15 +17,6 @@ let catArray = [
     rightWall: 0,
     bottomWall: 0,
   },
-  {
-    catID: document.getElementById('catThree'),
-    xVel: 15,
-    yVel: -3,
-    leftWall: 0,
-    topWall: 0,
-    rightWall: 0,
-    bottomWall: 0,
-  },
 ]
 let cont = document.getElementById('container');
 let maxSpeed = 10;
@@ -82,6 +73,41 @@ function detectCol() {
   }
 }
 
+function detectMouseCheese() {
+  //hit a wall, CHANGE TO STOP FURTHER MOVEMENT PAST THE WALL, move this to MOVEMOUSE() function?
+  for (let i = 0; i < catArray.length; i++ ) {
+    let currentCat = catArray[i].catID;
+    if ((parseInt(currentCat.style.left) + currentCat.offsetWidth) >= cont.offsetWidth) { //test for right wall, if this fails, then test left
+      //hits the right wall
+      randomVels(i, false, true, false, false);
+      meow();
+    } else if (parseInt(currentCat.style.left) <= 0) {
+      randomVels(i, true, false, false, false);
+      meow();
+    }
+
+    if ((parseInt(currentCat.style.top) + currentCat.offsetHeight) >= cont.offsetHeight) { //test for bottom wall, if this fails, then test top
+      randomVels(i, false, false, false, true);
+      meow();
+    } else if (parseInt(currentCat.style.top) <= 40) { //40 is width of blue bar
+      randomVels(i, false, false, true, false);
+      meow();
+    }
+  }
+  //now collision detection between MOUSE AND CHEESE
+  for (let i = 0; i < catArray.length; i++) {
+    for (let j = i + 1; j < catArray.length; j++) {
+      if (catArray[i].rightWall >= catArray[j].leftWall && catArray[i].leftWall <= catArray[j].rightWall && catArray[i].bottomWall <= catArray[j].topWall && catArray[i].topWall >= catArray[j].bottomWall) {
+        let changeArray = [i, j];
+        hitChangeCalc(changeArray);
+        catQueue ++;
+        //console.log(catQueue);
+        meow();
+      }
+    }
+  }
+}
+
 function miniDetectCol(leftPos, topPos) {
   rebuildObject();
 
@@ -117,36 +143,60 @@ function rebuildObject() {
   }
 }
 
-function createCat() {
-  let newCat = document.createElement('img');
+function create(type) {
+  let newNode = document.createElement('img');
 
   do {
     leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
     topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
   } while (miniDetectCol(leftPos, topPos))
 
-  newCat.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
-  newCat.setAttribute('class', 'normal');
-  newCat.setAttribute('src', 'http://www.anniemation.com/clip_art/images/cat-walk.gif')
+  if (type === 'cat') {
+    newNode.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
+    newNode.setAttribute('class', 'normal');
+    newNode.setAttribute('src', 'http://www.anniemation.com/clip_art/images/cat-walk.gif')
 
-  let newCatObj = {
-    catID: newCat,
-    xVel: leftPos,
-    yVel: topPos,
-    leftWall: 0,
-    topWall: 50,
-    rightWall: 100,
-    bottomWall: 150,
-  };
+    let newCatObj = {
+      catID: newNode,
+      xVel: leftPos,
+      yVel: topPos,
+      leftWall: 0,
+      topWall: 50,
+      rightWall: 100,
+      bottomWall: 150,
+    };
 
-  catArray.push(newCatObj);
+    catArray.push(newCatObj);
 
-  cont.appendChild(newCat);
+    cont.appendChild(newNode);
 
-  randomVels((catArray.length-1), false, false, false, false);
-  animate();
+    randomVels((catArray.length-1), false, false, false, false);
+    document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+  }
 
-  document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+  if (type === 'cheese') {
+    // NOT TOUCHED AT ALL FROM CAT
+    newNode.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
+    newNode.setAttribute('class', 'normal');
+    newNode.setAttribute('src', 'http://www.anniemation.com/clip_art/images/cat-walk.gif')
+
+    let newCatObj = {
+      catID: newNode,
+      xVel: leftPos,
+      yVel: topPos,
+      leftWall: 0,
+      topWall: 50,
+      rightWall: 100,
+      bottomWall: 150,
+    };
+
+    catArray.push(newCatObj);
+
+    cont.appendChild(newNode);
+
+    randomVels((catArray.length-1), false, false, false, false);
+    document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+  }
 
 }
 
@@ -186,6 +236,7 @@ if (minY === false && maxY === false) {
 }
 
 function initialBuild() {
+  //for the cats
   for (let i = 0; i < catArray.length; i++) {
     randomVels(i, false, false, false, false)
 
@@ -196,17 +247,17 @@ function initialBuild() {
 
     if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
   }
-
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
-
   document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+
+  //add code for the mouse
 
 }
 initialBuild();
 
 document.getElementById('faster').addEventListener('click',faster);
 document.getElementById('slower').addEventListener('click',slower);
-document.getElementById('addCat').addEventListener('click',createCat);
+document.getElementById('addCat').addEventListener('click', function(){create('cat')});
 document.getElementById('pause').addEventListener('click',pause);
 
 function faster(){
@@ -248,7 +299,7 @@ function createTest () {
     //clearInterval(catOneID);
     //display gameover page!
   } else if (catQueue > 0) {
-    createCat();
+    create('cat');
     catQueue = 0;
   }
 }
