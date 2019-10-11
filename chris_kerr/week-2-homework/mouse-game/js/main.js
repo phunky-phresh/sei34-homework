@@ -41,6 +41,7 @@ let cheeseOb = {
 let cont = document.getElementById('container');
 let maxSpeed = 10;
 let catQueue = 0;
+let userScore = 0;
 let snd = new Audio("resources/mjau4.wav");
 let frameDuration = 50; //milliseconds
 let currentIntervalStatus = 'running';
@@ -126,6 +127,8 @@ function detectMouseCheese() {
       if (mouseOb.rightWall >= cheeseOb.leftWall && mouseOb.leftWall <= cheeseOb.rightWall && mouseOb.bottomWall <= cheeseOb.topWall && mouseOb.topWall >= cheeseOb.bottomWall) {
         create('cheese');
         create('cat');
+        document.getElementById('cat-counter').innerHTML = `You're score is ${++userScore}`
+
       }
 
       //mouse hits cat?
@@ -209,7 +212,6 @@ function create(type) {
     cont.appendChild(newNode);
 
     randomVels((catArray.length-1), false, false, false, false);
-    document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
   }
 
   if (type === 'cheese') {
@@ -271,7 +273,7 @@ function initialBuild() {
     if (miniDetectCol) catArray[i].catID.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px`);
   }
   document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
-  document.getElementById('cat-counter').innerHTML = `There are currently ${catArray.length} cats on-screen!`
+  document.getElementById('cat-counter').innerHTML = `You're score is ${userScore}`;
 
   //for the cheese
   do {
@@ -337,7 +339,6 @@ function createTest () {
 
 function moveMouse(dir) {
   if (currentIntervalStatus === 'paused') resume();
-  console.log(dir);
 
   //keyCode 38 is up
   if (dir === 38) {
