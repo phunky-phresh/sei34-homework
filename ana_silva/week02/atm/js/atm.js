@@ -1,6 +1,5 @@
 // * Keep track of the checking and savings balances somewhere
 // * Add functionality so that a user can deposit money into one of the bank accounts.
-
 // * Make sure you are updating the display and manipulating the HTML of the page
 // so a user can see the change.
 // * Add functionality so that a user can withdraw money from one of the bank accounts.
@@ -19,47 +18,83 @@
 // * Are there ways to refactor your code to make it DRYer?
 
 
+//Gets the balance for account
 const getBalance = function (account) {
-  let $balance;
-  $balance = $(`#${account}-balance`).html(); //finds the html for the account
+  let $balance = $(`#${account}-balance`).html(); //finds the html for the account
   balance = Number($balance.substring(1)); //removes the $ from the html and makes it a number
-  return balance;
+  return balance; //returns the numeric value
 }
-console.log(getBalance("checking"));
 
-
-let total1;
-//Deposit into account
-const deposit = function ($amount, account) {
-  total1 = getBalance(account) + Number($amount); //gets current balance and adds amount as a number in case it comes as a string.
-  $(`#${account}-balance`).html(`$${total1}`); //updates the balance html
-  $(`#${account}-balance`).css("background-color", "none");
-}
-console.log(deposit(10, "checking"));
-console.log(deposit(30, "checking"));
-console.log(deposit(60, "checking"));
-
-
-let total2;
-//Withdraw from account
-const withdraw = function ($amount, account) {
-  total2 = getBalance(account) - Number($amount); //gets current balance and adds amount
-  if (total2 === 0) {
-    $(`#${account}-balance`).css("background-color", "red");
-  }
-  if (total2 < 0) {
-    return; // doesn't update balance = withdraw doesn't happen
+//Check if balance is zero and updates css/bg-color
+const isBalanceZero = function (account) {
+  if (getBalance(account) === 0) {
+    $(`#${account}-balance`).addClass('zero'); //to make bg color red if balance 0
   } else {
-    $(`#${account}-balance`).html(`$${total2}`); //updates the balance html
+    $(`#${account}-balance`).removeClass('zero');// makes bg grey
+  }
+  return;
+}
+
+//gets current account overdraft account and amount input by user
+const getCurrentAccount = function ($targetId) {
+  let account = ""; //initializes the account variable
+  let overdraftAcc = "";
+  if ($targetId.includes("checking")){ //checks id tag and updates variable account with the right account
+    account = "checking";
+    overdraftAcc = "savings";
+  } else {
+    account ="savings";
+    overdraftAcc = "checking";
+  }
+  const amount = Number($(`#${account}-amount`).val()); //Reads the amount as number from input value
+  return [account, overdraftAcc, amount];
+}
+
+//Deposit into account
+const deposit = function (event) {
+    const $targetId = $(event.target).attr('id'); //get the account from the event id tag
+    let account = getCurrentAccount($targetId)[0]; //uses function to get the account type
+    let amount = getCurrentAccount($targetId)[2]; //uses function to get amount input
+    const total = getBalance(account) + amount; //gets current balance and adds amount
+    $(`#${account}-balance`).html(`$${total}`); //updates the balance html after deposit
+    isBalanceZero(account); //updates bg color
+}
+
+
+//Withdraw from account
+const withdraw = function (event) {
+  const $targetId = $(event.target).attr('id'); //get the account from the event id tag
+  let account = getCurrentAccount($targetId)[0];
+  let overdraftAcc = getCurrentAccount($targetId)[1];
+  let amount = getCurrentAccount($targetId)[2]; //uses function to get amount input
+  let total = getBalance(account) - amount; //gets current balance and adds amount
+
+  if (total < 0) { //to not make balances go negative
+    let overdraft = 0 - total; //calculates the overdraft value
+    let overdraftAccBal = getBalance(overdraftAcc) - overdraft; //gets the 2nd account balance after withdrawing the overdraft value
+
+    if (overdraftAccBal >= 0) { //if other account can cover overdraft
+      total = 0; //current account goes 0 and rmeoves overdraft from 2nd account
+      $(`#${overdraftAcc}-balance`).html(`$${getBalance(overdraftAcc) - overdraft}`);
+    }
+    else { //if overdraft is bigger than balance of 2nd account
+      return; // doesn't update balance => withdraw doesn't happen
+    }
   }
 
+  $(`#${account}-balance`).html(`$${total}`); //updates the balance html
+  isBalanceZero(account) //updates bg color
+  isBalanceZero(overdraftAcc) //updates bg color
 }
-console.log(withdraw(10, "savings"));
-console.log(withdraw(30, "savings"));
-console.log(withdraw(190, "savings"));
 
 
-//If pressing deposit button
-const $depButton = $(`input #${account}-deposit`);
-const $amount = $(`input #${account}-amount`);
-$depButton.on("click", deposit());
+//On click events for all buttons
+const $depButtonCheck = $("#checking-deposit");
+const $depButtonSav = $("#savings-deposit");
+const $withButtonCheck = $("#checking-withdraw");
+const $withButtonSav = $("#savings-withdraw");
+
+$depButtonCheck.on("click", deposit);
+$depButtonSav.on("click", deposit);
+$withButtonCheck.on("click", withdraw);
+$withButtonSav.on("click", withdraw);
