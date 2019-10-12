@@ -1,5 +1,6 @@
 console.log("Working! Homework - mta");
 
+// Week 1, Day 5
 // Day 5 - Friday, 4 October 2019
 
 // https://gist.github.com/wofockham/8ac3c1d747f345d89d3d
@@ -150,6 +151,8 @@ subway.planTrip(6, '28th', 'L', '1st');
 subway.planTrip('L', '28th', 'L', '1st'); // same line
 subway.planTrip('L', '28th', 'L', '28th'); // same line and stops. should return error message
 
+ // Note to self: update to include case where the station is Union Square but at different lines
+ // The user can just walk
 
 //////////////////////////////
 // Using Arrays:
