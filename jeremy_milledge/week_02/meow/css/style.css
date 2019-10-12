@@ -12,6 +12,7 @@ body {
    width: 100vw;
    margin: 0;
    color: #222;
+   overflow: hidden;
 }
 .xback {
   transform: scaleX(-1);
