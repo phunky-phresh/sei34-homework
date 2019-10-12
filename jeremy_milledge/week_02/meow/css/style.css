@@ -62,10 +62,9 @@ h1.top-left {
   display: flex;
   flex-direction:column;
   justify-content: space-between;
-  margin: 20vh auto;
+  margin: 17vh auto;
   padding: 5vh;
   width: 60vh;
-  height: 60vh;
   background: rgba(255,255,255,0.7);
   border-radius: 1vh;
   text-align: center;
@@ -108,7 +107,7 @@ canvas {
   z-index: -1;
 }
 
-.top-left a.small-button {
+a.small-button {
   width: 1vh;
   line-height: 1em;
   text-align: center;

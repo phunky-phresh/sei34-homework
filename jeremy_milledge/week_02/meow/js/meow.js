@@ -4,11 +4,11 @@ const $pusheen = $('#add-cat');
 const $score = $('#score');
 const $gameoverPanel = $('#gameover');
 const $notice = $('#notice');
-const $canvas = $('#art');
-const $saveMenu = $('#save-menu');
+const $canvas = $('#canvas');
+const $miniMenu = $('#mini');
 const $save = $('#save');
 // const $saveNew = $('save-new');
-$saveMenu.hide();
+$miniMenu.hide();
 
 
 //add meow sounds
@@ -132,7 +132,7 @@ function gameOver() {
   $score.hide(); // hide score in corner
   $gameoverPanel.css('display', 'flex'); //show gameover panel
   drawArt();
-  //clickData = []; //reset log
+  saveLink();
 }
 
 function calcStats() {
@@ -150,19 +150,15 @@ function calcStats() {
   return stats;
 }
 
-function startAgain(canvasClear=false, saveMenu=true) {
+function startAgain(canvasClear=false) {
 
   if (canvasClear) {
     let cx = $canvas[0].getContext("2d");
     cx.clearRect(0, 0, $canvas[0].width, $canvas[0].height);
-  } else if (!saveMenu) {
-    drawArt();
   }
-
-
   $pusheen.show(); //show meow button
   $gameoverPanel.hide(); //hide gameover panel
-  $saveMenu.hide(); //hide save menu
+  $miniMenu.hide(); //hide save menu
   $score.show(); //show score
   $score.html('0'); //reset score to 0
   $catCount = 0; //reset instance counter
@@ -224,19 +220,12 @@ function drawArt() {
 
 function toggleMenu(showGameover=true) {
   if (showGameover) {
-    $saveMenu.hide();
-    $gameoverPanel.css('display', 'flex');
+    $miniMenu.hide(300);
+    $gameoverPanel.css('display', 'flex').fadeIn(500);
   } else {
-    $saveMenu.show(500);
-    saveLink();
-    $gameoverPanel.hide(500);
+    $miniMenu.show(300);
+    $gameoverPanel.hide(300);
   }
-}
-
-function toggleSaveOptions() {
-  $('#save-options').toggle();
-  console.log()
-  $('#toggle-save').html() === '-' ? $('#toggle-save').html('+') : $('#toggle-save').html('-');
 }
 
 function saveLink () {
@@ -254,10 +243,10 @@ const bounceFlip = function($cat, imageX, imageY, dx, dy) {
 }
 
 
-$('#toggle-save').click(() => toggleSaveOptions());
+$('#toggle-menu').click(() => toggleMenu(true));
 $('#show-art').click(() => toggleMenu(false));
 $pusheen.mousedown(newCat);
-$('#save-more').click(() => startAgain(false, true));
+// $('#save-more').click(() => startAgain(false, true));
 $('#gameover-more').click(() => startAgain());
 $('.new').click(() => startAgain(true));
-$('#save-main').click(() => toggleMenu());
+// $('#save-main').click(() => toggleMenu());
