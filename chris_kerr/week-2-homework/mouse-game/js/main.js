@@ -3,9 +3,9 @@
 ///////////////
 let frameRate = 60;
 let frameDuration = Math.floor(1000 / frameRate); //milliseconds
-let maxSpeed = 10;
-let mouseSpeed = 1.5 * maxSpeed;
-let maxCats = 15;
+let maxSpeed = 15;
+let mouseSpeed = 2 * maxSpeed;
+let maxCats = 25;
 let catArray = [];
 let mouseOb = {
   id: '',
@@ -176,7 +176,7 @@ function initialBuild() {
 
 function run() {
   //every other function to be called from here, based on if / else conditions
-  detectCol();
+  detectCollision();
   detectWall();
 
   catArray.forEach(function(i, j) {
@@ -186,7 +186,7 @@ function run() {
 
 function detectWall() {
   // has a cat hit wall?
-  for (let i = 0; i < catArray.length; i++ ) {
+  catArray.forEach(function (j,i){
     let currentCat = catArray[i].id;
     if ((parseInt(currentCat.style.left) + currentCat.offsetWidth) >= cont.offsetWidth) { //test for right wall, if this fails, then test left
       //hits the right wall
@@ -200,7 +200,7 @@ function detectWall() {
     } else if (parseInt(currentCat.style.top) <= 40) { //40 is width of blue bar
       randomVels(i, false, false, true, false);
     }
-  }
+  })
 
   // is the mouse near a wall?
   if ((parseInt(mouseOb.id.style.left) + mouseOb.id.offsetWidth) >= cont.offsetWidth) {
@@ -216,19 +216,7 @@ function detectWall() {
   }
 }
 
-function createTest () {
-  if (catArray.length > maxCats) {
-    catQueue = 0;
-    //clearInterval(catTwoID);
-    //clearInterval(catOneID);
-    //display gameover page!
-  } else if (catQueue > 0) {
-    elementBuilder('cat');
-    catQueue = 0;
-  }
-}
-
-function detectCollision (object1, object2) {
+function hitBoxOverlapTest (object1, object2) {
   if (parseInt(object1.id.style.left) + object1.id.offsetWidth >= parseInt(object2.id.style.left) && parseInt(object1.id.style.left) <= parseInt(object2.id.style.left) + object2.id.offsetWidth && parseInt(object1.id.style.top) + object1.id.offsetHeight >= parseInt(object2.id.style.top) && parseInt(object1.id.style.top) <= parseInt(object2.id.style.top) + object2.id.offsetHeight) {
     return true;
   } else {
@@ -236,34 +224,33 @@ function detectCollision (object1, object2) {
   }
 }
 
-function detectCol() {
+function detectCollision() {
   //now collision detection between cats
   for (let i = 0; i < catArray.length; i++) {
     for (let j = i + 1; j < catArray.length; j++) {
-      if (detectCollision(catArray[i], catArray[j])) {
-        //let changeArray = [i, j];
-        hitChangeCalc([i, j]);
-      }
+      if (hitBoxOverlapTest(catArray[i], catArray[j])) {
+        catArray[i].xVel = catArray[i].xVel * (-1);
+        catArray[j].yVel = catArray[j].yVel * (-1);      }
     }
   }
 
   // mouse hits cheese?
-  if (detectCollision(mouseOb, cheeseOb)) {
+  if (hitBoxOverlapTest(mouseOb, cheeseOb)) {
     elementBuilder('cheese');
     elementBuilder('cat');
     document.getElementById('cat-counter').innerHTML = `Your score is ${++userScore}`
   }
 
   //mouse hits cat?
-  for (let i = 0; i < catArray.length; i++) {
-    if (detectCollision(mouseOb, catArray[i])) {
+  catArray.forEach(function(j, i) {
+    if (hitBoxOverlapTest(mouseOb, catArray[i])) {
       meow();
       alert('You got eaten!');
       pause();
       reset();
       initialBuild();
     }
-  }
+  })
 }
 
 function meow () {
@@ -331,29 +318,11 @@ function moveMouse(dir) {
   }
 }
 
-///////// OLDER STUFF /////////
-/// declaring functions
-
-
-function hitChangeCalc (changeArray) {
-  //purpose of this is to reverse the direction of both collided cats
-  for (let i = 0; i < changeArray.length; i++) {
-    catArray[changeArray[i]].xVel = catArray[changeArray[i]].xVel * (-1);
-    catArray[changeArray[i]].yVel = catArray[changeArray[i]].yVel * (-1);
-
-    if (catArray[changeArray[i]].xVel < 0) {
-      catArray[changeArray[i]].id.setAttribute("class", "flippedCat");
-    } else {
-      catArray[changeArray[i]].id.setAttribute("class", "normalCat");
-    }
-  }
-}
-
 /////////////
 // LOAD CODE
 /////////////
 
 initialBuild();
-let catTwoID = setInterval(createTest, 500);
+//let catTwoID = setInterval(createTest, 500);
 let catOneID = setInterval(run, frameDuration);
 pause();
