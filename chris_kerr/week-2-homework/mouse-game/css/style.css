@@ -7,6 +7,14 @@
   box-sizing: border-box;
 }
 
+#cat-box {
+  min-width: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: green;
   box-sizing: border-box;
@@ -81,8 +89,7 @@ button {
 }
 
 .flippedMouse {
-  transform: scale(-1, 1);
-  width: 50px;
+  width: 100px;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -90,7 +97,8 @@ button {
 }
 
 .normalMouse {
-  width: 50px;
+  transform: scale(-1, 1);
+  width: 100px;
   position: absolute;
   margin: 0;
   padding: 0;

@@ -1,8 +1,10 @@
 ///////////////
 // DEFINTITIONS
 ///////////////
-let mouseSpeed = 25;
-let frameRate = 30;
+let frameRate = 60;
+let frameDuration = Math.floor(1000 / frameRate); //milliseconds
+let maxSpeed = 10;
+let mouseSpeed = 1.5 * maxSpeed;
 let maxCats = 15;
 let catArray = [];
 let mouseOb = {
@@ -11,19 +13,14 @@ let mouseOb = {
 let cheeseOb = {
   id: '',
 };
-
 let cont = document.getElementById('container');
-let maxSpeed = 10;
 let catQueue = 0;
 let userScore = 0;
 let snd = new Audio("resources/mjau4.wav");
-let frameDuration = 50; //milliseconds
 let currentIntervalStatus = 'running';
 
-let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif', 'http://www.anniemation.com/clip_art/images/cat-walk.gif'];
+let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif', 'images/cat-walk.gif'];
 
-document.getElementById('faster').addEventListener('click',faster);
-document.getElementById('slower').addEventListener('click',slower);
 document.getElementById('pause').addEventListener('click',pause);
 document.getElementById('resume').addEventListener('click',resume);
 document.body.addEventListener('keydown', function (event) {
@@ -45,7 +42,7 @@ function elementBuilder (type) {
   // create a node and then create input parameters for it
   let leftPos = 0, topPos = 0;
 
-  // test for unique starting position, to ensure no initial overlap
+  //// test for unique starting position, to ensure no initial overlap
   if (allObjects.length > 0) {
     do {
        leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
@@ -53,8 +50,8 @@ function elementBuilder (type) {
     } while (function() {
         rebuildObject();
 
-        catArray.forEach( function(i) {
-          if (parseInt(i.rightWall) >= leftPos && parseInt(i.id.style.left) <= (leftPos + 100) && parseInt(i.bottomWall) >= topPos && parseInt(i.topWall) <= (topPos + 100)) {
+        allObjects.forEach( function(i) {
+          if (parseInt(i.style.left) + i.offsetWidth >= leftPos && parseInt(i.id.style.left) <= (leftPos + 100) && parseInt(i.id.style.top) + i.id.offsetHeight >= topPos && parseInt(i.id.style.top) <= (topPos + 100)) {
             console.log('clash - called within ElementBuilder');
             return true;
           }
@@ -65,6 +62,7 @@ function elementBuilder (type) {
     leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
     topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
   }
+  ///
 
   if (type === 'cat') {
     let newNode = document.createElement('img');
@@ -73,15 +71,11 @@ function elementBuilder (type) {
     newNode.setAttribute('src', `${catImgs[8]}`)
     //pick a random image
     // newNode.setAttribute('src', `${catImgs[Math.floor((Math.random()*catImgs.length))]}`)
-    cont.appendChild(newNode);
+    document.getElementById('cat-box').appendChild(newNode);
     let newCatObj = {
       id: newNode,
       xVel: 0,
       yVel: 0,
-      //id.style.left: leftPos,
-      topWall: topPos,
-      rightWall: leftPos + newNode.style.offsetWidth,
-      bottomWall: leftPos + newNode.style.offsetHeight,
     };
     catArray.push(newCatObj);
     randomVels((catArray.length-1), false, false, false, false);
@@ -92,8 +86,8 @@ function elementBuilder (type) {
       let newNode = document.createElement('img');
       newNode.setAttribute('class', 'normalMouse');
       newNode.setAttribute('id', 'mouse');
-      newNode.setAttribute('src', `images/mouse.jpeg`)
-      cont.appendChild(newNode);
+      newNode.setAttribute('src', `images/mouse2.png`)
+      document.getElementById('cat-box').appendChild(newNode);
       newNode.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
     } else {
       document.getElementById('mouse').setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
@@ -102,10 +96,6 @@ function elementBuilder (type) {
     mouseOb.xVel = mouseSpeed;
     mouseOb.yVel = mouseSpeed;
     mouseOb.id = document.getElementById('mouse');
-    //mouseOb.id.style.left = leftPos;
-    mouseOb.topWall = topPos;
-    mouseOb.rightWall = leftPos + mouseOb.id.style.offsetWidth;
-    mouseOb.bottomWall = leftPos + mouseOb.id.style.offsetHeight;
   }
 
   if (type === 'cheese') {
@@ -114,17 +104,13 @@ function elementBuilder (type) {
       newNode.setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
       newNode.setAttribute('class', 'cheese');
       newNode.setAttribute('id', 'cheese');
-      newNode.setAttribute('src', `images/cheese.jpeg`)
-    cont.appendChild(newNode);
+      newNode.setAttribute('src', `images/cheese.png`)
+    document.getElementById('cat-box').appendChild(newNode);
   } else {
     document.getElementById('cheese').setAttribute('style', `top: ${topPos}px; left: ${leftPos}px;`);
   }
 
     cheeseOb.id = document.getElementById('cheese');
-    //cheeseOb.id.style.left = leftPos;
-    cheeseOb.topWall = topPos;
-    cheeseOb.rightWall = leftPos + cheeseOb.id.style.offsetWidth;
-    cheeseOb.bottomWall = leftPos + cheeseOb.id.style.offsetHeight;
   }
 }
 
@@ -169,10 +155,10 @@ function reset () {
     id: '',
   };
   userScore = 0;
-  let nodeList = document.querySelectorAll('img');
-  nodeList.forEach(function(i,j) {
-    //console.log(nodeList[j]) //work out how to delete this node!
-  })
+  const myNode = document.getElementById("cat-box");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
 }
 
 function initialBuild() {
@@ -181,8 +167,6 @@ function initialBuild() {
   elementBuilder('cheese');
   elementBuilder('cat');
   elementBuilder('cat');
-
-  document.getElementById('speedoText').innerText = `The current speed is ${1000 / 50 * maxSpeed} px/s`;
   document.getElementById('cat-counter').innerHTML = `Your score is ${userScore}`;
 }
 
@@ -192,7 +176,6 @@ function initialBuild() {
 
 function run() {
   //every other function to be called from here, based on if / else conditions
-  rebuildObject();
   detectCol();
   detectWall();
 
@@ -221,15 +204,15 @@ function detectWall() {
 
   // is the mouse near a wall?
   if ((parseInt(mouseOb.id.style.left) + mouseOb.id.offsetWidth) >= cont.offsetWidth) {
-    console.log('Hit right wall');
+    crossWall('right');
   } else if (parseInt(mouseOb.id.style.left) <= 0) {
-    console.log('Hit left wall');;
+    crossWall('left');
   }
 
   if ((parseInt(mouseOb.id.style.top) + mouseOb.id.offsetHeight) >= cont.offsetHeight) { //test for bottom wall, if this fails, then test top
-    console.log('Hit bottom wall');
+    crossWall('bottom');
   } else if (parseInt(mouseOb.id.style.top) <= 40) { //40 is width of blue bar
-    console.log('Hit top wall');
+    crossWall('top');
   }
 }
 
@@ -246,8 +229,7 @@ function createTest () {
 }
 
 function detectCollision (object1, object2) {
-  console.log(parseInt(object2.id.style.left))
-  if (parseInt(object1.rightWall) >= parseInt(object2.id.style.left) && parseInt(object1.id.style.left) <= parseInt(object2.rightWall) && parseInt(object1.bottomWall) >= parseInt(object2.topWall) && parseInt(object1.topWall) <= parseInt(object2.bottomWall)) {
+  if (parseInt(object1.id.style.left) + object1.id.offsetWidth >= parseInt(object2.id.style.left) && parseInt(object1.id.style.left) <= parseInt(object2.id.style.left) + object2.id.offsetWidth && parseInt(object1.id.style.top) + object1.id.offsetHeight >= parseInt(object2.id.style.top) && parseInt(object1.id.style.top) <= parseInt(object2.id.style.top) + object2.id.offsetHeight) {
     return true;
   } else {
     return false;
@@ -261,7 +243,6 @@ function detectCol() {
       if (detectCollision(catArray[i], catArray[j])) {
         //let changeArray = [i, j];
         hitChangeCalc([i, j]);
-        meow();
       }
     }
   }
@@ -276,6 +257,7 @@ function detectCol() {
   //mouse hits cat?
   for (let i = 0; i < catArray.length; i++) {
     if (detectCollision(mouseOb, catArray[i])) {
+      meow();
       alert('You got eaten!');
       pause();
       reset();
@@ -288,24 +270,25 @@ function meow () {
   snd.play();
 }
 
+function crossWall (wall) {
+  if (wall === 'right') {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${2}px`);
+  }
+  if (wall === 'left') {
+    mouseOb.id.setAttribute('style', `top: ${parseInt(mouseOb.id.style.top)}px; left: ${cont.offsetWidth - mouseOb.id.offsetWidth - 2}px`);
+  }
+  if (wall === 'top') {
+    mouseOb.id.setAttribute('style', `top: ${cont.offsetHeight - mouseOb.id.offsetHeight - 2}px; left: ${parseInt(mouseOb.id.style.left)}px`);
+  }
+  if (wall === 'bottom') {
+    mouseOb.id.setAttribute('style', `top: ${40 + 2}px; left: ${parseInt(mouseOb.id.style.left)}px`);
+  }
+
+}
 
 ///////////////////
 // INTERACTION CODE
 ///////////////////
-function faster(){
-  maxSpeed ++;
-  document.getElementById('speedoText').innerText = `The current speed is ${1000 / frameDuration * maxSpeed} px/s`;
-  clearInterval(catOneID);
-  catOneID = setInterval(run, frameDuration);
-
-}
-
-function slower(){
-  maxSpeed --;
-  document.getElementById('speedoText').innerText = `The current speed limit is ${1000 / frameDuration * maxSpeed} px/s`;
-  clearInterval(catOneID);
-  catOneID = setInterval(run, frameDuration);
-}
 
 function pause() {
   clearInterval(catOneID);
@@ -366,40 +349,10 @@ function hitChangeCalc (changeArray) {
   }
 }
 
-function rebuildObject() {
-  //recalc cats walls on each clock cycle
-  for (let i = 0; i < catArray.length; i++) {
-    //catArray[i].id.style.left = parseInt(catArray[i].id.style.left);
-    catArray[i].topWall = parseInt(catArray[i].id.style.top);
-    catArray[i].rightWall = parseInt(catArray[i].id.style.left) + catArray[i].id.offsetWidth;
-    catArray[i].bottomWall = catArray[i].topWall + catArray[i].id.offsetHeight;
-  }
-
-  // recalc mouse walls on each cycle
-  //mouseOb.id.style.left = parseInt(mouseOb.id.style.left);
-  mouseOb.topWall = parseInt(mouseOb.id.style.top);
-  mouseOb.rightWall = parseInt(mouseOb.id.style.left) + mouseOb.id.offsetWidth;
-  mouseOb.bottomWall = mouseOb.topWall + mouseOb.id.offsetHeight;
-
-  //cheeseOb.id.style.left = parseInt(cheeseOb.id.style.left);
-  cheeseOb.topWall = parseInt(cheeseOb.id.style.top);
-  cheeseOb.rightWall = parseInt(cheeseOb.id.style.left) + cheeseOb.id.offsetWidth;
-  cheeseOb.bottomWall = cheeseOb.topWall + cheeseOb.id.offsetHeight;
-}
-
-
-
-
-
-
-
-
-
-
-
 /////////////
 // LOAD CODE
 /////////////
+
 initialBuild();
 let catTwoID = setInterval(createTest, 500);
 let catOneID = setInterval(run, frameDuration);
