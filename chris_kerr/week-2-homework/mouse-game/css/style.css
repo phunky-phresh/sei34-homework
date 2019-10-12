@@ -1,7 +1,7 @@
 #container {
   min-width: 100vh;
   min-height: 100vh;
-  background-color: pink;
+  background-color: #81EAF5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,27 +15,11 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.flipped {
-  transform: scale(-1, 1);
-  height: 100px;
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.normal {
-  position: absolute;
-  height: 100px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 #speedo {
   top: 0px;
   left: 0px;
-  background-color: #33ccff;
+  background-color: #FAC3F1;
   position: absolute;
   height: 40px;
   width: 100%;
@@ -74,13 +58,41 @@ button {
 #cheese {
   width: 50px;
   position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#mouse {
-  width: 50px;
+.flippedCat {
+  transform: scale(-1, 1);
   position: absolute;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.normalCat {
+  position: absolute;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .flippedMouse {
   transform: scale(-1, 1);
+  width: 50px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.normalMouse {
+  width: 50px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
