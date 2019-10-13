@@ -1,0 +1,16 @@
+.walking-forwards {
+    position: absolute;
+    transform: scaleX(1);
+}
+
+.walking-backwards {
+    position: absolute;
+    transform: scaleX(-1);
+}
+
+.dancing {
+    position: relative!important;
+    margin: 0 auto;
+    display: block;
+    left: 0!important;
+}

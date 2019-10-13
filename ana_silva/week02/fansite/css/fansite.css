@@ -1,0 +1,159 @@
+/* * {
+  border:1px solid black;
+} */
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+}
+
+
+nav {
+  height: 60px;
+  background-color: #595759;
+  margin: 0 auto;
+  padding: 0;
+}
+
+nav ul {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 10px 0 0;
+  text-align: right;
+}
+
+nav li {
+  display: inline;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+a {
+  color: #fcd4f2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e653a3;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #fcd4f2;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+header {
+  position: relative;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #595759;
+}
+
+.h1 {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 0;
+  margin-left: 60px;
+  font-family: 'Lobster', cursive;
+  width: 45%;
+  text-align: center;
+}
+
+img {
+  margin-top: 15px;
+  margin-left: 100px;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+
+
+.name {
+  font-size: 40px;
+  padding: 0;
+}
+
+.biography {
+  font-size: 30px;
+
+}
+
+.achievements{
+  font-size: 30px;
+  padding: 0;
+
+}
+
+main {
+  margin-top: 0;
+  width: 60%;
+  display: inline-block;
+  border-right: 1px solid #595759;
+}
+
+main p {
+  padding: 0;
+  margin: 40px ;
+  line-height: 20px;
+}
+
+span.bold {
+  font-weight: bold;
+}
+
+.inset {
+  margin: 40px;
+  border: 1px INSET #ccc;
+  padding: 15px;
+}
+
+aside h2 {
+  letter-spacing: 10px;
+  text-shadow: -5px 2px 5px purple;
+}
+
+h3 {
+  margin-top: 50px;
+  padding-top: 50px;
+  border-top: 1px solid #595759;
+}
+
+aside {
+  width: 35%;
+  display: inline-block;
+  margin-left: 30px;
+  vertical-align: top;
+}
+
+aside p {
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.answers {
+  visibility: hidden;
+  opacity: 0;
+}
+
+aside p:hover > span {
+  visibility: visible;
+  transition: 3s all;
+  opacity: 1;
+}
+
+article {
+  margin: 40px;
+
+}
+
+article ul {
+  padding: 0;
+  list-style: none;
+}
+
+article li {
+  margin-top: 10px;
+}

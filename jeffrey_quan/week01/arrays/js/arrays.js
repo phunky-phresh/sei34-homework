@@ -1,5 +1,6 @@
 console.log("Working! Homework - Arrays");
 
+// Week 1, Day 3
 // Day 3 - Wednesday, 2 October 2019
 
 // https://gist.github.com/wofockham/61148df9403b3cfc2138

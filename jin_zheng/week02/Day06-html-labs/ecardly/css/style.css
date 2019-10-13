@@ -1,0 +1,137 @@
+/*
+Project Name: Ecard.ly
+Client: General Assembly
+Author: Christopher Castig | @castig
+Developer @GA in NYC
+*/
+
+/* Box Model Hack */
+* {
+  -moz-box-sizing: border-box; /* Firexfox */
+  -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+  box-sizing: border-box; /* IE */
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  /* border: 1px solid green; */
+}
+
+
+body {
+  background: #d7d7d7 url(../images/background.jpg) repeat-x;
+
+}
+
+.logo img{
+  display: block;
+  margin:20px auto;
+}
+
+.main {
+  width: 0 10%;
+  margin: 3% 0 0 10%;
+  position: relative;
+  height: 1700px;
+
+}
+main {
+  float: left;
+  width: 60%;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+}
+
+.container img {
+  display: block;
+  padding: 20px 0;
+  width: 90%;
+
+}
+
+.text {
+  display: block;
+  width: 90%;
+  line-height: 2em;
+  letter-spacing: 0.1px;
+}
+
+.comment {
+  border-top: 1px solid #646464;
+  border-bottom: 3px solid #646464;
+  padding: 5px 0;
+  width: 90%;
+}
+
+.comment a{
+  color: red;
+}
+
+a {
+  color: black;
+}
+span {
+  color: red;
+  font-weight: bold;
+}
+
+aside {
+
+  background: white;
+  float: right;
+  width: 28%  ;
+  margin: 0 10% 0 0;
+  padding: 0 0 100px 0;
+  display: block;
+  /* margin: 10px */
+}
+
+aside img {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+h3 {
+  padding: 0 40px;
+  margin: 20px 0 0 0 ;
+
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  line-height: 1.5em;
+  font-size: 14px;
+}
+
+
+footer {
+  clear: both;
+  bottom: 0;
+  position: relative;
+}
+
+.footerimg {
+  margin: 50px auto;
+  width: 12%;
+}
+
+/* NOTE: BUG IN FOOTER. OVERLAPPING WITH MAIN. */
+
+
+/* Clear fix hack */
+/* .clearfix:after {
+content: ".";
+display: block;
+clear: both;
+visibility: hidden;
+line-height: 0;
+height: 0;
+}
+
+
+.clear {
+clear: both;
+} */

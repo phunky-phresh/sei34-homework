@@ -20,6 +20,7 @@ footer {
 }
 
 .container {
+  position: relative;
   width: 960px;
   margin: auto;
   height: 100%;
@@ -94,4 +95,133 @@ main ul {
   display: inline-block;
   width: 600px;
   vertical-align: top;
+}
+
+.party {
+  position: absolute;
+  animation-name: "party";
+  animation-duration: 4s;
+  animation-play-state: paused;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 100%;
+}
+
+.disco {
+  animation-name: "disco";
+  animation-duration: 2s;
+  animation-play-state: paused;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  background-color: #bbb;
+}
+
+
+@keyframes party {
+    0% {width: 0px; height: 0px; background-color: red}
+    50% {width: 40px; height: 40px; background-color: yellow}
+    100% {width: 0px; height: 0px; background-color: blue}
+}
+
+@keyframes disco {
+    2% {background-color: red}
+    17% {background-color: yellow}
+    33% {background-color: blue}
+    48% {background-color: purple}
+    62% {background-color: blue}
+    76% {background-color: yellow}
+    90% {background-color: red}
+    100% {background-color: #bbb}
+}
+
+.box1 {
+  top: 100px;
+  left: 200px;
+}
+
+
+.box2 {
+  top: 100px;
+  left: 300px;
+  width: 100px;
+  height: 100px;
+}
+
+.box3 {
+  top: 450px;
+  left: 700px;
+  width: 100px;
+  height: 100px;
+}
+
+.box4 {
+  top: 400px;
+  left: 500px;
+  width: 100px;
+  height: 100px;
+}
+
+.box5 {
+  top: 100px;
+  left: 200px;
+}
+
+.box6 {
+  top: 100px;
+  left: 200px;
+}
+
+.box7 {
+  top: 100px;
+  left: 200px;
+}
+
+.box8 {
+  top: 100px;
+  left: 200px;
+}
+
+.box9 {
+  top: 100px;
+  left: 200px;
+}
+
+.box10 {
+  top: 100px;
+  left: 200px;
+}
+
+.box11 {
+  top: 100px;
+  left: 200px;
+}
+
+.box12 {
+  top: 100px;
+  left: 200px;
+}
+
+.box13 {
+  top: 100px;
+  left: 200px;
+}
+
+.box14 {
+  top: 100px;
+  left: 200px;
+}
+
+.box15 {
+  top: 100px;
+  left: 200px;
+}
+
+.disco:hover {
+  animation-name: "disco";
+  animation-play-state: running;
+}
+
+.disco:hover ~ .party{
+  animation-name: "party";
+  animation-play-state: running;
 }
