@@ -43,15 +43,16 @@ $(document).ready(function () {
     let numCheckingBalance = checkingBalance.text().slice(1);
 
     if (numCheckingBalance >= withdrawAmount) {
-
       let newBalance = numCheckingBalance - withdrawAmount;
       checkingBalance.text(`$${newBalance}`);
     }
     //Overdraft Function
     let numSavingsBalance = savingsBalance.text().slice(1);
 
-    if (numCheckingBalance < withdrawAmount && withdrawAmount <= Number((numCheckingBalance + numSavingsBalance))) {
-
+    if (
+      numCheckingBalance < withdrawAmount &&
+      withdrawAmount <= (Number(numCheckingBalance) + Number(numSavingsBalance))
+    ) {
       let newBalance = (Number(numCheckingBalance) + Number(numSavingsBalance)) - withdrawAmount;
       checkingBalance.text(`$0`);
       savingsBalance.text(`$${newBalance}`);
@@ -60,7 +61,6 @@ $(document).ready(function () {
     if (checkingBalance.text() === '$0') {
       checkingBalance.css('background-color', 'red');
     }
-
   };
 
   $('#checking-withdraw').click(withdrawChecking);
@@ -70,7 +70,6 @@ $(document).ready(function () {
     let numSavingsBalance = savingsBalance.text().slice(1);
 
     if (numSavingsBalance >= withdrawAmount) {
-
       let newBalance = numSavingsBalance - withdrawAmount;
       savingsBalance.text(`$${newBalance}`);
     }
@@ -78,8 +77,10 @@ $(document).ready(function () {
     //Overdraft Function
     let numCheckingBalance = checkingBalance.text().slice(1);
 
-    if (numSavingsBalance < withdrawAmount && withdrawAmount <= Number((numCheckingBalance + numSavingsBalance))) {
-
+    if (
+      numSavingsBalance < withdrawAmount &&
+      withdrawAmount <= (Number(numCheckingBalance) + Number(numSavingsBalance))
+    ) {
       let newBalance = (Number(numCheckingBalance) + Number(numSavingsBalance)) - withdrawAmount;
       savingsBalance.text(`$0`);
       checkingBalance.text(`$${newBalance}`);
