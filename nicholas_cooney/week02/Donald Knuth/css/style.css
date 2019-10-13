@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap');
+
+* {
+  box-sizing: border-box;
+  /* background: black; */
+}
+body {
+  background-color: #E8E8E8;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #E8E8E8;
+}
+nav ul {
+  text-align: center;
+  padding: 0;
+  margin: 2rem;
+}
+nav ul li {
+  list-style: none;
+  display: inline;
+  /* margin: 2rem; */
+  font-size: 1.5rem;
+}
+li a {
+  text-decoration: none;
+  color: #707070;
+  padding: 2rem;
+}
+li a:hover {
+  text-decoration: underline;
+  color: #D76B6B;
+}
+.current {
+  text-decoration: underline;
+  color: #D76B6B;
+}
+.container {
+  margin: 0 auto 4rem auto;
+  width: 80%;
+  background-color: #707070;
+  padding: 2rem 4rem;
+}
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  border-top: solid 1px #D76B6B;
+  border-bottom: solid 2px #D76B6B;
+  padding: 1rem 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+main {
+  margin-top: 1rem;
+}
+main h2 {
+  padding: 1rem 0;
+
+  font-size:
+}
+#hero {
+  width: 30%;
+}
+.content {
+  display: inline-block;
+  width: 69%;
+  vertical-align: top;
+  padding-left: 1rem;
+}
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  /* color: #D76B6B; */
+}
+.content p {
+  margin: 0.5rem 0;
+}
+p {
+  font-weight: 300;
+}
+.bio {
+  padding-top: 1rem;
+}
+.bio h2 {
+  border-top: solid 1px #D76B6B;
+  border-bottom: solid 2px #D76B6B;
+  text-align: center;
+  padding: 1rem 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  /* color: #D76B6B; */
+}
+.bio img {
+  width: 30%;
+  display: inline-block;
+  margin: 1rem 0;
+}
+#move {
+  display: inline-block;
+  width: 69%;
+  vertical-align: top;
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+/* TRIVIA PAGE */
+.trivia {
+  background-color: #707070;
+  /* margin: 2rem auto; */
+}
