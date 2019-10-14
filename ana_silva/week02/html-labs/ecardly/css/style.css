@@ -1,30 +1,142 @@
-/* 
+/*
 Project Name: Ecard.ly
-Client: General Assembly 
+Client: General Assembly
 Author: Christopher Castig | @castig
 Developer @GA in NYC
 */
 
 /* Box Model Hack */
-* {
-     -moz-box-sizing: border-box; /* Firexfox */
-     -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
-     box-sizing: border-box; /* IE */
-}
+
 
 /* Clear fix hack */
-.clearfix:after {
+/* .clearfix:after {
      content: ".";
      display: block;
      clear: both;
      visibility: hidden;
      line-height: 0;
      height: 0;
-}
+} */
 
-.clear {
+/* .clear {
 	clear: both;
+} */
+
+
+/* * {
+  border: 1px solid black;
+} */
+
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0 auto;
+  background-color: #d6d6d6;
+  color: #000;
+  font-family: Arial, sans-sans-serif;
+}
 
+header {
+  margin: 0 auto;
+  padding-top: 40px;
+  background-image: url("../images/background.jpg");
+  background-repeat: repeat-x;
+}
 
+header img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 940px;
+  position: relative;
+}
+
+.main {
+  padding: 5px 20px;
+  max-width: 640px;
+  background-color: white;
+  display: inline-block;
+}
+
+.box {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.main h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.main img {
+  width: 90%;
+}
+
+p {
+  font-size: 12px;
+}
+
+.text {
+  margin-top: 30px 0;
+  line-height: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.post {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid #000;
+  border-bottom: 5px solid #000;
+}
+
+aside {
+  max-width: 280px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 15px;
+  background-color: #fff;
+  padding-bottom: 30px;
+  margin-right: 0;
+}
+
+aside h3 {
+  margin-left: 30px;
+  margin-top: 40px;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+aside ul {
+  margin-top: 0;
+  margin-left: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+aside img {
+  width: 70%;
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+span {
+  color: #cc6633;
+  font-weight: bold;
+}
+
+footer {
+  width: 200px;
+  margin: 40px auto;
+  align-items: center;
+}
