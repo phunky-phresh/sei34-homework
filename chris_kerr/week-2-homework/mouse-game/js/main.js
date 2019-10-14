@@ -16,7 +16,7 @@ let cheeseOb = {
 let cont = document.getElementById('container');
 let catQueue = 0;
 let userScore = 0;
-let snd = new Audio("resources/mjau4.wav");
+let snd = new Audio('resources/meow4.wav');
 let currentIntervalStatus = 'running';
 
 let catImgs = ['images/cat1.gif', 'images/cat2.gif', 'images/cat3.gif', 'images/cat4.gif', 'images/cat5.gif', 'images/cat6.gif', 'images/cat7.gif', 'images/cat8.gif', 'images/cat-walk.gif'];
@@ -34,35 +34,41 @@ document.body.addEventListener('keydown', function (event) {
 
 function elementBuilder (type) {
   //create an all object list
-  let allObjects = [];
-  if (catArray.length > 0) allObjects.push([...catArray]);
-  if (mouseOb.id != '') allObjects.push(mouseOb);
-  if (cheeseOb.id != '') allObjects.push(cheeseOb);
+let allObjects = [];
+if (catArray.length > 0) {
+  catArray.forEach (cat => {
+    allObjects.push(cat);
+  })
+};
+if (mouseOb.id != '') allObjects.push(mouseOb);
+if (cheeseOb.id != '') allObjects.push(cheeseOb);
+console.log(allObjects);
 
-  // create a node and then create input parameters for it
-  let leftPos = 0, topPos = 0;
+// create a node and then create input parameters for it
+let leftPos = 0, topPos = 0;
 
-  //// test for unique starting position, to ensure no initial overlap
-  if (allObjects.length > 0) {
-    do {
-       leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
-       topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
-    } while (function() {
-        rebuildObject();
-
-        allObjects.forEach( function(i) {
-          if (parseInt(i.style.left) + i.offsetWidth >= leftPos && parseInt(i.id.style.left) <= (leftPos + 100) && parseInt(i.id.style.top) + i.id.offsetHeight >= topPos && parseInt(i.id.style.top) <= (topPos + 100)) {
-            console.log('clash - called within ElementBuilder');
-            return true;
-          }
-        return false;
-        })
-    } === true)
-  } else {
-    leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
-    topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
-  }
-  ///
+//// test for unique starting position, to ensure no initial overlap
+if (allObjects.length === 0) {
+  leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
+  topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
+} else {
+  do {
+     leftPos = Math.floor(Math.random() * (cont.offsetWidth - 110));
+     topPos = Math.floor(Math.random() * (cont.offsetHeight - 155)) + 45;
+  } while (function() {
+    console.log(allObjects);
+    allObjects.forEach( i => {
+      if (parseInt(i.id.style.left) + i.id.offsetWidth >= leftPos && parseInt(i.id.style.left) <= (leftPos + 100) && parseInt(i.id.style.top) + i.id.offsetHeight >= topPos && parseInt(i.id.style.top) <= (topPos + 100)) {
+        console.log(i.id.style.left)
+        console.log(i.id.offsetHeight)
+        console.log('clash - called within ElementBuilder');
+        return true;
+      }
+    return false;
+    })
+  }() === true);
+}
+///
 
   if (type === 'cat') {
     let newNode = document.createElement('img');
@@ -114,6 +120,7 @@ function elementBuilder (type) {
   }
 }
 
+
 function randomVels (arrayIndex, minX, maxX, minY, maxY) {
 
   let xVel = 0;
@@ -138,12 +145,6 @@ function randomVels (arrayIndex, minX, maxX, minY, maxY) {
 
     catArray[arrayIndex].xVel = xVel;
     catArray[arrayIndex].yVel = yVel;
-
-    if (xVel < 0) {
-      catArray[arrayIndex].id.setAttribute("class", "flippedCat");
-    } else {
-      catArray[arrayIndex].id.setAttribute("class", "normalCat");
-  }
 }
 
 function reset () {
@@ -179,9 +180,18 @@ function run() {
   detectCollision();
   detectWall();
 
-  catArray.forEach(function(i, j) {
-    catArray[j].id.setAttribute('style', `top: ${parseInt(catArray[j].id.style.top) + catArray[j].yVel}px; left: ${parseInt(catArray[j].id.style.left) + catArray[j].xVel}px`);
+  catArray.forEach(function(cat) {
+    cat.id.setAttribute('style', `top: ${parseInt(cat.id.style.top) + cat.yVel}px; left: ${parseInt(cat.id.style.left) + cat.xVel}px`);
   })
+
+  catArray.forEach(function(cat) {
+    if (cat.xVel < 0) {
+      cat.id.setAttribute("class", "flippedCat");
+    } else {
+      cat.id.setAttribute("class", "normalCat");
+    }
+  })
+
 }
 
 function detectWall() {
