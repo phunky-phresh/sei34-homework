@@ -16,21 +16,20 @@
 # "somestring"
 # >
 
-def run_ruby (input_string)
-
-end
 
 puts "Welcome to Chris' Ruby REPL"
 puts "Type 'quit' to finish session"
 print "> "
-user_input = gets.chomp
+user_input = gets.chomp.to_s
 
 until user_input == 'quit'
-    `touch .tmp.rb`
-    `echo output = #{user_input} >> .tmp.rb`
-    `echo puts output >> .tmp.rb`
-    print `ruby .tmp.rb`
-    `rm .tmp.rb`    
+    # `touch .tmp.rb`
+    # `echo output = #{user_input} >> .tmp.rb`
+    # `echo puts output >> .tmp.rb`
+    # print `ruby .tmp.rb`
+    # `rm .tmp.rb`    
+    output = eval(user_input)
+    puts output
     print "> "
     user_input = gets.chomp
 end
