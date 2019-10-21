@@ -20,22 +20,6 @@
 # #### Phase 2
 # - Advanced Calculator functionality
 # - Calculator should be able to do basic arithmetic (exponents, square roots)
-#
-#
-#
-# # Bonus
-# ## Mortgage Calculator
-# Calculate the monthly required payment given the other variables as input (look up the necessary variables)
-#
-# ## BMI Calculator
-# Calculate the body mass index (BMI) for an individual, given their height and weight
-#
-# ## Trip Calculator
-# Calculate a trip time and cost given inputs for
-# - distance
-# - miles per gallon
-# - price per gallon
-# - speed in miles per hour
 
 require 'pry'
 
