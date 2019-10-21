@@ -1,5 +1,6 @@
 console.log("Working! Homework - Objects");
 
+// Week 1, Day 4
 // Day 4 - Thursday, 3 October 2019
 
 // https://gist.github.com/wofockham/dacf2da17c743afb2b17#file-js-homework-4-md
