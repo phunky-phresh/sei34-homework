@@ -76,8 +76,6 @@ until menu_choice == "q"
     when "mc"
       puts "What is your Principal amount: "
       principal = gets.to_i
-      # principal amount
-      #interest rate
       puts "What is your fixed, yearly interest rate: "
       rate = gets.to_f
       puts "How many years is your mortgage plan: "
