@@ -36,8 +36,8 @@ Typography****************
 h1 {
   font-family: 'VT323', monospace;
   font-size: 5rem;
-  padding: 0;
-  /* padding-top: 0.2em; */
+  /* padding: 0; */
+  /* padding-right: 1em; */
   /* line-height: 1.5; */
 }
 
@@ -110,6 +110,17 @@ Layout ********************
    justify-content: space-between;
  }
 
+ h1 {
+   display: inline-block;
+ }
+
+img.inline {
+  display: inline;
+  /* float: right; */
+  width: 110px;
+  /* border: 1px solid green; */
+  padding-left: 1em;
+}
 nav ul {
    list-style-type: none;
    display: flex;
@@ -212,7 +223,7 @@ footer .copy {
   .l {
     float: right;
   }
-  footer {
+  .clear {
     clear: both;
   }
 }
