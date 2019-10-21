@@ -14,7 +14,7 @@ body {
 nav ul {
   text-align: center;
   padding: 0;
-  margin: 2rem;
+  margin: 1rem;
 }
 nav ul li {
   list-style: none;
@@ -45,14 +45,25 @@ h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
-h1 {
+.banner {
   text-align: center;
-  border-top: solid 1px #D76B6B;
-  border-bottom: solid 2px #D76B6B;
+  border-top: none;
+  border-bottom: dotted 2px #D76B6B;
   padding: 1rem 0;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+  color: #707070;
+  width: 80%;
+  margin: auto;
 }
+h1 {
+  border-top: solid 1px #D76B6B;
+  border-bottom: solid 2px #D76B6B;
+  font-weight: 400;
+  text-align: center;
+  padding: .5rem 0;
+}
+
 main {
   margin-top: 1rem;
 }
@@ -106,7 +117,22 @@ p {
   padding-left: 1rem;
 }
 /* TRIVIA PAGE */
+
 .trivia {
   background-color: #707070;
-  /* margin: 2rem auto; */
+  margin: 0 auto 4rem auto;
+  width: 80%;
+}
+.guess {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  display: inline-block;
+  width: 49%;
+  height: 4rem;
+  margin: 0 auto;
+}
+.guess:hover {
+  background-color: #494949;
+  color: #D76B6B;
 }
