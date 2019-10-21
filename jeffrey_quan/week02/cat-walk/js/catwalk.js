@@ -61,7 +61,7 @@ const catWalkA = function() {
   }
 };
 
-setInterval(catWalkA, 50);
+// setInterval(catWalkA, 50);
 
 // Bonus #2 - Cat walks back and forth
 const catB = document.getElementById('catB');
@@ -78,11 +78,11 @@ const catWalkB = function() {
     increment -= 10;
   }
 
-  console.log(condition);
+  console.log( increment );
   if (increment >= innerWidth) {
     condition = "right-to-left";
     catB.style.transform = 'scaleX(-1)';
-  } else if (increment <= -45) {
+  } else if (increment <= -40) {
     condition = "left-to-right";
     catB.style.transform = 'scaleX(1)';
   }
@@ -90,4 +90,41 @@ const catWalkB = function() {
   catB.style.left = increment + 'px';
 };
 
-setInterval(catWalkB, 50);
+// setInterval(catWalkB, 50);
+
+// Bonus #3 - Cat dances in middle of the screen
+const catC = document.getElementById('catB');
+catC.style.position = 'absolute';
+catC.style.left = '0px';
+let conditionC = "left-to-right";
+let incrementC = 0;
+
+const catWalkC = function() {
+
+  const dancingCat = function() {
+    catC.img.src = "https://media2.giphy.com/media/3mXcJgVhPxWZa/giphy.gif?cid=790b7611bccd11e8bf21cd2979c8867abf00a7ddfc84333b&rid=giphy.gif"
+  };
+
+  if (incrementC > (innerWidth / 2 - 10) && incrementC < (innerWidth / 2 + 10)){
+    setInterval(dancingCat, 10000);
+  }
+
+  if (conditionC === "left-to-right") {
+    increment += 10;
+  } else if (conditionC === "right-to-left") {
+    increment -= 10;
+  }
+
+  console.log(conditionC);
+  if (incrementC >= innerWidth) {
+    conditionC = "right-to-left";
+    catC.style.transform = 'scaleX(-1)';
+  } else if (incrementC <= -45) {
+    conditionC = "left-to-right";
+    catC.style.transform = 'scaleX(1)';
+  }
+
+  catC.style.left = incrementC + 'px';
+};
+
+// setInterval(catWalkC, 50);
