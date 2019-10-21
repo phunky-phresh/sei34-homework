@@ -40,7 +40,7 @@
 require 'pry'
 
 def show_menu
-  puts "Calculator" # TODO: you could use .center here to make it look nicer.
+  puts "Calculator".center(80) # TODO: you could use .center here to make it look nicer.
   puts "-=" * 40 # Budget horizontal dividing line
   puts "[a] - Addition"
   puts "[s] - Subtraction"
