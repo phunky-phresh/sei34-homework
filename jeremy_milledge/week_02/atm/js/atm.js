@@ -21,7 +21,7 @@ el.checking.$d.click(() => makeDeposit(el.checking));
 el.savings.$w.click(() => makeWithdrawal(el.savings, el.checking));
 el.savings.$d.click(() => makeDeposit(el.savings));
 
-//helpers
+//helpers //use db instead of pull from ui, should never reference jQuery (as obj)
 function makeDeposit(account) {
   let [i, b] = getInputAndBalance(account);
   updateBalance(account.$b, i, b);
