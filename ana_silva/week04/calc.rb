@@ -47,7 +47,7 @@ def show_menu
   puts "[%] - Modulus"
   puts "[m] - Mortgage payments"
   puts "[bmi] - Body Mass Index"
-  puts "[trip] - Trip costs"
+  puts "[trip] - Trip"
   puts "[q] - Quit"
   #TODO: add other options here
   print "Enter your choice: "
@@ -88,43 +88,43 @@ def bmi(height, weight)
   (weight / power(height, 2)).round(1)
 end
 
-def trip(distance, consumption, fuel_cost)
-  distance/100 * consumption * fuel_cost
+def trip_cost(distance, consumption, fuel_cost)
+  cost = distance/100 * consumption * fuel_cost
 end
-
-
-if menu_choice == 'm'
-  print "How much do you want to borrow ($): "
-  principal = gets.to_i
-  print "What is your interest rate (%): "
-  rate = gets.to_f
-  print "Number of years to pay: "
-  period = gets.to_f
-elsif menu_choice == 'bmi'
-  print "Height: "
-  height = gets.to_f
-  print "Weight: "
-  weight = gets.to_f
-elsif menu_choice == "trip"
-  print "Travelling distance (km): "
-  distance = gets.to_f
-  print "What is the car consumption (litres per 100 km): "
-  consumption = gets.to_f
-  print "What is the cost of fuel ($ per litre): "
-  fuel_cost = gets.to_f
-else
-  print "First value: "
-  a = gets.to_f
-  if menu_choice != 'sq'
-    print "Second value: "
-    b = gets.to_f
-  end
-end
-puts ""
-
 
 #define output
 until menu_choice == 'q'
+
+  if menu_choice == 'm'
+    print "How much do you want to borrow ($): "
+    principal = gets.to_i
+    print "What is your interest rate (%): "
+    rate = gets.to_f
+    print "Number of years to pay: "
+    period = gets.to_f
+  elsif menu_choice == 'bmi'
+    print "Height: "
+    height = gets.to_f
+    print "Weight: "
+    weight = gets.to_f
+  elsif menu_choice == "trip"
+    print "Travelling distance (km): "
+    distance = gets.to_f
+    print "What is the car consumption (litres per 100 km): "
+    consumption = gets.to_f
+    print "What is the cost of fuel ($ per litre): "
+    fuel_cost = gets.to_f
+    print "What is your speed (km/h): "
+    speed = gets.to_i
+  else
+    print "First value: "
+    a = gets.to_f
+    if menu_choice != 'sq'
+      print "Second value: "
+      b = gets.to_f
+    end
+  end
+  puts ""
 
   puts case menu_choice
   when 'a'
@@ -146,7 +146,7 @@ until menu_choice == 'q'
   when 'm'
     "Your monthly mortgage is $#{mortgage(principal, rate, period).to_i}."
   when 'trip'
-    "Your trip cost will be $#{trip(distance, consumption, fuel_cost).to_i}."
+    "Your trip cost will be $#{trip_cost(distance, consumption, fuel_cost).to_i} and will take #{(distance/speed).to_i.round(1)} hours."
   else
     "Invalid selection."
   end
