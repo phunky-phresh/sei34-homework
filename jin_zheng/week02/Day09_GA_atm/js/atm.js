@@ -23,6 +23,7 @@ const deposit = function($account, balance, amount) {
         balance += amount
     }
     $account.children('.balance').text("$" + balance);
+    formatToggle($account, balance);
 }
 //3/////////////////////////////////////////////////////////////////////////////
 const withdraw = function($account, balance, amount) {
@@ -42,10 +43,11 @@ const withdraw = function($account, balance, amount) {
         }
     }
     $account.children('.balance').text("$" + balance)
+    formatToggle($account, balance);
 }
 
 //4/////////////////////////////////////////////////////////////////////////////
-const formatToggle = ($account, balance) =>  {      $account.children('.balance').toggleClass('zero', balance === 0);}
+const formatToggle = ($account, balance) =>  {$account.children('.balance').toggleClass('zero', balance === 0);}
 
 //main//////////////////////////////////////////////////////////////////////////
 const setup = function () {
@@ -57,10 +59,10 @@ const setup = function () {
     formatToggle($cheq, balance($cheq)); //update display
     formatToggle($sav, balance($sav)); //update display
 
-    $cheq.children('[value="Deposit"]').click(() => {deposit($cheq, balance($cheq), amount($cheq)); formatToggle($cheq, balance($cheq))});
-    $sav.children('[value="Deposit"]').click(() => {deposit($sav, balance($sav), amount($sav)); formatToggle($sav, balance($sav))});
-    $cheq.children('[value="Withdraw"]').click(()=> {withdraw($cheq, balance($cheq), amount($cheq)); formatToggle($cheq, balance($cheq))});
-    $sav.children('[value="Withdraw"]').click(()=> {withdraw($sav, balance($sav), amount($sav));formatToggle($sav, balance($sav))});
+    $cheq.children('[value="Deposit"]').click(() => {deposit($cheq, balance($cheq), amount($cheq))});
+    $sav.children('[value="Deposit"]').click(() => {deposit($sav, balance($sav), amount($sav))});
+    $cheq.children('[value="Withdraw"]').click(()=> {withdraw($cheq, balance($cheq), amount($cheq))});
+    $sav.children('[value="Withdraw"]').click(()=> {withdraw($sav, balance($sav), amount($sav))});
 }
 
 $(document).ready(setup); //run setup when browser finishes loading html.
