@@ -19,7 +19,7 @@ def raindrops number
   output
 end
 
-puts "input 28: #{raindrops(28)}"
-puts "input 1755: #{raindrops(1755)}"
-puts "input 105: #{raindrops(105)}"
-puts "input 34: #{raindrops(34)}"
+puts "input 28: #{raindrops 28}"
+puts "input 1755: #{raindrops 1755}"
+puts "input 105: #{raindrops 105}"
+puts "input 34: #{raindrops 34}"
