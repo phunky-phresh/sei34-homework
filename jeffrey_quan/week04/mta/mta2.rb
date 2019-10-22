@@ -52,7 +52,7 @@ end_line = gets.chomp.to_s
 print "End stop: "
 end_stop = gets.chomp.to_s
 
-def plan_trip_one_line(line, a, b)
+def plan_trip_one_line line, a, b
 
   number_of_stops = 0
 
@@ -69,13 +69,15 @@ def plan_trip_one_line(line, a, b)
     stops = subway[line][subway[line].index(b)..(subway[line].index(a) - 1)].reverse
     number_of_stops += stops.size
   end
-  return stops.join(", "), number_of_stops
+
+  return tops.join(", "), number_of_stops
+
 end
 
-def plan_trip(start_line, start_stop, end_line, end_stop)
+def plan_trip start_line, start_stop, end_line, end_stop
 
   if start_line == end_line
-    stops = plan_trip_one_line(start_line, start_stop, end_stop)
+    stops = plan_trip_one_line start_line, start_stop, end_stop
     puts "You must travel through the following stops on the #{ start_line } line: #{ stops }."
   else
     stops_a = plan_trip_one_line(start_line, start_stop, "Union Square")[0]
@@ -89,5 +91,5 @@ def plan_trip(start_line, start_stop, end_line, end_stop)
   end
 end
 
-plan_trip(start_line, start_stop, end_line, end_stop)
+plan_trip start_line, start_stop, end_line, end_stop
 # binding.pry
