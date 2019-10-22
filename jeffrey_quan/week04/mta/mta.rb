@@ -41,19 +41,6 @@
 
 require 'pry'
 
-# def plan_trip (a, b, c, d)
-#
-#   subway = {
-#     :N => ["Times Square", "34th", "28th", "23rd", "Union Square", "8th"],
-#     :L => ["8th", "6th", "Union Square", "3rd", "1st"],
-#     :S => ["Grand Central", "33rd", "28th", "23rd", "Union Square", "Astor Place"]
-#   }
-#
-#   start_line = a;
-#   start_stop = b;
-#   end_line = c;
-#   end_stop = d;
-
 def plan_trip(a, b, c, d)
 
   start_line = a
