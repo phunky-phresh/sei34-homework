@@ -24,45 +24,35 @@ menu_choice = gets.chomp.downcase
 
 # puts "You chose: #{menu_choice}"
 
+def num1
+  puts "First number: "
+  result = gets.to_i
+end
+def num2
+  puts "Second number: "
+  result = gets.to_i
+end
 until menu_choice == "q"
   puts "you chose: #{menu_choice}"
   case menu_choice
     when "a"
-      puts "First number: " #replace with a function
-      num1 = gets.to_i
-      puts "Second number: "
-      num2 = gets.to_i
-      puts "Answer is #{num1 + num2}"
+      puts "Answer is #{num1() + num2()}"
       show_menu
       menu_choice = gets.chomp.downcase
     when "s"
-      puts "First number: "
-      num1 = gets.to_i
-      puts "Second number: "
-      num2 = gets.to_i
-      puts "Answer is #{num1 - num2}"
+      puts "Answer is #{num1() - num2()}"
       show_menu
       menu_choice = gets.chomp.downcase
     when "m"
-      puts "First number: "
-      num1 = gets.to_i
-      puts "Second number: "
-      num2 = gets.to_i
-      puts "Answer is #{num1 * num2}"
+      puts "Answer is #{num1() * num2()}"
       show_menu
       menu_choice = gets.chomp.downcase
     when "d"
-      puts "First number: "
-      num1 = gets.to_i
-      puts "Second number: "
-      num2 = gets.to_i
-      puts "Answer is #{num1 / num2}"
+      puts "Answer is #{num1() / num2()}"
       show_menu
       menu_choice = gets.chomp.downcase
     when "sr"
-      puts "Enter number: "
-      num1 = gets.to_i
-      puts "Answer is #{Math.sqrt(num1)}"
+      puts "Answer is #{Math.sqrt(num1())}"
       show_menu
       menu_choice = gets.chomp.downcase
     when "ex"
@@ -73,6 +63,7 @@ until menu_choice == "q"
       puts "Answer is #{num1 ** num2}"
       show_menu
       menu_choice = gets.chomp.downcase
+
     when "mc"
       puts "What is your Principal amount: "
       principal = gets.to_i
