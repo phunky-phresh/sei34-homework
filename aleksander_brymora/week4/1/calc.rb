@@ -30,7 +30,7 @@ def division a, b
 end
 
 def square_root a
-    Math.sqrt(a)
+    Math.sqrt(a).round(1)
 end
 
 def power a, b
