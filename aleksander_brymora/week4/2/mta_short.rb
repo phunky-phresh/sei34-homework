@@ -5,18 +5,16 @@ def user_input start_line, start_station, end_line, end_station
     end_station = end_line.index(end_station)
     if start_line == end_line
         puts "==> Start your trip <=="
-        # trip =
-        start_station < end_station ? (trip = start_line[start_station..end_station]) : (trip = start_line[end_station..start_station].reverse)
+        trip = start_station < end_station ? (start_line[start_station..end_station]) : (start_line[end_station..start_station].reverse)
         puts trip.map {|station| "- #{station.capitalize}"}
         puts "==> You arrived at #{end_line[end_station]} <=="
         puts "==> Total stops: #{(start_station - end_station).abs} <=="
     else
         puts "==> Start your trip <=="
-        trip = []
-        start_station < start_line.index("union square") ? (trip = start_line[start_station..start_line.index("union square") - 1]) : (trip = start_line[start_line.index("union square") + 1..start_station].reverse)
+        trip = start_station < start_line.index("union square") ? (start_line[start_station..start_line.index("union square") - 1]) : (start_line[start_line.index("union square") + 1..start_station].reverse)
         puts trip.map {|station| "-- #{station.capitalize}"}
         puts "Transfer at Union Square"
-        end_station < end_line.index("union square") ? (trip = end_line[end_station..end_line.index("union square")-1].reverse) : (trip = end_line[end_line.index("union square")..end_station])
+        trip = end_station < end_line.index("union square") ? (end_line[end_station..end_line.index("union square")-1].reverse) : (end_line[end_line.index("union square")..end_station])
         puts trip.map {|station| "-- #{station.capitalize}"}
         puts "==> You arrived at #{end_line[end_station].capitalize} <=="
         puts "==> Total stops: #{(start_station - start_line.index("union square")).abs + (end_station - end_line.index("union square") - 1).abs} <=="
