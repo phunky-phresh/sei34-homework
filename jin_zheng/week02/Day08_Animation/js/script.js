@@ -79,7 +79,7 @@ const finishDance = function(windowWidth, imgWidth, left, img2Width) {
     }
     //change style back
     img.style.left = left + "px";
-    walkingInterval = setInterval(catWalkWrapper, 50); //restart catWalkWrapper, and reset walkingInterval to be used to clear setInterval latter
+    walkingInterval = setInterval(catWalkWrapper, 50); //restart catWalkWrapper, and reset walkingInterval to be used to clear setInterval later
 
 }
 
