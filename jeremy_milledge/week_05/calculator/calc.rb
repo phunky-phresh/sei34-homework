@@ -1,4 +1,3 @@
-require 'pry'
 require 'rainbow'
 
 # calc functions
@@ -38,14 +37,20 @@ def mortgage(p, i, d) #principal, interest rate, duration
   numer/denom
 end
 
+def bmi(height, weight)
+  weight / height / height
+end
+
+def trip(dist, mpg, ppg, mph)
+  return dist / mph, ppg / mpg * dist
+end
+
 # ui functions
 def get_two_nums(a="first number", b="second number")
   print "Enter #{a}: "
   first = gets.to_f
-  puts "First number: #{first}."
   print "Enter #{b}: "
   second = gets.to_f
-  puts "Second number: #{second}."
   return first, second
 end
 
@@ -53,7 +58,6 @@ def get_three_nums(a="first number", b="second number", c="third number")
   first, second = get_two_nums(a, b)
   print "Enter #{c}: "
   third = gets.to_f
-  puts "Third number: #{third}"
   return first, second, third
 end
 
@@ -94,13 +98,10 @@ def show_menu()
   print "Enter your choice: "
 end
 
-
-
 # interface display
 show_menu
 choice = gets[0].downcase
 
-# binding.pry
 
 until choice == 'q'
   case choice
@@ -145,19 +146,20 @@ until choice == 'q'
     p, i, d = get_three_nums('principal', 'interest rate', 'duration (years)')
     ans = mortgage(p,i,d)
     puts ans
-    blue_ans "Monthly repayments for principal of $#{p}, interest rate of #{i}%, and duration #{d} years = $#{ans}"
+    blue_ans "Details: principal: $#{p}, interest rate: #{i}%, duration: #{d} years
+    Monthly repayments = $#{ans}"
   when 'b'
     red_head "body mass index mode"
-    first, second = get_two_nums('base', 'degree of root')
-    ans = nth_root(first, second)
-    puts ans
-    blue_ans "#{second} root of #{first} = #{ans}"
+    height, weight = get_two_nums('height', 'weight')
+    ans = bmi(height, weight)
+    blue_ans "Body Mass Index for person of height #{height}cm and weight #{weight}kg is #{ans}"
   when 't'
     red_head "trip time and cost mode"
-    first, second = get_two_nums('base', 'degree of root')
-    ans = nth_root(first, second)
-    puts ans
-    blue_ans "#{second} root of #{first} = #{ans}"
+    dist, mpg = get_two_nums('distance', 'miles per gallon')
+    ppg, mph = get_two_nums('price per gallon', 'miles per hour')
+    time, cost = trip(dist, mpg, ppg, mph)
+    blue_ans "Trip details: Distance #{dist}mi, mpg #{mpg}, ppg #{ppg}, speed #{mph}mph.
+    Total time: #{time} hours, Total cost: $#{cost}"
   else
     red_head "Invalid choice"
   end
