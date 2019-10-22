@@ -1,4 +1,3 @@
-#ruby version of mta (previously done with js)
 require 'pry'
 require 'rainbow'
 
@@ -30,10 +29,6 @@ def journey(start_line, start, final_line, final)
   stops.unshift first_leg
 end
 
-def validate
-
-end
-
 def log_journey(start_line, start, final_line, final)
   j = journey start_line, start, final_line, final
   count = 0
@@ -59,9 +54,27 @@ def log_leg(num_legs, leg_num, line, stations)
   puts stations.map {|x| Rainbow(x).yellow}
 end
 
+def trip(start_line, start, final_line, final)
+  if (start == 'Union Square' && final == 'Union Square') || (start == final && start_line == final_line)
+    puts "invalid input, already at #{start}."
+  elsif !$NYC.keys.include?(start_line) || !$NYC.keys.include?(final_line)
+    puts "invalid line input"
+  else
+    if (final_line != final_line && (start == 'Union Square' || final == 'Union Square'))
+      start == 'Union Square' ? start_line = final_line : final_line = start_line;
+    end
+    if !$NYC[start_line].include?(start) || !$NYC[final_line].include?(final)
+      puts "invalid station input"
+    else
+      log_journey start_line, start, final_line, final
+    end
+  end
+end
 
-
-log_journey 'N', 'Times Square', '6', 'Grand Central'
-log_journey '6', 'Grand Central', 'N', 'Times Square'
-log_journey 'N', 'Times Square', '6', '33rd'
-log_journey '6', 'Grand Central', '6', 'Union Square'
+trip 'N', 'Times Square', '6', 'Grand Central'
+trip '6', 'Grand Central', 'N', 'Times Square'
+trip 'N', 'Times Square', '6', '33rd'
+trip '6', 'Grand Central', '6', 'Union Square'
+trip 'Q', 'Grand Central', '6', 'Union Square' #invalid line
+trip '6', 'Grand', '6', 'Union Square' #invalid station
+trip '6', 'Union Square', '6', 'Union Square' #same station
