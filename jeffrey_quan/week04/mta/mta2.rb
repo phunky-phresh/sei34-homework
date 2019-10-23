@@ -54,8 +54,8 @@ end_stop = gets.chomp.to_s
 
 def plan_trip_one_line line, a, b
 
-  number_of_stops = 0
-
+  # number_of_stops = 0
+  stops = []
   subway = {
     "N" => ["Times Square", "34th", "28th", "23rd", "Union Square", "8th"],
     "L" => ["8th", "6th", "Union Square", "3rd", "1st"],
@@ -64,13 +64,15 @@ def plan_trip_one_line line, a, b
 
   if subway[line].index(a) < subway[line].index(b)
     stops = subway[line][(subway[line].index(a) + 1)..subway[line].index(b)]
-    number_of_stops += stops.size
+    # number_of_stops += stops.size
+    p stops
   elsif subway[line].index(a) > subway[line].index(b)
     stops = subway[line][subway[line].index(b)..(subway[line].index(a) - 1)].reverse
-    number_of_stops += stops.size
+    # number_of_stops += stops.size
+    p stops
   end
 
-  return tops.join(", "), number_of_stops
+  stops # implicit return
 
 end
 
@@ -78,18 +80,19 @@ def plan_trip start_line, start_stop, end_line, end_stop
 
   if start_line == end_line
     stops = plan_trip_one_line start_line, start_stop, end_stop
-    puts "You must travel through the following stops on the #{ start_line } line: #{ stops }."
+    puts "You must travel through the following stops on the #{ start_line } line: #{ stops.join(", ") }."
   else
-    stops_a = plan_trip_one_line(start_line, start_stop, "Union Square")[0]
-    number_of_stops_a = plan_trip_one_line(start_line, start_stop, "Union Square")[1]
-    stops_b = plan_trip_one_line(end_line, "Union Square", end_stop)[0]
-    number_of_stops_b = plan_trip_one_line(end_line, "Union Square", end_stop)[1]
-    puts "You must travel through the following stops on the #{ start_line } line: #{ stops_a }."
+    stops_a = plan_trip_one_line(start_line, start_stop, "Union Square")
+    # number_of_stops_a = plan_trip_one_line(start_line, start_stop, "Union Square")[1]
+    stops_b = plan_trip_one_line(end_line, "Union Square", end_stop)
+    # number_of_stops_b = plan_trip_one_line(end_line, "Union Square", end_stop)[1]
+    puts "You must travel through the following stops on the #{ start_line } line: #{ stops_a.join(", ") }."
     puts "Change at Union Square."
-    puts "Your journey continues through the following stops on the #{ end_line } line: #{ stops_b }."
-    puts "Total of #{ number_of_stops_a + number_of_stops_b } stops."
+    puts "Your journey continues through the following stops on the #{ end_line } line: #{ stops_b.join(", ") }."
+    puts "Total of #{ stops_a.size + stops_b.size } stops."
   end
 end
 
 plan_trip start_line, start_stop, end_line, end_stop
 # binding.pry
+# plan_trip('N', 'Times Square', '6', '33rd')
