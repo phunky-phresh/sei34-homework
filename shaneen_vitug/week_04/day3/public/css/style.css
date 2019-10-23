@@ -1,3 +1,36 @@
-body {
-  background-color: lightblue;
+a {
+  text-decoration: none;
+  font-size: 11px;
+  color: black;
+  font-family: Arial, serif;
+  padding: 1em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  font-family: Arial, serif;
+  font-size: 50px;
+}
+
+input {
+  width: 200px;
+}
+
+button {
+  background-color: #E7E7E8;
+  border-radius: 2px;
+}
+
+#image {
+  margin: 0 auto;
+  width: 400px;
+  display: flex;
+  
 }
