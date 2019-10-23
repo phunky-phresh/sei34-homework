@@ -80,9 +80,9 @@ def plan_trip(ini_line, ini_st, fin_line, fin_st)
 end
 
 
-plan_trip('N', 'Times Square', 'N', '23rd')   #same line
-plan_trip('6', 'Union Square', '6', 'Grand Central')   #same line reverse
-plan_trip('N', 'Times Square', '6', '33rd')
+plan_trip("N", "Times Square", "N", "23rd")   #same line
+plan_trip("6", "Union Square", "6", "Grand Central")   #same line reverse
+plan_trip("N", "Times Square", "6", "33rd")
 plan_trip("N", "34th", "6", "Union Square")
 plan_trip("L", "8th", "L", "3rd")
 plan_trip("N", "Times Square", "6", "Astor Place")
