@@ -8,11 +8,15 @@
     "
     <div class='tile'>
       <div class='left'>
-      <h3>#{i+1}. #{hit[:title]}</h3>
-      <p>by <strong>#{hit[:authors]}</strong></p>
+      <h2>#{i+1}. #{hit[:title]}</h2>
+      <p>by <strong>#{hit[:authors]}</strong>, #{hit[:date][0..3]}</p>
+      <p>
+        #{hit[:rating]}&nbsp;&#9733;&nbsp;(#{hit[:rating_count]})&nbsp;&nbsp;&nbsp;
+        <a target='_blank' href='#{hit[:preview]}' alt='#{hit[:title]} on Google Books'>Preview Link </a>
+      </p>
       <details closed>
         <summary><strong>Description</strong></summary>
-        #{hit[:description]}
+        <p class='description'>#{hit[:description]}</p>
       </details>
       </div>
       <div class='right'>

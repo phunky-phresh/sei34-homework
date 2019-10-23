@@ -10,7 +10,13 @@
 </head>
 <body>
   <nav>
-    <a href="/">Home</a>
+    <h2><a href="/">BookPreview</a></h2>
+    <form action="/book" class="nav-search">
+      <label>
+        <input type="text" name="title" placeholder="Dune">
+      </label>
+      <button>Search</button>
+    </form>
   </nav>
   <%= yield %>
 </body>
