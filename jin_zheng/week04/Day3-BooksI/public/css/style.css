@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800&display=swap&subset=korean');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Cinzel", sans-serif;
+    text-decoration: none;
+    color: white;
+
+}
+
+body {
+    background:url('/img/mars-background.jpg') fixed;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 3vw;
+    background-color: rgba(255, 0, 0, .4);
+    /* box-shadow: 0 2px 3px lightgray; */
+}
+
+h1 {
+    display: inline-block;
+    position: absolute;
+    left: 10%;
+    background-color: black;
+    color: white;
+    font-size: 3vw;
+    padding: 1vw;
+    font-family: "Special Elite", sans-serif;
+    /* box-shadow: 0 0 10px white; */
+}
+
+p {
+    font-family: "Special Elite", sans-serif;
+}
+
+nav {
+    position: absolute;
+    right: 20%;
+    top:2%;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+form {
+    color: black;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+input {
+    color: black;
+    outline: none;
+}
+
+button {
+    color: black;
+}
+
+.container{
+    padding: 8% 0;
+    margin: 0 auto;
+    max-width: 880px;
+    color: white;
+}
+
+.content {
+    /* display: flex; */
+    margin: 0 auto;
+    width: 100%;
+}
+.catagory {
+    margin: 0 0 5% 70%;
+}
+
+.bookinfo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 5%;
+}
+
+.description {
+    padding-top: 20%;
+}
+
+img {
+    width: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 1vh;
+    margin: 0 auto;
+    text-align: center;
+}
