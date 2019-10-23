@@ -30,7 +30,22 @@ button {
 
 #image {
   margin: 0 auto;
-  width: 400px;
+  max-width: 400px;
   display: flex;
-  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  height: 100vh;
+}
+
+#title {
+  text-align: center;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+#synopsis {
+  text-align: justify;
+  font-size: 14px;
 }
