@@ -3,9 +3,6 @@ require 'sinatra/reloader'
 require 'pry'
 require 'httparty'
 
-
-
-
 get "/" do
 
     moon = ['Mars', 'Marte', '%E7%81%AB%E6%98%9F']

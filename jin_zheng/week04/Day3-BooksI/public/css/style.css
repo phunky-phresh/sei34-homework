@@ -66,19 +66,21 @@ button {
 }
 
 .container{
-    padding: 8% 0;
+    padding: 4% 0;
     margin: 0 auto;
     max-width: 880px;
     color: white;
 }
 
 .content {
-    /* display: flex; */
-    margin: 0 auto;
+    margin: 0 auto 10vh auto;
     width: 100%;
+    flex-wrap: nowrap;
 }
-.catagory {
-    margin: 0 0 5% 70%;
+.category {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10%;
 }
 
 .bookinfo {
@@ -89,16 +91,17 @@ button {
 }
 
 .description {
-    padding-top: 20%;
+    margin-top: 5%;
 }
 
 img {
     width: 100%;
 }
 
-footer {
-    position: absolute;
-    bottom: 1vh;
-    margin: 0 auto;
+
+footer p {
+    width: 100%;
     text-align: center;
+    font-family: Cinzel;
+    margin: 0 auto;
 }
