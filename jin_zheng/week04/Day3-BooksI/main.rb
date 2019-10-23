@@ -26,3 +26,17 @@ get "/" do
 
     erb :home
 end
+
+
+get "/search" do
+    title = params[:book_name]
+    bookinfo = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=title:#{title}")['items'][0]["volumeInfo"]
+    @title = bookinfo["title"]
+    @author = bookinfo["author"]
+    @cover = bookinfo["imageLinks"]["thumbnail"]
+    @description = bookinfo["description"]
+    @catagory = bookinfo["categories"][0]
+
+    erb :home
+
+end
