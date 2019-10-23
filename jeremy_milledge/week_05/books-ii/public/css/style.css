@@ -1,0 +1,16 @@
+.tile {
+  background: rgba(255,255,255,0.3);
+  margin: 2vh auto;
+  padding:2vh;
+  display:flex;
+  justify-content: space-between;
+}
+
+.left {
+  max-width: 75%;
+}
+.right {max-width: 25%}
+.right img {
+  height: 15vh;
+  flex: 0;
+}
