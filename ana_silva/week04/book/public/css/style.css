@@ -1,0 +1,73 @@
+body {
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+}
+
+.container {
+  max-width: 960px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+nav {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 40px;
+  margin: 30px auto;
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+label {
+  align-self: flex-start;
+}
+
+input {
+  font-size: 15px;
+  min-width: 300px;
+  margin-bottom: 0;
+  border: 1px solid #000;
+}
+
+button {
+  font-weight: bold;
+  background-color: #ccc;
+  border: 1px solid #000;
+  align-self: flex-end;
+  margin-bottom: 0;
+}
+
+.main {
+  margin: 30px auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.cover {
+  margin-left: 20px;
+}
+
+.title {
+  margin-left: 20px;
+
+}
+
+p {
+  margin-top: 20px 20px;
+  font-weight: bold;
+}
