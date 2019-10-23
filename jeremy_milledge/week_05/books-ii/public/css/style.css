@@ -28,10 +28,11 @@
   background: #A093FF !important;
 }
 .hero button:hover {
-  background: #7360FF !important; 
+  background: #7360FF !important;
 }
 .tile {
-  background: #93ffa0;
+  background: #222222;
+  color: #fff;
   margin: 2vh auto;
   padding: 4vh;
   display:flex;
@@ -48,7 +49,9 @@
 }
 .tile .right img {
   height: 15vh;
+  box-sizing: border-box;
   flex: 0;
+  border: 4px solid #fff;
 }
 .description {
   line-height: 1.6;
@@ -97,4 +100,17 @@ button {
 
 button:hover {
   background:  #FF7360 !important;
+}
+
+.tile strong {
+  color: #fff;
+}
+
+.tile h2 {
+  background: rgb(147, 255, 160);
+  padding: 2vh;
+}
+
+.tile a {
+  color: rgb(147, 255, 160);
 }
