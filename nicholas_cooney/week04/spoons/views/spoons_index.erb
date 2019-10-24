@@ -1,22 +1,22 @@
 
-<div id="container">
+
   <h1>the Spoonbrary.</h1>
-  <div class="entry">
+
     <% @spoons.each do |spoon| %>
-    <div class="name">
+    <div class="display">
       <a href="/spoons/<%= spoon["id"] %>">
         <%= spoon["name"] %>
       </a>
     </div>
-    <div class="description">
+    <div class="display">
 
     </div>
-    <div class="rating">
+    <div class="display">
       <%= spoon["rating"] %>/10
     </div>
 
     <% end %>
-  </div>
+
 
 
 <!-- </div> -->
