@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/master.css">
+    <title>Make Life Green Again</title>
+</head>
+<body>
+    <header>
+        <h1>"Make Life Green Again"</h1>
+        <nav>
+            <a href="/">Home</a>
+            <form class="" action="" method="get">
+                <input type="text" name="">
+                <button>Search</button>
+            </form>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="Category">
+            <div class="">
+                <a href="/new_plant">ADD A NEW PLANT</a>
+            </div>
+            <div class="plant-type">
+                <ul>
+                    <% @types.each do |type| %>
+                    <li><a class=type href="/<%= type %>"><%= type %></a>
+                        <ul class="hover-list">
+                            <% @plants.each do |plant| %>
+
+                            <% if plant["type"] == type %>
+                            <li>
+                                <a class=name href="/<%= type %>/<%= plant["id"] %>">
+                                    <%= plant["name"] %>
+                                </a>
+                            </li>
+                            <% end %>
+                            <% end %>
+                        </ul>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </aside>
+        <main>
+
+
+            <%= yield %>
+        </main>
+    </div>
+    <footer>
+        <p class='copyright'>&copy; Copyright 2019</p>
+    </footer>
+</body>
+</html>

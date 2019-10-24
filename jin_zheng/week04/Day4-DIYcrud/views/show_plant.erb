@@ -1,0 +1,53 @@
+<h2><%= @plant['name'] %></h2>
+<div class="">
+    <p>Water Demand: <%= @plant['water_demand'] %></p>
+    <p>Sunlight Demand: <%= @plant['sunlight_demand'] %></p>
+    <p>Rareness: <%= @plant['rareness'] %></p>
+</div>
+<div class="">
+    <button>Edit</button>
+    <form class="hover" action="/<%= @plant['type'] %>/<%= @plant["id"] %>/edit" method="post">
+        <label>
+            Name:
+            <input type="text" name="name" placeholder=<%= @plant['name'] %>>
+        </label>
+
+        <label>
+            Type:
+            <input type="text" name="type" placeholder=<%= @plant['type'] %>>
+        </label>
+
+        <label>
+            Water Demand:
+            <input type="number" name="water_demand" placeholder=<%= @plant['water_demand'] %>>
+            <p>Rate it from 1-5. 1 for low, 5 for high.</p>
+        </label>
+
+        <label>
+            Sunlight Demand:
+            <input type="number" name="sunlight_demand" placeholder=<%= @plant['sunlight_demand'] %>>
+            <p>Rate it from 1-5. 1 for low, 5 for high.</p>
+        </label>
+
+        <label>
+            Rareness:
+            <input type="number" name="rareness" placeholder="<%= @plant['rareness'] %>">
+            <p>Rate it from 1-5. 1 for low, 5 for high.</p>
+        </label>
+
+        <label>
+            image:
+            <input type="text" name="image" placeholder="<%= @plant['image'] %>">
+        </label>
+        <button>Summit</button>
+    </form>
+    <button>Delete</button>
+    <form class="" action="/<%= @plant['type'] %>/<%= @plant["id"] %>/delete" method="get">
+        <p>Are you sure?</p>
+        <button>YES</button>
+    </form>
+</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<% unless @plant['image'].nil? || @plant['image'].empty? %>
+<img src="<%= @plant['image'] %>" alt="<%= @plant['name'] %>">
+<% end %>

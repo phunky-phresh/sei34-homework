@@ -5,21 +5,24 @@ require 'httparty'
 
 get "/" do
 
-    moon = ['Mars', 'Marte', '%E7%81%AB%E6%98%9F']
-
-    li = moon.map{|word| HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=title:#{word}")['items'][0,10]}.inject &:|;
-
-    index = rand li.size
-
+    mars = ['Mars', 'Marte', '%E7%81%AB%E6%98%9F', '%ED%99%94%EC%84%B1']
     begin
-    @title = li[index]["volumeInfo"]["title"]
-    @author = li[index]["volumeInfo"]["author"]
-    @cover = li[index]["volumeInfo"]["imageLinks"]["thumbnail"]
-    @description = li[index]["volumeInfo"]["description"]
-    @catagory = li[index]["volumeInfo"]["categories"][0]
+        li = mars.map{|word| HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=title:#{word}")['items'][0,10]}.inject &:|;
+        while true
+            book = li.shuffle[0]
+            break if book["volumeInfo"]["description"].length > 20
+        end
     rescue
-        redirect to('/')
+        li = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=title:jaws")['items']
+        book = li[0]
     end
+
+        @title = book["volumeInfo"]["title"]
+        @author = book["volumeInfo"]["authors"][0]
+        @cover = book["volumeInfo"]["imageLinks"]["thumbnail"]
+        @description = book["volumeInfo"]["description"]
+        @catagory = book["volumeInfo"]["categories"][0]
+
 
     erb :home
 end
