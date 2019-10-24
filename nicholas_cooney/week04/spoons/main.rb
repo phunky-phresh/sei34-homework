@@ -9,7 +9,7 @@ end
 get '/spoons' do
   @spoons = query_db "SELECT * FROM spoons"
   puts @spoons.to_s
-  erb :spoon_index
+  erb :spoons_index
 end
 
 #SHOW
@@ -18,13 +18,18 @@ get '/spoons/:id' do
   @spoons = @spoons.first
   @spoons.to_s
 
-  erb :spoon_display
+  erb :spoons_display
 end
 
-#Add
-get '/spoons/new' do
 
+get '/spoons/new' do
   erb :spoons_new
+end
+
+post '/spoons' do
+  query = "INSERT INTO spoons (name, description, rating, image) VALUES ('#{params[:name]}', '#{params[:description]}', '#{params[:rating]}', '#{params[:image]}')"
+  query_db query_db
+  redirect to ('/spoons')
 end
 
 def query_db sql_statement
