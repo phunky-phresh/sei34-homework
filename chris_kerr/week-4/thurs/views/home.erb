@@ -1,0 +1,28 @@
+<h1>Kate and Chris' Sport Supplies</h1>
+
+
+<p>Filter by sport:</p>
+<nav>
+        <a href="/">All</a>
+    <% @option_list.each do |element| %>
+        <a href="/<%= element %>"><%= element %></a>
+    <% end %>
+</nav>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Sport</th>
+        <th>Quanitity</th>
+    </tr>
+<br>
+    <% @list.each do | hash | %>
+        <tr>
+            <td><a href="/items/<%= hash["id"] %>"><%= hash["item"] %></a></td>
+            <td><%= hash["sport"] %></td>
+            <td><%= hash["quantity"] %></td>
+            <td><a href="/items/<%= hash["id"] %>/edit">Edit</a></td>
+        </tr>
+    <% end %>
+
+</table>
