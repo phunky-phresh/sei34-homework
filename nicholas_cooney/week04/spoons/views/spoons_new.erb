@@ -1,24 +1,27 @@
-<h1>Add New Spoons</h1>
- <form class="" action="/spoons" method="post">
-   <label for="name">
-     Name:
-     <input type="text" name="name" placeholder="Salad Spoon" required>
-    </label>
+<div id="form">
+  <h1>Add a Spoon</h1>
+   <form class="" action="/spoons" method="post">
+     <label for="name">
+       Name:
+       <input type="text" name="name" placeholder="Salad Spoon" required>
+      </label>
 
-    <label for="description">
-      Description:
-      <input type="text" name="description" >
-    </label>
+      <label for="rating">
+        Rating:
+       <input type="number" name="rating" required max="10">/10
+     </label>
 
-    <label for="rating">
-      Rating:
-     <input type="number" name="rating" required>/10
-   </label>
+      <label for="image">
+        Image:
+       <input name="image" type="url" placeholder="http://...">
+     </label>
 
-    <label for="image">
-      Image:
-     <input name="image" type="url" placeholder="http://...">
-   </label>
+     <label  for="description">
+       A short description:
+       <input class="description" type="text" name="description" >
+     </label>
 
-   <button>Spoon it</button>
- </form>
+     <button>Spoon it</button>
+   </form>
+
+</div>
