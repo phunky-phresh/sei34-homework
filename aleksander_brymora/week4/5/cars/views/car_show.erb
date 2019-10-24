@@ -1,7 +1,7 @@
 <h2><%= @car["name"] %></h2>
-<h3>Year <strong><%= @car["year"] %></strong></h3>
+<h3><%= @car["year"] %></h3>
 
-<% unless @car["image"].nil? || @car["image"].empty? %>
+<% unless @car["photo"].nil? || @car["photo"].empty? %>
     <img src="<%= @car["photo"] %>" alt="<%= @car["name"] %>">
 <% end%>
 
