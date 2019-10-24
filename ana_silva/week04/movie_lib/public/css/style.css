@@ -1,0 +1,24 @@
+body {
+  /* background-image: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.container {
+  max-width: 960px;
+}
+
+nav {
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #03b1fc;
+  font-size: 20px;
+}
+
+a {
+  margin-right: 30px;
+}
+
+.feature {
+  max-width: 100%;
+}
