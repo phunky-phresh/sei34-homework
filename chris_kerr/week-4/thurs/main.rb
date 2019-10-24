@@ -18,7 +18,7 @@ get '/items/new' do
 end
 
 post '/' do
-    query_db "INSERT INTO kit (item, sport, quantity) VALUES ('#{params["item"]}', '#{params["sport"]}', '#{params["quantity"]}')"
+    query_db "INSERT INTO kit (item, sport, quantity, image) VALUES ('#{params["item"]}', '#{params["sport"]}', '#{params["quantity"]}', '#{params['image']}')"
     redirect to '/'
 end
 
@@ -29,7 +29,7 @@ get '/items/:id/edit' do
 end
 
 post '/items/:id' do
-    query_db "UPDATE kit SET item='#{params['item']}', sport='#{params['sport']}', quantity='#{params['quantity']}' WHERE id=#{params[:id]}"
+    query_db "UPDATE kit SET item='#{params['item']}', sport='#{params['sport']}', quantity='#{params['quantity']}', image='#{params['image']}' WHERE id=#{params[:id]}"
     redirect to "/items/#{params[:id]}"
 end
 

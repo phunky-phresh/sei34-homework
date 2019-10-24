@@ -11,7 +11,11 @@
     </label>
     <label>
         Quanitity:
-        <input name='quantity' value='<%= @item['quantity'] %>' require>
+        <input name='quantity' value='<%= @item['quantity'] %>' required>
+    </label>
+        <label>
+        Link to an image:
+        <input name='image' value='<%= @item['image'] %>' type='url' >
     </label>
     <button>Submit edit</button>
 </form>
