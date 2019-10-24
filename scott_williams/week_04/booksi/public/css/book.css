@@ -1,0 +1,14 @@
+.container {
+  background-color: #aaa;
+  padding: 2em;
+  border-radius: 1em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  margin: 1em;
+}
