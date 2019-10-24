@@ -12,6 +12,15 @@ get '/spoons' do
   erb :spoons_index
 end
 
+get '/spoons/new' do
+  erb :spoons_new
+
+end
+post '/spoons' do
+  query = "INSERT INTO spoons (name, description, rating, image) VALUES ('#{params[:name]}', '#{params[:description]}', '#{params[:rating]}', '#{params[:image]}')"
+  query_db query
+  redirect to ('/spoons')
+end
 #SHOW
 get '/spoons/:id' do
   @spoons = query_db "SELECT * FROM spoons WHERE id=#{params[:id]}"
@@ -20,16 +29,23 @@ get '/spoons/:id' do
 
   erb :spoons_display
 end
-
-
-get '/spoons/new' do
-  erb :spoons_new
+###EDIT ####
+get '/spoons/:id/edit' do
+  @spoons = query_db "SELECT * FROM spoons WHERE id=#{params[:id]}"
+  @spoons = @spoons.first
+  erb :spoons_edit
+end
+###UPDATE###
+post '/spoons/:id' do
+  query = "UPDATE spoons SET name='#{params[:name]}', description='#{params[:description]}', rating='#{params[:rating]}', image='#{params[:image]}' WHERE id=#{params[:id]}"
+  query_db query
+  redirect to ("/spoons/#{params[:id]}")
 end
 
-post '/spoons' do
-  query = "INSERT INTO spoons (name, description, rating, image) VALUES ('#{params[:name]}', '#{params[:description]}', '#{params[:rating]}', '#{params[:image]}')"
-  query_db query_db
-  redirect to ('/spoons')
+#DELETE###
+get '/spoons/:id/delete' do
+  query_db "DELETE FROM spoons WHERE id=#{params[:id]}"
+  redirect to ("/spoons")
 end
 
 def query_db sql_statement

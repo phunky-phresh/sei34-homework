@@ -1,0 +1,24 @@
+<h1>Edit Spoon</h1>
+ <form action="/spoons/<%= @spoons["id"] %>" method="post">
+   <label for="name">
+     Name:
+     <input type="text" name="name" placeholder="Salad Spoon" required value="<%= @spoons["name"] %>">
+    </label>
+
+    <label for="description">
+      Description:
+      <input type="text" name="description" value="<%= @spoons["description"] %>" >
+    </label>
+
+    <label for="rating">
+      Rating:
+     <input type="number" name="rating" required value="<%= @spoons["rating"] %>">/10
+   </label>
+
+    <label for="image">
+      Image:
+     <input name="image" type="url" placeholder="http://..." value="<%= @spoons["image"] %>">
+   </label>
+
+   <button>Spoon it</button>
+ </form>
