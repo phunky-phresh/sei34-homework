@@ -1,0 +1,18 @@
+.itemPage .header {
+    margin: auto;
+    width: 100%
+}
+
+.header > p {
+    width: 20%;
+    text-align: left;
+    display: inline-block;
+}
+
+.container {
+    width: 960px;
+}
+
+nav a {
+    padding-right: 40px;
+}

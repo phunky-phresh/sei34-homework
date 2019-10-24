@@ -1,0 +1,22 @@
+<h2>Please submit any edits here</h2>
+
+<form action='/items/<%= @item['id'] %>' method='post'>
+    <label>
+        Item name:
+        <input name='item' value='<%= @item['item'] %>' required>
+    </label>
+    <label>
+        Sport:
+        <input name='sport' value='<%= @item['sport'] %>' required>
+    </label>
+    <label>
+        Quanitity:
+        <input name='quantity' value='<%= @item['quantity'] %>' require>
+    </label>
+    <button>Submit edit</button>
+</form>
+
+<br>
+<br>
+<br>
+<a href='/items/<%= @item['id'] %>/delete'>Delete item</a>
