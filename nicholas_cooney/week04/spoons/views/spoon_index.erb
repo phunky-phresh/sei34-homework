@@ -1,0 +1,9 @@
+<h1>spoon index</h1>
+<% @spoons.each do |spoon| %>
+<p>
+  <a href="/spoons/<%= spoon["id"] %>">
+    <%= spoon["name"] %>
+  </a>
+
+</p>
+<% end %>

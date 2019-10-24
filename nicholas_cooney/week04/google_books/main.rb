@@ -16,6 +16,7 @@ get '/book' do
   @image = @book_info["items"].first["volumeInfo"]["imageLinks"]
 
   @thumbnail = @image["thumbnail"]
+  @summary = @book_info["items"].first["volumeInfo"]["description"]
 # binding.pry
   erb :book
 end
