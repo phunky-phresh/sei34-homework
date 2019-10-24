@@ -1,20 +1,25 @@
-<h2>new idea</h2>
-<form action="/" method="post">
-  <label>
-    Title
-    <input name="title" placeholder="flying car" required>
-  </label>
-  <label>
-    Category
-    <input name="category" placeholder="transport" required>
-  </label>
-  <label>
-    Description
-    <input name="description" placeholder="to fly with my car">
-  </label>
-  <label>
-    Related Links
-    <input type="url" name="links" placeholder="https://ford.com/mustang.jpg">
-  </label>
-  <button type="submit">Add Idea</button>
-</form>
+<div class="idea-header">
+  <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
+  <h2 class="idea-single">bright idea</h2>
+</div>
+<div class="form-container">
+  <form action="/" method="post" class="new">
+    <label>
+      <p>title</p>
+      <input name="title" placeholder="flying car" required>
+    </label>
+    <label>
+      <p>category</p>
+      <input name="category" placeholder="transport" required>
+    </label>
+    <label>
+      <p>description</p>
+      <textarea name="description" placeholder="to fly with my car"></textarea>
+    </label>
+    <label>
+      <p>related links</p>
+      <input type="url" name="links" placeholder="https://ford.com/mustang.jpg">
+    </label>
+    <button type="submit">add idea</button>
+  </form>
+</div>

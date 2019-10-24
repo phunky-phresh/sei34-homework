@@ -45,6 +45,12 @@ post '/idea/:id' do
   redirect to ("/idea/#{params[:id]}") #after posting, do get request
 end
 
+#delete
+get '/idea/:id/delete' do |id|
+  query_db "DELETE FROM entrepreneuring WHERE id=#{id}"
+  redirect to ('/')
+end
+
 #view
 get '/' do
   @ideas = query_db 'SELECT * FROM entrepreneuring'
