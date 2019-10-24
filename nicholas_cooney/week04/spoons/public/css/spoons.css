@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #545D80;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+.title h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 40px;
+}
+nav {
+  text-align: center;
+  padding: 30px 0;
+}
+a {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  padding: 0 10px;
+}
+a:hover {
+  text-decoration: underline;
+}
+.title {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* spoonbrary */
+.index {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #2E3E80;
+  border-radius: 0 20px 0 20px;
+  padding: 15px;
+}
+.index a {
+  font-size: 20px;
+}
