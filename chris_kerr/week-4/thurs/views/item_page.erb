@@ -1,0 +1,21 @@
+
+
+ <% if @item['image'].nil? || @item['image'].empty?%>
+      
+        <p class='itemP'>Please edit to add an image to this item!</p>
+    <% else %>
+          <img src="<%= @item['image'] %>" class='itemImage'>
+    <% end %>
+
+
+<div class='itemPageHeader'>
+    <p>Item: <strong><%= @item["item"] %></strong></p>
+    <p>Sport: <strong><%= @item["sport"]%></strong></p>
+    <p>Quantity: <strong><%= @item["quantity"]%></strong></p> 
+</div>
+
+
+<div class='itemPageBody'>
+   
+    <a href="/items/<%= @item["id"] %>/edit">Edit</a>
+</div>
