@@ -1,0 +1,20 @@
+<h2>edit idea</h2>
+<form action="/idea/<%= @idea['id'] %>" method="post">
+  <label>
+    Title
+    <input name="title" placeholder="<%= @idea['title'] %>" value="<%= @idea['title'] %>" required>
+  </label>
+  <label>
+    Category
+    <input name="category" placeholder="<%= @idea['category'] %>" value="<%= @idea['category'] %>" required>
+  </label>
+  <label>
+    Description
+    <input name="description" placeholder="<%= @idea['description'] %>" value="<%= @idea['description'] %>">
+  </label>
+  <label>
+    Related Links
+    <input type="url" name="links" placeholder="<%= @idea['links'].join(',') %>" value="<%= @idea['links'].join(',') %>">
+  </label>
+  <button type="submit">Update</button>
+</form>

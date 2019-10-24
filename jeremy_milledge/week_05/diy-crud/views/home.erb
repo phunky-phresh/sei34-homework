@@ -1,0 +1,16 @@
+<h1>entrepreneuring</h1>
+<main>
+  <% @ideas.each do |x| %>
+    <article class="<%= x['category'] %>">
+
+      <h2><a href="idea/<%= x['id'] %>" alt="<%= x['title'] %>"><%= x['title'] %></a></h2>
+      <p>In <%= x['category'] %> on <%= x['post_time'] %></p>
+      <h4>Description</h4>
+      <p><%= x['description'] %></p>
+      <h4>Relevant Links</h4>
+      <% x['links'].each_with_index do |y, i| %>
+        <p><a href="<%= y %>" alt="<%=x['title'] %> related link number <%= i + 1 %>" target="_blank"><%= y %></a></p>
+      <% end %>
+    </article>
+  <% end %>
+</main>

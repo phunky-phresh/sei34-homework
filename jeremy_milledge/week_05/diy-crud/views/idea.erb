@@ -1,0 +1,15 @@
+<h1>Idea</h1>
+
+<article class="<%= @idea['category'] %>">
+
+  <h2><%= @idea['title'] %></h2>
+  <a href="<%= @idea['id'] %>/edit" alt="Edit this idea">Edit</a>
+  <a href="<%= @idea['id'] %>/delete" alt="Delete this idea">Delete</a>
+  <p>In <%= @idea['category'] %> on <%= @idea['post_time'] %></p>
+  <h4>Description</h4>
+  <p><%= @idea['description'] %></p>
+  <h4>Relevant Links</h4>
+  <% @idea['links'].each_with_index do |y, i| %>
+    <p><a href="<%= y %>" alt="<%=@idea['title'] %> related link number <%= i + 1 %>" target="_blank"><%= y %></a></p>
+  <% end %>
+</article>

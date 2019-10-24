@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+article {
+	padding: 20px;
+	border: 1px solid #999;
+	background: #fff;
+	break-inside: avoid-column;
+	margin-bottom: 1rem;
+}
+article a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+main {
+  columns: 250px;
+	column-gap: 20px;
+}
+
+.transport {
+  background: red;
+}
+
+.energy {
+  background: blue;
+}
+
+.pets {
+  background: yellow;
+}
+
+.social {
+  background: pink;
+}
+
+.entertainment {
+  background: purple;
+}
