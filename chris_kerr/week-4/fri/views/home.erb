@@ -5,17 +5,17 @@
         <th>Height</th>
         <th>Summary</th>
     </thead>
-    <% @types.each do | type |  %>
+    <% @types.each do | each |  %>
     <tr>
         <td>
-        <a href="/clouds/<%=type['id']%>"><%= type['name']%></a>
+        <a href="/clouds/<%=each['id']%>"><%= each['name']%></a>
         </td>
 
         <td>
-        <a href="/<%= type.height.id%>"><%= type.height.name%></a>
+        <a href="/<%= each.height.id%>"><%= each.height.name%></a>
         </td>
 
-        <td><%= type['summary']%></td>
+        <td><%= each['summary']%></td>
     </tr>
     <% end %>
 </ul>

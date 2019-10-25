@@ -1,1 +1,18 @@
-<h2><%= @cloud['name']%></h2>
+<column> 
+    <h2>Cloud name: <em><%= @cloud.name%></em></h2>
+    <h3>Category: <em><%= @cloud.height.name %></em></h3>
+    <h3>Altitude Range: <em><%= @cloud.altitude_range %></em></h3>
+    <h4>Description:</h4>
+    <p><%= @cloud.description %></p>
+
+    <a href="/clouds/<%= @cloud.id%>/edit">Edit entry</a>
+
+</column>
+
+<column>
+    <% if @cloud.image.nil? || @cloud.image.empty? %>
+    <p>Please add an image of this cloud</p>
+    <% else %>
+    <img src="<%= @cloud.image %>"></img>
+    <% end %>
+</column>
