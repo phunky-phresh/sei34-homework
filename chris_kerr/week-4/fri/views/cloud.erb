@@ -1,6 +1,6 @@
 <column> 
     <h2>Cloud name: <em><%= @cloud.name%></em></h2>
-    <h3>Category: <em><%= @cloud.height.name %></em></h3>
+    <h3>Category: <em><a href="/<%= @cloud.height.id %>"><%= @cloud.height.name %></a></em></h3>
     <h3>Altitude Range: <em><%= @cloud.altitude_range %></em></h3>
     <h4>Description:</h4>
     <p><%= @cloud.description %></p>
