@@ -1,0 +1,12 @@
+<h2 class="fighter"><%= @fighter["name"]%></h2>
+<h3 class="model">Model:<em><%= @fighter["model"] %></em> </h3>
+
+<% unless @fighter["image"].nil? || @fighter["image"].empty? %>
+<img class="feature" src="<%= @fighter["image"] %>" alt="<%= @fighter["name"] %>">
+<% end %>
+
+
+<div class="controls">
+  <a href="/fighters/<%= @fighter["id"] %>/edit">Edit</a>
+  <a href="/fighters/<%= @fighter["id"] %>/delete">Delete</a>
+</div>
