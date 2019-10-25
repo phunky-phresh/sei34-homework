@@ -1,0 +1,21 @@
+<h2>Overview</h2>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Height</th>
+        <th>Summary</th>
+    </thead>
+    <% @types.each do | type |  %>
+    <tr>
+        <td>
+        <a href="/clouds/<%=type['id']%>"><%= type['name']%></a>
+        </td>
+
+        <td>
+        <a href="/<%= type.height.id%>"><%= type.height.name%></a>
+        </td>
+
+        <td><%= type['summary']%></td>
+    </tr>
+    <% end %>
+</ul>
