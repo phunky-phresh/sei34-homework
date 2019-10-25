@@ -1,14 +1,9 @@
-body {
-  /* background-image: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
-  background-size: cover;
-  background-repeat: no-repeat; */
-}
-
 .container {
   max-width: 960px;
 }
 
 nav {
+  text-align: right;
   margin-bottom: 30px;
   padding-bottom: 10px;
   border-bottom: 1px solid #03b1fc;
@@ -21,4 +16,17 @@ a {
 
 .feature {
   max-width: 100%;
+}
+
+.home {
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+li {
+  padding-bottom: 10px;
 }
