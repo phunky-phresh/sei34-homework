@@ -1,0 +1,8 @@
+<h2>All Races</h2>
+<% @races.each do |race| %>
+  <p>
+    <a href="/races/<%= race.id %>">
+      <%= race.event %>
+    </a>
+  </p>
+<% end %>

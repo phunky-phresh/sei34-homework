@@ -36,8 +36,8 @@ get '/surfboards/:id' do
 end
 
 # EDIT
-get '/surfboards/:id/edit' do
-  @surfboard = query_db "SELECT * FROM surfboards WHERE id=#{ params[:id] }"
+get '/surfboards/:name/edit' do
+  @surfboard = query_db "SELECT * FROM surfboards WHERE name='#{ params[:name] }'"
   @surfboard = @surfboard.first
   erb :surfboards_edit
 end
