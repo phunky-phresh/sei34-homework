@@ -1,0 +1,29 @@
+body {
+  background-color: lavender;
+  background-image: url("css/wingman2jpg");
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  color: white;
+}
+
+label {
+  display: block;
+}
+
+.feature {
+  max-width: 100%;
+
+}
+.model .fighter{
+text-align: center;
+}
