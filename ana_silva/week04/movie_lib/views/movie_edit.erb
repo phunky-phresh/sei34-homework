@@ -1,0 +1,36 @@
+<h2>Edit Movie</h2>
+
+<form action="/movies/<%= @movie["id"] %>" method="post">
+
+  <label>
+    Title:
+    <input type="text" name="title" placeholder="movie title" value="<%= @movie["title"] %>" required>
+  </label>
+
+  <label>
+    Year:
+    <input type="number" name="year" placeholder="movie year" value=<%= @movie["year"] %>>
+  </label>
+
+  <label>
+    Cover:
+    <input type="text" name="cover" placeholder="http://..." value="<%= @movie["cover"] %>">
+  </label>
+
+  <label>
+    Actors:
+    <input type="text" name="actors" placeholder="Ashley Judd, Morgan Freeman" value="<%= @movie["actors"] %>">
+  </label>
+
+  <label>
+    Synopsis:
+    <input type="text" name="synopsis" placeholder="short synopsis" value="<%= @movie["synopsis"] %>">
+  </label>
+
+  <label>
+    Watched:
+    <input type="text" name="watched" placeholder="yes or no" value="<%= @movie["watched"] %>">
+  </label>
+
+  <button>Edit movie</button>
+</form>
