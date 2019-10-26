@@ -1,0 +1,33 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
+  <h2 class="idea-single">changing the lightbulb</h2>
+</div>
+<div class="form-container">
+  <form action="/idea/<%= @idea.id %>" method="post" class="new">
+    <label>
+      <p>title</p>
+      <input name="title" placeholder="<%= @idea.title %>" value="<%= @idea.title %>" required>
+    </label>
+    <label>
+      <p>category</p>
+      <input name="category" placeholder="<%= @idea.category %>" value="<%= @idea.category %>" required>
+    </label>
+    <label>
+      <p>description</p>
+      <textarea name="description" placeholder="<%= @idea.description %>"><%= @idea.description %></textarea>
+    </label>
+    <label>
+      <p>Related Link(s)</p> <!-- need to loop over current number of links and dynamically identify their ids-->
+      <% unless @idea.links.empty? %>
+        <% @idea.links.each do |i| %>
+          <input type="text" name="link_name_<%= i.id %>" value="<%= i.name %>" placeholder="<%= i.name %>">
+          <input type="url" name="link_url_<%= i.id %>" value="<%= i.url %>" placeholder="<%= i.url %>">
+        <% end %>
+      <% else %>
+        <input type="text" name="link_name" value="" placeholder="link name">
+        <input type="url" name="link_url" value="link url">
+      <% end %>
+    </label>
+    <button type="submit">update idea</button>
+  </form>
+</div>
