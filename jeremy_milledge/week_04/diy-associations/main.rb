@@ -121,11 +121,18 @@ get '/link/:id/delete/related-to/:idea_id' do |id, idea_id|
   redirect to ("/idea/#{idea_id}") #
 end
 
-# METHODS ######################################################################
-def pretty_date(date)
-  t = date.httpdate
-  t = t[0..15]
-  t
+# CATEGORIES ###################################################################
+get '/category/:cat' do |cat|
+  @category = cat
+  @ideas = Idea.all.select {|c| c.category == cat}
+  @dates = @ideas.map {|t| t.post_time.httpdate[0..15]}
+  # binding.pry
+  erb :category
+end
+
+# GLOBAL ######################################################################
+def get_cats
+  Idea.all.map {|c| c.category}.uniq
 end
 
 after do

@@ -1,8 +1,11 @@
 
-<section>
-  
-</section>
+<div class="idea-header">
+  <img class="icon-small" src="/img/circuit-icon.png" alt="Circuit icon">
+  <h2 class="idea-single">checking the circuit</h2>
+</div>
+<h1 class="center"><%= @category %></h1>
 <main>
+
   <% @ideas.each_with_index do |x, i| %>
     <article class="<%= x.category %> tile">
       <h2><a href="idea/<%= x.id %>" alt="<%= x.title %>"><%= x.title %></a></h2>
