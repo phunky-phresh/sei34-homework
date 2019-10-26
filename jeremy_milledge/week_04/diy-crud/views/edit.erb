@@ -1,0 +1,25 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
+  <h2 class="idea-single">changing the lightbulb</h2>
+</div>
+<div class="form-container">
+  <form action="/idea/<%= @idea['id'] %>" method="post" class="new">
+    <label>
+      <p>title</p>
+      <input name="title" placeholder="<%= @idea['title'] %>" value="<%= @idea['title'] %>" required>
+    </label>
+    <label>
+      <p>category</p>
+      <input name="category" placeholder="<%= @idea['category'] %>" value="<%= @idea['category'] %>" required>
+    </label>
+    <label>
+      <p>description</p>
+      <textarea name="description" placeholder="<%= @idea['description'] %>"><%= @idea['description'] %></textarea>
+    </label>
+    <label>
+      <p>related links</p>
+      <input type="url" name="links" placeholder="<%= @idea['links'].join(',') %>" value="<%= @idea['links'].join(',') %>">
+    </label>
+    <button type="submit">update idea</button>
+  </form>
+</div>
