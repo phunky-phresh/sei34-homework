@@ -1,21 +1,23 @@
 <h2>Overview</h2>
-<table>
+<table id='myTable'>
     <thead>
         <th>Name</th>
         <th>Height</th>
         <th>Summary</th>
     </thead>
     <% @types.each do | each |  %>
-    <tr>
-        <td>
-        <a href="/clouds/<%=each['id']%>"><%= each['name']%></a>
-        </td>
+    <tbody>
+        <tr>
+            <td>
+            <a href="/clouds/<%=each['id']%>"><%= each['name']%></a>
+            </td>
 
-        <td>
-        <a href="/<%= each.height.id%>"><%= each.height.name%></a>
-        </td>
+            <td>
+            <a href="/<%= each.height.id%>"><%= each.height.name%></a>
+            </td>
 
-        <td><%= each['summary']%></td>
-    </tr>
-    <% end %>
-</ul>
+            <td><%= each['summary']%></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
