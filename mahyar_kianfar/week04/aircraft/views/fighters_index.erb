@@ -1,0 +1,10 @@
+<h2>Fighters</h2>
+
+
+<% @fighters.each do |fighter| %>
+  <p>
+    <a href="/fighters/<%= fighter["id"] %>">
+      <%= fighter["name"] %>
+    </a>
+  </p>
+<% end %>
