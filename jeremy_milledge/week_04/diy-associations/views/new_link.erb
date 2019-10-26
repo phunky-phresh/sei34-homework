@@ -1,0 +1,22 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bolt-icon.png" alt="Bolt icon">
+  <h2 class="idea-single">installing the wiring</h2>
+</div>
+<div class="form-container">
+  <form action="/link" method="post" class="new">
+    <label>
+      <p>name</p>
+      <input name="name" placeholder="google homepage" required>
+    </label>
+    <label>
+      <p>url</p>
+      <input name="url" type="url" placeholder="https://www.google.com.au/" required>
+    </label>
+    <label>
+      <p>related to</p>
+      <p><%= @idea.title %></p>
+    </label>
+
+    <button type="submit" name="idea_id" value="<%= @idea.id %>">add link</button>
+  </form>
+</div>

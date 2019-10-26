@@ -17,16 +17,14 @@
       <textarea name="description" placeholder="<%= @idea.description %>"><%= @idea.description %></textarea>
     </label>
     <label>
-      <p>Related Link(s)</p> <!-- need to loop over current number of links and dynamically identify their ids-->
+      <p>related links</p> <!-- need to loop over current number of links and dynamically identify their ids-->
       <% unless @idea.links.empty? %>
-        <% @idea.links.each do |i| %>
-          <input type="text" name="link_name_<%= i.id %>" value="<%= i.name %>" placeholder="<%= i.name %>">
-          <input type="url" name="link_url_<%= i.id %>" value="<%= i.url %>" placeholder="<%= i.url %>">
+        <% @idea.links.each do |a| %>
+          <p><a href="<%= a.url %>" alt="Link to <%= a.name %>"><%= a.name %> [<%= a.url.size > 20 ? a.url[0..20]+ "..." : a.url %>]</a>
+          <a href="/link/<%= a.id %>/edit" alt="Edit <%= a.name %>">edit</a></p>
         <% end %>
-      <% else %>
-        <input type="text" name="link_name" value="" placeholder="link name">
-        <input type="url" name="link_url" value="link url">
       <% end %>
+      <p><a href="/link/new/related-to/<%= @idea.id %>" alt="New Related Link">new related link</a></p>
     </label>
     <button type="submit">update idea</button>
   </form>

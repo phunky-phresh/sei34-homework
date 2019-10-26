@@ -1,0 +1,22 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bolt-icon.png" alt="Bolt icon">
+  <h2 class="idea-single">changing the wiring</h2>
+</div>
+<div class="form-container">
+  <form action="/link/<%= @link.id %>" method="post" class="new">
+    <label>
+      <p>name</p>
+      <input name="name" placeholder="<%= @link.name %>" value="<%= @link.name %>" required>
+    </label>
+    <label>
+      <p>url</p>
+      <input name="url" placeholder="<%= @link.url %>" value="<%= @link.url %>" required>
+    </label>
+    <label>
+      <p>related to</p>
+      <p name="idea_id"><%= @idea.title %></p>
+    </label>
+
+    <button type="submit">update link</button>
+  </form>
+</div>
