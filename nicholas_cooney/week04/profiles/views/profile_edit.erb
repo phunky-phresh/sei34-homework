@@ -1,0 +1,20 @@
+<h2>Edit Profile</h2>
+
+<form action="/profiles/<%= @profiles["id"] %>" method="post">
+  <label>
+    Name:
+    <input name="name" placeholder="eg. Camber" required value="<%= @profiles["name"] %>">
+  </label>
+
+  <label>
+    Experience Level:
+    <input name="skill" value="<%= @profiles["skill"] %>" placeholder="eg. beginner">
+  </label>
+  Image:
+    <input name="image" type="url" placeholder="https://..." value="<%= @profiles["image"] %>"=>
+  <label>
+    Overview:
+    <input name="description" value="<%= @profiles["description"] %>">
+  </label>
+  <button>Submit</button>
+</form>

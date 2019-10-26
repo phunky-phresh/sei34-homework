@@ -1,0 +1,15 @@
+<h2><%= @profiles.name %></h2>
+
+<p><%= @profiles.skill %></p>
+
+<p><%= @profiles.description %></p>
+
+<% unless @profiles["image"].nil? || @profiles["image"].empty? %>
+
+<img class="feature" src="<%= @profiles["image"] %>" alt="<%= @profiles["name"] %>">
+<% end %>
+
+<div class="controls">
+  <a href="/profiles/<%= @profiles["id"] %>/edit">Edit</a>
+
+</div>
