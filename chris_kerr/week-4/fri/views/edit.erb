@@ -1,0 +1,46 @@
+<a href="/clouds/<%= @cloud.id %>">Back</a>
+<br>
+<h2>Please help us keep our clouds up to date</h2>
+
+<form action="/clouds/<%= @cloud['id'] %>" method="post">
+    <label>
+        Name:
+        <input value="<%= @cloud['name'] %>" name='name' type="text" required>
+    </label>
+    <label>
+        Summary:
+        <input value="<%= @cloud['summary'] %>" name='summary' type="text" required>
+    </label>
+    <label>
+        Description:
+        <textarea rows='3' cols='60' name='description' type="text" required><%= @cloud['description'] %></textarea>
+    </label>
+    <label>
+        Altitude Range:
+        <input value="<%= @cloud['altitude_range'] %>" name='altitude_range' type="text" required>
+    </label>
+    <label>
+        Image link:
+        <input value="<%= @cloud['image'] %>" name='image' type="url" >
+    </label>
+    <label>
+        Category:
+        <select name='height_id' required>
+            <% @heights.each do | i | %> 
+
+                <% if i.id == @cloud.height_id %>
+                    <option value="<%= i['id'] %>" selected><%= i['name'] %></option>
+                <% else %>
+                    <option value="<%= i['id'] %>"><%= i['name'] %></option>
+                <% end %>
+            <% end %>
+        </select>
+        
+    </label>
+    <br>
+    <button>Submit changes</button>
+
+</form>
+<br>
+<hr>
+<a href="/clouds/<%= @cloud.id %>/delete">Delete this cloud</a>

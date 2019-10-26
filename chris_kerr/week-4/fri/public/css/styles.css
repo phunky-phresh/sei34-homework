@@ -1,0 +1,14 @@
+column {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+column:first-of-type {
+    margin-right: 9%;
+}
+
+column > img {
+    max-width: 100%;
+}

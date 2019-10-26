@@ -1,0 +1,36 @@
+<h2>Add a cloud to our collection</h2>
+
+<form action="/" method="post">
+    <label>
+        Name:
+        <input name='name' type="text" required>
+    </label>
+    <label>
+        Summary:
+        <input name='summary' type="text" required>
+    </label>
+    <label>
+        Description:
+        <textarea rows='3' cols='60' name='description' type="text" required></textarea>
+    </label>
+    <label>
+        Altitude Range:
+        <input name='altitude_range' type="text" required>
+    </label>
+    <label>
+        Image link:
+        <input name='image' type="url" >
+    </label>
+    <label>
+        Category:
+        <select name='height_id' required>
+            <% @heights.each do | i | %> 
+                <option value="<%= i['id'] %>"><%= i['name'] %></option>
+            <% end %>
+        </select>
+        
+    </label>
+    <br>
+    <button>Submit changes</button>
+
+</form>
