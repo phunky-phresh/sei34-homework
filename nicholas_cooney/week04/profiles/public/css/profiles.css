@@ -1,5 +1,11 @@
-* {
+@import url('https://fonts.googleapis.com/css?family=Galada|Lato:300|Roboto&display=swap');* {
   box-sizing: border-box;
+}
+h1 {
+  font-family: 'Galada', sans-serif;
+}
+h2 {
+  font-family: 'Roboto', sans-serif;
 }
 body {
 
@@ -7,4 +13,25 @@ body {
 .container {
   max-width: 900px;
   margin: 0 auto;
+}
+nav a{
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+.form {
+  background-color: gray;
+}
+.form input {
+  display: block;
+  /* width: 2rem; */
+}
+
+.form label {
+  font-size: 20px;
+}
+.form button {
+  display: block;
 }

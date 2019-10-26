@@ -1,22 +1,24 @@
-<h2>Enter a New Profiles</h2>
+<h2>Submit a Profile</h2>
 
-<form action="/profiles" method="post">
-  <label>
-    Name:
-    <input name="name" placeholder="eg. Camber" required>
-  </label>
+<div class="form">
+  <form action="/profiles" method="post">
+    <label>
+      Name:
+      <input name="name" placeholder="eg. Camber" required>
+    </label>
 
-  <label>
-    Experience Level:
-    <input name="skill" placeholder=" eg. beginner">
-  </label>
-  <label>
-    Image:
-    <input name="image" type="url" placeholder="https://...">
-  </label>
-  <label>
-    Overview:
-    <input name="description">
-  </label>
-  <button>Submit</button>
-</form>
+    <label>
+      Experience Level:
+      <input name="skill" placeholder=" eg. beginner">
+    </label>
+    <label>
+      Image:
+      <input name="image" type="url" placeholder="https://...">
+    </label>
+    <label>
+      <textarea name="description" rows="8" cols="80">Give a brief overivew</textarea>
+      <!-- <input name="description"> -->
+    </label>
+    <button>Submit</button>
+  </form>
+</div>
