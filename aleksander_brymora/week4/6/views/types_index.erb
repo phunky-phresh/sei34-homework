@@ -1,0 +1,16 @@
+<div id="display-all">
+	<% @types.each do |type| %>
+		<a href="/types/<%= type.id %>">
+			<div class="display-one">
+				<% if type.image.nil? || type.image.empty? %>
+					<img src="https://cdn.pixabay.com/photo/2016/09/14/11/35/beer-1669273_960_720.png" alt="default-type-image">
+				<% else %>
+					<img src="<%= type.image %>" alt="type-image">
+				<% end %>
+				<p>
+					<%= type.name %>
+				</p>
+			</div>
+		</a>
+	<% end%>
+</div>

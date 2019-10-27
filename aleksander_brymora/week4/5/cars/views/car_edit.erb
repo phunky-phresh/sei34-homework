@@ -1,0 +1,18 @@
+<h2>Edit the car</h2>
+
+<form action="/cars/<%= @car_to_edit['id'] %>" method="POST">
+    <label>
+        Name:
+        <input name="name" placeholder="Name" required value="<%= @car_to_edit["name"] %>">
+    </label>
+    <label>
+        Year:
+        <input type="number" name="year" placeholder="year" value="<%= @car_to_edit["year"] %>">
+    </label>
+    <label>
+        Image:
+        <input type="url" name="image" placeholder="http://..." value="<%= @car_to_edit["photo"] %>">
+    </label>
+
+    <button>Edit the car</button>
+</form>
