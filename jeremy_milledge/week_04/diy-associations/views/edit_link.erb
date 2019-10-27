@@ -14,9 +14,11 @@
     </label>
     <label>
       <p>related to</p>
-      <p name="idea_id"><%= @idea.title %></p>
+      <p name="idea_id" class="fixed-label-content"><%= @idea.title %></p>
     </label>
-
-    <button type="submit">update link</button>
+    <div class="center">
+      <a href="/idea/<%= @idea.id %>/edit" class="link-btn big-btn">back</a>
+      <button type="submit" class="link-btn big-btn edit-btn" name="idea_id" value="<%= @idea.id %>">update link</button>
+    </div>
   </form>
 </div>

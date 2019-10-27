@@ -90,7 +90,7 @@ post '/link' do
   a.url = params[:url]
   a.idea_id = params[:idea_id]
   a.save
-  redirect to("/idea/#{params[:idea_id]}")
+  redirect to("/idea/#{params[:idea_id]}/edit")
 end
 
 get '/link/new/related-to/:idea_id' do |idea_id|
@@ -115,6 +115,12 @@ post '/link/:id' do
 end
 
 # delete link
+get '/link/:id/delete_check/related-to/:idea_id' do |id, idea_id| #check before delete
+  @idea = Idea.find idea_id
+  @link = Link.find id
+  erb :delete_link
+end
+
 get '/link/:id/delete/related-to/:idea_id' do |id, idea_id|
   a = Link.find id
   a.destroy
@@ -132,7 +138,11 @@ end
 
 # GLOBAL ######################################################################
 def get_cats
-  Idea.all.map {|c| c.category}.uniq
+  Idea.pluck(:category).uniq.sort
+end
+
+before do
+  @cats = get_cats
 end
 
 after do

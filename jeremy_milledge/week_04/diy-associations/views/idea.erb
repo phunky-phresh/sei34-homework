@@ -11,13 +11,13 @@
 
     <div class="info">
 
-      <div class="meta">
+      <a class="meta" href="/category/<%= @idea.category %>">
         <img src="/img/tag-icon.png" class="icon-small">
         <p><%= @idea.category %></p>
 
         <img src="/img/date-icon.png" class="icon-small">
         <p><%= @date %></p>
-      </div>
+      </a>
 
       <div class="controls">
         <a href="<%= @idea.id %>/edit" alt="Edit this idea"><img src="/img/edit-icon.png" class="icon-small"><p>edit</p></a>
@@ -36,14 +36,10 @@
 
       <% unless @idea.links.empty? %>
         <% @idea.links.each do |i| %>
-          <p>
-            <a href="<%= i.url %>" target="_blank" alt="Link to <%= i.name %>"><%= i.name %> [<%= i.url.size > 40 ? i.url[0..40]+ "..." : i.url %>]</a>
-            <a href="/link/<%= i.id %>/edit/related-to/<%= @idea.id %>" alt="Edit <%= i.name %>">edit</a>
-            <a href="/link/<%= i.id %>/delete/related-to/<%= @idea.id %>" alt="Delete <%= i.name %>">delete</a>
-          </p>
+          <p><a href="<%= i.url %>" target="_blank" alt="Link to <%= i.name %>"><%= i.name %></a></p>
         <% end %>
       <% else %>
-        <p>no related links added yet. <a href="/link/new/related-to/<%= @idea.id %>" alt="add a new link">add one?</a></p>
+        <p>no related links added yet.</p>
       <% end %>
     </div>
   </article>

@@ -16,12 +16,12 @@
         <li>
           <a href="#" class="link-btn">categories</a>
           <ul class="dropdown">
-            <% get_cats.each do |c| %>
+            <% @cats.each do |c| %>
               <a href="/category/<%= c %>" ><li class="link-btn <%= c %>"><%= c %></li></a>
             <% end %>
           </ul>
         </li>
-        <li><a href="/idea/new" class="link-btn">new idea</a></li>
+        <li><a href="/idea/new" class="link-btn new-btn">new idea</a></li>
       </ul>
 
     <!-- </nav> -->

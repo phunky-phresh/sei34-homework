@@ -10,12 +10,22 @@
     </label>
     <label>
       <p>category</p>
-      <input name="category" placeholder="transport" required>
+      <!-- <input name="category" placeholder="transport" required> -->
+      <select class="" name="category" placeholder="select..." required>
+        <option value="">select...</option>
+        <% @cats.each do |c| %>
+          <option value="<%= c %>"><%= c %></option>
+        <% end %>
+      </select>
     </label>
     <label>
       <p>description</p>
       <textarea name="description" placeholder="to fly with my car"></textarea>
     </label>
-    <button type="submit">add idea</button>
+    <div class="center">
+      <a href="/" class="link-btn big-btn">home</a>
+      <button type="submit" class="link-btn big-btn new-btn">add idea</button>
+    </div>
+
   </form>
 </div>
