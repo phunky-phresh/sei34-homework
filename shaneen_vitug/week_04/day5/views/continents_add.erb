@@ -1,0 +1,41 @@
+<h2>Add A Continent</h2>
+
+<form action="/continents" method="post">
+  <div class="form-group">
+  <label>
+    Continent:
+    <input class="form-control" name="name" placeholder="Enter continent" required>
+  </label>
+  </div>
+  <div class="form-group">
+  <label>
+    Size:
+    <input class="form-control" name="size" placeholder="Enter land area(sq km)">
+  </label>
+  </div>
+  <div class="form-group w-75">
+  <label>
+    Population:
+    <input class="form-control" name="population" placeholder="1,000,000">
+  </label>
+  </div>
+  <div class="form-group">
+  <label>
+    Number of countries:
+    <input class="form-control" type="number" name="numofcountries" placeholder="Enter number">
+  </label>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text">Fun fact</span>
+    </div>
+    <textarea class="form-control" name="fact" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+  <label>
+    Image:
+    <input class="form-control" type="url" name="image" placeholder="http://.." >
+  </label>
+  </div>
+  <button>Add</button>
+</form>
