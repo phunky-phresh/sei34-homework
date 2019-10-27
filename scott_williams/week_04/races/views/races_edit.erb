@@ -1,0 +1,15 @@
+<h2>Edit Race</h2>
+
+<form action="/races/<%= @race.id %>" method="post">
+  <label>
+    Event:
+    <input name="event" placeholder="Tour of Flanders" required value="<%= @race.event %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://..." value="<%= @race.image %>">
+  </label>
+
+  <button>Update race</button>
+</form>

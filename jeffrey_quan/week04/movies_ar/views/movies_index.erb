@@ -1,0 +1,11 @@
+<h2>All Movies</h2>
+
+<% @movies.each do |movie| %>
+  <ul>
+    <a href="/movies/<%= movie.id %>">
+      <%= movie["name"] %>
+    </a>
+  </ul>
+<% end %>
+
+<a href="/movies/new">New</a>
