@@ -1,0 +1,25 @@
+<h2>Edit Surfboard</h2>
+
+<form action="/surfboards/<%= @surfboard["id"] %>" method="post">
+  <label for="">
+    Name:
+    <input name="name" placeholder="MM" type="text" required value="<%= @surfboard["name"] %>">
+  </label>
+
+  <label for="">
+    Brand:
+    <input name="brand" placeholder="Byrne" type="text" value="<%= @surfboard["brand"] %>">
+  </label>
+
+  <label for="">
+    Type:
+    <input name="type" placeholder="Short Board" type="text" value="<%= @surfboard["type"] %>">
+  </label>
+
+  <label for="">
+    Image:
+    <input type="url" name="image" placeholder="http://..." value="<%= @surfboard["image"] %>">
+  </label>
+
+  <button>Update surfboard</button>
+</form>

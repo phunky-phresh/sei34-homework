@@ -1,0 +1,9 @@
+<h2>All cars</h2>
+
+<% @all_cars.each do |car| %>
+    <p>
+        <a href="/cars/<%= car["id"] %>">
+            <p><%= car["name"] %></p>
+        </a>
+    </p>
+<% end%>

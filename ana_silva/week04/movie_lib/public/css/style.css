@@ -1,0 +1,32 @@
+.container {
+  max-width: 960px;
+}
+
+nav {
+  text-align: right;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #03b1fc;
+  font-size: 20px;
+}
+
+a {
+  margin-right: 30px;
+}
+
+.feature {
+  max-width: 100%;
+}
+
+.home {
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+li {
+  padding-bottom: 10px;
+}

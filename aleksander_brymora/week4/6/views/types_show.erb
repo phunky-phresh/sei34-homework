@@ -1,0 +1,12 @@
+<h2><%= @type.name %></h2>
+
+<p><%= @type.description %></p>
+
+<% unless @type.image.nil? || @type.image.empty? %>
+	<img class="feature" src="<%= @type.image %>" alt="<%= @type.name %>">
+<% end %>
+
+<div class="controls">
+	<a href="/types/<%= @type.id %>/edit">Edit</a>
+	<a href="/types/<%= @type.id %>/delete">Delete</a>
+</div>

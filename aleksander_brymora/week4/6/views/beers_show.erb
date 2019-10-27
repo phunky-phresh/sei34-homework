@@ -1,0 +1,23 @@
+<h2><%= @beer.name %></h2>
+
+<% unless @beer.type.nil? %>
+	<h3>
+		Type of beer
+		<a href="/types/<%= @beer.type_id %>">
+			<%= @beer.type.name %>
+		</a>
+	</h3>
+<% end %>
+
+<% unless @beer.percentage.nil? %>
+	<h3>Percentage: <%= @beer.percentage %>%</h3>
+<% end %>
+
+<% unless @beer.image.nil? || @beer.image.empty? %>
+	<img class="feature" src="<%= @beer.image %>" alt="<%= @beer.name %>">
+<% end %>
+
+<div class="controls">
+	<a href="/beers/<%= @beer.id %>/edit">Edit</a>
+	<a href="/beers/<%= @beer.id %>/delete">Delete</a>
+</div>

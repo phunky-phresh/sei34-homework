@@ -1,0 +1,11 @@
+<h2><%= @dessert["name"] %></h2>
+<h3>Type: <em><%= @dessert["type"] %></em></h3>
+
+<% unless @dessert["image"].nil? || @dessert["image"].empty? %>
+<img class="feature" src="<%= @dessert["image"] %>" alt="<%= @dessert["name"]%>">
+<% end %>
+
+<div class="controls">
+  <a href="/desserts/<%= @dessert["id"] %>/edit">Edit</a>
+  <a href="/desserts/<%= @dessert["id"] %>/delete">Delete</a>
+</div>
