@@ -1,0 +1,22 @@
+<h2><%= @animal.name %></h2>
+
+<h3>Diet: <%= @animal.diet %></h3>
+
+
+<% unless @animal.habitat.nil? %>
+<h3>
+  Habitat:
+  <a href="/habitats/<%= @animal.habitat_id %>">
+    <%= @animal.habitat.name %>
+  </a>
+</h3>
+<% end %>
+
+<% unless @animal.image.nil? || @animal.image.empty? %>
+<img src="<%= @animal.image %>" alt="<%= @animal.name %>">
+<% end %>
+
+<div class="controls">
+  <a href="/animals/<%= @animal.id %>/edit">Edit</a>
+  <a href="/animals/<%=@animal.id %>/delete">Delete</a>
+</div>

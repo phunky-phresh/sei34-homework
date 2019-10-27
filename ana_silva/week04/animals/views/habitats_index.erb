@@ -1,0 +1,11 @@
+<h1>Habitats</h1>
+
+<ul>
+
+  <% @habitats.each do |habitat| %>
+    <li>
+      <a href="/habitats/<%= habitat.id %>"><%= habitat.name %></a>
+    </li>
+  <% end %>
+
+</ul>

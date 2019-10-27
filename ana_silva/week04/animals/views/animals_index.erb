@@ -1,0 +1,39 @@
+<h1>Animals</h1>
+
+ <div class="list">
+
+
+  <% @habitats.each do |habitat| %>
+
+    <div class="habitat">
+      <h3><%= habitat.name %></h3>
+
+      <ul>
+        <% habitat.animals.each do |animal| %>
+          <li><a href="/animals/<%= animal.id %>">
+            <%= animal.name %>
+          </a></li>
+        <% end %>
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <div class="habitat">
+    <h3>Other</h3>
+
+    <% @animals.each do |animal| %>
+      <% if animal.habitat_id.nil? %>
+
+        <ul>
+          <li><a href="/animals/<%= animal.id %>">
+              <%= animal.name %>
+          </a></li>
+        </ul>
+
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
