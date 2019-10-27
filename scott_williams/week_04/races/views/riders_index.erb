@@ -1,0 +1,8 @@
+<h2>All Riders</h2>
+<% @riders.each do |rider| %>
+  <p>
+    <a href="/riders/<%= rider.id %>">
+      <%= rider.name %>
+    </a>
+  </p>
+<% end %>
