@@ -1,0 +1,17 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
+  <h2 class="idea-single">cutting the wire</h2>
+</div>
+<div class="<%= @idea.category %> container">
+  <article class="single center">
+    <h3>are you sure you want to delete the link:</h3>
+    <h1 class="delete-title center"><%= @link.name %></h1>
+    <p>which is related to the idea:</p>
+    <h3 ><%= @idea.title %></h3>
+    <div class="center">
+      <a href="/idea/<%= @idea.id %>/edit" class="link-btn big-btn">cancel</a>
+      <a href="/link/<%= @link.id %>/delete/related-to/<%= @idea.id %>" class="delete-btn link-btn big-btn">delete</a>
+    </div>
+
+  </article>
+</div>
