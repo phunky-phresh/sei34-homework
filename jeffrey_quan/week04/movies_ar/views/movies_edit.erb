@@ -1,0 +1,35 @@
+
+<form action="/movies/<%= @movie.id %>" method="post">
+
+  <label>
+    Name:
+    <input type="text" name="name" value="<%= @movie.name %>">
+  </label>
+
+  <label>
+    Year:
+    <input type="number" name="year" value="<%= @movie.year %>">
+  </label>
+
+  <label>
+    Genre:
+    <input type="text" name="genre" value="<%= @movie.genre %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" value="<%= @movie.image %>">
+  </label>
+
+  <label>
+    Director:
+    <select name="director_id">
+      <% Director.all.each do |director| %>
+      <option value="<%= director.id %>" <%="selected" if director.id == @movie.director_id %>><%= director.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <button>Update Movie</button>
+
+</form>

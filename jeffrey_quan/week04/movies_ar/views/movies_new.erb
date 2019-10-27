@@ -1,0 +1,35 @@
+
+<form action="/movies" method="post">
+
+  <label>
+    Name:
+    <input type="text" name="name" placeholder="e.g. Interstellar">
+  </label>
+
+  <label>
+    Year:
+    <input type="number" name="year" placeholder="2014">
+  </label>
+
+  <label>
+    Genre:
+    <input type="text" name="genre" placeholder="e.g. Drama">
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" placeholder="e.g. https://...">
+  </label>
+
+  <label>
+    Director:
+    <select name="director_id">
+      <% Director.all.each do |director| %>
+      <option value="<% director.id %>"><%= director.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <button>Add Movie</button>
+
+</form>

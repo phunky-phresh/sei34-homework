@@ -1,0 +1,13 @@
+<form action="/actors/<%= @actor.id %>" method="post">
+  <label>
+    Name:
+    <input type="text" name="name" value="<%= @actor.name %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" value="<%= @actor.image %>"
+  </label>
+
+  <button>Update Actor</button>
+</form>
