@@ -4,7 +4,7 @@ $('#savings-balance').addClass('zero');
 
 // Display in a message box
 const message = function (text) {
-    $('#messages p').html(text);;
+    $('#messages p').html(text);
     // .delay(2000).fadeOut(2000);
 }
 message('Welcome to the bank of GA!');

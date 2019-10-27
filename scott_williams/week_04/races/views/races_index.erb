@@ -1,8 +1,18 @@
 <h2>All Races</h2>
-<% @races.each do |race| %>
-  <p>
-    <a href="/races/<%= race.id %>">
-      <%= race.event %>
-    </a>
-  </p>
-<% end %>
+<div class="box">
+  <% @races.each do |race| %>
+
+      <p class="boxes grow">
+        <a href="/races/<%= race.id %>">
+          <span><%= race.event %></span>
+
+
+              <% unless race.image.nil? || race.image.empty? %>
+                <img class="thumbnail" src="<%= race.image %>" alt="<%= race.event  %>">
+              <% end %>
+
+          </a>
+
+      </p>
+  <% end %>
+</div>

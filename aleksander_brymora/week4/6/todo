@@ -1,0 +1,9 @@
+create erbs for beers
+- add new beer page with
+    - name
+    - percentage
+    - image
+    - beer type (from the type database)
+- edit page with the same stuff as the new beer page, but with default values pulled from the database
+- page with a list of all the beers
+

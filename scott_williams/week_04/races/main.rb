@@ -14,15 +14,15 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Base.logger = Logger.new(STDERR)
 
 # Models
+class Race < ActiveRecord::Base
+  belongs_to :rider, :optional => true
+end
+
 class Rider < ActiveRecord::Base
-  belongs_to :races, :optional => true
+  has_many :races
 end
 
-class Race < ActiveRecord::Base
-end
-
-class Race < ActiveRecord::Base
-  has_many :riders
+class Rider < ActiveRecord::Base
 end
 
 get '/pry' do
@@ -50,10 +50,12 @@ post '/races' do
   # query = "INSERT INTO butterflies (name, family, image) VALUES ('#{ params[:name] }', '#{ params[:family] }', '#{ params[:image] }')"
   # query_db query
   race = Race.new
-  race.name = params[:event]
-  race.family = params[:country]
-  race.family = params[:stages]
+  race.event = params[:event]
+  race.nickname = params[:nickname]
+  race.country = params[:country]
+  race.stages = params[:stages]
   race.image = params[:image]
+  race.rider_id = params[:rider_id]
   race.save
   redirect to("/races/#{ race.id }") # GET request
 end
@@ -76,19 +78,47 @@ end
 post '/races/:id' do
   race = Race.find params[:id]
   race.event = params[:event]
+  race.nickname = params[:nickname]
+  race.country = params[:country]
+  race.stages = params[:stages]
   race.image = params[:image]
+  race.rider_id = params[:rider_id]
   race.save
   redirect to ("/races/#{ race.id }") # GET request
 end
 
+# DESTROY
+get '/races/:id/delete' do
+  race = Race.find params[:id]
+  race.destroy
+  redirect to("/races")
+end
 
 
 
-# Ridesr ########################################################
+# Riders ########################################################
 # INDEX
 get '/riders' do
   @riders = Rider.all
   erb :riders_index
+end
+
+# NEW
+get '/riders/new' do
+  erb :riders_new
+end
+
+# CREATE
+post '/riders' do
+  # query = "INSERT INTO riders (name, family, image) VALUES ('#{ params[:name] }', '#{ params[:team] }', '#{ params[:country]', '#{ params[:image] }', '#{ params[:race_id] }')"
+  # query_db query
+  rider = Rider.new
+  rider.name = params[:name]
+  rider.team = params[:team]
+  rider.country = params[:country]
+  rider.image = params[:image]
+  rider.save
+  redirect to("/riders/#{ rider.id }") # GET request
 end
 
 # SHOW or POST
@@ -103,4 +133,26 @@ end
 get '/riders/:id/edit' do
   @rider = Rider.find params[:id]
   erb :riders_edit
+end
+
+# UPDATE -- send the EDIT information to the UPDATE post, the redirect to full list
+post '/riders/:id' do
+  rider = Rider.find params[:id]
+  rider.name = params[:name]
+  rider.team = params[:team]
+  rider.country = params[:country]
+  rider.image = params[:image]
+  rider.save
+  redirect to ("/riders/#{ rider.id }") # GET request
+end
+
+# DESTROY
+get '/riders/:id/delete' do
+  rider = Rider.find params[:id]
+  rider.destroy
+  redirect to("/riders")
+end
+
+after do
+  ActiveRecord::Base.connection.close
 end
