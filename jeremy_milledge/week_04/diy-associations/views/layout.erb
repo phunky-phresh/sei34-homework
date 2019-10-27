@@ -11,12 +11,25 @@
   <header>
 
     <a class="logo" href="/"><h1>entrepreneuring</h1><img class="mid-icon" src="/img/bolt-icon.png" alt="Bolt icon"></a>
-    <nav>
-      <a href="/">home</a>
-      <a href="/new_idea">new idea</a>
-    </nav>
+    <!-- <nav> -->
+      <ul>
+        <li>
+          <a href="#" class="link-btn">categories</a>
+          <ul class="dropdown">
+            <% @cats.each do |c| %>
+              <a href="/category/<%= c %>" ><li class="link-btn <%= c %>"><%= c %></li></a>
+            <% end %>
+          </ul>
+        </li>
+        <li><a href="/idea/new" class="link-btn new-btn">new idea</a></li>
+      </ul>
+
+    <!-- </nav> -->
   </header>
 
   <%= yield %>
+  <footer>
+    <p class="center">&copy; entrepreneuring 2019</p>
+  </footer>
 </body>
 </html>

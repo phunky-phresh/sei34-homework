@@ -1,0 +1,296 @@
+<!-- <div class="connection">
+    <form class="" action="" method="post">
+        <h2>Modify connection</h2>
+        <label class="link_label">Plant: </label>
+        <select class="" name="">
+            <option></option>
+            <% @plants_name.each do |plant_name| %>
+            <option><%= plant_name %></option>
+            <% end %>
+        </select>
+        <label class="link_label">Pest: </label>
+        <select class="" name="">
+            <option></option>
+            <% @pests_name.each do |pest_name| %>
+            <option><%= pest_name %></option>
+            <% end %>
+        </select>
+        <a href="#"><button>Create New Link</button></a>
+        <a href="#"><button>Delete Link</button></a>
+    </form>
+</div> -->
+
+<div class="content">
+    <div class="plants">
+        <a class="create_plant" href="#">Add New Plant</a>
+        <form class="selection" action="/select" method="get">
+            <label class="selection_label">Plant Category: </label>
+            <select class="" name="plant_selected">
+                <option></option>
+                <% @plants_category.each do |plant_category| %>
+                <option><%= plant_category %></option>
+                <% end %>
+            </select>
+            <button>Filter</button>
+        </form>
+
+        <div class="module">
+            <% @plants.each do |plant| %>
+            <a href="/plant/show/<%= plant.id %>">
+                <div class="part_plant" id="plant<%= plant.id %>">
+                    <div class="leaves_image">
+                        <img src= "<%= plant.leaves_image %>" alt="<%= plant.name %>">
+                    </div>
+                    <div class="description">
+                        <h3><strong><%= plant.name %></strong></h3>
+                        <h3><em><%= plant.category %></em></h3>
+                        <div class="spec">
+                            <p>Difficulty: <%= plant.difficulty %> </p>
+                            <p>Water: <%= plant.water_demand %> </p>
+                            <p>Sunlight: <%= plant.sunlight_demand %> </p>
+                            <p>Humidity: <%= plant.humidity %> </p>
+                            <p>Rareness: <%= plant.rareness %> </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <% end %>
+        </div>
+    </div>
+<div class="lines">
+    <svg>
+
+    </svg>
+</div>
+    <div class="pests">
+        <a class="create_pest" href="#">Add New Pest</a>
+        <form class="selection" action="/select" method="get">
+            <label class="selection_label">Pest Name: </label>
+            <select class="" name="pest_selected">
+                <option></option>
+                <% @pests_name.each do |pest_name| %>
+                <option><%= pest_name %></option>
+                <% end %>
+            </select>
+            <button>Filter</button>
+        </form>
+
+        <div class="module">
+            <% @pests.each do |pest| %>
+            <a href="/pest/show/<%= pest.id %>">
+                <div class="part_pest"  id="pest<%= pest.id %>" value="<%= pest.plant_id%> ">
+                    <div class="pest_image">
+                        <img src= "<%= pest.image %>" alt="<%= pest.name %>">
+                    </div>
+                    <div class="description">
+                        <h3><strong><%= pest.name %></strong></h3>
+                        <div class="spec">
+                            <p>Pest control: <%= pest.pest_control %> </p>
+                            <% unless pest.plant.nil? %>
+                            <p>Plant:
+                                <%= pest.plant.name %></p>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="plant_hidden_form">
+            <form class="plant_form" action="" method="post">
+                <h2>
+                    Untitled<!-- create or edit plant  -->
+                </h2>
+                <label>
+                    Name:
+                    <input class="plant_name_form" type="text" name="plant_name" placeholder="Bird's Nest" required>
+                </label>
+
+                <label>
+                    Category:
+                    <input type="text" name="plant_category" placeholder="Fern" required>
+                </label>
+
+                <label>
+                    Difficulty:
+                    <select class="form_selection" name="difficulty">
+                        <option></option>
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                </label>
+
+                <label>
+                    Water Demand:
+                    <select class="form_selection" name="water_demand">
+                        <option></option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                </label>
+
+                <label>
+                    Sunlight Demand:
+                    <select class="form_selection" name="sunlight_demand">
+                        <option></option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                </label>
+
+                <label>
+                    Humidity Demand:
+                    <select class="form_selection" name="humidity_demand">
+                        <option></option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                </label>
+
+
+                <label>
+                    Rareness
+                    <select class="form_selection" name="rareness">
+                        <option></option>
+                        <option>Common</option>
+                        <option>Rare</option>
+                        <option>Extreme</option>
+                    </select>
+                </label>
+
+                <label>
+                    Leaves Image:
+                    <input type="url" name="leaves_image" placeholder="http://...">
+                </label>
+
+                <label>
+                    Plant Image:
+                    <input type="url" name="plant_image" placeholder="http://...">
+                </label>
+
+
+
+                <button></button>
+            </form>
+            <a class="plant_edit_back" href="">Back</a>
+        </div>
+
+        <div class="pest_hidden_form">
+            <form class="pest_form" action="" method="post">
+                <h2>
+                    Untitled<!-- create or edit plant  -->
+                </h2>
+                <label>
+                    Name:
+                    <input class="pest_name_form" type="text" name="pest_name" placeholder="Mealybug" required>
+                </label>
+
+                <label>
+                    Pest Control:
+                    <input type="text" name="pest_control">
+                </label>
+
+                <label>
+                    Image:
+                    <input type="url" name="pest_image" placeholder="http://...">
+                </label>
+
+                <label>
+                    Plant:
+                    <select name="pest_plant_id">
+                        <option></option>
+                        <% Plant.all.each do |plant|%>
+                        <option value="<%= plant.id %>"><%= plant.name %></option>
+                        <% end %>
+                    </select>
+                </label>
+
+                <button></button>
+            </form>
+            <a class="pest_edit_back" href="">Back</a>
+
+        </div>
+
+
+        <div class="plant_hidden_show">
+            <% unless @plant.nil? %>
+            <div class="show_page_buttons">
+                <a href="/select"><button class="plant_hide_show">Back</button></a>
+                <button class="edit_plant" id="plant<%= @plant.id %>" value="<%= @plant.name %>|<%= @plant.category %>|<%= @plant.difficulty %>|<%= @plant.water_demand %>|<%= @plant.sunlight_demand %>|<%= @plant.humidity %>|<%= @plant.rareness %>|<%= @plant.leaves_image %>|<%= @plant.plant_image %>">Edit</button>
+                <a class="delete_button_plant" href="/plant/<%= @plant.id %>/delete"><button>Delete</button></a>
+            </div>
+            <div class="plant_hidden_innder">
+
+
+                <div class="show_image">
+                    <img src= "<%= @plant.plant_image %>" alt="<%= @plant.name %>">
+                </div>
+                <div class="description">
+                    <h3><strong><%= @plant.name %></strong></h3>
+                    <h3><em><%= @plant.category %></em></h3>
+                    <div class="spec">
+                        <p>Difficulty: <%= @plant.difficulty %> </p>
+                        <p>Water: <%= @plant.water_demand %> </p>
+                        <p>Sunlight: <%= @plant.sunlight_demand %> </p>
+                        <p>Humidity: <%= @plant.humidity %> </p>
+                        <p>Rareness: <%= @plant.rareness %> </p>
+                        <% unless @plant.pests.empty? %>
+                        <p>Pest:</p>
+                        <ul>
+                            <% @plant.pests.each do |pest| %>
+                            <li>
+                                <a class="show_plant_pest" href="/pest/show/<%= pest.id %>">
+                                    <%= pest.name %>
+                                </a>
+                            </li>
+                            <% end %>
+                        </ul>
+                        <% end %>
+                        <p></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <% end %>
+        </div>
+
+        <div class="pest_hidden_show">
+            <% unless @pest.nil? %>
+            <div class="show_page_buttons">
+                <a href="/select"><button class="pest_hide_show">Back</button></a>
+                <button class="edit_pest" id="pest<%= @pest.id %>" value="<%= @pest.name %>|<%= @pest.pest_control %>|<%= @pest.image %>|<%= @pest.plant_id %>">Edit</button>
+                <a class="delete_button_pest" href="/pest/<%= @pest.id %>/delete"><button>Delete</button></a>
+            </div>
+            <div class="pest_hidden_inner">
+                <div class="show_image">
+                    <img src= "<%= @pest.image %>" alt="<%= @pest.name %>">
+                </div>
+                <div class="description">
+                    <h3><strong><%= @pest.name %></strong></h3>
+                    <div class="spec">
+                        <p>Pest Control: <%= @pest.pest_control %> </p>
+                        <% unless @pest.plant.nil? %>
+                        <p>Plant:
+                            <a class = "show_pest_plant" href="/plant/show/<%= @pest.plant_id %>"><%= @pest.plant.name %></a>
+                        </p>
+                        <% end %>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <% end %>
+        </div>
+    </div>
