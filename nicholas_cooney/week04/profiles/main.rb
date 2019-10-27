@@ -32,6 +32,7 @@ end
 ### Main Index ####
 get '/profiles' do
   @profiles = Profile.all
+  @shapes = Shape.all
   erb :profiles_index
 end
 

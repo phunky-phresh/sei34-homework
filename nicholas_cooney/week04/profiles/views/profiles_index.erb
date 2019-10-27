@@ -2,7 +2,7 @@
   <h2>Profiles</h2>
 
 
-  <table>
+  <table class="index">
     <tr>
       <th>Snowboard Profile</th>
       <th>Rider Level</th>
@@ -14,13 +14,17 @@
         <a href="/profiles/<%= profile["id"] %>">
         <%= profile["name"] %>
       </td>
-
+      <td>
+        <%= profile["skill"] %>
+      </td>
+      <td>
+        <a href="/shapes/<%= profile["shape_id"] %>">
+        <%= (profile["shape_id"]) %>
+        </a>
+      </td>
     </tr>
     <% end %>
 
   </table>
-
-
-
 
 </div>
