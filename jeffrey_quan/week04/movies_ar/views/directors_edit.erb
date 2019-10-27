@@ -1,0 +1,15 @@
+<form action="/directors/<%= @director.id %>" method="post">
+
+  <label>
+    Name:
+    <input type="text" name="name" value="<%= @director.name %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" value="<%= @director.image %>">
+  </label>
+
+  <button>Update Director</button>
+
+</form>

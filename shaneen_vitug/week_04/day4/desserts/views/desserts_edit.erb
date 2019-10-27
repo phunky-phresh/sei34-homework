@@ -1,0 +1,20 @@
+<h2>Edit Dessert</h2>
+
+<form action="/desserts/<%= @dessert["id"] %>" method="post">
+  <label>
+    Name of Dessert:
+    <input name="name" placeholder="Pavlova" required value="<%= @dessert["name"] %>">
+  </label>
+
+  <label>
+    Type of Dessert:
+    <input name="type" placeholder="cake" value="<%= @dessert["type"] %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://..." value="<%= @dessert["image"] %>">
+  </label>
+
+  <button>Update dessert</button>
+</form>

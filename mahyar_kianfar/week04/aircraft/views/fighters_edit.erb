@@ -1,0 +1,24 @@
+<h2>Edit Fighters</h2>
+
+<form action="/fighters/<%= @fighter["id"] %>" method="post">
+  <label>
+    Name:
+    <input name="name" placeholder="" required value="<%= @fighter["name"] %>">
+  </label>
+
+  <label>
+    Model:
+    <input name="model" placeholder="" value="<%= @fighter["model"] %>">
+  </label>
+  <label>
+    Generation:
+    <input name="generation" placeholder="" value="<%= @fighter["generation"] %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://..." value="<%= @fighter["image"] %>">
+  </label>
+
+  <button>Update Fighter</button>
+</form>

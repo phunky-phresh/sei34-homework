@@ -1,0 +1,11 @@
+<h1>Desserts you enjoy</h1>
+
+<% @desserts.each do |dessert| %>
+<div class="list">
+  <p>
+    <a href="/desserts/<%= dessert["id"] %>">
+    <%= dessert["name"] %>
+    </a>
+  </p>
+</div>
+<% end %>

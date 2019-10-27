@@ -1,0 +1,18 @@
+<h2>Edit a type of beer</h2>
+
+<form action="/types/<%= @type.id %>" method="post">
+	<label>
+		<p>Name:</p>
+		<input type="text" placeholder="Name" value="<%= @type.name %>" name="name" required>
+	</label>
+	<label>
+		<p>Description:</p>
+		<input type="text" placeholder="Yummy or sth more proffesional" value="<%= @type.description %>" name="description">
+	</label>
+	<label>
+		<p>Image:</p>
+		<input type="text" placeholder="http://..." value="<%= @type.image %>" name="image">
+	</label>
+
+	<button>Edit type</button>
+</form>

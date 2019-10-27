@@ -41,9 +41,9 @@ const fixStart = function (str){
   const firstChar =  str.charAt(0);
   for(let i=1; i<str.length; i++ ){
     //const re = /i/gi;
-    if(i=== firstChar){
-      const newStr = str.replace(/firstChar/g, "*");
-      const m = console.log(newStr);
+    if(str[i]=== firstChar){
+      const newStr = str.replace(`${firstChar}`, "*");
+      console.log(newStr);
     }
 
   }

@@ -1,0 +1,30 @@
+
+.book-container, form {
+    background-color: white;
+    color: #202b38;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, .5);
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 2rem;
+    transition: 1s;
+    border-radius: 1rem;
+}
+
+.book-container img {
+    min-width: 150px;
+    margin-left: 50px;
+}
+
+.book-container:hover {
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, .8);
+}
+
+.book-container h1, h2, h3 {
+    color: #202b38;
+}
+
+form {
+    flex-direction: column;
+    width: fit-content;
+}
