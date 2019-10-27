@@ -1,0 +1,29 @@
+<h2><%= @country.name %></h2>
+<h3><strong>Capital city</strong>:</h3>
+<p><em><%= @country.capitalcity %></em></p>
+
+<h3><strong>Language/s</strong>:</h3>
+<p><em><%= @country.languages %></em></p>
+
+<% unless @country.continent.nil? %>
+<h3><strong>Continent</strong>:</h3>
+<p><em><a href="/continents/<%= @country.continent_id %>">
+  <%= @country.continent.name %>
+</a></em></p>
+<% end %>
+
+<h3><strong>Visited?</strong></h3>
+<p><em><%= @country.visited %></em></p>
+
+<% unless @country.flag.nil? || @country.flag.empty? %>
+<img src="<%= @country.flag %>" alt="<%= @country.name %> flag">
+<% end %>
+
+<% unless @country.image.nil? || @country.image.empty? %>
+<img src="<%= @country.image %>" alt="<%= country.name %> flag">
+<% end %>
+
+<div class="controls">
+  <a href="/countries/<%= @country.id %>/edit">Edit</a>
+  <a href="/countries/<%= @country.id %>/delete">Delete</a>
+</div>

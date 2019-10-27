@@ -1,0 +1,34 @@
+<h2><%= @continent.name %></h2>
+<h3><strong>Size</strong>:</h3>
+<p><em><%= @continent.size %></em></p>
+
+<h3><strong>Population</strong>:</h3>
+<p><em><%= @continent.population %></em></p>
+
+<h3><strong>Number of Countries</strong>:</h3>
+<p><em><%= @continent.numofcountries %></em></p>
+
+<% unless @continent.countries.empty? %>
+<h3>Countries:</h3>
+<ul>
+  <% @continent.countries.each do |country| %>
+  <li>
+    <a href="/countries/<%= country.id %>">
+      <%= country.name %>
+    </a>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+<h3><strong>Fun Fact</strong>:</h3>
+<p><em><%= @continent.fact %></em></p>
+
+<% unless @continent.image.nil? || @continent.image.empty? %>
+<img src="<%= @continent.image %>" alt="<%= @continent.name %> flag">
+<% end %>
+
+<div class="controls">
+  <a href="/continents/<%= @continent.id %>/edit">Edit</a>
+  <a href="/continents/<%= @continent.id %>/delete">Delete</a>
+</div>

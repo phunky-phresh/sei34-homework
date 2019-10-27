@@ -1,0 +1,19 @@
+<h2>Continents</h2>
+
+<p>
+  <strong>Click to see more information on:</strong>
+  <ul>
+    <li>Size</li>
+    <li>Population/s</li>
+    <li>Number of countries</li>
+    <li>Fun Fact</li>
+  </ul>
+</p>
+
+<% @continents.each do |continent| %>
+<p>
+  <a href="/continents/<%= continent.id %>">
+    <%= continent.name %>
+  </a>
+</p>
+<% end %>

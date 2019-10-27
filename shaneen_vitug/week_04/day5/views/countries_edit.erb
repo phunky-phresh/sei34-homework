@@ -1,0 +1,45 @@
+<h2>Edit Country</h2>
+
+<form action="/countries/<%= @country.id %>" method="post">
+
+  <label>
+    Country:
+    <input name="name" placeholder="Enter country" required value="<%= @country.name %>">
+  </label>
+
+  <label>
+    Capital city:
+    <input name="capitalcity" placeholder="Enter capital city" value="<%= @country.capitalcity %>">
+  </label>
+
+  <label>
+    Language/s:
+    <input name="languages" placeholder="English" value="<%= @country.languages %>">
+  </label>
+
+  <label>
+    Continent:
+      <select name="continent_id">
+        <option></option>
+        <% Continent.all.each do |continent| %>
+        <option value="<%= continent.id %>"<%= "selected" if continent.id == @country.continent_id %>><%= continent.name %></option>
+        <% end %>
+      </select>
+  </label>
+
+  <label>
+    Visited:
+    <input name="visited" placeholder="true or false" value="<%= @country.visited %>">
+  </label>
+
+  <label>
+    Photo of a flag:
+    <input type="url" name="flag" placeholder="http://.." value="<%= @country.flag %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://.." value="<%= @country.image %>">
+  </label>
+  <button>Update</button>
+</form>

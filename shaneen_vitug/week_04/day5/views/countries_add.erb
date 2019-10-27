@@ -1,0 +1,45 @@
+<h2>Add A Country</h2>
+
+<form action="/countries" method="post">
+
+  <label>
+    Country:
+    <input name="name" placeholder="Enter country" required>
+  </label>
+
+  <label>
+    Capital city:
+    <input name="capitalcity" placeholder="Enter capital city">
+  </label>
+
+  <label>
+    Language/s:
+    <input name="languages" placeholder="English">
+  </label>
+
+  <label>
+    Continent:
+    <select name="continent_id">
+      <option></option>
+      <% Continent.all.each do |continent| %>
+        <option value="<%= continent.id %>"><%= continent.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <label>
+    Visited:
+    <input name="visited" placeholder="true or false">
+  </label>
+
+  <label>
+    Photo of a flag:
+    <input type="url" name="flag" placeholder="http://.." >
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://.." >
+  </label>
+  <button>Add</button>
+</form>

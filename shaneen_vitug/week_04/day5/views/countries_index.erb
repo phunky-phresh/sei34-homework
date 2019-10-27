@@ -1,0 +1,19 @@
+<h2>Countries</h2>
+
+<p>
+  <strong>Click to see more information on:</strong>
+  <ul>
+    <li>Capital City</li>
+    <li>Language/s</li>
+    <li>Continent</li>
+    <li>Flag</li>
+  </ul>
+</p>
+
+<% @countries.each do |country| %>
+<p>
+  <a href="/countries/<%= country.id %>">
+    <%= country.name %>
+  </a>
+</p>
+<% end %>

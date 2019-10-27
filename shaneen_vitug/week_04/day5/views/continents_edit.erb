@@ -1,0 +1,35 @@
+<h2>Edit Continent</h2>
+
+<form action="/continents/<%= @continent.id %>" method="post">
+
+  <label>
+    Continent:
+    <input name="name" placeholder="Enter continent" required value="<%= @continent.name %>">
+  </label>
+
+  <label>
+    Size:
+    <input name="size" placeholder="Enter land area(sq km)" value="<%= @continent.size %>">
+  </label>
+
+  <label>
+    Population:
+    <input name="population" placeholder="1,000,000" value="<%= @continent.population %>">
+  </label>
+
+  <label>
+    Number of countries:
+    <input type="number" name="numofcountries" placeholder="Enter number" value="<%= @continent.numofcountries %>">
+  </label>
+
+  <label>
+    Fun fact:
+    <input name="fact" placeholder="Enter a fun fact" value="<%= @continent.fact %>">
+  </label>
+
+  <label>
+    Image:
+    <input type="url" name="image" placeholder="http://.." value="<%= @continent.image %>">
+  </label>
+  <button>Update</button>
+</form>
