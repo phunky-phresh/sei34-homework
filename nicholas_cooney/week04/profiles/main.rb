@@ -14,10 +14,10 @@ ActiveRecord::Base.logger = Logger.new(STDERR)
 
 # connection between two sql
 class Profile < ActiveRecord::Base
-  belongs_to :terrain, :optional => true
+  belongs_to :shapes, :optional => true
 end
 
-class Terrain < ActiveRecord::Base
+class Shape < ActiveRecord::Base
   has_many :profiles
 end
 
@@ -80,4 +80,11 @@ get '/profiles/:id/delete' do
   profile = Profile.find params[:id]
   profile.destroy
   redirect to("/profiles")
+end
+
+####### TERRAIN #######
+
+get '/shapes' do
+  @shapes = Shape.all
+  erb :shapes_index
 end

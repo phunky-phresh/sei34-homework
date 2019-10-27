@@ -1,6 +1,7 @@
-CREATE TABLE terrain(
+CREATE TABLE shapes(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
   image TEXT,
-  description TEXT,
+  terrain TEXT,
+  description TEXT
 )

@@ -1,0 +1,15 @@
+<h2>Shapes</h2>
+
+<% @shapes.each do |shape| %>
+
+
+<ul>
+  <li>
+    <a href="/shapes/<%= shape["id"] %>">
+      <%= shape["name"] %>
+    </a>
+
+    </li>
+</ul>
+
+<% end %>

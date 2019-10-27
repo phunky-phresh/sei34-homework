@@ -4,7 +4,7 @@ CREATE TABLE profiles (
   skill TEXT,
   image TEXT,
   description TEXT,
-  terrain_id INTEGER
+  shape_id INTEGER
 );
 
 INSERT INTO profiles (name, skill) VALUES ('Camber', 'Advanced');
