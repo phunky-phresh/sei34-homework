@@ -3,8 +3,7 @@ CREATE TABLE riders (
   name TEXT,
   team TEXT,
   country TEXT,
-  image TEXT, -- URL for photo of a butterfly
-  race_id INTEGER
+  image TEXT -- URL for photo of a rider
 );
 
 -- seed data

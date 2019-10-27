@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+    padding: 100px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+nav {
+    padding: 10px 0px;
+    background-color: rgba(0,0,0,.5);
+}
+
+a {
+    padding: 10px;
+}
+
+.image {
+    text-align: center;
+}
+
+.feature {
+    width: 50%;
+}

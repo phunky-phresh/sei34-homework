@@ -4,7 +4,9 @@
   <select name="actor_id">
     Actor:
     <% Actor.all.each do |actor| %>
-      <option value="<%= actor.id %>"><%= actor.name %></option>
+      <% if !@movie.actors.include?(actor)%>
+        <option value="<%= actor.id %>"><%= actor.name %></option>
+      <% end %>
     <% end %>
   </select>
 
