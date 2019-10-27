@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant:800&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+
+#sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: #E9EBEE;
+  left: -200px;
+  transition: all 500ms linear;
+}
+
+#sidebar.active {
+  left: 0px;
+}
+
+#sidebar ul li {
+  list-style-type: none;
+  padding: 23px 10px;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-family: 'Assistant', sans-serif;
+  font-size: 20px;
+}
+
+#sidebar .toggle-btn {
+  position: absolute;
+  left: 230px;
+  top: 20px;
+}
+
+#sidebar .toggle-btn span {
+  display: block;
+  width: 30px;
+  height: 5px;
+  background: white;
+  margin: 5px 0px;
+}
+
+.dishes {
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(207, 243, 236);
+  height: 80vh;
+}
+
+.dishes img {
+  text-align: center;
+  height: 200px;
+  width: 200px;
+  font-size: 4em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dishes div {
+  border-radius: 50%;
+  background-color: white;
+}
+
+h1 {
+  font-family: 'Assistant', sans-serif;
+  text-align: center;
+  background-color: #27589D;
+  color: white;
+  padding: 15px;
+}
+
+.list {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgb(207, 243, 236);
+  padding: 20px;
+}

@@ -1,0 +1,19 @@
+<h2><%= @height['name'] %></h2>
+
+<h3>The following clouds belong in this category:</h3>
+
+
+<ul>
+
+    <% @height.types.each do | cloud | %>
+        <li>
+            <a href="/clouds/<%= cloud.id %>"> 
+            <%= cloud.name %>
+            </a>
+        </li>
+
+    <% end %>
+
+
+</ul>
+

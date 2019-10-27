@@ -1,0 +1,25 @@
+<div class="controls">
+  <a href="/movies/<%= @movie["id"] %>/edit">Edit</a>
+  <a href="/movies/<%= @movie["id"] %>/delete">Delete</a>
+</div>
+
+<h2><%= @movie["title"] %></h2>
+
+<h3><%= @movie["year"] %></h3>
+
+
+<% unless @movie["cover"].nil? || @movie["cover"].empty? %>
+  <img class="feature" src="<%= @movie["cover"] %>" alt="movie cover">
+<% end %>
+
+<% unless @movie["actors"].nil? || @movie["actors"].empty? %>
+  <p>Actors: <%= @movie["actors"] %></p>
+<% end %>
+
+<% unless @movie["synopsis"].nil? || @movie["synopsis"].empty? %>
+  <p>Synopsis: <%= @movie["synopsis"] %></p>
+<% end %>
+
+<% unless @movie["watched"].nil? %>
+  <p>Watched: <%= @movie["watched"] %></p>
+<% end %>

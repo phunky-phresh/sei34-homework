@@ -1,0 +1,36 @@
+<div class="idea-header">
+  <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
+  <h2 class="idea-single">idea</h2>
+</div>
+<div class="<%= @idea.category %> container">
+  <article class="single">
+
+      <h1><%= @idea.title %></h1>
+
+
+
+    <div class="info">
+
+      <div class="meta">
+        <img src="/img/tag-icon.png" class="icon-small">
+        <p><%= @idea.category %></p>
+
+        <img src="/img/date-icon.png" class="icon-small">
+        <p><%= @idea.post_time %></p>
+      </div>
+
+      <div class="controls">
+        <a href="<%= @idea.id %>/edit" alt="Edit this idea"><img src="/img/edit-icon.png" class="icon-small"><p>edit</p></a>
+
+        <a href="<%= @idea.id %>/delete" alt="Delete this idea"><img src="/img/delete-icon.png" class="icon-small"><p>delete</p></a>
+
+      </div>
+
+    </div>
+
+    <h4>Description</h4>
+    <p class="copy"><%= @idea.description %></p>
+    <h4>Related Links</h4>
+
+  </article>
+</div>
