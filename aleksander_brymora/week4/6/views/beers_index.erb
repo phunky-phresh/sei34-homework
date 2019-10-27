@@ -1,0 +1,16 @@
+<div id="display-all">
+    <% @beers.each do |beer| %>
+        <a href="/beers/<%= beer.id %>">
+            <div class="display-one">
+                <% if beer.image.nil? || beer.image.empty? %>
+                    <img src="https://cdn.pixabay.com/photo/2016/09/14/11/35/beer-1669273_960_720.png" alt="default-beer-image">
+                <% else %>
+                    <img src="<%= beer.image %>" alt="beer-image">
+                <% end %>
+                <p>
+                    <%= beer.name %>
+                </p>
+            </div>
+        </a>
+    <% end %>
+</div>
