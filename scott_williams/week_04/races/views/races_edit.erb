@@ -1,0 +1,43 @@
+<h2>Edit Race</h2>
+
+<form class="pure-form pure-form-aligned" action="/races/<%= @race.id %>" method="post">
+
+  <div class="pure-control-group">
+    <label>Event:</label>
+      <input name="event" placeholder="Tour of Flanders" required value="<%= @race.event %>">
+    </div>
+
+  <div class="pure-control-group">
+    <label>Nickname:</label>
+      <input name="nickname" placeholder="Vlaanderens Mooiste" value="<%= @race.nickname %>">
+    </div>
+
+  <div class="pure-control-group">
+    <label>Country:</label>
+      <input name="country" placeholder="Belgium" value="<%= @race.country %>">
+    </div>
+
+  <div class="pure-control-group">
+    <label>Stages:</label>
+      <input name="stages" placeholder="One" value="<%= @race.stages %>">
+
+  </div>
+
+  <div class="pure-control-group">
+    <label>Image:</label>
+      <input type="url" name="image" placeholder="http://..." value="<%= @race.image %>">
+    </div>
+
+<div class="pure-control-group">
+  <label>Winning rider:</label>
+    <select name="rider_id">
+      <option></option>
+      <% Rider.all.each do |rider| %>
+        <option value="<%= rider.id %>" <%= "selected" if rider.id == @race.rider_id %>><%= rider.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary">Update race</button>
+</form>

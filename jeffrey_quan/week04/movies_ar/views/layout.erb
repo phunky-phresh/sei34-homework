@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Movies and Directors</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <a href='/'>Home</a>
+      <a href='/actors'>Actors</a>
+      <a href='/actors/new'>Add New Actor</a>
+      <a href='/directors'>Directors</a>
+      <a href='/directors/new'>Add New Director</a>
+      <a href='/movies'>Movies</a>
+      <a href='/movies/new'>Add New Movie</a>
+    </nav>
+    <%= yield %>
+  </div>
+</body>
+</html>

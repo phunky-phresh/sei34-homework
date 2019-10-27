@@ -1,0 +1,19 @@
+  <header>
+    <h2>Surfboard Catalogue</h2>
+  </header>
+
+  <main>
+    <% @surfboards.each do |board| %>
+      <p class="row-display">
+        <% unless board["image"].nil? || board["image"].empty? %>
+          <img class="preview" src="<%= board["image"] %>" alt="@surfboard["name"]">
+        <% end %>
+          <a href="/surfboards/<%= board["id"] %>" class="name">
+            <%= board["name"] %>
+          </a>
+          <span>
+            <button><a href="/surfboards/<%= board['name'] %>/edit">Edit</a></button>
+            <button><a href="/surfboards/<%= board['id'] %>/delete">Delete</a></button>
+          </span>
+      </p>
+    <% end %>

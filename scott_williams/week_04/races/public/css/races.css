@@ -1,0 +1,240 @@
+* {
+  /* border: 1px solid red; */
+}
+
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed|Noto+Sans+KR&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* fonts */
+  --font-headings: 'Barlow Condensed', sans-serif;
+  --font-body: 'Noto Sans KR', sans-serif;
+  /* colours */
+  --header-background: #00b1ff;
+  --faded: rgba(0, 177, 255, .2);
+  --header-text: #031a4a;
+  --nav-text-color: #ffe;
+  --nav-text-hover: #031a4a;
+  --text-color: #00b1ff;
+  /* max screen width */
+  --max-width: 1100px;
+}
+
+body {
+  font-family: var(--font-body); /* body */
+  font-family: var(--font-headings); /* headings */
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+/* Typography */
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-family: var(--font-headings);
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 1.2em;
+  padding-top: 0.5em;
+}
+
+h2 {
+  font-size: 2.9rem;
+  padding: 1em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.2rem;
+  line-height: 1.4em;
+}
+
+header h3 {
+  color: var(--header-text);
+}
+
+p {
+  color: var(--text-color);
+}
+
+.subtitle {
+  color: var(--header-text);
+  font-size: 0.8rem;
+}
+
+/* Layout */
+
+main {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Layout: index */
+div.box {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+}
+
+p img {
+  border-radius: 0.5em;
+}
+
+p a {
+  min-height: 100px;
+  min-width: 200px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  padding: 1em;
+  /* background-color: var(--faded); */
+  border-radius: 0.5em;
+  box-shadow: 0.5em 0.5em 1em 3px rgba(0, 0, 0, .2);
+  padding: 0.3em;
+  /* display: block; */
+  font-size: 120%;
+  color: var(--header-background);
+  text-decoration: none;
+}
+
+.grow {
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.03);
+}
+
+p a span {
+  padding: 1em;
+}
+
+.thumbnail {
+  overflow: hidden;
+  height: 150px;
+}
+
+/* Single Item */
+
+.textboxes {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 3em;
+}
+
+.highlight {
+  text-align: left;
+  /* height: 3em; */
+  /* width: 15em; */
+  /* background-color: green; */
+  line-height: 1.5;
+  padding: 0.2em;
+  font-size: 120%;
+}
+
+.highlight a {
+  text-decoration: none;
+  color: #031a4a;
+}
+
+.mainimg {
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: center;
+  display: block;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+}
+
+.pure-controls button {
+  background-color: var(--header-background);
+}
+/* Navigation */
+header {
+  background: var(--header-background);
+  color: var(--nav-text-color);
+  position: sticky;
+  overflow: hidden;
+}
+
+.head {
+  width: var(--max-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7em 0.4em;
+  top: 0;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  margin: 0.3em 0;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--nav-text-color);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 0.5em;
+  border-right: 1px solid white;
+}
+
+nav a:last-child {
+  border: 0px;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--nav-text-hover);
+}
+
+
+
+
+/* Media */
+@media only screen and (max-width: 600px) {
+
+
+  h1, h2, h3 {
+    color: red;
+  }
+
+  h1 {
+    padding: 0.5em 0;
+    font-size: 3rem;
+  }
+
+  /* Nav */
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav ul {
+    flex-direction: column;
+  }
+
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <title>Races</title> <!-- Enter title -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <!-- pure css stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/races.css">
+
+    <!-- Scripts -->
+    <script src=""></script> <!-- jquery file normally -->
+
+  </head>
+
+  <!-- BODY -------------------------------------->
+  <body>
+
+      <header>
+        <div class="head">
+          <div class="header-logo">
+            <h3>The Champions of Cycling</h3>
+            <p class="subtitle">2011 Winners</p>
+          </div><!-- header-logo -->
+          <nav>
+            <a href="/">Home</a>
+            <a href="/races">All Races</a>
+            <a href="/races/new">New Race</a>
+            <a href="/riders">All Riders</a>
+            <a href="/riders/new">New Rider</a>
+          </nav>
+        </div>
+      </header>
+
+    <div class="container">
+      <%= yield %>
+
+    </div>
+
+  </body>
+</html>

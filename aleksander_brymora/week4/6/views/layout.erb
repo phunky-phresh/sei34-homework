@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Beers</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css'>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/"><h1>BEERS!</h1></a>
+        <div class="menu-main">
+            <a href="/">Home</a>
+        </div>
+        <div class="menu-main">
+            <a href="/beers">Beers</a>
+            <a href="/beers/new">Add new beer</a>
+        </div>
+        <div class="menu-main">
+            <a href="/types">Types</a>
+            <a href="/types/new">Add new type</a>
+        </div>
+    </nav>
+    <main>
+        <div id="container">
+            <%= yield %>
+        </div>
+    </main>
+    <footer>
+        <p>© Copyright 2019</p>
+    </footer>
+</body>
+</html>

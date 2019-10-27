@@ -1,0 +1,19 @@
+body{
+	/*background-color: lime;*/
+	background:url("../img/book.jpg");
+	background-repeat: none;
+}
+
+.container{
+	max-width: 960px;
+	border-radius: 60px;
+	margin: 0 auto;
+	background-color: #0076d175;
+	padding: 1em;
+	min-height: 80vh;
+}
+
+img{
+	text-align: center;
+	
+}

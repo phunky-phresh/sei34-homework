@@ -1,0 +1,19 @@
+<h2><%= @director.name %></h2>
+<% unless @director.movies.empty? %>
+  <h3>Associated movies:</h3>
+  <ul>
+    <% @director.movies.each do |movie| %>
+      <li>
+        <a href="/movies/<%= movie.id %>">
+          <%= movie.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<div class="image">
+  <img class="feature" src="<%= @director.image %>" alt="<%= @director.name %>">
+</div>
+
+<a href="/directors/<%= @director.id %>/edit">Edit</a>
+<a href="/directors/<%= @director.id %>/delete">Delete</a>

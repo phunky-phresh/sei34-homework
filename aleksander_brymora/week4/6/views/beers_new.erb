@@ -1,0 +1,27 @@
+<h2>Add new beer</h2>
+
+<form action="/beers" method="post">
+	<label>
+		<p>Name:</p>
+		<input type="text" placeholder="Name" name="name" required>
+	</label>
+	<label>
+		<p>Percentage (without "%"):</p>
+		<input type="number" step="0.1" placeholder="4.6" name="percentage">
+	</label>
+	<label>
+		<p>Image:</p>
+		<input type="text" placeholder="http://..." name="image">
+	</label>
+	<label>
+		<p>Type of beer:</p>
+		<select name="type_id">
+			<option></option>
+			<% Type.all.each do |type| %>
+				<option value="<%= type.id %>"><%= type.name %></option>
+			<% end %>
+		</select>
+	</label>
+
+	<button>Create beer</button>
+</form>

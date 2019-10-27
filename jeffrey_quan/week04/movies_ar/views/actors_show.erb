@@ -1,0 +1,18 @@
+<h2><%= @actor.name %></h2>
+
+  <h3>Associated movies:</h3>
+  <ul>
+    <% @actor.movies.each do |movie| %>
+      <li>
+        <a href="/movies/<%= movie.id %>">
+          <%= movie.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+<div class="image">
+  <img class="feature" src="<%= @actor.image %>" alt=<%= @actor.name %>>
+</div>
+
+<a href="/actors/<%= @actor.id %>/edit">Edit</a>
+<a href="/actors/<%= @actor.id %>/delete">Delete</a>

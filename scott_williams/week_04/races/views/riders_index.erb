@@ -1,0 +1,15 @@
+<h2>All Riders</h2>
+<div class="box">
+<% @riders.each do |rider| %>
+
+  <p class="boxes grow">
+    <a href="/riders/<%= rider.id %>">
+      <span><%= rider.name %></span>
+
+      <% unless rider.image.nil? || rider.image.empty? %>
+        <img class="thumbnail" src="<%= rider.image %>" alt="<%= rider.name  %>">
+      <% end %>
+    </a>
+  </p>
+<% end %>
+</div>

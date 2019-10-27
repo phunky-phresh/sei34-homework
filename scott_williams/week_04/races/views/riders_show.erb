@@ -1,0 +1,42 @@
+<h2><%= @rider.name %></h2>
+
+<div class="box">
+<h3>Team: <em><%= @rider.team %></em></h3>
+
+  <div class="textboxes">
+    <div class="highlight">
+      <% unless @rider.races.empty? %>
+        <h3>Races won:</h3>
+        <ul>
+        <% @rider.races.each do |race| %>
+          <li>
+            <a href="/races/<%= race.id %>">
+              <%= race.event %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+
+    <div class="highlight">
+      <% unless @rider.country.nil? || @rider.country.empty? %>
+        <p>Nationality: <%= @rider.country %></p>
+      <% end %>
+    </div>
+  </div><!-- end div textboxes-->
+
+  <div class="mainimg">
+    <% unless @rider.image.nil? || @rider.image.empty? %>
+      <img class="feature" src="<%= @rider.image %>" alt=" <%= @rider.name %>">
+    <% end %>
+  </div>
+
+<div class="controls">
+  <p>
+    <a class="grow" href="/riders/<%= @rider.id %>/edit">Edit</a>
+    <a class="grow" href="/riders/<%= @rider.id %>/delete">Delete</a>
+  </p>
+</div>
+
+</div><!-- end div box -->

@@ -1,0 +1,28 @@
+<h2> <%= @movie.name %> </h2>
+<p><%= @movie.year %></p>
+<p>Genre: <%= @movie.genre %></p>
+<% unless @movie["director_id"].nil? || @movie["director_id"] == "" %>
+  <p> Director:
+    <a href="/directors/<%= @movie.director_id %>"><%= @movie.director.name %></a>
+  </p>
+<% end %>
+<% unless @movie.actors.empty? %>
+<h3>Associated actors:</h3>
+  <ul>
+    <% @movie.actors.each do |actor| %>
+      <li>
+        <a href="/actors/<%= actor.id %>">
+          <%= actor.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<div class="image">
+  <img class="feature" src="<%= @movie.image %>" alt="<%= @movie.name %>">
+</div>
+
+<a href="/movies/<%= @movie.id %>/edit">Edit</a>
+<a href="/movies/<%= @movie.id %>/delete">Delete</a>
+<a href="/movies/<%= @movie.id %>/add-actor">Add Actor</a>
+<a href="/movies/<%= @movie.id %>/delete-actor">Delete Actor</a>

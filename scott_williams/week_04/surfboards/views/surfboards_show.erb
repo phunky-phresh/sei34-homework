@@ -1,0 +1,22 @@
+  <header>
+    <%=@surfboard["name"]%>
+  </header>
+
+  <main>
+    <section>
+      <p>Brand: <em><%= @surfboard["brand"] %></em></p>
+      <p>Type: <em><%= @surfboard["type"] %></em></p>
+
+      <% unless @surfboard["image"].nil? || @surfboard["image"].empty? %>
+        <img class="feature" src="<%= @surfboard["image"] %>" alt="@surfboard["name"]">
+      <% end %>
+
+      <div class="controls">
+        <a href="/surfboards/<%= @surfboard['id'] %>/edit" class="name">Edit</a>
+        <a href="/surfboards/<%= @surfboard['id'] %>/delete" class="name">Delete</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
