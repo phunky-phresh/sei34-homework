@@ -1,0 +1,13 @@
+<h3> Movie: <%= @movie.name %> </h3>
+
+<form action="/movies/<%= @movie.id %>/delete-actor" method="post">
+  <select name="actor_id">
+    Actor:
+    <% @movie.actors.all.each do |actor| %>
+      <option value="<%= actor.id %>"><%= actor.name %></option>
+    <% end %>
+  </select>
+
+  <button>Delete Actor from Movie</button>
+
+</form>
