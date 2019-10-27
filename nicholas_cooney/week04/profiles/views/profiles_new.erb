@@ -3,20 +3,20 @@
 <div class="form">
   <form action="/profiles" method="post">
     <label>
-      Name:
+      <h3>Name:</h3>
       <input name="name" placeholder="eg. Camber" required>
     </label>
 
     <label>
-      Experience Level:
+      <h3>Experience Level:</h3>
       <input name="skill" placeholder=" eg. beginner">
     </label>
     <label>
-      Image:
+      <h3>Image:</h3>
       <input name="image" type="url" placeholder="https://...">
     </label>
     <label>
-      Board Shape:
+      <h3>Board Shape:</h3>
       <select name="shape_id">
         <option></option>
         <% Shape.all.each do |shape| %>

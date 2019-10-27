@@ -1,15 +1,15 @@
 <div class="display">
   <h2><%= @profiles.name %></h2>
 
-  <p><%= @profiles.skill %></p>
+  <h3><%= @profiles.skill %></h3>
 
   <% unless @profiles.shape.nil? %>
-  <p>
+  <h3>
     Shape:
     <a href="/shapes/<%= @profiles.shape_id %>">
       <%= @profiles.shape.name %>
     </a>
-  </p>
+  </h3>
 
   <% end %>
   <p><%= @profiles.description %></p>

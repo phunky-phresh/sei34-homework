@@ -1,16 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Galada|Lato:300|Roboto&display=swap');* {
+@import url('https://fonts.googleapis.com/css?family=Galada|Lato:300|Roboto:300&display=swap');
+* {
   box-sizing: border-box;
 }
 h1 {
   font-family: 'Galada', sans-serif;
+  font-size: 5rem;
+  margin-top: 1rem;
 }
 h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
+  margin-top: 0;
 }
 body {
-  background-color: #FF483B;
+  background-color: #ff675c;
   /* background-color: #FF8F87; */
   color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 .container {
   max-width: 800px;
@@ -36,14 +42,33 @@ a:hover {
 }
 .form {
   background-color: #FF8F87;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+label h3 {
+  margin: 0;
+  font-family: 'Roboto';
 }
 .form input {
   display: block;
+  border-radius: .3rem;
+  height: 2rem;
+  border: none;
+  /* box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset; */
+  padding: 5px;
   /* width: 2rem; */
+}
+.form textarea {
+  padding: 5px;
+  border: none;
+  border-radius: .3rem;
 }
 
 .form label {
-  font-size: 20px;
+  font-size: 15px;
+}
+label * {
+  margin: 10px 0;
 }
 .form button {
   display: block;
@@ -62,9 +87,13 @@ tr {
 .index th {
   background-color: #FF483B;
   width: 300px;
+  font-family: 'Roboto', sans-serif;
 }
 tr:hover {
   background-color: #FF483B;
+}
+td, td a {
+  font-family: 'Lato';
 }
 
 .display {

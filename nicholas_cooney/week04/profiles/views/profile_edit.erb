@@ -3,17 +3,17 @@
 <div class="form">
   <form action="/profiles/<%= @profiles["id"] %>" method="post">
     <label>
-      Name:
+      <h3>Name:</h3>
       <input name="name" placeholder="eg. Camber" required value="<%= @profiles["name"] %>">
     </label>
 
     <label>
-      Experience Level:
+      <h3>Experience Level:</h3>
       <input name="skill" value="<%= @profiles["skill"] %>" placeholder="eg. beginner">
     </label>
 
     <label>
-      Snowboard Shapes:
+      <h3>Snowboard Shapes:</h3>
       <select name="shape_id">
         <option></option>
         <% Shape.all.each do |shape| %>
@@ -22,8 +22,10 @@
         <option>multiple</option>
       </select>
     </label>
-    Image:
+    <label>
+      <h3>Image:</h3>
       <input name="image" type="url" placeholder="https://..." value="<%= @profiles["image"] %>"=>
+    </label>
       <label>
         <textarea name="description" rows="8" cols="80" placeholder="Give a brief overview"><%= @profiles.description %></textarea>
         <!-- <input name="description"> -->
