@@ -82,9 +82,62 @@ get '/profiles/:id/delete' do
   redirect to("/profiles")
 end
 
-####### TERRAIN #######
+####### SHAPES #######
 
 get '/shapes' do
   @shapes = Shape.all
   erb :shapes_index
+end
+
+# new
+get '/shapes/new' do
+  erb :shapes_new
+end
+
+#CREATE
+post '/shapes' do
+  shape = Shape.new
+  shape.name = params[:name]
+  shape.terrain = params[:terrain]
+  shape.image = params[:image]
+  shape.description = params[:description]
+  shape.save
+  redirect to("/shapes/#{shape.id}")
+end
+
+#SHOW
+
+get '/shapes/:id' do
+  @shapes = Shape.find params[:id]
+  erb :shapes_show
+end
+
+#Edit
+
+get '/shapes/:id/edit' do
+  @shapes = Shape.find params[:id]
+  erb :shapes_edit
+end
+
+#UPDATE
+post '/shapes/:id' do
+  shape = Shape.find params[:id]
+  shape.name = params[:name]
+  shape.terrain = params[:terrain]
+  shape.image = params[:image]
+  shape.description = params[:description]
+  shape.save
+  redirect to("/shapes/#{shape.id}")
+end
+
+#delete
+
+get '/shapes/:id/delete' do
+  shape = Shape.find params[:id]
+  shape.destroy
+  redirect to("/shapes")
+end
+
+after do
+  ActiveRecord::Base.connection.close
 end
