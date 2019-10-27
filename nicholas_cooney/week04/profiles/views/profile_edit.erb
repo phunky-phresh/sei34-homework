@@ -11,12 +11,23 @@
       Experience Level:
       <input name="skill" value="<%= @profiles["skill"] %>" placeholder="eg. beginner">
     </label>
+
+    <label>
+      Snowboard Shapes:
+      <select name="shape_id">
+        <option></option>
+        <% Shape.all.each do |shape| %>
+        <option value="<%= shape.id %>" <%= "slected" if shape.id == @profiles.shape_id %>><%= shape.name %></option>
+        <% end %>
+      </select>
+
+    </label>
     Image:
       <input name="image" type="url" placeholder="https://..." value="<%= @profiles["image"] %>"=>
-    <label>
-      Overview:
-      <input name="description" value="<%= @profiles["description"] %>">
-    </label>
+      <label>
+        <textarea name="description" rows="8" cols="80"><%= @profiles.description %></textarea>
+        <!-- <input name="description"> -->
+      </label>
     <button>Submit</button>
   </form>
 </div>

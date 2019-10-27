@@ -16,7 +16,16 @@
       <input name="image" type="url" placeholder="https://...">
     </label>
     <label>
-      <textarea name="description" rows="8" cols="80">Give a brief overivew</textarea>
+      Board Shape:
+      <select name="shape_id">
+        <option></option>
+        <% Shape.all.each do |shape| %>
+          <option value="<%= shape.id %>"><%= shape.name %></option>
+        <% end %>
+      </select>
+    </label>
+    <label>
+      <textarea name="description" rows="8" cols="80" placeholder="Give a brief overivew"></textarea>
       <!-- <input name="description"> -->
     </label>
     <button>Submit</button>

@@ -4,9 +4,18 @@
 
 <p><%= @profiles.description %></p>
 
-<% unless @profiles["image"].nil? || @profiles["image"].empty? %>
+<% unless @profiles.shape.nil? %>
+<p>
+  Shape:
+  <a href="/shapes/<%= @profiles.shape_id %>">
+    <%= @profiles.shape.name %>
+  </a>
+</p>
 
-<img class="feature" src="<%= @profiles["image"] %>" alt="<%= @profiles["name"] %>">
+<% end %>
+
+<% unless @profiles["image"].nil? || @profiles["image"].empty? %>
+  <img class="feature" src="<%= @profiles["image"] %>" alt="<%= @profiles["name"] %>">
 <% end %>
 
 <div class="controls">

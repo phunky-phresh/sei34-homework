@@ -47,6 +47,7 @@ post '/profiles' do
   profile.skill = params[:skill]
   profile.image = params[:image]
   profile.description = params[:description]
+  profile.shape_id = params[:shape_id]
   profile.save
   redirect to("/profiles/#{ profile.id }")
 end
@@ -70,6 +71,7 @@ post '/profiles/:id' do
   profile.skill = params[:skill]
   profile.image = params[:image]
   profile.description = params[:description]
+  profile.shape_id = params[:shape_id]
   profile.save
   redirect to("/profiles/#{ params[:id] }")
 end

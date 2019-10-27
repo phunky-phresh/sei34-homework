@@ -48,7 +48,9 @@ a:hover {
 .form button {
   display: block;
 }
-
+select {
+  display: block;
+}
 /* Index Table */
 tr {
   height: 2rem;
