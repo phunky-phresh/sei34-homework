@@ -1,0 +1,24 @@
+<h2><%= @race.event %></h2>
+
+<% unless @race.riders.empty? %>
+  <h3>Associated riders:</h3>
+  <ul>
+  <% @race.riders.each do |rider| %>
+    <li>
+      <a href="/riders/<%= rider.id %>">
+        <%= rider.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<% unless @race.image.nil? || @race.image.empty? %>
+  <img class="feature" src="<%= @race.image %>" alt="<%= @race.event  %>">
+<% end %>
+
+<div class="controls">
+  <a href="/races/<%= @race.id %>/edit">Edit</a>
+  <a href="/races/<%= @race.id %>/delete">Delete</a>
+</div>
