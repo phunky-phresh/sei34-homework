@@ -1,0 +1,28 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  color: #94BFA9;
+}
+
+p {
+  text-align: justify;
+}
+
+form {
+  text-align: center;
+}

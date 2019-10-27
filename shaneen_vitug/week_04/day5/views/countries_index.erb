@@ -1,19 +1,24 @@
 <h2>Countries</h2>
 
-<p>
+
   <strong>Click to see more information on:</strong>
-  <ul>
-    <li>Capital City</li>
-    <li>Language/s</li>
-    <li>Continent</li>
-    <li>Flag</li>
+  <ul class="list-inline">
+    <li class="list-inline-item">Capital City |</li>
+    <li class="list-inline-item">Language/s |</li>
+    <li class="list-inline-item">Continent |</li>
+    <li class="list-inline-item">Flag</li>
   </ul>
-</p>
+
+<img class="img-fluid" src="https://www.westernunion.com/blog/relaunch/wp-content/uploads/sites/20/2017/06/bhutan_cool_flag-960x360.jpg">
+
 
 <% @countries.each do |country| %>
-<p>
+  <ul class="list-group list-group-flush">
+  <li class="list-group-item">
+  
   <a href="/countries/<%= country.id %>">
     <%= country.name %>
   </a>
-</p>
+</li>
+</ul>
 <% end %>

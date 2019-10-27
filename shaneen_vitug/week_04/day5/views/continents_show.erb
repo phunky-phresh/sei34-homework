@@ -1,18 +1,18 @@
 <h2><%= @continent.name %></h2>
 <h3><strong>Size</strong>:</h3>
-<p><em><%= @continent.size %></em></p>
+<em><%= @continent.size %></em></<em>
 
 <h3><strong>Population</strong>:</h3>
-<p><em><%= @continent.population %></em></p>
+<em><%= @continent.population %></em>
 
 <h3><strong>Number of Countries</strong>:</h3>
-<p><em><%= @continent.numofcountries %></em></p>
+<em><%= @continent.numofcountries %></em>
 
 <% unless @continent.countries.empty? %>
 <h3>Countries:</h3>
-<ul>
+<ul class="list-inline">
   <% @continent.countries.each do |country| %>
-  <li>
+  <li class="list-inline-item">
     <a href="/countries/<%= country.id %>">
       <%= country.name %>
     </a>
@@ -25,7 +25,7 @@
 <p><em><%= @continent.fact %></em></p>
 
 <% unless @continent.image.nil? || @continent.image.empty? %>
-<img src="<%= @continent.image %>" alt="<%= @continent.name %> flag">
+<img class="img-fluid" src="<%= @continent.image %>" alt="<%= @continent.name %> flag">
 <% end %>
 
 <div class="controls">

@@ -16,11 +16,13 @@
 <p><em><%= @country.visited %></em></p>
 
 <% unless @country.flag.nil? || @country.flag.empty? %>
-<img src="<%= @country.flag %>" alt="<%= @country.name %> flag">
+<h3><strong>Flag</strong></h3>
+<img class="img-thumbnail" src="<%= @country.flag %>" alt="<%= @country.name %> flag">
 <% end %>
 
 <% unless @country.image.nil? || @country.image.empty? %>
-<img src="<%= @country.image %>" alt="<%= country.name %> flag">
+<h3><strong>Image</strong></h3>
+<img class="img-fluid" src="<%= @country.image %>" alt="<%= @country.name %> image">
 <% end %>
 
 <div class="controls">

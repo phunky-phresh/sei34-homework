@@ -1,22 +1,25 @@
 <h2>Add A Country</h2>
 
 <form action="/countries" method="post">
-
+<div class="form-group">
   <label>
     Country:
     <input name="name" placeholder="Enter country" required>
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Capital city:
     <input name="capitalcity" placeholder="Enter capital city">
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Language/s:
     <input name="languages" placeholder="English">
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Continent:
     <select name="continent_id">
@@ -26,20 +29,24 @@
       <% end %>
     </select>
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Visited:
     <input name="visited" placeholder="true or false">
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Photo of a flag:
     <input type="url" name="flag" placeholder="http://.." >
   </label>
-
+  </div>
+  <div class="form-group">
   <label>
     Image:
     <input type="url" name="image" placeholder="http://.." >
   </label>
+  </div>
   <button>Add</button>
 </form>
