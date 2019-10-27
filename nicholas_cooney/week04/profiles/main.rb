@@ -14,7 +14,7 @@ ActiveRecord::Base.logger = Logger.new(STDERR)
 
 # connection between two sql
 class Profile < ActiveRecord::Base
-  belongs_to :shapes, :optional => true
+  belongs_to :shape, :optional => true
 end
 
 class Shape < ActiveRecord::Base

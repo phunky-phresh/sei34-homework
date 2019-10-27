@@ -1,15 +1,32 @@
-<h2>Profiles</h2>
+<div class="content">
+  <h2>Profiles</h2>
 
-<% @profiles.each do |profile| %>
+
+  <table>
+    <tr>
+      <th>Snowboard Profile</th>
+      <th>Rider Level</th>
+      <th>Snowboard Shape</th>
+    </tr>
+    <% @profiles.each do |profile| %>
+    <tr>
+      <td>
+        <a href="/profiles/<%= profile["id"] %>">
+        <%= profile["name"] %>
+      </td>
+      <td><%= profile["skill"] %></td>
+        <% unless @profiles.shape.nil? %>
+        <td>
+          <a href="/shapes/<%= @profiles.shape_id %>"></a>
+          <%= @profiles.shape.name %>
+        </td>
+        <% end %>
+    </tr>
+    <% end %>
+
+  </table>
 
 
-<ul>
-  <li>
-    <a href="/profiles/<%= profile["id"] %>">
-      <%= profile["name"] %>
-    </a>
 
-    </li>
-</ul>
 
-<% end %>
+</div>

@@ -8,21 +8,34 @@ h2 {
   font-family: 'Roboto', sans-serif;
 }
 body {
-
+  background-color: #FF483B;
+  /* background-color: #FF8F87; */
+  color: white;
 }
 .container {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
 }
-nav a{
+nav {
+  margin-top: 2rem;
+}
+a {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
+  padding: 0 10px 0 0;
+  color: white;
 }
-nav a:hover {
+a:hover {
   text-decoration: underline;
 }
+.content {
+  background-color: #FF8F87;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  padding: 2rem;
+}
 .form {
-  background-color: gray;
+  background-color: #FF8F87;
 }
 .form input {
   display: block;
@@ -34,4 +47,15 @@ nav a:hover {
 }
 .form button {
   display: block;
+}
+
+/* Index Table */
+tr {
+  height: 2rem;
+}
+th {
+  background-color: #FF483B;
+}
+tr:hover {
+  background-color: #FF483B;
 }
