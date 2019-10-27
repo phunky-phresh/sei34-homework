@@ -17,10 +17,12 @@
       </li>
     <% end %>
   </ul>
-
 <% end %>
-<img src="<%= @movie.image %>" alt="<%= @movie.name %>">
+<div class="image">
+  <img class="feature" src="<%= @movie.image %>" alt="<%= @movie.name %>">
+</div>
 
 <a href="/movies/<%= @movie.id %>/edit">Edit</a>
 <a href="/movies/<%= @movie.id %>/delete">Delete</a>
 <a href="/movies/<%= @movie.id %>/add-actor">Add Actor</a>
+<a href="/movies/<%= @movie.id %>/delete-actor">Delete Actor</a>

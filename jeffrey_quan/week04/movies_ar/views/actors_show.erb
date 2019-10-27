@@ -1,7 +1,5 @@
 <%= @actor.name %>
 
-<img src="<%= @actor.image %>" alt=<%= @actor.name %>>
-
   <h3>Associated movies:</h3>
   <ul>
     <% @actor.movies.each do |movie| %>
@@ -12,7 +10,9 @@
       </li>
     <% end %>
   </ul>
-
+<div class="image">
+  <img class="feature" src="<%= @actor.image %>" alt=<%= @actor.name %>>
+</div>
 
 <a href="/actors/<%= @actor.id %>/edit">Edit</a>
 <a href="/actors/<%= @actor.id %>/delete">Delete</a>
