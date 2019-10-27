@@ -1,8 +1,16 @@
 
-<h2><%= @shapes["name"] %></h2>
-
-
-<div class="controls">
-  <a href="/shapes/<%= @shapes["id"] %>/edit">Edit</a>
-  <a href="/shapes/<%= @shapes["id"] %>/delete">Delete</a>
+<div class="display">
+  <h2><%= @shapes["name"] %></h2>
+  <h3>
+    Terrain:
+    <%= @shapes["terrain"] %>
+  </h3>
+  <p><%= @shapes["description"] %></p>
+  <% unless @shapes["image"].nil? || @shapes["image"].empty? %>
+    <img class="feature" src="<%= @shape["image"] %>" alt="<%= @shape["name"] %>">
+  <% end %>
+  <div class="controls">
+    <a href="/shapes/<%= @shapes["id"] %>/edit">Edit</a>
+    <a href="/shapes/<%= @shapes["id"] %>/delete">Delete</a>
+  </div>
 </div>

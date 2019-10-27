@@ -17,7 +17,7 @@
       <select name="shape_id">
         <option></option>
         <% Shape.all.each do |shape| %>
-        <option value="<%= shape.id %>" <%= "slected" if shape.id == @profiles.shape_id %>><%= shape.name %></option>
+        <option value="<%= shape.id %>" <%= "selected" if shape.id == @profiles.shape_id %>><%= shape.name %></option>
         <% end %>
         <option>multiple</option>
       </select>

@@ -1,7 +1,10 @@
 <div class="display">
   <h2><%= @profiles.name %></h2>
 
-  <h3><%= @profiles.skill %></h3>
+  <h3>
+    Difficulty:
+    <%= @profiles.skill %>
+  </h3>
 
   <% unless @profiles.shape.nil? %>
   <h3>

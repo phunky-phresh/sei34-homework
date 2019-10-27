@@ -6,6 +6,7 @@ h1 {
   font-family: 'Galada', sans-serif;
   font-size: 5rem;
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 h2 {
   font-family: 'Lato', sans-serif;
@@ -107,4 +108,5 @@ td, td a {
 }
 .controls {
   text-align: center;
+  margin-top: 20px;
 }

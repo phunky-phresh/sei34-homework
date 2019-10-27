@@ -8,6 +8,7 @@
       <th>Rider Level</th>
       <th>Snowboard Shape</th>
     </tr>
+
     <% @profiles.each do |profile| %>
     <tr>
       <td>
@@ -18,12 +19,16 @@
         <%= profile["skill"] %>
       </td>
       <td>
-        <a href="/shapes/<%= profile["shape_id"] %>">
-        <%= profile["shape_id"] %>
-        </a>
+        <% Shape.all.each do |shape| %>
+        <% if profile.shape_id == shape.id %>
+        <a href="/shapes/<%= shape.id %>"><%= shape.name %></a>
+        
+        <% end %>
+        <% end %>
       </td>
     </tr>
     <% end %>
+
 
   </table>
 
