@@ -1,25 +1,32 @@
 
+<section>
+
+</section>
 <main>
-  <% @ideas.shuffle.each do |x| %>
+  <% @ideas.each_with_index do |x, i| %>
     <article class="<%= x.category %> tile">
       <h2><a href="idea/<%= x.id %>" alt="<%= x.title %>"><%= x.title %></a></h2>
       <div class="info">
 
-        <div class="meta">
+        <a class="meta" href="/category/<%= x.category %>">
           <img src="/img/tag-icon.png" class="icon-x-small">
           <p><%= x.category %></p>
-        </div>
+        </a>
         <div class="meta">
           <img src="/img/date-icon.png" class="icon-x-small">
-          <p><%= x.post_time %></p>
+          <p><%= @dates[i] %></p>
         </div>
       </div>
       <h4>Description</h4>
       <p class="copy"><%= x.description %></p>
-      <% unless x.links.empty? %>
-        <h4>Related Links</h4>
-      <% end %>
-
+      <div class="related">
+        <% unless x.links.empty? %>
+          <h4>Related Links</h4>
+          <% x.links.each do |a| %>
+            <p><a href="<%= a.url %>" target="_blank" alt="Link to <%= a.name %>"><%= a.name %></a></p>
+          <% end %>
+        <% end %>
+      </div>
     </article>
   <% end %>
 </main>

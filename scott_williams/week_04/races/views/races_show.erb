@@ -1,24 +1,40 @@
 <h2><%= @race.event %></h2>
 
-<% unless @race.riders.empty? %>
-  <h3>Associated riders:</h3>
-  <ul>
-  <% @race.riders.each do |rider| %>
-    <li>
-      <a href="/riders/<%= rider.id %>">
-        <%= rider.name %>
-      </a>
-    </li>
-  <% end %>
-</ul>
-<% end %>
+<div class="box">
+  <div class="textboxes">
+    <div class="highlight">
+        <% unless @race.rider.nil? %>
+          <h3>Winning rider:</h3>
+              <a href="/riders/<%= @race.rider.id %>">
+                <%= @race.rider.name %>
+              </a>
+        <% end %>
+    </div>
+    <div class="highlight">
+        <% unless @race.country.nil? || @race.country.empty? %>
+          <p>Race country: <%= @race.country %></p>
+        <% end %>
+
+        <% unless @race.nickname.nil? || @race.nickname.empty? %>
+          <p>Nickname of race: <%= @race.nickname %></p>
+        <% end %>
+    </div>
+  </div> <!-- end boxes div -->
 
 
-<% unless @race.image.nil? || @race.image.empty? %>
-  <img class="feature" src="<%= @race.image %>" alt="<%= @race.event  %>">
-<% end %>
+  <div class="mainimg">
+      <% unless @race.image.nil? || @race.image.empty? %>
+        <img class="feature" src="<%= @race.image %>" alt="<%= @race.event  %>">
+      <% end %>
+  </div>
 
-<div class="controls">
-  <a href="/races/<%= @race.id %>/edit">Edit</a>
-  <a href="/races/<%= @race.id %>/delete">Delete</a>
+
+
+      <div class="controls">
+        <p>
+          <a class="grow" href="/races/<%= @race.id %>/edit">Edit</a>
+          <a class="grow" href="/races/<%= @race.id %>/delete">Delete</a>
+        </p>
+      </div>
+
 </div>

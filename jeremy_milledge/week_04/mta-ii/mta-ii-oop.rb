@@ -1,4 +1,5 @@
 require 'rainbow'
+require 'pry'
 
 $NYC = {
   'N'=> ['8th', 'Union Square', '23rd', '28th', '34th', 'Times Square'],
@@ -7,7 +8,7 @@ $NYC = {
 }
 
 class Trip
-  attr_accessor :start_line, :start, :final_line, :final, :legs, :num_legs, :num_stops
+  attr_reader :start_line, :start, :final_line, :final, :legs, :num_legs, :num_stops
   @@count = 0
 
   def initialize(start_line, start, final_line, final)
@@ -91,5 +92,6 @@ tests = [
 ]
 
 testDB = tests.map {|x| Trip.new *x}
+binding.pry
 testDB.each {|x| x.print_journey}
 puts "#{Trip.count} trips recorded."
