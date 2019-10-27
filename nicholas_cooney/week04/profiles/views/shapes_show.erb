@@ -7,7 +7,7 @@
   </h3>
   <p><%= @shapes["description"] %></p>
   <% unless @shapes["image"].nil? || @shapes["image"].empty? %>
-    <img class="feature" src="<%= @shape["image"] %>" alt="<%= @shape["name"] %>">
+    <img class="feature" src="<%= @shapes["image"] %>" alt="<%= @shapes["name"] %>">
   <% end %>
   <div class="controls">
     <a href="/shapes/<%= @shapes["id"] %>/edit">Edit</a>
