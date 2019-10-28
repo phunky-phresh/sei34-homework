@@ -10,14 +10,23 @@ body {
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #layoutsDiv {
     background-color: rgba(255, 255, 255, 0.7);
     width: 75%;
     height: 75%;
+}
 
+body > nav {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 75%;
+    display: flex;
+    /* align-items: space-around; */
+    justify-content: space-evenly;
+    padding: 15px 0;
 }
 
 .homeContainer {
@@ -63,4 +72,13 @@ body {
     margin: 5px;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.resultDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }

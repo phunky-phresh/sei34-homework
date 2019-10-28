@@ -18,17 +18,7 @@ class GamesController < ApplicationController
 
     def numberguess_result
         guess = params[:num].to_i
-        random_g = rand(1..3).to_i
-
-        case random_g
-        when 1 
-            @computer = "scissor"
-        when 2 
-            @computer = "paper"
-        when 3 
-            @computer = "rock"
-        end
-
+        @computer = rand(1..10).to_i
 
         if guess == @computer
             @result = "You won!"
@@ -40,8 +30,31 @@ class GamesController < ApplicationController
     def scissorpaperrock
     end
 
-    def scissorpaperrock_result
-        user_guess = params[:choice]
+    def scissorpaperrock_result 
+        scr = ["scissor", "paper", "rock"]
+        
+        user_guess = scr.index params[:choice]
+        scr.rotate! 1 if user_guess == 2 #rotate 1 moves everything 1 step right, rotate -1 moves everything 1 step left 
+        scr.rotate! -1 if user_guess == 0 
+
+        random_g = rand(0..2)
+
+        ## user guess is now scr[1], and computer guess is random_g, can include a case to text the three outcomes
+
+        case random_g
+        when 0
+            @computer = scr[0]
+            @result = "Computer Won"
+        when 1
+            @computer = scr[1]
+            @result = "It was a draw"
+        when 2
+            @computer = scr[2]
+            @result = "You Won"
+        end
+
+
+
     end
 
 end
