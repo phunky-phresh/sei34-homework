@@ -1,0 +1,26 @@
+<h2><%= @habitat.name %></h2>
+
+<% unless @habitat.animals.empty? %>
+
+  <h3>Associated animals:</h3>
+
+  <ul>
+    <% @habitat.animals.each do |animal|%>
+      <li>
+        <a href="/animals/<%= animal.id %>">
+          <%= animal.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<% unless @habitat.image.nil? || @habitat.image.empty? %>
+  <img src="<%= @habitat.image %>" alt="<%= @habitat.name %>">
+<% end %>
+
+<div class="controls">
+  <a href="/habitats/<%= @habitat.id %>/edit">Edit</a>
+  <a href="/habitats/<%=@habitat.id %>/delete">Delete</a>
+</div>
