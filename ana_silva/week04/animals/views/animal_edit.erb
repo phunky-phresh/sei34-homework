@@ -1,0 +1,37 @@
+<h2>Edit Animal</h2>
+
+<form action="/animals/<%= @animal.id %>" method="post">
+
+  <label>
+    Name:
+    <input type="text" name="name" value="<%= @animal.name %>" placeholder="tiger" required>
+  </label>
+
+  <label>
+    Diet:
+    <input type="text" name="diet" value="<%= @animal.diet %>" placeholder="carnivore">
+  </label>
+
+  <label>
+    Habitat:
+    <select name="habitat_id">
+      <option value=""></option>
+
+      <% Habitat.all.each do |habitat|%>
+
+        <option value="<%= habitat.id %>" <%= "selected" if habitat.id == @animal.habitat_id %>>
+          <%= habitat.name %>
+        </option>
+
+      <% end %>
+
+    </select>
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" value="<%= @animal.image %>" placeholder="http://...">
+  </label>
+
+  <button>Edit animal</button>
+</form>
