@@ -1,6 +1,4 @@
-<%= @actor.name %>
-
-<img src="<%= @actor.image %>" alt=<%= @actor.name %>>
+<h2><%= @actor.name %></h2>
 
   <h3>Associated movies:</h3>
   <ul>
@@ -12,7 +10,9 @@
       </li>
     <% end %>
   </ul>
-
+<div class="image">
+  <img class="feature" src="<%= @actor.image %>" alt=<%= @actor.name %>>
+</div>
 
 <a href="/actors/<%= @actor.id %>/edit">Edit</a>
 <a href="/actors/<%= @actor.id %>/delete">Delete</a>

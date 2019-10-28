@@ -11,18 +11,18 @@
 
     <div class="info">
 
-      <div class="meta">
+      <a class="meta" href="/category/<%= @idea.category %>">
         <img src="/img/tag-icon.png" class="icon-small">
         <p><%= @idea.category %></p>
 
         <img src="/img/date-icon.png" class="icon-small">
-        <p><%= @idea.post_time %></p>
-      </div>
+        <p><%= @date %></p>
+      </a>
 
       <div class="controls">
         <a href="<%= @idea.id %>/edit" alt="Edit this idea"><img src="/img/edit-icon.png" class="icon-small"><p>edit</p></a>
 
-        <a href="<%= @idea.id %>/delete" alt="Delete this idea"><img src="/img/delete-icon.png" class="icon-small"><p>delete</p></a>
+        <a href="<%= @idea.id %>/delete_check" alt="Delete this idea"><img src="/img/delete-icon.png" class="icon-small"><p>delete</p></a>
 
       </div>
 
@@ -30,7 +30,17 @@
 
     <h4>Description</h4>
     <p class="copy"><%= @idea.description %></p>
-    <h4>Related Links</h4>
+    <div class="related">
 
+      <h4>Related Links</h4>
+
+      <% unless @idea.links.empty? %>
+        <% @idea.links.each do |i| %>
+          <p><a href="<%= i.url %>" target="_blank" alt="Link to <%= i.name %>"><%= i.name %></a></p>
+        <% end %>
+      <% else %>
+        <p>no related links added yet.</p>
+      <% end %>
+    </div>
   </article>
 </div>

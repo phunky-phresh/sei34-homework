@@ -2,7 +2,7 @@
   <img class="icon-small" src="/img/bulb-icon.png" alt="Bulb icon">
   <h2 class="idea-single">changing the lightbulb</h2>
 </div>
-<div class="form-container">
+<div class="form-container <%= @idea.category %>">
   <form action="/idea/<%= @idea.id %>" method="post" class="new">
     <label>
       <p>title</p>
@@ -10,24 +10,33 @@
     </label>
     <label>
       <p>category</p>
-      <input name="category" placeholder="<%= @idea.category %>" value="<%= @idea.category %>" required>
+      <select class="" name="category" placeholder="<%= @idea.category %>" required>
+        <option value="">select...</option>
+        <% @cats.each do |c| %>
+          <option value="<%= c %>" <%= 'selected' if c == @idea.category %>><%= c %></option>
+        <% end %>
+      </select>
     </label>
     <label>
       <p>description</p>
       <textarea name="description" placeholder="<%= @idea.description %>"><%= @idea.description %></textarea>
     </label>
     <label>
-      <p>Related Link(s)</p> <!-- need to loop over current number of links and dynamically identify their ids-->
+      <p>related links <a class=" fixed-label-content link-btn new-btn" href="/link/new/related-to/<%= @idea.id %>" alt="New Related Link">new</a></p> <!-- need to loop over current number of links and dynamically identify their ids-->
       <% unless @idea.links.empty? %>
-        <% @idea.links.each do |i| %>
-          <input type="text" name="link_name_<%= i.id %>" value="<%= i.name %>" placeholder="<%= i.name %>">
-          <input type="url" name="link_url_<%= i.id %>" value="<%= i.url %>" placeholder="<%= i.url %>">
+        <% @idea.links.each do |a| %>
+          <p class="related">
+            <a href="<%= a.url %>" alt="Link to <%= a.name %>" class="fixed-label-content"><%= a.name %></a>
+            <a href="/link/<%= a.id %>/edit/related-to/<%= @idea.id %>" alt="Edit <%= a.name %>" class="fixed-label-content link-btn edit-btn">edit</a>
+            <a href="/link/<%= a.id %>/delete_check/related-to/<%= @idea.id %>" alt="Delete <%= a.name %>" class="fixed-label-content link-btn delete-btn">delete</a>
+          </p>
         <% end %>
-      <% else %>
-        <input type="text" name="link_name" value="" placeholder="link name">
-        <input type="url" name="link_url" value="link url">
       <% end %>
+      <p ></p>
     </label>
-    <button type="submit">update idea</button>
+    <div class="center">
+      <a href="/idea/<%= @idea.id %>" class="big-btn link-btn">cancel</a>
+      <button type="submit" class="big-btn edit-btn link-btn">update idea</button>
+    </div>
   </form>
 </div>

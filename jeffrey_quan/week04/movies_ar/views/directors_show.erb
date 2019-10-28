@@ -11,7 +11,9 @@
     <% end %>
   </ul>
 <% end %>
-<img src="<%= @director.image %>" alt="<%= @director.name %>">
+<div class="image">
+  <img class="feature" src="<%= @director.image %>" alt="<%= @director.name %>">
+</div>
 
 <a href="/directors/<%= @director.id %>/edit">Edit</a>
 <a href="/directors/<%= @director.id %>/delete">Delete</a>

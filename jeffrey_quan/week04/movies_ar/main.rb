@@ -209,6 +209,19 @@ post '/movies/:id/add-actor' do
   redirect to("/movies/#{ params[:id] }")
 end
 
+# Delete actor from movie
+get '/movies/:id/delete-actor' do
+  @movie = Movie.find params[:id]
+  erb :movies_delete_actor
+end
+
+post '/movies/:id/delete-actor' do
+  movie = Movie.find params[:id]
+  actor = Actor.where( :id => params[:actor_id] )
+  movie.actors.delete(actor)
+  redirect to("/movies/#{ params[:id] }")
+end
+
 after do
   ActiveRecord::Base.connection.close
 end
