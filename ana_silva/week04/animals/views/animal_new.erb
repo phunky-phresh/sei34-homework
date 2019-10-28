@@ -1,0 +1,33 @@
+<h2>New Animal</h2>
+
+<form action="/animals" method="post">
+
+  <label>
+    Name:
+    <input type="text" name="name" placeholder="tiger" required>
+  </label>
+
+  <label>
+    Diet:
+    <input type="text" name="diet" placeholder="carnivore">
+  </label>
+
+  <label>
+    Habitat:
+    <select name="habitat_id">
+      <option value=""></option>
+      <% Habitat.all.each do |habitat|%>
+        <option value="<%= habitat.id %>">
+          <%= habitat.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <label>
+    Image:
+    <input type="text" name="image" placeholder="http://...">
+  </label>
+
+  <button>Create animal</button>
+</form>
