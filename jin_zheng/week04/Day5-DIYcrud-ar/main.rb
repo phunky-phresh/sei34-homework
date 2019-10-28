@@ -112,7 +112,7 @@ before do
     @plants = Plant.all
     @plants_category = Plant.pluck :category
     @plants_name = Plant.pluck :name
-    @plants_category.compact!
+    @plants_category.uniq!.compact!
     @pests = Pest.all
     @pests_name = Pest.pluck :name
     @plants = Plant.where category: params[:plant_selected] if params[:plant_selected].present?

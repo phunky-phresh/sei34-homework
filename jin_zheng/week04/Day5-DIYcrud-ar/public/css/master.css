@@ -85,6 +85,9 @@ img {
     background-color: white;
     padding: 10vh 10vw;
     box-shadow: 1px 1px 3px 2px lightgray;
+    /* opacity: 0; */
+    /* transition: opacity 1s ease-out; */
+
     /* transition-timing-function: cubic-bezier(); */
 }
 
@@ -97,7 +100,8 @@ img {
 
 .show {
     display: block;
-    transition: all 1s ease-in;
+    /* display: none; */
+    /* transition: all 4s ease-in; */
 }
 
 label {
