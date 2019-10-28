@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/sn' => 'pages#sn'
   get '/guess' => 'pages#guess'
 
-  get '/rps' => 'pages#rps'
+  get '/rpshome' => 'rps#home'
+  get '/rps' => 'rps#rps'
 
 end
