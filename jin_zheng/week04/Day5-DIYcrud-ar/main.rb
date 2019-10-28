@@ -28,17 +28,7 @@ class PlantPest < ActiveRecord::Base
     # belongs_to :pest
 end
 
-get "/pry" do
-    binding.pry
-end
-
 get "/" do
-    erb :home
-end
-
-get "/select" do
-    @plants = Plant.where category: params[:plant_selected] if params[:plant_selected].present?
-    @pests = Pest.where name: params[:pest_selected] if params[:pest_selected].present?
     erb :home
 end
 
