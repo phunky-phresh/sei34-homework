@@ -1,13 +1,13 @@
 <h2><%= @resorts.name %></h2>
 
 <ul>
-  <li>Name: <%= @resorts.name %></li>
-  <li>Location: <%= @resorts.location %></li>
-  <li>Number of Lifts: <%= @resorts.lifts %></li>
-  <li>resort size: <%= @resorts.size %></li>
-  <li>Average Depth: <%= @resorts.snow %></li>
+  <li><h3>Name:</h3> <%= @resorts.name %></li>
+  <li><h3>Location:</h3> <%= @resorts.location %></li>
+  <li><h3>Number of Lifts:</h3> <%= pluralize @resorts.lifts, 'lift' %></li>
+  <li><h3>Resort size:</h3> <%= @resorts.size %></li>
+  <li><h3>Average Depth:</h3> <%= number_to_human(@resorts.snow, units: {unit: "m", thousand: "km"})%></li>
 </ul>
-
+<%= image_tag @resorts.image, :class => 'feature' if @resorts.image.present?%>
 <div class="controls">
   <%= link_to 'Edit', edit_resort_path(@resorts.id) %>
   <%= button_to 'Delete Resort', resort_path(@resorts.id), :method => 'delete' %>

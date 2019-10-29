@@ -1,8 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  transition: background-image 5s ease;
+}
+body {
+  color: white;
+  background-image: url();
+  background-size: cover;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
 }
+nav {
+  margin: 1rem 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: underline;
+}
+nav a {
+  color: #525880;
+}
 
+.content {
+  background-color: #525880;
+  padding: 1.5rem;
+
+}
+.content h2 {
+  margin-top: 0;
+}
+.content img {
+  width: 100%;
+}
+.content ul {
+  padding-left: 0;
+}
+.content ul li {
+  list-style: none;
+  background-color: #838ECC;
+  display: inline-block;
+  padding: 5px;
+  width: 19.5%;
+  vertical-align: top;
+  height: 70px;
+  text-align: center;
+}
+.content h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+}
+.controls {
+  text-align: center;
+}
+.controls form {
+  padding: 15px 0 5px 0;
+}
+
+/* Form Styles */
+.content form {
+  margin: 0 auto;
+}
 form label input {
   display: block;
+  height: 2rem;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 15px;
+  margin: 5px 0 10px 0;
+}
+form label {
+
+}
+form button {
+  border-style: none;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
+form button:hover {
+  text-decoration: underline;
 }
