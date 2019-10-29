@@ -1,9 +1,9 @@
-CREATE TABLE resorts (
+CREATE TABLE resorts(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
-  location TEXT,
   image TEXT,
-  size INTEGER,
+  location TEXT,
   lifts INTEGER,
+  size INTEGER,
   snow INTEGER
 );
