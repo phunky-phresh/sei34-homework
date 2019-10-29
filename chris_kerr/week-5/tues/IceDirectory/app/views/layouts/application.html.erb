@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IceDirectory</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div id='white-box'>
+    
+      <div id='header-box'>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/new">Add Glacier</a>
+        </nav>
+        <h1>The Glacier Page</h1>
+        <h2>Big Frozen Rivers</h2>
+      </div>
+
+      <div id='content-box'>
+        <%= yield %>
+      </div>
+
+    </div>
+  </body>
+</html>
