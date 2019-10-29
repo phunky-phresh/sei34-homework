@@ -1,0 +1,20 @@
+
+<column>
+    <h3>Name: <%= @glacier.name %></h3>
+    <h4>Country: <em><%= @glacier.country %></em></h4>
+    <h4>Length: <em><%= number_to_human @glacier.length %> meters</em></h4>
+    <% if @glacier.volume.nil? %>
+    <% else %>
+        <h4>Volume: <em><%= number_to_human @glacier.volume%> cubic meters</em></h4> 
+    <% end %>
+</column>
+
+<column>
+    <%= image_tag @glacier.image, :class => 'feature' if @glacier.image.present? %>
+
+
+</column>
+
+<div>
+<%= link_to "Edit/Delete", edit_glacier_path(@glacier.id) %>
+</div>

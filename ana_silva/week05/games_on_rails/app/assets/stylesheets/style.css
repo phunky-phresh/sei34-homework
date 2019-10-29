@@ -1,0 +1,134 @@
+body {
+  background-image: url("/assets/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 15px;
+  padding-bottom: 50px;
+}
+
+nav {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+nav a {
+  margin-left: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #e020f5;
+}
+
+a:hover {
+  color: #ccc;
+}
+
+h1 {
+  color: #1fa3f0;
+  text-shadow: 1px 1px #000;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
+}
+
+h2 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+button {
+  min-width: 30px;
+  min-height: 20px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+input {
+  border-radius: 5px;
+  min-width: 200px;
+  min-height: 20px;
+  font-size: 15px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.answer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.back {
+  text-decoration: none;
+  color: #fff;
+}
+
+div.numbers {
+  text-align: center;
+  margin-top: 30px;
+}
+
+div.guess {
+  text-align: center;
+}
+
+h2.result {
+  text-align: center;
+  font-size: 30px;
+}
+
+.rps {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.rps img {
+  max-width: 200px;
+}
+
+
+.rps label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align: center;
+}
+
+h1.result {
+  text-align: center;
+}
+
+div.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.result img {
+  max-width: 200px;
+}
+
+span {
+  font-size: 50px;
+  color: #fff;
+}
