@@ -51,3 +51,28 @@ h3 {
     color: black;
     text-decoration: none;
 }
+
+form {
+    display: grid;
+    grid-template-columns: 400px 400px;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+button {
+
+}
+
+column {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.feature {
+    max-width: 100%;
+}

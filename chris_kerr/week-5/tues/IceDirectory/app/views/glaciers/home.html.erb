@@ -2,8 +2,8 @@
 <div id='home-grid'>
 
     <% @glaciers.each do | glacier | %>
-    <a class='home-grid-box' href='/glaciers/<%= glacier.id %>'>
-        <p><%= glacier.name %></p>
-    </a>
+            <a class='home-grid-box' href='/glaciers/<%= glacier.id %>'>
+                <p><%= glacier.name %></p>
+            </a>
     <% end %>
 </div>
