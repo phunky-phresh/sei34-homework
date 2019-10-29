@@ -1,25 +1,31 @@
-<h3>Please edit this glacier</h3>
+<div id='edit-box'>
+    <div>
+    <h3>Please edit this glacier</h3>
 
-<form method='post' action='/glacier/<%= @glacier.id %>'>
-    <label>
-        Name:
-        <input type='text' value=<%= @glacier.name %> name='name' required></input>
-    </label>
-    <label>
-        Length (meters):
-        <input type='number' name='length' required></input>
-    </label>
-    <label>
-        Main country:
-        <input type='text' name='country' required></input>
-    </label>
-    <label>
-        Volume (m^3):
-        <input type='number' name='volume' required></input>
-    </label>
-    <label>
-        Link to an image (optional):
-        <input type='url' name='image'></input>
-    </label>
-    <button>Submit</button>
-</form>
+    <form method='post' action='/glaciers/<%= @glacier.id %>'>
+        <label>
+            Name:
+            <input type='text' value="<%= @glacier.name %>" name='name' required></input>
+        </label>
+        <label>
+            Length (meters):
+            <input type='number'  value="<%= @glacier.length %>" name='length' required></input>
+        </label>
+        <label>
+            Main country:
+            <input type='text'  value="<%= @glacier.country %>" name='country' required></input>
+        </label>
+        <label>
+            Volume (m^3):
+            <input type='number'  value="<%= @glacier.volume %>" name='volume'></input>
+        </label>
+        <label>
+            Link to an image (optional):
+            <input type='url'  value="<%= @glacier.image %>" name='image'></input>
+        </label>
+        <button>Submit</button>
+    </form>
+</div>
+
+<%= button_to "Delete", glacier_path(@glacier.id), :method => 'delete' %>
+</div>

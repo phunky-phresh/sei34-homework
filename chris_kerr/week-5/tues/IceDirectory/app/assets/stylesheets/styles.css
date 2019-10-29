@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+
+
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans Condensed', sans-serif;
+
 }
 
 body {
@@ -63,8 +69,9 @@ label {
     margin: 10px;
 }
 
-button {
-
+form > input {
+    width: 150px;
+    color: red;
 }
 
 column {
@@ -75,4 +82,21 @@ column {
 
 .feature {
     max-width: 100%;
+}
+
+#edit-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+button { 
+    width: 50%;
+    height: 20px;
+    margin: auto;
+}
+
+nav > a {
+    margin: 0 25px 0 0;
 }
