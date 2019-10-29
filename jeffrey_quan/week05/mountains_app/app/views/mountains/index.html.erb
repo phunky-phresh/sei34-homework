@@ -1,7 +1,7 @@
-<h2>Mountains coming soon</h2>
+<h2>Mountains</h2>
 
 <% @mountains.each do |mountain| %>
-  <ul>
+  <ul class="index">
       <li>
         <%= link_to mountain.name, mountain_path(mountain.id) %>
       </li>

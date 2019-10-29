@@ -30,7 +30,7 @@ class MountainsController < ApplicationController
   end
 
   def update
-    @mountain = Mountain.find params[:id]
+    mountain = Mountain.find params[:id]
     mountain.name = params[:name]
     mountain.height = params[:height]
     mountain.range = params[:range]

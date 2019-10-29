@@ -11,10 +11,16 @@
 
   <body>
     <div class="container">
-      <nav>
-        <%= link_to "All Mountains", mountains_path %>
-        <%= link_to "New Mountain", new_mountain_path %>
-      </nav>
+      <header class="header">
+        <nav class="top-nav" align="center">
+          <ul>
+            <%= link_to "All Mountains", mountains_path %>
+            <%= link_to "New Mountain", new_mountain_path %>
+          </ul>
+
+        </nav>
+      </header>
+
       <%= yield %>
     </div>
   </body>
