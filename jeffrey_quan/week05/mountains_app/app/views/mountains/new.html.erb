@@ -1,0 +1,85 @@
+<h2>Add New Mountain</h2>
+<form action="<%= mountains_path %>" method="POST">
+
+  <div class="input-wrapper">
+    <label>
+      Name:
+    </label>
+    <p>
+      <samp>Mount Everest</samp>
+    </p>
+    <input type="text" name="name" required>
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Height (in metres):
+    </label>
+    <p>
+      <samp>8848</samp>
+    </p>
+    <input type="integer" name="height">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Range:
+    </label>
+    <p>
+      <samp>Mahalangur Himal, Himalayas</samp>
+    </p>
+    <input type="text" name="range">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Countries:
+    </label>
+    <p>
+      <samp>Nepal and China</samp>
+    </p>
+    <input type="text" name="countries">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Continent:
+    </label>
+    <p>
+      <samp>Asia</samp>
+    </p>
+    <input type="text" name="continent">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Year of First Ascent:
+    </label>
+    <p>
+      <samp>1953</samp>
+    </p>
+    <input type="integer" name="year_first_ascent">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Climbers in First Ascent:
+    </label>
+    <p>
+      <samp>Edmund Hillary and Tenzing Norgay</samp>
+    </p>
+    <input type="text" name="climber_first_ascent">
+  </div>
+
+  <div class="input-wrapper">
+    <label>
+      Image:
+    </label>
+    <p>
+      <samp>https://...</samp>
+    </p>
+    <input type="text" name="image">
+  </div>
+
+  <button>Submit</button>
+</form>
