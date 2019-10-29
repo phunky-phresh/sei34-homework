@@ -9,6 +9,6 @@
 </ul>
 
 <div class="controls">
-
+  <%= link_to 'Edit', edit_resort_path(@resorts.id) %>
   <%= button_to 'Delete Resort', resort_path(@resorts.id), :method => 'delete' %>
 </div>

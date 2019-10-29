@@ -7,5 +7,8 @@ Rails.application.routes.draw do
 
   get '/resorts/:id' => 'resorts#show', :as => 'resort'
 
+  get '/resorts/:id/edit' => 'resorts#edit', :as => 'edit_resort'
+  post '/resorts/:id' => 'resorts#update'
+
   delete '/resorts/:id' => 'resorts#destroy'
 end

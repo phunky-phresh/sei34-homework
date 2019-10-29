@@ -1,0 +1,28 @@
+<h2>Edit Ski Resort</h2>
+
+<form action="<%= resort_path(@resort.id) %>" method="post">
+  <label>
+    <input name="name" required value="<%= @resort.name %>">
+  </label>
+  <label>
+    Trail map Image:
+    <input type="url" name="image" value="<%= @resort.image %>">
+  </label>
+  <label>
+    Location:
+    <input type="text" name="location" value="<%= @resort.location %>">
+  </label>
+  <label>
+    No. Lifts:
+    <input type="number" name="lifts" value="<%= @resort.lifts %>">
+  </label>
+  <label>
+    Resort size:
+    <input type="text" name="size" value="<%= @resort.size %>">
+  </label>
+  <label>
+    Average snowfall:
+    <input type="number" name="snow" value="<%= @resort.snow %>">
+  </label>
+  <button>Submit</button>
+</form>
