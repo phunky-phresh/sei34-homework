@@ -4,16 +4,16 @@
     <title>RailsGames</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav>
-      <a href="/">home</a>
-      <a href="/secret">secret number</a>
-      <a href="/eight">magic 8 ball</a>
+      <a href="/">home</a> |
+      <a href="/secret">secret number</a> |
+      <a href="/eight">magic 8 ball</a> | 
       <a href="/rps">rock paper scissors</a>
     </nav>
     <%= yield %>
