@@ -28,17 +28,7 @@ class PlantPest < ActiveRecord::Base
     # belongs_to :pest
 end
 
-get "/pry" do
-    binding.pry
-end
-
 get "/" do
-    erb :home
-end
-
-get "/select" do
-    @plants = Plant.where category: params[:plant_selected] if params[:plant_selected].present?
-    @pests = Pest.where name: params[:pest_selected] if params[:pest_selected].present?
     erb :home
 end
 
@@ -122,7 +112,7 @@ before do
     @plants = Plant.all
     @plants_category = Plant.pluck :category
     @plants_name = Plant.pluck :name
-    @plants_category.compact!
+    @plants_category.uniq!.compact!
     @pests = Pest.all
     @pests_name = Pest.pluck :name
     @plants = Plant.where category: params[:plant_selected] if params[:plant_selected].present?

@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to right, #ffecd2, #fcb69f);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#layoutsDiv {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 75%;
+    height: 75%;
+}
+
+body > nav {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 75%;
+    display: flex;
+    /* align-items: space-around; */
+    justify-content: space-evenly;
+    padding: 15px 0;
+    margin-bottom: 5px;
+}
+
+.homeContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.homeContainer > a {
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 80%;
+    border: thin black dashed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#numberContainer {
+    width: 100%;
+    height: 95%;
+}
+
+.guessBox {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.guessBox > a {
+    width: 19%;
+    height: 45%;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: black thin solid;
+    margin: 5px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.resultDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}

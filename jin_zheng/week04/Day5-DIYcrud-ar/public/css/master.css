@@ -1,10 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    /* border: 1px solid black; */
     outline: none;
-    /* text-decoration: none; */
-    /* color: black; */
 }
 
 header {
@@ -21,10 +18,10 @@ header {
     max-width: 1000px;
     margin: 2vh auto;
 }
-
-nav {
+.selection {
     display: flex;
     justify-content: space-around;
+    margin: 2% 20%;
 }
 .content {
     text-align: center;
@@ -51,21 +48,6 @@ nav {
     background-color: white;
 }
 
-.line {
-    position: absolute;
-}
-
-
-
-
-.leaves_image {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin: 1vh 0;
-
-}
-
 img {
     width: 100%
 }
@@ -77,9 +59,8 @@ img {
 }
 
 .spec > p {
-    display: inline-block;
+    display: block;
 }
-
 
 .plant_hidden_form, .pest_hidden_form {
     display: none;
@@ -104,6 +85,10 @@ img {
     background-color: white;
     padding: 10vh 10vw;
     box-shadow: 1px 1px 3px 2px lightgray;
+    /* opacity: 0; */
+    /* transition: opacity 1s ease-out; */
+
+    /* transition-timing-function: cubic-bezier(); */
 }
 
 .plant_hidden_innder, .pest_hidden_inner {
@@ -115,6 +100,8 @@ img {
 
 .show {
     display: block;
+    /* display: none; */
+    /* transition: all 4s ease-in; */
 }
 
 label {
@@ -124,10 +111,10 @@ label {
 .selection_label, .link_label{
     display: inline-block;
 }
- .connection {
+ /* .connection {
     margin: 0 auto;
     text-align: center;
-}
+} */
 svg {
     position: absolute;
     top: 0;
