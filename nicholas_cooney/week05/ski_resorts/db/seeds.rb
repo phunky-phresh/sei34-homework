@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Resort.destroy_all
+Resort.create :name => 'Perisher', :location => "Australia", :lifts => 47

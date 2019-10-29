@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "All Resorts", resorts_path %>
+      <%= link_to "Add Resort", new_resort_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>

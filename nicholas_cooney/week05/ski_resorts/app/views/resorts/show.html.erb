@@ -1,0 +1,14 @@
+<h2><%= @resorts.name %></h2>
+
+<ul>
+  <li>Name: <%= @resorts.name %></li>
+  <li>Location: <%= @resorts.location %></li>
+  <li>Number of Lifts: <%= @resorts.lifts %></li>
+  <li>resort size: <%= @resorts.size %></li>
+  <li>Average Depth: <%= @resorts.snow %></li>
+</ul>
+
+<div class="controls">
+
+  <%= button_to 'Delete Resort', resort_path(@resorts.id), :method => 'delete' %>
+</div>

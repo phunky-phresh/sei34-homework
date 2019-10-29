@@ -1,1 +1,8 @@
 <h1>index</h1>
+
+<% @resorts.each do |resort| %>
+<p>
+  <%= link_to resort.name, resort_path(resort.id)%>
+  <%=  resort.lifts%>
+</p>
+<% end %>
