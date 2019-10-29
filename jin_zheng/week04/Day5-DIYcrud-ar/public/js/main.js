@@ -89,6 +89,7 @@ $(document).ready(function(){
 showPlant = JSON.parse(localStorage.getItem("showPlant"))
 showPest = JSON.parse(localStorage.getItem("showPest"))
 
+
 $(".plant_hidden_show").toggleClass('show', showPlant == true)
 $(".pest_hidden_show").toggleClass('show', showPest == true)
 

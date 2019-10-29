@@ -1,0 +1,12 @@
+<div class="game_container">
+    <h1>Secret Number</h1>
+    <h2>Guess a number</h2>
+
+    <% (1..10).to_a.each do |n| %>
+        <a href="/secretnumber/<%= n %>"><button class="number_button">
+            <%= n %>
+        </button></a>
+    <% end %>
+
+
+</div>
