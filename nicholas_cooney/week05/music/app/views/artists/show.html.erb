@@ -1,2 +1,14 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<h1><%= @artist.name %></h1>
+
+
+<ul>
+  <li><%= @artist.nationality %></li>
+  <li><%= @artist.genre %></li>
+</ul>
+
+<%= image_tag @artist.image, :class => "feature" if @artist.image.present? %>
+
+<div class="controls">
+
+  <%= button_to "Delete #{@artist.name}", @artist, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+</div>
