@@ -1,8 +1,10 @@
 <h1>Ski Resorts</h1>
 
 <% @resorts.each do |resort| %>
-<p>
+<h3>
   <%= link_to resort.name, resort_path(resort.id)%>
+</h3>
+  <p>
   <%=  resort.location%>
 </p>
 <% end %>

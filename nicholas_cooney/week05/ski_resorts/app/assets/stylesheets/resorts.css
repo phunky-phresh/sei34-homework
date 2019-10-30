@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300|Ubuntu:500&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -8,8 +9,11 @@ body {
   color: white;
   background-image: url();
   background-size: cover;
+  font-family: 'Roboto', sans-serif;
 }
-
+h3 {
+  font-family: 'Ubuntu', sans-serif;
+}
 .container {
   max-width: 800px;
   margin: 0 auto;
