@@ -9,6 +9,6 @@
 <%= image_tag @artist.image, :class => "feature" if @artist.image.present? %>
 
 <div class="controls">
-
+  <%= link_to "Edit #{@artist.name}", edit_artist_path %>
   <%= button_to "Delete #{@artist.name}", @artist, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
 </div>
