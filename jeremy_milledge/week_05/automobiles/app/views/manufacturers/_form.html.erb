@@ -1,0 +1,12 @@
+<%= form_for @man do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name, :required=> true, :autofocus=> true %>
+  <%= f.label :parent %>
+  <%= f.text_field :parent %>
+  <%= f.label :origin %>
+  <%= f.text_field :origin %>
+  <%= f.label :founded %>
+  <%= f.text_field :founded %>
+
+  <%= f.submit %>
+<% end %>

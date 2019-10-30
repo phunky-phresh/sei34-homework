@@ -1,0 +1,14 @@
+<h1><%= @car.model %></h1>
+
+<%= image_tag @car.image, :title=> @car.model, :alt=> @car.model, :class=>'feature' if @car.image.present? %>
+
+<p>Model: <%= @car.model %>, <%= @car.year %></p>
+<p>Manufacturer: <%= link_to @car.manufacturer.name, @car.manufacturer if @car.manufacturer.present? %></p>
+<p>Style: <%= @car.style %></p>
+<p>Engine Capacity <%= @car.engine_capacity %></p>
+<p>Cylinder Count: <%= @car.cylinders %></p>
+
+<div class="controls">
+  <%= link_to "Edit #{@car.model}", edit_car_path(@car) %>
+  <%= button_to "Delete #{@car.model}", @car, :method=> 'delete', :data=> {:confirm=> 'Are you sure?'} %>
+</div>
