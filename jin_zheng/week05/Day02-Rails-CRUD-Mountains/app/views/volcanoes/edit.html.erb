@@ -1,0 +1,36 @@
+<h2>Edit Volcano: <%= @volcano.name %></h2>
+
+<form class="" action="<%= volcano_path(@volcano.id) %>" method="post">
+    <label>
+        Name:
+        <input name="name" type="text" value="<%= @volcano.name %>" required >
+    </label>
+    <label>
+        Continent:
+        <select name="continent" value="<%= @volcano.continent %>">
+            <option></option>
+            <% @continents.each do |continent| %>
+                <option value="<%= continent %>" <%="selected" if @volcano.continent == continent %> ><%= continent %></option>
+            <% end %>
+        </select>
+    </label>
+
+    <label>
+        Category:
+        <select name="category" value="<%= @volcano.category %>">
+            <option></option>
+            <% @categories.each do |category| %>
+                <option value="<%= category %>" <%="selected" if @volcano.category == category %>><%= category %></option>
+            <% end %>
+        </select>
+    </label>
+    <label>
+        Image:
+        <input name="image" type="url" value="<%= @volcano.image %>">
+    </label>
+    <%= button_to "Edit:#{@volcano.name} ", volcano_path(@volcano.id), :method=>"get"%>
+    <%= button_to 'Back', volcano_path(@volcano.id), :method=>"get"%>
+
+</form>
+
+<%= image_tag @volcano.image, :class => 'show-page-img' if @volcano.image.present? %>

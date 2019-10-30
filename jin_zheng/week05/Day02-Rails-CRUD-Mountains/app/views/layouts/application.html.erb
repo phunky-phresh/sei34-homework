@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Day02RailsCrudMountains</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+        <h1>Untitled Volcano Web</h1>
+        <nav>
+            <button class="dropdown-button"><%= link_to 'Home', volcanoes_path %></button>
+            <button class="dropdown-button"><%= link_to 'Add Volcanoes', new_volcanoes_path %></button>
+            <div class="dropdown-container">
+                <button class="dropdown-button" href="#">Show Volcano</button>
+                <div class="dropdown-content">
+                    <% @volcanoes.each do |volcano|%>
+                    <%= link_to volcano.name, volcano_path(volcano.id) %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <button class="dropdown-button" href="#">Edit Volcano</button>
+                <div class="dropdown-content">
+                    <% @volcanoes.each do |volcano|%>
+                    <%= link_to volcano.name, edit_volcano_path(volcano.id) %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <button class="dropdown-button" href="#">Delete Volcano</button>
+                <div class="dropdown-content">
+                    <% @volcanoes.each do |volcano|%>
+                    <%= link_to volcano.name, confirm_delete_path(volcano.id) %>
+                    <% end %>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="container">
+
+        <%= yield %>
+
+    </div>
+  </body>
+</html>
