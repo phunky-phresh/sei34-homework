@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GamesOnRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+    <%= stylesheet_link_tag "style" %>
+  </head>
+
+  <body class="text-center">
+    <div class="container">
+      <div class="container-fluid shadow p-3 mb-5 bg-white rounded h-100" >
+      <header>
+        <div class="inner">
+          <h3>Games on Rails</h3>
+          <nav class="navbar navbar-light" style="background-color: #F3F3F3;">
+            <a href="/">Home</a>
+            <a href="/magic8ball">Magic 8 Ball</a>
+            <a href="/secretnumber">Secret Number</a>
+            <a href="/rockpaperscissors">Rock Paper Scissors</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover"><%= yield %></main>
+    </div>
+    </div>
+  </body>
+</html>
