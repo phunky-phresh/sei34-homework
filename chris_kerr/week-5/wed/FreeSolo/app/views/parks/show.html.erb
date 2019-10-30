@@ -1,5 +1,7 @@
 <h2>National Park: <%= @park.name %></h2>
+<% unless @park.country.nil? %>
 <h4>Country: <%= link_to @park.country.name, "/countries/#{@park.country.id}" %></h4>
+<% end %>
 <h4>Area: <%= number_to_human @park.area %> Square Kilometres</h4>
 
 <% unless @park.image.nil? %>

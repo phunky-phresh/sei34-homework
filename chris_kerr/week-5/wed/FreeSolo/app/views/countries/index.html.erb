@@ -18,8 +18,20 @@
     <% end %>
 </ul>
 
+<ul>
+    <% @parks.each do | park | %>
+        <% if park.country.nil? %>
+        <li><%= link_to park.name, "/parks/#{park.id}" %> is orphaned, please connect it to a country</li>
+        <% end %>
+    <% end %>
+    <% @climbs.each do | climb | %>
+        <% if climb.park.nil? %>
+        <li><%= link_to climb.name, "/climbs/#{climb.id}" %> is orphaned, please connect it to a park</li>
+        <% end %>
+    <% end %>
+</ul>
+
 <p>To do:</p>
 <ul>
-    <li>Find a way to include orphaned parks / climbs here</li>
     <li>Make prettier</li>
 </ul>

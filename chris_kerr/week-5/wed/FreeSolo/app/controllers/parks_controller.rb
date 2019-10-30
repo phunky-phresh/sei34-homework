@@ -24,6 +24,7 @@ class ParksController < ApplicationController
 
   def destroy
     park = Park.find params[:id]
+    park.climbs.destroy
     park.destroy
     redirect_to '/'
   end

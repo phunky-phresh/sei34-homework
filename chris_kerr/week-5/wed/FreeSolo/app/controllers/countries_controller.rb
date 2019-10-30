@@ -1,6 +1,8 @@
 class CountriesController < ApplicationController
   def index
     @countries = Country.all
+    @parks = Park.all
+    @climbs = Climb.all
   end
 
   def new
@@ -28,6 +30,10 @@ class CountriesController < ApplicationController
 
   def destroy
     country = Country.find params[:id]
+    country.parks.each do | park | 
+      park.climbs.destroy_all
+    end
+    country.parks.destroy_all
     country.destroy
     redirect_to '/'
   end
