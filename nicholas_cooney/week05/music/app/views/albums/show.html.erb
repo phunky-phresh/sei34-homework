@@ -1,2 +1,10 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<h1><%= @album.title %></h1>
+
+
+<%= image_tag @album.image, :class => 'feature' if @album.image.present?%>
+
+
+<div class="controls">
+  <%= link_to "Edit #{@album.title}", edit_album_path %>
+  <%= button_to "Delete #{@album.title}", @album, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+</div>

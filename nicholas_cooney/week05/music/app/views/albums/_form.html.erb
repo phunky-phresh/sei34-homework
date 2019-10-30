@@ -1,0 +1,11 @@
+
+<%= form_for @album do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, :required => true, :autofocus => true %>
+  <%= f.label :release %>
+  <%= f.text_field :release %>
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+
+  <%= f.submit %>
+<% end %>
