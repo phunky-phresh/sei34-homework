@@ -1,0 +1,13 @@
+<h1>Directors</h1>
+<div class="director-board">
+<% @directors.each do |director| %>
+  <div class="director-box">
+    <%= image_tag director.image, :class => 'thumb' if director.image.present? %>
+    <ul>
+      <li>Name: <%= link_to director.name, director %></li>
+      <li>Nationality: <%= director.nationality %></li>
+      <li>Date of birth: <%= director.dob.strftime '%A, %e %B, %Y' if director.dob.present? %></li>
+    </ul>
+  </div>
+<% end %>
+<div>
