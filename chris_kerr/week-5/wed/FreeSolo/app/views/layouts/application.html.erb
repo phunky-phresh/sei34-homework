@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FreeSolo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav>
+      <a href="/">Home</a>
+      |
+      <a href="/countries/new">Add a country</a>
+      |
+      <a href="/parks/new">Add a park</a>
+      |
+      <a href="/climbs/new">Add a climb</a>
+    </nav>
+
+    <h1>The Climb Finder</h1>
+
+    <%= yield %>
+  </body>
+</html>
