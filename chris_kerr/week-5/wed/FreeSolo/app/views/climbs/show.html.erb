@@ -1,0 +1,14 @@
+<h2>Climb: <%= @climb.name %></h2>
+<h4>Height: <%= @climb.height %></h4>
+<h4>Grade: <%= @climb.grade %></h4>
+<% unless @climb.first_ascent.nil? %>
+<h4>First ascent by: <%= @climb.first_ascent %></h4>
+<% end %>
+<h4>Country: <%= link_to @climb.park.country.name, "/countries/#{@climb.park.country.id}" %></h4>
+<h4>Continent: <%= link_to @climb.park.country.continent, "/countries/#{@climb.park.country.id}" %></h4>
+<h4>National Park: <%= link_to @climb.park.name, "/parks/#{@climb.park.id}" %></h4>
+
+
+<%= link_to "Edit #{@climb.name}", edit_climb_path %>
+<%= button_to "Delete #{@climb.name}", @climb, :method => 'delete', :data => { :confirm => 'Are you sure?' } %>
+

@@ -1,0 +1,22 @@
+<h2>National Park: <%= @park.name %></h2>
+<h4>Country: <%= link_to @park.country.name, "/countries/#{@park.country.id}" %></h4>
+<h4>Area: <%= number_to_human @park.area %> Square Kilometres</h4>
+
+<% unless @park.image.nil? %>
+    <%= image_tag @park.image, :class => 'feature', :alt => @park.name %>
+<% end %>
+
+<% unless @park.climbs.empty? %>
+<h4>Notable climbs:</h4>
+<ul>
+    <% @park.climbs.each do | climb | %>
+        <li>
+            <%= link_to climb.name, "/climbs/#{climb.id}" %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+<%= link_to "Edit #{@park.name}", edit_park_path %>
+<%= button_to "Delete #{@park.name}", @park, :method => 'delete', :data => { :confirm => 'Are you sure?' } %>
+

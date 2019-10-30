@@ -1,0 +1,25 @@
+<h2>Summary</h2>
+
+<ul>
+    <% @countries.each do | c | %>
+        <li><%= link_to c.name, "/countries/#{c.id}"  %>
+            <ul>
+            <% c.parks.each do | p |%>
+                <li><%= link_to p.name, "/parks/#{p.id}" %>
+                    <ul>
+                        <% p.climbs.each do | c | %>
+                            <li><%= link_to c.name, "/climbs/#{c.id}" %></li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
+            </ul>
+        </li>
+    <% end %>
+</ul>
+
+<p>To do:</p>
+<ul>
+    <li>Find a way to include orphaned parks / climbs here</li>
+    <li>Make prettier</li>
+</ul>
