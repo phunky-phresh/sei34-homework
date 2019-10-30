@@ -1,0 +1,30 @@
+<div class="map-container">
+    <%= image_tag 'map.jpg'  %>
+
+<% @continents.each do |continent| %>
+<% if get_volcanoes_by_continent(continent).present? %>
+<%get_volcanoes_by_continent(continent).each do |volcano|%>
+<div class="continent" id="<%= continent.downcase.gsub(" ","-")%>">
+    <h2><%= continent%></h2>
+    <div class="selector">
+            <div class="hell"><%=volcano.name%>
+                <div class="desc-container">
+                    <a href="<%= volcano_path(volcano.id)%>">
+                        <div class="desc">
+                            <%= image_tag volcano.image%>
+                            <p>Name: <%= volcano.name%></p>
+                            <p>Category: <%= volcano.category%></p>
+                            <p>Descrition: <%= truncate(@description, :length =>100)%></p>
+                        </div>
+                    </a>
+                </div>
+</div>
+
+    </div>
+
+</div>
+<% end %>
+<% end %>
+<% end %>
+
+</div>

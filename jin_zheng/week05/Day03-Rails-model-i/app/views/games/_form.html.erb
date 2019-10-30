@@ -1,0 +1,11 @@
+<%= simple_form_for @game do |f| %>
+    <%= f.input :title  %>
+    <%= f.input :genre %>
+    <%= f.input :composer %>
+    <%= f.input :initial_release  %>
+    <%= f.input :image  %>
+    <%= f.input :website %>
+
+    <%= f.input :company_id, :label => "Developer", :collection => Company.pluck(:name, :id)%>
+    <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,33 @@
+
+.selector {
+    display: none;
+    width: 100px;
+    min-height: 30px;
+    font-weight: bolder;
+}
+
+.continent:hover .selector{
+    display: block;
+}
+
+.desc p{
+    color: black;
+    font-weight: normal;
+}
+.desc-container {
+    display: none;
+    position:relative;
+    min-width: 20vw;
+    left:100px;
+    top:-20px;
+    background-color: white;
+    z-index: 9;
+    box-shadow: 0 0 10px lightgray;
+}
+.desc-container a {
+    display: block;
+}
+.hell:hover .desc-container{
+    display: block;
+
+}
