@@ -1,0 +1,19 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.thumb {
+    height: 20vh;
+}
+
+.feature {
+    height: 40vh;
+}

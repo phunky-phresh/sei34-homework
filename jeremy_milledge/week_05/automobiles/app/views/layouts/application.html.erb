@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Automobiles</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <%= link_to "All Cars", cars_path %> |
+        <%= link_to "New Car", new_car_path %> |
+        <%= link_to "All Manufacturers", manufacturers_path %> | 
+        <%= link_to "New Manufacturer", new_manufacturer_path %>
+      </nav>
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

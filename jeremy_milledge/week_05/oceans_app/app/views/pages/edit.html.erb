@@ -1,0 +1,11 @@
+<h2>Edit</h2>
+
+<form action="<%= ocean_path(@ocean.id) %>" method="post">
+  <input type="text" name="name" placeholder="Ocean Name" value="<%= @ocean.name %>">
+  <input type="number" name="area" placeholder="Area (square km)" value="<%= @ocean.area %>">
+  <input type="number" name="depth" placeholder="Maximum Depth (m)" value="<%= @ocean.depth %>">
+  <input type="number" name="max_salinity" placeholder="Maximum Salinity (ppt)" value="<%= @ocean.max_salinity %>">
+  <input type="url" name="image" placeholder="Image URL" value="<%= @ocean.image %>">
+  <button type="submit">Update Ocean</button>
+
+</form>

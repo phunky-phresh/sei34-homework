@@ -1,0 +1,138 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+}
+
+.feature {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+}
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  margin-left: 20px;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.index {
+  display: flex;
+  align-items: center;
+}
+
+.index ul {
+  display: inline-block;
+  list-style: none;
+  padding-left: 0;
+  font-size: 20px;
+}
+
+.map {
+  position: relative;
+}
+
+.map img {
+  max-width: 100%;
+  margin-left: 50px;
+  width: 550px;
+}
+
+.map a {
+  width: 10px;
+  height: 10px;
+  background-color: #f00;
+  border-radius: 5px;
+  z-index: 1;
+  position: absolute;
+}
+
+.Himalayas {
+  top: 90px;
+  right: 153px;
+}
+
+.Andes {
+  top: 160px;
+  right: 375px;
+}
+
+.Rocky.Mountains {
+  top: 80px;
+  right: 440px;
+}
+
+.Alps {
+  top: 65px;
+  right: 250px;
+}
+
+.Karakoram {
+  top: 85px;
+  right: 160px;
+}
+
+.Hindu.Kush {
+  top: 85px;
+  right: 145px;
+}
+
+.Pamir.Range {
+  top: 75px;
+  right: 154px;
+}
+
+.Tien.Shan {
+  top: 75px;
+  right: 146px;
+}
+
+.Alaska.Range {
+  top: 35px;
+  right: 490px;
+}
+
+.Caucasus {
+  top: 65px;
+  right: 200px;
+}
+
+.mountain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mountain h2 {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.mountain a {
+  display: inline-block;
+  margin-right: 25px;
+}
+
+h3 {
+  margin-left: 25px;
+}
+
+.controls {
+  margin-top: 30px;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.controls a {
+  display: inline;
+  margin-left: 20px;
+}
+
+.controls button {
+  display: inline;
+}
