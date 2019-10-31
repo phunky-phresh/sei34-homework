@@ -1,0 +1,19 @@
+<h2>Country: <%= @country.name %></h2>
+<h4>Continent: <%= @country.continent %></h4>
+<h4>Area: <%= number_to_human @country.area %> Square Kilometres</h4>
+
+
+<% unless @country.parks.empty? %>
+<h4>Notable national parks:</h4>
+<ul>
+    <% @country.parks.each do | park | %>
+        <li>
+            <%= link_to park.name, "/parks/#{park.id}" %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+<%= link_to "Edit #{@country.name}", edit_country_path %>
+<%= button_to "Delete #{@country.name}", @country, :method => 'delete', :data => { :confirm => 'Are you sure?' } %>
+
