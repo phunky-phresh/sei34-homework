@@ -1,0 +1,23 @@
+<%= form_for @animation do |f|%>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, :autofocus => true, :required => true %>
+
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+
+  <%= f.label :year %>
+  <%= f.text_field :year %>
+
+  <%= f.label :actors %>
+  <%= f.text_field :actors %>
+
+  <%= f.label :box_office %>
+  <%= f.number_field :box_office, :step => 0.1 %>
+
+  <%= f.label "Studio" %>
+  <%= f.select :producer_id, Producer.pluck(:name, :id), :include_blank => true %>
+
+  <%= f.submit %>
+
+<% end %>
