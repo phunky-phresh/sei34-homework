@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Films</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class='top-nav'>
+        <%= link_to "All Directors", directors_path %>
+        <%= link_to "New Director", new_director_path %>
+        <%= link_to "All Movies", movies_path %>
+        <%= link_to "New Movie", new_movie_path %>
+      </nav>
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<h2><%= @volcano.name %></h2>
+
+<ul>
+    <li>Name:<%= @volcano.name %></li>
+    <li>Continent:<%= @volcano.continent %></li>
+    <li>Category:<%= @volcano.category %></li>
+</ul>
+<%= button_to 'Edit Volcano', edit_volcano_path(@volcano.id), :method=>"get"%>
+
+<div class="confirm">
+    <button>Delete it</button>
+
+    <div class="confirm-button">
+        <p>Are you sure?</p>
+        <%= button_to 'Delete Volcano', delete_volcano_path(@volcano.id), :method =>'delete' %>
+    </div>
+
+</div>
+    <%= button_to 'Back', volcanoes_path, :method=>"get"%>
+<%= image_tag @volcano.image, :class => 'show-page-img' if @volcano.image.present? %>
+
+<div class="controls">
+
+
+</div>

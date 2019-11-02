@@ -1,0 +1,9 @@
+<%= form_for @country do | f | %> 
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true %>
+    <%= f.label :continent %>
+    <%= f.text_field :continent, :required => true %>
+    <%= f.label :area, 'Area (square kilometres)' %>
+    <%= f.text_field :area, :required => true %>
+    <%= f.submit %>
+<% end %> 

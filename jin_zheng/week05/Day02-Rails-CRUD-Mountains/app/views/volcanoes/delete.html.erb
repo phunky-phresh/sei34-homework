@@ -1,0 +1,14 @@
+<h2>Are you sure that you want to delete <%= @volcano.name %> from database?</h2>
+
+<div class="controls">
+
+    <%= button_to 'Yes, Delete Volcano', delete_volcano_path(@volcano.id), :method =>'delete' %>
+    <%= button_to 'No.', volcanoes_path, :method => 'get' %>
+</div>
+<ul>
+    <li>Name:<%= @volcano.name %></li>
+    <li>Continent:<%= @volcano.continent %></li>
+    <li>Category:<%= @volcano.category %></li>
+</ul>
+
+<%= image_tag @volcano.image, :class => 'show-page-img' if @volcano.image.present? %>

@@ -1,0 +1,32 @@
+<h2>Add New Volcano</h2>
+
+<form class="" action="<%= volcanoes_path %>" method="post">
+    <label>
+        Name:
+        <input name="name" type="text" required>
+    </label>
+    <label>
+        Continent:
+        <select name="continent" type="text">
+            <option></option>
+            <% @continents.each do |continent| %>
+                <option><%= continent %></option>
+            <% end %>
+        </select>
+    </label>
+    <label>
+        Category:
+        <select name="category" type="text">
+            <option></option>
+            <% @categories.each do |category| %>
+                <option><%= category %></option>
+            <% end %>
+        </select>
+    </label>
+    <label>
+        Image:
+        <input name="image" type="url">
+    </label>
+    <%= button_to 'Create New Planet', volcanoes_path, :method=>"post"%>
+    <%= button_to 'Back', volcanoes_path, :method=>"get"%>
+</form>

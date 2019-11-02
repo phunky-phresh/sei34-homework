@@ -1,0 +1,10 @@
+<h1>All Cars</h1>
+
+<% @cars.each do |c| %>
+  <div class="tile">
+    <a href="<%= car_path c %>">
+      <%= image_tag c.image, :title=> c.model, :alt=> c.model, :class=> 'thumb' if c.image.present? %>
+      <p><%= link_to c.model, c %></p>
+    </a>
+  </div>
+<% end %>

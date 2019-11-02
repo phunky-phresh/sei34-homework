@@ -1,0 +1,13 @@
+<%= form_for @climb do | f | %> 
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true %>
+    <%= f.label :park_id %>
+    <%= f.select :park_id, Park.pluck(:name, :id), :include_blank => true %>
+    <%= f.label :height, 'Height (m)'%>
+    <%= f.text_field :height, :required => true %>
+    <%= f.label :grade, 'Grade (Aus)' %>
+    <%= f.text_field :grade, :required => true %>
+    <%= f.label :first_ascent %>
+    <%= f.text_field :first_ascent %>
+    <%= f.submit %>
+<% end %> 
