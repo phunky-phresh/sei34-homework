@@ -1,0 +1,23 @@
+<%= link_to "Back", animations_path %>
+
+
+<h1><%= @animation.title %></h1>
+
+
+<%= image_tag @animation.image, :class => "feature", :alt => @animation.title if @animation.image.present? %>
+
+<ul>
+  <li>Year of Production: <%= @animation.year %></li>
+  <li>Actors: <%= @animation.actors %></li>
+  <% if @animation.box_office.present? %>
+    <li>Box office: $<%= @animation.box_office %> Million</li>
+  <% end %>
+
+  <li>Studio: <%= link_to @animation.producer.name, producer_path(@animation.producer_id) if @animation.producer.present? %></li>
+</ul>
+
+<div class="controls">
+  <%= link_to "Edit animation", edit_animation_path(@animation) %>
+  <%= link_to "Delete animation", @animation, :method => "delete", :data => {:confirm => "Are you sure you want to delete #{@animation.title}"} %>
+
+</div>
