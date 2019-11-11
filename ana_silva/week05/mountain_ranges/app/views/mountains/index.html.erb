@@ -1,0 +1,23 @@
+<h1>Mountain Ranges</h1>
+
+<div class="index">
+  <ul>
+    <% @mountains.each do |mountain| %>
+      <li><%= link_to mountain.name, mountain_path(mountain.id) %></li>
+    <% end %>
+  </ul>
+
+  <div class="map">
+    <%= image_tag "atlas.jpg", :alt => "World Map" %>
+
+    <% @mountains.each do |mountain| %>
+
+        <%= link_to "",
+        mountain_path(mountain.id),
+        :class => mountain.name,
+        :title => mountain.name %>
+    
+    <% end %>
+
+  </div>
+</div>

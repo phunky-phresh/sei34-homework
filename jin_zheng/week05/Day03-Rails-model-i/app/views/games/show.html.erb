@@ -1,0 +1,21 @@
+<h1> <%= @game.title %> </h1>
+
+
+<%= image_tag(@game.image, :class =>"feature") if @game.image.present? %>
+
+<p>Title: <%= @game.title %></p>
+<p>Genre: <%= @game.genre %></p>
+<p>Composer: <%= @game.composer %></p>
+<p>Initial Release: <%= @game.initial_release.strftime '%A, %B %e, %Y' if @game.initial_release.present? %></p>
+<p>Website: <%= link_to @game.website,  @game.website, :target => "_blank"%></p>
+
+<% if @game.company.present? %>
+<p>Developer: <%= link_to @game.company.name, @game.company %></p>
+<%= link_to image_tag(@game.company.image, :class => 'feature'), @game.company %>
+<% end %>
+
+
+
+<%= button_to "Edit #{@game.title} Info", edit_game_path, :method => 'get' %>
+<%= button_to "Delete #{@game.title} file", @game, :method => 'delete', :data => { :confirm => 'Are you sure?'}  %>
+<%= button_to "Back to homepage", games_path, :method => 'get'%>

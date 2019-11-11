@@ -1,0 +1,7 @@
+<h1>All Manufacturers</h1>
+
+<% @mans.each do |m| %>
+  <div class="tile">
+      <p><%= link_to m.name, m %></p>
+  </div>
+<% end %>

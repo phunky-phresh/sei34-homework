@@ -1,0 +1,17 @@
+<%= form_for @car do |f|%>
+  <%= f.label :model %>
+  <%= f.text_field :model, :required=> true, :autofocus=> true %>
+  <%= f.label :manufacturer_id %>
+  <%= f.select :manufacturer_id, Manufacturer.pluck(:name, :id), :include_blank=> true %>
+  <%= f.label :year %>
+  <%= f.text_field :year %>
+  <%= f.label :style %>
+  <%= f.text_field :style %>
+  <%= f.label :engine_capacity %>
+  <%= f.number_field :engine_capacity %>
+  <%= f.label :cylinders %>
+  <%= f.number_field :cylinders %>
+  <%= f.label :image %>
+  <%= f.url_field :image, :required=> true %>
+  <%= f.submit %>
+<% end %>

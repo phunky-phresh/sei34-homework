@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnimationPictures</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <nav>
+        <%= link_to "Animations", animations_path %>
+        <%= link_to "New Animation", new_animation_path %>
+        <%= link_to "Studios", producers_path %>
+        <%= link_to "New Studio", new_producer_path %>
+      </nav>
+
+      <%= yield %>
+      
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<%= form_for @park do | f | %> 
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true %>
+    <%= f.label :country_id %>
+    <%= f.select :country_id, Country.pluck(:name, :id), :include_blank => true %>
+    <%= f.label :area, 'Area (square kilometres)' %>
+    <%= f.text_field :area, :required => true %>
+    <%= f.label :numb_climbs, 'Number of climbs in area' %>
+    <%= f.text_field :numb_climbs, :required => true %>
+    <%= f.label :image%>
+    <%= f.text_field :image%>
+    <%= f.submit %>
+<% end %> 
