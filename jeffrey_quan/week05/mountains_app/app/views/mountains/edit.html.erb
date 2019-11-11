@@ -1,0 +1,61 @@
+<h2>Edit Mountain</h2>
+<form action="<%= mountain_path(@mountain.id) %>" method="POST">
+
+  <div class="edit-wrapper">
+    <label>
+      Name:
+    </label>
+    <input type="text" name="name" value="<%= @mountain.name %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Height (in metres):
+    </label>
+    <input type="integer" name="height" value="<%= @mountain.height %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Range:
+    </label>
+    <input type="text" name="range" value="<%= @mountain.range %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Countries:
+    </label>
+    <input type="text" name="countries" value="<%= @mountain.countries %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Continent:
+    </label>
+    <input type="text" name="continent" value="<%= @mountain.continent %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Year of First Ascent:
+    </label>
+    <input type="integer" name="year_first_ascent" value="<%= @mountain.year_first_ascent %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Climbers in First Ascent:
+    </label>
+    <input type="text" name="climber_first_ascent" value="<%= @mountain.climber_first_ascent %>">
+  </div>
+
+  <div class="edit-wrapper">
+    <label>
+      Image:
+    </label>
+    <input type="text" name="image" value="<%= @mountain.image %>">
+  </div>
+
+  <button>Update</button>
+</form>

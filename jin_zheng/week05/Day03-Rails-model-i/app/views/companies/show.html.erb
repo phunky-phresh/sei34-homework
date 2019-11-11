@@ -1,0 +1,17 @@
+<h1><%= @company.name %></h1>
+
+
+<%= image_tag(@company.image, :class =>"feature") if @company.image.present? %>
+
+<p>Name: <%= @company.name %></p>
+<p>Founder: <%= @company.founder %></p>
+<p>Founded: <%= @company.founded.strftime '%A, %B %e, %Y' if @company.founded.present? %></p>
+<p>Headquarter: <%= @company.headquarter %></p>
+<p>Website: <%= link_to @company.website,  @company.website, :target => "_blank"%></p>
+
+<% @company.games.each do |game| %>
+<%= link_to image_tag(game.image, :class => "feature"), game  %>
+<% end %>
+<%= button_to "Edit #{@company.name} Info", edit_company_path, :method => 'get' %>
+<%= button_to "Delete #{@company.name} file", @company, :method => 'delete', :data => { :confirm => 'Are you sure?'}  %>
+<%= button_to "Back to homepage", companies_path, :method => 'get'%>

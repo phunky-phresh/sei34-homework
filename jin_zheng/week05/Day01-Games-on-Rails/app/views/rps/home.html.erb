@@ -1,0 +1,30 @@
+<div class="game_container">
+    <div class="move">
+        <div class="throw_container">
+            <h2>Your throw:</h2>
+            <div class="throw">
+            <img src="/assets/<%= @player %>.jpg" alt="<%= @player %>">
+            </div>
+        </div>
+        <div class="throw_container">
+            <h2>Result:</h2>
+            <div class="throw" id="result">
+            <h3><%= @result %></h3>
+            </div>
+        </div>
+        <div class="throw_container">
+            <h2>Computer throw:</h2>
+            <div class="throw">
+            <img src="/assets/<%= @computer %>.jpg" alt="<%= @computer %>">
+            </div>
+        </div>
+    </div>
+
+    <h2>Select</h2>
+    <div class="options">
+        <div class="option"><a href="/rps/rock"><img src="/assets/rock.jpg" alt="rock"></a></div>
+        <div class="option"><a href="/rps/paper"><img src="/assets/paper.jpg" alt="paper"></a></div>
+        <div class="option"><a href="/rps/scissors"><img src="/assets/scissors.jpg" alt="scissors"></a></div>
+
+    </div>
+</div>

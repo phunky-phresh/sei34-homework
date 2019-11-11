@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MountainsApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="top-nav" align="center">
+          <ul>
+            <%= link_to "All Mountains", mountains_path %>
+            <%= link_to "New Mountain", new_mountain_path %>
+          </ul>
+
+        </nav>
+      </header>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

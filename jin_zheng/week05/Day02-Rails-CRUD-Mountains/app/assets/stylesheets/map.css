@@ -1,0 +1,42 @@
+.map-container {
+    width: 90%;
+}
+
+.map-container img{
+    width: 100%;
+    z-index: -1;
+}
+
+.continent {
+    position: absolute;
+    width: 20%;
+}
+
+#north-america {
+    left: 14%;
+    top: 24vw;
+}
+
+#south-america {
+    left: 22%;
+    top: 42vw;
+}
+
+#europe {
+    left: 45%;
+    top: 25vw;
+}
+
+#asia {
+    left: 67%;
+    top: 28vw;
+}
+
+#africa {
+    left: 47%;
+    top:37vw;
+}
+#oceania {
+    left: 82%;
+    top:44vw;
+}

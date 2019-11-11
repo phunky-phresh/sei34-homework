@@ -1,0 +1,12 @@
+<h1><%= @man.name %></h1>
+
+
+<p>Name: <%= @man.name %></p>
+<p>Parent: <%= @man.parent if @man.parent.present? %></p>
+<p>Origin: <%= @man.origin %></p>
+<p>Founded in:  <%= @man.founded %></p>
+
+<div class="controls">
+  <%= link_to "Edit #{@man.name}", edit_manufacturer_path(@man) %>
+  <%= button_to "Delete #{@man.name}", @man, :method=> 'delete', :data=> {:confirm=> 'Are you sure?'} %>
+</div>

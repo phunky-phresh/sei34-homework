@@ -1,0 +1,18 @@
+<div class="main">
+  <div class="info">
+    <p>Name: <%= @mountain.name %></p>
+    <p>Height: <%= number_with_delimiter(@mountain.height, :delimiter => ',') %> m</p>
+    <p>Range: <%= @mountain.range %></p>
+    <p>Countries: <%= @mountain.countries %></p>
+    <p>Continent: <%= @mountain.continent %></p>
+    <p>First Ascent: <%= @mountain.year_first_ascent %> by <%= @mountain.climber_first_ascent %></p>
+  </div>
+  <div class="mountain-image">
+    <img src="<%= @mountain.image %>" alt="<%= @mountain.name %>">
+  </div>
+</div>
+
+<div class="controls">
+  <%= link_to 'Edit', edit_mountain_path(@mountain.id) %>
+  <%= button_to 'Delete', mountain_path(@mountain.id), :method => 'delete' %>
+</div>

@@ -19,20 +19,28 @@
         <a href="#"><button>Delete Link</button></a>
     </form>
 </div> -->
+<form class="selection" action="/" method="get">
+    <label class="selection_label">Plant Category: </label>
+    <select class="" name="plant_selected">
+        <option></option>
+        <% @plants_category.each do |plant_category| %>
+        <option><%= plant_category %></option>
+        <% end %>
+    </select>
+        <label class="selection_label">Pest Name: </label>
+        <select class="" name="pest_selected">
+            <option></option>
+            <% @pests_name.each do |pest_name| %>
+            <option><%= pest_name %></option>
+            <% end %>
+        </select>
+    <button>Filter</button>
+</form>
 
 <div class="content">
     <div class="plants">
         <a class="create_plant" href="#">Add New Plant</a>
-        <form class="selection" action="/select" method="get">
-            <label class="selection_label">Plant Category: </label>
-            <select class="" name="plant_selected">
-                <option></option>
-                <% @plants_category.each do |plant_category| %>
-                <option><%= plant_category %></option>
-                <% end %>
-            </select>
-            <button>Filter</button>
-        </form>
+
 
         <div class="module">
             <% @plants.each do |plant| %>
@@ -64,16 +72,7 @@
 </div>
     <div class="pests">
         <a class="create_pest" href="#">Add New Pest</a>
-        <form class="selection" action="/select" method="get">
-            <label class="selection_label">Pest Name: </label>
-            <select class="" name="pest_selected">
-                <option></option>
-                <% @pests_name.each do |pest_name| %>
-                <option><%= pest_name %></option>
-                <% end %>
-            </select>
-            <button>Filter</button>
-        </form>
+
 
         <div class="module">
             <% @pests.each do |pest| %>
@@ -221,7 +220,7 @@
         <div class="plant_hidden_show">
             <% unless @plant.nil? %>
             <div class="show_page_buttons">
-                <a href="/select"><button class="plant_hide_show">Back</button></a>
+                <a href="/"><button class="plant_hide_show">Back</button></a>
                 <button class="edit_plant" id="plant<%= @plant.id %>" value="<%= @plant.name %>|<%= @plant.category %>|<%= @plant.difficulty %>|<%= @plant.water_demand %>|<%= @plant.sunlight_demand %>|<%= @plant.humidity %>|<%= @plant.rareness %>|<%= @plant.leaves_image %>|<%= @plant.plant_image %>">Edit</button>
                 <a class="delete_button_plant" href="/plant/<%= @plant.id %>/delete"><button>Delete</button></a>
             </div>
@@ -266,7 +265,7 @@
         <div class="pest_hidden_show">
             <% unless @pest.nil? %>
             <div class="show_page_buttons">
-                <a href="/select"><button class="pest_hide_show">Back</button></a>
+                <a href="/"><button class="pest_hide_show">Back</button></a>
                 <button class="edit_pest" id="pest<%= @pest.id %>" value="<%= @pest.name %>|<%= @pest.pest_control %>|<%= @pest.image %>|<%= @pest.plant_id %>">Edit</button>
                 <a class="delete_button_pest" href="/pest/<%= @pest.id %>/delete"><button>Delete</button></a>
             </div>
