@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_105638) do
+ActiveRecord::Schema.define(version: 2019_10_30_113753) do
 
   create_table "albums", force: :cascade do |t|
     t.text "title"
     t.text "release"
     t.text "image"
+    t.integer "artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
