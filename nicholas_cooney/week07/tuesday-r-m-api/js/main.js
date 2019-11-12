@@ -6,21 +6,29 @@ $(document).ready(function() {
     const url = `https://rickandmortyapi.com/api/character/?name=${search}`;
     $.ajax(url).done( function (data) {
       let loop = data.results
-
+      let next = data.info.next
       loop.forEach( function(i) {
         let name = i.name;
         let status = i.status;
         let species = i.species;
         let image = i.image;
-        console.log(data);
+        // console.log(data);
 
-        $('.results').append(`<div class="card"><div class="character"><div class="image"><img src="${image}"><div class="stats"><div><h3>Name:</h3><p>${name}</p></div><div id="mid"><h3>Status:</h3><p>${status}</p></div><div><h3>Species:</h3><p>${species}</p></div>`);
+
+        $('.results').append(`<div class="card"><div class="character"><div class="image"><img src="${image}"><div class="stats"><div><h3 id ="name">${name}</h3></div><div id="mid"><span>Status:</span><p>${status}</p></div><div><span>Species:</span><p>${species}</p></div>`);
 
       })
+      $('.pages').append(`<a id="page" href="${next}">Next Page</a>`)
 
     });
 
   };
 
 $('button').on('click', find);
+
+  const next = function() {
+    
+  }
+
+$('.page').on('click', next)
 })
