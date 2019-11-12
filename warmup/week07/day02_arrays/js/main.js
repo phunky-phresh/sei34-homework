@@ -65,7 +65,7 @@ flatten(["Hello", ["World", 42] ]);
 
 // Jez's solutions :)
 
-// REVERSING ///////////////////////////////////////////////////////////////////
+// REVERSING /////////////////////////////////////////////////////////////////// (using ES6 arrow functions - we will cover this later!!!)
 
 const reverse = function(arr) {
   return arr.map((e, i) => arr[arr.length - 1 - i]);
@@ -73,21 +73,15 @@ const reverse = function(arr) {
 
 console.log(reverse([1,2,3,4]))
 
-// FLATTENING //////////////////////////////////////////////////////////////////
-
-const isEmpty = function(arr) {
-  // to check if everything within an array is an empty array or nothing at all
-  // this check itself recurses
-  return Array.isArray(arr) && (arr.length == 0 || arr.every(isEmpty));
-}
+// FLATTENING ////////////////////////////////////////////////////////////////// (using recursion - we will cover this later!!!)
 
 const flatten = function(arr, output=[]) {
   //initialise with default empty output array
 
-  while (!isEmpty(arr)) {
+  while (arr.length > 0) {
     if (!Array.isArray(arr[0])) { //extract non-array element and move on
       output.push(arr.shift())
-    } else if (isEmpty(arr[0])) { //done with first element, remove it
+    } else if (arr[0].length == 0) { //done with first element, remove it
       arr.shift()
     } else { //drill down with recursion
       flatten(arr[0], output)
@@ -95,8 +89,6 @@ const flatten = function(arr, output=[]) {
   }
   return output;
 }
-
-
 
 console.log(flatten(['hello', ['world', 42]]));
 console.log(flatten(['hello', [['world', 42]]]));
