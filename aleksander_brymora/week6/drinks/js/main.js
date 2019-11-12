@@ -1,0 +1,3 @@
+$('#risky').click(function () {
+	$.ajax
+})
