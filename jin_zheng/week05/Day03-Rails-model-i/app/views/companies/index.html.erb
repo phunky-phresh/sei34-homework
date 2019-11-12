@@ -1,0 +1,9 @@
+<h1>Game Companies</h1>
+
+<% @companies.each do |company| %>
+    <% if company.image.present? %>
+     <%= link_to image_tag(company.image, :class =>"thumb"), company %>
+    <% else %>
+    <%= link_to company.name, company %>
+    <% end %>
+<% end %>

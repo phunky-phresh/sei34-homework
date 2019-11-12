@@ -1,0 +1,7 @@
+<h1>Directors</h1>
+<div class="director-board">
+<% @directors.each do |director| %>
+    <% if director.image.present? %>
+      <%= link_to image_tag(director.image, :class => 'thumb', :alt => director.name), director %>
+    <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>All Games</h1>
+
+
+<% @games.each do |game| %>
+<% if game.image.present? %>
+    <%= link_to image_tag(game.image, :class => 'thumb'), game %>
+<% else %>
+    <%= link_to game.title, game %>
+<% end %>
+<% end %>

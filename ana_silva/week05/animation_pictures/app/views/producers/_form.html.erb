@@ -1,0 +1,12 @@
+<%= form_for @producer do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true, :required => true %>
+
+  <%= f.label :foundation_year %>
+  <%= f.text_field :foundation_year %>
+
+  <%= f.label :logo %>
+  <%= f.url_field :logo %>
+
+  <%= f.submit %>
+<% end %>

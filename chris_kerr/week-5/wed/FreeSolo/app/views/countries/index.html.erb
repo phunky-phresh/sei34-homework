@@ -1,0 +1,37 @@
+<h2>Summary</h2>
+
+<ul>
+    <% @countries.each do | c | %>
+        <li><%= link_to c.name, "/countries/#{c.id}"  %>
+            <ul>
+            <% c.parks.each do | p |%>
+                <li><%= link_to p.name, "/parks/#{p.id}" %>
+                    <ul>
+                        <% p.climbs.each do | c | %>
+                            <li><%= link_to c.name, "/climbs/#{c.id}" %></li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
+            </ul>
+        </li>
+    <% end %>
+</ul>
+
+<ul>
+    <% @parks.each do | park | %>
+        <% if park.country.nil? %>
+        <li><%= link_to park.name, "/parks/#{park.id}" %> is orphaned, please connect it to a country</li>
+        <% end %>
+    <% end %>
+    <% @climbs.each do | climb | %>
+        <% if climb.park.nil? %>
+        <li><%= link_to climb.name, "/climbs/#{climb.id}" %> is orphaned, please connect it to a park</li>
+        <% end %>
+    <% end %>
+</ul>
+
+<p>To do:</p>
+<ul>
+    <li>Make prettier</li>
+</ul>
