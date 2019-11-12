@@ -32,7 +32,6 @@ body {
   max-width: 96rem;
   margin: 0 auto;
   font-size: 1.6rem;
-  /* border: 0.1rem solid black; */
   color: black;
 }
 
@@ -62,15 +61,8 @@ body {
 
 .director-board {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-}
-
-.director-box {
-  /* border: 0.1rem solid silver; */
-  padding: 0.3rem;
-  margin: 0.2rem;
-  background-color: rgba(128,128,128, 0.2);
-  box-shadow: 0 0.1rem 0.1rem rgba(0,0,0,0.5);
 }
 
 ul {
