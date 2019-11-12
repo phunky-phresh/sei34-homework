@@ -1,4 +1,9 @@
-const findBook = function () {
+
+const searchForm= document.querySelector('form')
+
+
+searchForm.addEventListener('submit', function (event) {
+  event.preventDefault();
   search = document.getElementById('search').value
 
   const xhr = new XMLHttpRequest();
@@ -7,12 +12,14 @@ const findBook = function () {
 
     xhr.send();
 
+
+    // make sure you undestand this!!!! The return exits the function until ready state is 4. When it is 4 the code inside the onreadystatechange function starts to run
     xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4){
         return; // too soon for complete data. sometimes readyState 3 isn't complete. 4 is complete
       }
-      const data = JSON.parse(xhr.responseText);
-      const image = data.items[0]["volumeInfo"]["imageLinks"]["thumbnail"];
+      const data = JSON.parse(xhr.responseText); //turns JSON into object
+      const image = data.items[0].volumeInfo.imageLinks.thumbnail;
 
       const img = document.createElement('img');
       const h2 = document.createElement('h2');
@@ -26,8 +33,7 @@ const findBook = function () {
       book.appendChild(img);
 
     };
-};
+});
 
-button = document.getElementById('button')
-button.addEventListener('click', findBook);
+
 // findBook("Jaws");
