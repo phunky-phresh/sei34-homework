@@ -12,7 +12,7 @@ const showImages = function(results) {
       p.id,
       '_',
       p.secret,
-      '_q.jpeg' //can be changed to something else for different sizes. check docs
+      '_c.jpeg' //can be changed to something else for different sizes. check docs
     ].join('');
   };
   _(results.photos.photo).each(function (photo) {
