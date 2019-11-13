@@ -1,0 +1,61 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100vh;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  border: 0.1rem solid silver;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  padding: 2rem;
+  text-align: center;
+}
+
+.result {
+  margin: 2rem 0;
+  font-size: 1.4rem;
+}
+
+.search-result {
+  display: flex;
+  margin: 1rem 0;
+  text-align: justify;
+  overflow: hidden;
+}
+
+.book-info {
+  max-height: 20rem;
+  padding: 0 1rem 1rem 1rem;
+  font-size: 1.4rem;
+}
+
+.book-desc {
+
+}
+
+.book {
+  width: 50rem;
+  height: 5vh;
+  border-radius: 1.5rem;
+  padding: 0.2rem;
+}
+
+#fetch {
+  height: 5vh;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.5);
+}
