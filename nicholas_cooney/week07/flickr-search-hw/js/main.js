@@ -1,3 +1,11 @@
+// let currentPage = 1;
+// let totalPages = 1;
+//global variables
+const state = {
+  currentPage: 1,
+  totalPages: 1
+};
+
 const showImages = function(results) {
   //Nested Helper function
   console.log(results);
@@ -23,9 +31,8 @@ const showImages = function(results) {
 
   })
 };
-  let currentPage = 1
-  let totalPages = 1;
   const searchFlickr = function (terms) {
+
     const flickrURL = 'http://api.flickr.com/services/rest?jsoncallback=?';
 
     $.getJSON(flickrURL, {
@@ -33,16 +40,12 @@ const showImages = function(results) {
       api_key: '2f5ac274ecfac5a455f38745704ad084', // This is not a secret key
       text: terms,
       format: 'json',
-      page: currentPage
+      page: state.currentPage
     }).done(showImages).done(function(result){
-            // console.log('retrieving page', targetPage, 'of', result.photos.pages)
-            totalPages = result.photos.pages;
-            console.log(totalPages)
-      // pages = results.photos.pages;
-      currentPage ++;
+        state.totalPages = result.photos.pages;
+        console.log(state.totalPages)
+        state.currentPage ++;
       });
-    // console.log(nextPage);
-    // console.log(nextPage);
 
 
 };
@@ -51,9 +54,8 @@ $(document).ready(function() {
 
   $('#search').on('submit', function (event) {
     event.preventDefault();
-
     const query = $('#query').val();
-    currentPage = 1;
+    state.currentPage = 1;
     $('.images').empty(); //empties the div for new search items
     // get search Terms
     //fetch images from api
@@ -68,7 +70,7 @@ let lastScrollBottom = 0;
     // console.log('document height', $(document).height());
 
     const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
-      if ( scrollBottom < 650 && totalPages > 1) {
+      if ( scrollBottom < 650 && state.totalPages > 1) {
         // get query
         const query = $('#query').val();
         limit(query);
