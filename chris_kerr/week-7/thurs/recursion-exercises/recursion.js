@@ -85,11 +85,47 @@ function coinFlips(n){
 
 }
 
-function letterCombinations(){
+function letterCombinations(origInput, received){
     // This function returns an array of all combinations of the given letters
     // Input type: Array of single characters
     // For example, letterCombinations(["a","b","c"]) would return the following:
     // ["a","b","c","ab","ac","ba","bc","ca","cb","abc","acb","bac","bca","cab","cba"]
+
+    // take and keep the input letters
+    // also pass it downwards again, along with the original input
+    // at each level loop over each item in the passDown array and append one of the original input characters, if not already in the string
+    let output;
+
+    if (received) {
+        let toPassDown = [];
+        let changes = 0;
+        console.log(toPassDown)
+
+        // loop to add an element to each in toPassDown
+        for (let i = 0; i < received.length; i++) {
+            for (let j = 0; j < origInput.length; j++) {
+                if (received[i].includes(origInput[j])) {
+                    //do nothing 
+                } else {
+                    toPassDown.push(received[i] + origInput[j]);
+                    changes ++;
+                }
+            }
+        }
+
+        if (changes > 0) {
+            output = [toPassDown, letterCombinations(origInput.slice(), toPassDown.slice())].flat();
+            // return output;
+        } else {
+            output = toPassDown;
+            // return output;
+        }
+
+    } else {
+        output = [origInput, letterCombinations(origInput.slice(), origInput.slice())].flat();
+    }
+
+    return output;
 }
 
 module.exports = {
