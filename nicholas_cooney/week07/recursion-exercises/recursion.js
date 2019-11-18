@@ -1,16 +1,21 @@
 // Write code inside the functions
 // You will have to figure out what parameters to include
 // All functions must use recursion
-console.log("hi")
-function findMax(){
+// console.log("hi")
+function findMax(array, largest=-Infinity){
     // This function returns the largest number in a given array.
-    if (num.length === 1) { return num[0]; }
-    if (num.length > 1) {
-      console.log(num.length)
+    if (array.length === 0) {
+      return largest;
+    }
+    if (array[0] > largest) {
+      largest = array[0];
+    }
+    return findMax(array.slice(1), largest);
 }
-}
-function factorial(){
+
+function factorial(n){
     // This function returns the factorial of a given number.
+    return (n <= 1) ? 1 : n * factorial(n-1);
 }
 
 function fibonacci(){
@@ -19,13 +24,26 @@ function fibonacci(){
     // For this function, the first two fibonacci numbers are 1 and 1
 }
 
-function coinFlips(){
+function coinFlips(tosses){
     // This function returns an array of all possible outcomes from flipping a coin N times.
     // Input type: Integer
     // For example, coinFlips(2) would return the following:
     // ["HH", "HT", "TH", "TT"]
     // H stands for Heads and T stands for tails
     // Represent the two outcomes of each flip as "H" or "T"
+
+    const combinations = [];
+    const flip = (soFar="") => {
+      if (soFar.length === tosses) {
+        combinations.push(soFar);
+      } else {
+        flip(soFar + "H"); //recursive
+        flip(soFar + "T");
+      }
+    }
+    flip();
+
+    return combinations;
 }
 
 function letterCombinations(){
@@ -35,10 +53,10 @@ function letterCombinations(){
     // ["a","b","c","ab","ac","ba","bc","ca","cb","abc","acb","bac","bca","cab","cba"]
 }
 
-// module.exports = {
-//     findMax,
-//     factorial,
-//     fibonacci,
-//     coinFlips,
-//     letterCombinations
-// }
+module.exports = {
+    findMax,
+    factorial,
+    fibonacci,
+    coinFlips,
+    letterCombinations
+}
